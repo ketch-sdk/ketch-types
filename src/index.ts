@@ -1,4 +1,191 @@
 /**
+ * Callback
+ */
+export declare type Callback = (arg0: any) => void
+
+/**
+ * Status
+ */
+export type Status = { [key: string]: boolean }
+
+/**
+ * Consent
+ */
+export type Consent = {
+  purposes: Status
+  vendors?: string[] // list of vendor ids for which the user has opted out
+}
+
+/**
+ * Identities
+ */
+export type Identities = { [key: string]: string }
+
+/**
+ * PreferenceExperienceParams
+ */
+export type PreferenceExperienceParams = {
+  showRightsTab?: boolean
+  dataSubjectTypeCodes?: string[]
+}
+
+/**
+ * Plugin
+ */
+export interface Plugin {
+  init: (host: Ketch, config: Configuration) => void
+
+  environmentLoaded?: (host: Ketch, config: Configuration, env: Environment) => void
+
+  geoIPLoaded?: (host: Ketch, config: Configuration, ipInfo: IPInfo) => void
+
+  identitiesLoaded?: (host: Ketch, config: Configuration, identities: Identities) => void
+
+  jurisdictionLoaded?: (host: Ketch, config: Configuration, policyScope: string) => void
+
+  regionInfoLoaded?: (host: Ketch, config: Configuration, region: string) => void
+
+  consentChanged?: (host: Ketch, config: Configuration, consent: Consent) => void
+
+  rightInvoked?: (host: Ketch, config: Configuration, request: InvokeRightRequest) => void
+
+  showConsentExperience?: ShowConsentExperience
+
+  showPreferenceExperience?: ShowPreferenceExperience
+
+  willShowExperience?: (host: Ketch, config: Configuration) => void
+
+  experienceHidden?: (host: Ketch, config: Configuration, reason?: string) => void
+}
+
+/**
+ * Ketch host
+ */
+export interface Ketch {
+  getConfig(): Promise<Configuration>
+
+  registerPlugin(plugin: Plugin): Promise<void>
+
+  getProperty(p: string): string | null
+
+  hasConsent(): boolean
+  getConsent(): Promise<Consent>
+  setConsent(c: Consent): Promise<Consent>
+  changeConsent(consent: Consent): Promise<void>
+  setProvisionalConsent(c: Consent): Promise<void>
+  onConsent(callback: Callback): Promise<void>
+
+  invokeRight(eventData: InvokeRightsEvent): Promise<void>
+  onInvokeRight(callback: Callback): Promise<void>
+
+  shouldShowConsent(c: Consent): boolean
+  setShowConsentExperience(): Promise<void>
+
+  showConsentExperience(): Promise<Consent>
+  onShowConsentExperience(callback: ShowConsentExperience): Promise<void>
+
+  showPreferenceExperience(params: PreferenceExperienceParams): Promise<Consent>
+  onShowPreferenceExperience(callback: ShowPreferenceExperience): Promise<void>
+
+  experienceClosed(reason: string): Promise<Consent>
+  onHideExperience(callback: Callback): Promise<void>
+  onWillShowExperience(callback: Callback): Promise<void>
+
+  getEnvironment(): Promise<Environment>
+  setEnvironment(env: Environment): Promise<Environment>
+  onEnvironment(callback: Callback): Promise<void>
+
+  getGeoIP(): Promise<IPInfo>
+  setGeoIP(g: IPInfo): Promise<IPInfo>
+  onGeoIP(callback: Callback): Promise<void>
+
+  getIdentities(): Promise<Identities>
+  setIdentities(id: Identities): Promise<Identities>
+  onIdentities(callback: Callback): Promise<void>
+
+  getJurisdiction(): Promise<string>
+  setJurisdiction(ps: string): Promise<string>
+  onJurisdiction(callback: Callback): Promise<void>
+
+  getRegionInfo(): Promise<string>
+  onRegionInfo(callback: Callback): Promise<void>
+  setRegionInfo(info: string): Promise<string>
+
+  // Native events
+  fireNativeEvent(name: string, args: any): Promise<void>
+}
+
+/**
+ * ShowPreferenceExperience
+ */
+export type ShowPreferenceExperience = (
+  host: Ketch,
+  config: Configuration,
+  consents: Consent,
+  options?: ShowPreferenceOptions,
+) => void
+
+/**
+ * ShowConsentExperience
+ */
+export type ShowConsentExperience = (
+  host: Ketch,
+  config: Configuration,
+  consents: Consent,
+  options?: ShowConsentOptions,
+) => void
+
+/**
+ * ShowPreferenceOptions
+ */
+export type ShowPreferenceOptions = {
+  tab?: 'overviewTab' | 'rightsTab' | 'consentsTab'
+
+  /**
+   * dataSubjectTypeCodes is the list of data subjects to display. If undefined, all data subjects are displayed.
+   */
+  dataSubjectTypeCodes?: string[]
+
+  /**
+   * showRightsTab determines whether the rights tab will show. If undefined, the rights tab is displayed.
+   */
+  showRightsTab?: boolean
+}
+
+/**
+ * ShowConsentOptions
+ */
+export type ShowConsentOptions = {
+  displayHint: 'experiences.consent.jit' | 'experiences.consent.modal' | 'experiences.consent.banner'
+  purposes?: string[]
+}
+
+/**
+ * InvokeRightsEvent
+ */
+export type InvokeRightsEvent = {
+  addressLine1?: string
+  addressLine2?: string
+  country?: string
+  details?: string
+  firstName: string
+  lastName: string
+  phoneNumber?: string
+  postalCode?: string
+  right: string
+  rightsEmail: string
+  stateRegion?: string
+}
+
+/**
+ * AppDiv
+ */
+export interface AppDiv {
+  id: string
+  zIndex: string
+}
+
+/**
  * ExperienceDefault
  */
 export enum ExperienceDefault {
@@ -246,6 +433,31 @@ export interface GetFullConfigurationRequest {
   deploymentID?: string
   jurisdictionCode: string
   languageCode: string
+}
+
+/**
+ * GetPreferenceQRRequest
+ */
+export interface GetPreferenceQRRequest {
+  organizationCode: string
+  propertyCode: string
+  environmentCode?: string
+  imageSize?: number
+  path?: string
+  backgroundColor?: string
+  foregroundColor?: string
+  parameters: { [key: string]: string }
+}
+
+/**
+ * WebReportRequest
+ */
+export interface WebReportRequest {
+  type: string
+  age: number
+  url: string
+  user_agent: string
+  body: { [key: string]: any }
 }
 
 /**
@@ -826,4 +1038,12 @@ export interface Configuration {
 
   // stacks is the list of stacks to be displayed in an experience
   stacks?: Stack[]
+}
+
+declare global {
+  interface Window {
+    semaphore: {
+      push(args: any[]): void
+    }
+  }
 }
