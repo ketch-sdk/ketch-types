@@ -2,6 +2,7 @@
   "name": "@ketch-sdk/ketch-types",
   "version": "0.0.1",
   "description": "Ketch Types",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "ncc build --minify --license licenses.txt src/index.ts",
