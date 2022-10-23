@@ -484,6 +484,7 @@ export interface Property {
   code?: string
   name?: string
   platform?: string
+  proxy?: string
 }
 
 /**
