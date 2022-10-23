@@ -374,9 +374,9 @@ export interface SetConsentRequest {
 }
 
 /**
- * User
+ * DataSubject
  */
-export interface User {
+export interface DataSubject {
   email: string
   first: string
   last: string
@@ -411,7 +411,7 @@ export interface InvokeRightRequest {
   invokedAt?: number
   jurisdictionCode: string
   rightCode: string
-  user: User
+  user: DataSubject
 }
 
 /**
