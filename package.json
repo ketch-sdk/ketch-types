@@ -6,7 +6,7 @@
   "scripts": {
     "build": "ncc build --minify --license licenses.txt src/index.ts",
     "lint": "eslint src/**/*.ts",
-    "test": "jest --runInBand",
+    "test": "jest --runInBand --passWithNoTests",
     "format": "prettier --write \"**/*.{ts,tsx,yml,yaml}\"",
     "format-check": "prettier --check '**/*.ts'",
     "docs": "typedoc --githubPages true --excludeInternal src/index.ts"
