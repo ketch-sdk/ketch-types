@@ -428,11 +428,11 @@ export interface GetBootstrapConfigurationRequest {
 export interface GetFullConfigurationRequest {
   organizationCode: string
   propertyCode: string
-  environmentCode: string
-  hash: string
+  environmentCode?: string
+  hash?: string
   deploymentID?: string
-  jurisdictionCode: string
-  languageCode: string
+  jurisdictionCode?: string
+  languageCode?: string
 }
 
 /**
