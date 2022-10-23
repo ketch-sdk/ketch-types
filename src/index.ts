@@ -1051,7 +1051,6 @@ export type Loaded = {
 
 declare global {
   interface Window {
-    Ketch?: Pusher & Loaded
-    semaphore?: Pusher & Loaded
+    semaphore: Pusher & Loaded
   }
 }
