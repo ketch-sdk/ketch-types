@@ -1041,10 +1041,17 @@ export interface Configuration {
   stacks?: Stack[]
 }
 
+export type Pusher = {
+  push(args: any[]): void
+}
+
+export type Loaded = {
+  loaded?: boolean
+}
+
 declare global {
   interface Window {
-    semaphore: {
-      push(args: any[]): void
-    }
+    Ketch?: Pusher & Loaded
+    semaphore?: Pusher & Loaded
   }
 }
