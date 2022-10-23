@@ -1,0 +1,11 @@
+.editorconfig
+.eslintignore
+.eslintrc.json
+.gitattributes
+.github/
+.prettierignore
+.prettierrc
+docs/
+jest.config.js
+test-reports/
+tsfmt.json
