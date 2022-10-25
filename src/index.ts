@@ -36,7 +36,7 @@ export interface Ketch {
   getConfig(): Promise<Configuration>
   // Add: on('configChanged', callback)
 
-  registerPlugin(plugin: (host: Ketch, config?: any) => Promise<void>): Promise<void>
+  registerPlugin(plugin: (host: Ketch, config?: any) => Promise<void>, config?: any): Promise<void>
 
   hasConsent(): boolean
   getConsent(): Promise<Consent>
