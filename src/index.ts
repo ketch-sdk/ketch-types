@@ -30,86 +30,84 @@ export type PreferenceExperienceParams = {
 }
 
 /**
- * Plugin
+ * Plugin factory function signature
  */
-export interface Plugin {
-  init: (host: Ketch, config: Configuration) => void
-
-  environmentLoaded?: (host: Ketch, config: Configuration, env: Environment) => void
-
-  geoIPLoaded?: (host: Ketch, config: Configuration, ipInfo: IPInfo) => void
-
-  identitiesLoaded?: (host: Ketch, config: Configuration, identities: Identities) => void
-
-  jurisdictionLoaded?: (host: Ketch, config: Configuration, policyScope: string) => void
-
-  regionInfoLoaded?: (host: Ketch, config: Configuration, region: string) => void
-
-  consentChanged?: (host: Ketch, config: Configuration, consent: Consent) => void
-
-  rightInvoked?: (host: Ketch, config: Configuration, request: InvokeRightRequest) => void
-
-  showConsentExperience?: ShowConsentExperience
-
-  showPreferenceExperience?: ShowPreferenceExperience
-
-  willShowExperience?: (host: Ketch, config: Configuration) => void
-
-  experienceHidden?: (host: Ketch, config: Configuration, reason?: string) => void
-}
+export type Plugin = (host: Ketch, config?: any) => Promise<void>
 
 /**
  * Ketch host
  */
 export interface Ketch {
   getConfig(): Promise<Configuration>
+  // Add: on('configChanged', callback)
 
-  registerPlugin(plugin: Plugin): Promise<void>
-
-  getProperty(p: string): string | null
+  registerPlugin(plugin: Plugin, config?: any): Promise<void>
 
   hasConsent(): boolean
   getConsent(): Promise<Consent>
   setConsent(c: Consent): Promise<Consent>
   changeConsent(consent: Consent): Promise<void>
   setProvisionalConsent(c: Consent): Promise<void>
+
+  // This will be changed to: on('consentChanged', callback)
   onConsent(callback: Callback): Promise<void>
 
-  invokeRight(eventData: InvokeRightsEvent): Promise<void>
-  onInvokeRight(callback: Callback): Promise<void>
-
-  shouldShowConsent(c: Consent): boolean
   setShowConsentExperience(): Promise<void>
-
+  shouldShowConsent(c: Consent): boolean
   showConsentExperience(): Promise<Consent>
+
+  // This will be changed to: on('showConsentExperience', callback)
   onShowConsentExperience(callback: ShowConsentExperience): Promise<void>
 
   showPreferenceExperience(params: PreferenceExperienceParams): Promise<Consent>
+
+  // This will be changed to: on('showPreferenceExperience', callback)
   onShowPreferenceExperience(callback: ShowPreferenceExperience): Promise<void>
 
   experienceClosed(reason: string): Promise<Consent>
+
+  // This will be changed to: on('experienceHidden', callback)
   onHideExperience(callback: Callback): Promise<void>
+
+  // This will be changed to: on('willShowExperience', callback)
   onWillShowExperience(callback: Callback): Promise<void>
 
-  getEnvironment(): Promise<Environment>
+  invokeRight(eventData: InvokeRightsEvent): Promise<void>
+
+  // This will be changed to: on('rightInvoked', callback)
+  onInvokeRight(callback: Callback): Promise<void>
+
   setEnvironment(env: Environment): Promise<Environment>
+
+  // This is the same as: once('environmentChanged', promise.resolve)
+  getEnvironment(): Promise<Environment>
+
+  // This will be changed to: on('environmentChanged', callback)
   onEnvironment(callback: Callback): Promise<void>
 
-  getGeoIP(): Promise<IPInfo>
   setGeoIP(g: IPInfo): Promise<IPInfo>
+  getGeoIP(): Promise<IPInfo>
+
+  // This will be changed to: on('locationChanged', callback)
   onGeoIP(callback: Callback): Promise<void>
 
-  getIdentities(): Promise<Identities>
   setIdentities(id: Identities): Promise<Identities>
+  getIdentities(): Promise<Identities>
+
+  // This will be changed to: on('identitiesChanged', callback)
   onIdentities(callback: Callback): Promise<void>
 
-  getJurisdiction(): Promise<string>
   setJurisdiction(ps: string): Promise<string>
+  getJurisdiction(): Promise<string>
+
+  // This will be changed to: on('jurisdictionChanged', callback)
   onJurisdiction(callback: Callback): Promise<void>
 
-  getRegionInfo(): Promise<string>
-  onRegionInfo(callback: Callback): Promise<void>
   setRegionInfo(info: string): Promise<string>
+  getRegionInfo(): Promise<string>
+
+  // This will be changed to: on('regionChanged', callback)
+  onRegionInfo(callback: Callback): Promise<void>
 
   // Native events
   fireNativeEvent(name: string, args: any): Promise<void>
@@ -933,11 +931,13 @@ export interface Theme {
   formHeaderContentColor?: string
   formContentColor: string
   formButtonColor: string
+
   /**
    * formSwitchOnColor is the color of the consent switch in the on state for the form this overrides standard theme
    * colors
    */
   formSwitchOnColor?: string
+
   /**
    * formSwitchOffColor is the color of the consent switch in the off state for the form this overrides standard theme
    * colors
@@ -948,6 +948,7 @@ export interface Theme {
    * qrBackgroundColor is the override for the QR code background color
    */
   qrBackgroundColor?: string
+
   /**
    * qrForegroundColor is the override for the QR code foreground color
    */
@@ -1013,44 +1014,151 @@ export interface Stack {
  * Configuration
  */
 export interface Configuration {
-  language?: string
+  /**
+   * Organization this configuration belongs to
+   */
   organization: Organization
+
+  /**
+   * Property this configuration belongs to
+   */
   property?: Property
+
+  /**
+   * Language for all text
+   */
+  language?: string
+
+  /**
+   * Available environments. Only available in the "boot" configuration.
+   */
   environments?: Environment[]
+
+  /**
+   * Environment for this configuration. Only available in the "full" configuration.
+   */
   environment?: Environment
+
+  /**
+   * Applicable jurisdiction.
+   */
   jurisdiction?: JurisdictionInfo
+
+  /**
+   * Identity spaces defined for this property
+   */
   identities?: { [key: string]: Identity }
+
+  /**
+   * Deployment information. Only available in the "full" configuration.
+   */
   deployment?: Deployment
+
+  /**
+   * Regulations enabled for this jurisdiction.
+   */
   regulations?: string[]
+
+  /**
+   * Rights available in this jurisdiction.
+   */
   rights?: Right[]
+
+  /**
+   * Purposes in this jurisdiction.
+   */
   purposes?: Purpose[]
+
+  /**
+   * Mapping of purposes to canonical purposes.
+   *
+   * @deprecated
+   */
   canonicalPurposes?: { [key: string]: CanonicalPurpose }
-  experiences?: Experience
-  services?: { [key: string]: string }
-  options?: { [key: string]: string }
+
+  /**
+   * Privacy policy document
+   */
   privacyPolicy?: PolicyDocument
+
+  /**
+   * Terms of Service (ToS) policy document
+   */
   termsOfService?: PolicyDocument
+
+  /**
+   * Theme
+   */
   theme?: Theme
+
+  /**
+   * Experience definitions
+   */
+  experiences?: Experience
+
+  /**
+   * Services
+   */
+  services?: { [key: string]: string }
+
+  /**
+   * Flexible options
+   */
+  options?: { [key: string]: string }
+
+  /**
+   * Scripts to load
+   */
   scripts?: string[]
+
+  /**
+   * Plugins configured for the configuration
+   */
+  plugins?: { [key: string]: any }
+
+  /**
+   * Vendors (TCF)
+   */
   vendors?: Vendor[]
 
-  // dataSubjectTypes is the list of data subject types relevant for this configuration
+  /**
+   * Data subject types relevant for this configuration
+   */
   dataSubjectTypes?: DataSubjectType[]
 
-  // stacks is the list of stacks to be displayed in an experience
+  /**
+   * Stacks to be displayed in an experience
+   */
   stacks?: Stack[]
 }
 
-export type Pusher = {
+/**
+ * Pusher interface defines a type that has a push function like an array
+ */
+export interface Pusher {
+  /**
+   * Pushes the given arguments.
+   *
+   * @param args The arguments to push.
+   */
   push(args: any[]): void
 }
 
-export type Loaded = {
-  loaded?: boolean
+/**
+ * Loaded interface defines a type that has a loaded boolean property
+ */
+export interface Loaded {
+  /**
+   * Loaded is set to true if the object has fully loaded
+   */
+  loaded: boolean
 }
 
 declare global {
   interface Window {
+    /**
+     * Semaphore is the main entrypoint.
+     */
     semaphore: Pusher & Loaded
   }
 }
