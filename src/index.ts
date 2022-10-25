@@ -30,13 +30,18 @@ export type PreferenceExperienceParams = {
 }
 
 /**
+ * Plugin factory function signature
+ */
+export type Plugin = (host: Ketch, config?: any) => Promise<void>
+
+/**
  * Ketch host
  */
 export interface Ketch {
   getConfig(): Promise<Configuration>
   // Add: on('configChanged', callback)
 
-  registerPlugin(plugin: (host: Ketch, config?: any) => Promise<void>, config?: any): Promise<void>
+  registerPlugin(plugin: Plugin, config?: any): Promise<void>
 
   hasConsent(): boolean
   getConsent(): Promise<Consent>
