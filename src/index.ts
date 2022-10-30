@@ -184,6 +184,15 @@ export interface AppDiv {
 }
 
 /**
+ * ExperienceClosedReason describes the reason the experience was closed.
+ *
+ * setConsent = consent was accepted/set
+ * invokeRight = the right was invoked
+ * close = the close/exit button was clicked
+ */
+export type ExperienceClosedReason = 'setConsent' | 'invokeRight' | 'close'
+
+/**
  * ExperienceDefault
  */
 export enum ExperienceDefault {
