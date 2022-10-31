@@ -64,7 +64,7 @@ export interface Ketch {
   // This will be changed to: on('showPreferenceExperience', callback)
   onShowPreferenceExperience(callback: ShowPreferenceExperience): Promise<void>
 
-  experienceClosed(reason: string): Promise<Consent>
+  experienceClosed(reason: ExperienceClosedReason): Promise<Consent>
 
   // This will be changed to: on('experienceHidden', callback)
   onHideExperience(callback: Callback): Promise<void>
@@ -109,8 +109,23 @@ export interface Ketch {
   // This will be changed to: on('regionChanged', callback)
   onRegionInfo(callback: Callback): Promise<void>
 
-  // Native events
-  fireNativeEvent(name: string, args: any): Promise<void>
+  // Emit an event
+  emit(eventName: string | symbol, ...args: any[]): boolean
+
+  // Add an event listener for the named event
+  addListener(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  // Remove the given listener from the named event
+  removeListener(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  // Add a listener. Alias for addListener
+  on(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  // Add a listener that is fired once and then remove
+  once(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  // Remove a listener. Alias for removeListener
+  off(eventName: string | symbol, listener: (...args: any[]) => void): this
 }
 
 /**
@@ -182,6 +197,15 @@ export interface AppDiv {
   id: string
   zIndex: string
 }
+
+/**
+ * ExperienceClosedReason describes the reason the experience was closed.
+ *
+ * setConsent = consent was accepted/set
+ * invokeRight = the right was invoked
+ * close = the close/exit button was clicked
+ */
+export type ExperienceClosedReason = 'setConsent' | 'invokeRight' | 'close'
 
 /**
  * ExperienceDefault
