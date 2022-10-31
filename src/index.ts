@@ -681,7 +681,6 @@ export enum SwitchTextRenderLogic {
 export interface Banner {
   title?: string
   footerDescription: string
-  agreement?: string
   buttonText: string
   primaryButtonAction?: ExperiencePrimaryButtonAction
   secondaryButtonText?: string
@@ -706,7 +705,6 @@ export interface Modal {
   bodyTitle?: string
   bodyDescription?: string
   footerDescription?: string
-  agreement?: string
   buttonText: string
 
   /**
@@ -795,7 +793,6 @@ export interface ConsentsTab {
   bodyTitle?: string
   bodyDescription?: string
   buttonText: string
-  agreement?: string
 
   /**
    * consentTitle is the heading that goes above the list of purposes
