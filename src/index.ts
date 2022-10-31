@@ -32,7 +32,6 @@ export function isTab(value: string): value is Tab {
   return ALL_TABS.includes(value as Tab)
 }
 
-
 /**
  * Plugin factory function signature
  */
