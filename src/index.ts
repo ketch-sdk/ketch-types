@@ -22,12 +22,16 @@ export type Consent = {
 export type Identities = { [key: string]: string }
 
 /**
- * PreferenceExperienceParams
+ * Tabs
  */
-export type PreferenceExperienceParams = {
-  showRightsTab?: boolean
-  dataSubjectTypeCodes?: string[]
+export const ALL_TABS = ['overviewTab', 'rightsTab', 'consentsTab'] as const
+type TabTuple = typeof ALL_TABS
+export type Tab = TabTuple[number]
+
+export function isTab(value: string): value is Tab {
+  return ALL_TABS.includes(value as Tab)
 }
+
 
 /**
  * Plugin factory function signature
@@ -59,7 +63,7 @@ export interface Ketch {
   // This will be changed to: on('showConsentExperience', callback)
   onShowConsentExperience(callback: ShowConsentExperience): Promise<void>
 
-  showPreferenceExperience(params: PreferenceExperienceParams): Promise<Consent>
+  showPreferenceExperience(params: ShowPreferenceOptions): Promise<Consent>
 
   // This will be changed to: on('showPreferenceExperience', callback)
   onShowPreferenceExperience(callback: ShowPreferenceExperience): Promise<void>
@@ -152,7 +156,7 @@ export type ShowConsentExperience = (
  * ShowPreferenceOptions
  */
 export type ShowPreferenceOptions = {
-  tab?: 'overviewTab' | 'rightsTab' | 'consentsTab'
+  tab?: Tab
 
   /**
    * dataSubjectTypeCodes is the list of data subjects to display. If undefined, all data subjects are displayed.
@@ -163,6 +167,11 @@ export type ShowPreferenceOptions = {
    * showRightsTab determines whether the rights tab will show. If undefined, the rights tab is displayed.
    */
   showRightsTab?: boolean
+
+  /**
+   * supportedCountries is the list of supported ISO 3166 ALPHA-2 country codes to show in the rights form
+   */
+  supportedCountries?: string[]
 }
 
 /**
