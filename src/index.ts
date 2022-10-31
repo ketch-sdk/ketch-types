@@ -932,12 +932,6 @@ export interface Theme {
   buttonBorderRadius: number
   font?: string
 
-  lightboxRibbonColor?: string
-  formHeaderColor?: string
-  statusColor?: string
-  highlightColor?: string
-  feedbackColor?: string
-
   bannerBackgroundColor: string
   bannerContentColor?: string
   bannerButtonColor: string
