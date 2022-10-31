@@ -64,7 +64,7 @@ export interface Ketch {
   // This will be changed to: on('showPreferenceExperience', callback)
   onShowPreferenceExperience(callback: ShowPreferenceExperience): Promise<void>
 
-  experienceClosed(reason: string): Promise<Consent>
+  experienceClosed(reason: ExperienceClosedReason): Promise<Consent>
 
   // This will be changed to: on('experienceHidden', callback)
   onHideExperience(callback: Callback): Promise<void>
