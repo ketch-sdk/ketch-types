@@ -204,7 +204,11 @@ export interface AppDiv {
  * invokeRight = the right was invoked
  * close = the close/exit button was clicked
  */
-export type ExperienceClosedReason = 'setConsent' | 'invokeRight' | 'close'
+export enum ExperienceClosedReason {
+  SET_CONSENT = 'setConsent',
+  INVOKE_RIGHT = 'invokeRight',
+  CLOSE = 'close',
+}
 
 /**
  * ExperienceDefault
