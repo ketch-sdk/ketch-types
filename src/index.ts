@@ -516,7 +516,7 @@ export interface Environment {
   pattern?: string
   hash?: string
   domain?: string
- }
+}
 
 /**
  * Deployment
