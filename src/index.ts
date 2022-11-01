@@ -515,6 +515,7 @@ export interface Environment {
   code: string
   pattern?: string
   hash?: string
+  domain?: string
 }
 
 /**
