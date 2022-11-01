@@ -75,7 +75,7 @@ export interface Ketch {
   // This will be changed to: on('willShowExperience', callback)
   onWillShowExperience(callback: Callback): Promise<void>
 
-  invokeRight(eventData: InvokeRightsEvent): Promise<void>
+  invokeRight(eventData: InvokeRightEvent): Promise<void>
 
   // This will be changed to: on('rightInvoked', callback)
   onInvokeRight(callback: Callback): Promise<void>
@@ -182,20 +182,11 @@ export type ShowConsentOptions = {
 }
 
 /**
- * InvokeRightsEvent
+ * InvokeRightEvent
  */
-export type InvokeRightsEvent = {
-  addressLine1?: string
-  addressLine2?: string
-  country?: string
-  details?: string
-  firstName: string
-  lastName: string
-  phoneNumber?: string
-  postalCode?: string
+export type InvokeRightEvent = {
   right: string
-  rightsEmail: string
-  stateRegion?: string
+  subject: DataSubject
 }
 
 /**
@@ -220,7 +211,7 @@ export type ExperienceClosedReason = 'setConsent' | 'invokeRight' | 'close'
  */
 export enum ExperienceDefault {
   BANNER = 1,
-  MODAL,
+  MODAL = 2,
 }
 
 /**
@@ -244,11 +235,11 @@ export enum ExperiencePrimaryButtonAction {
  * MigrationOption
  */
 export enum MigrationOption {
-  MIGRATE_DEFAULT,
-  MIGRATE_NEVER,
-  MIGRATE_FROM_ALLOW,
-  MIGRATE_FROM_DENY,
-  MIGRATE_ALWAYS,
+  MIGRATE_DEFAULT = 0,
+  MIGRATE_NEVER = 1,
+  MIGRATE_FROM_ALLOW = 2,
+  MIGRATE_FROM_DENY = 3,
+  MIGRATE_ALWAYS = 4,
 }
 
 /**
@@ -256,7 +247,7 @@ export enum MigrationOption {
  */
 export enum CookieDuration {
   SESSION = 1,
-  PERSISTENT,
+  PERSISTENT = 2,
 }
 
 /**
@@ -264,7 +255,7 @@ export enum CookieDuration {
  */
 export enum CookieProvenance {
   FIRST_PARTY = 1,
-  THIRD_PARTY,
+  THIRD_PARTY = 2,
 }
 
 /**
@@ -272,9 +263,9 @@ export enum CookieProvenance {
  */
 export enum CookieCategory {
   STRICTLY_NECESSARY = 1,
-  FUNCTIONAL,
-  PERFORMANCE,
-  MARKETING,
+  FUNCTIONAL = 2,
+  PERFORMANCE = 3,
+  MARKETING = 4,
 }
 
 /**
@@ -390,7 +381,7 @@ export interface SetConsentRequest {
   identities: { [key: string]: string }
   collectedAt?: number
   jurisdictionCode: string
-  migrationOption: MigrationOption
+  migrationOption?: MigrationOption
   purposes: { [key: string]: PurposeAllowedLegalBasis }
   vendors?: string[] // list of vendor ids for which the user has opted out
 
@@ -408,8 +399,8 @@ export interface SetConsentRequest {
  */
 export interface DataSubject {
   email: string
-  first: string
-  last: string
+  firstName: string
+  lastName: string
   country?: string
   stateRegion?: string
   description?: string
@@ -713,6 +704,7 @@ export interface Modal {
   title: string
   bodyTitle?: string
   bodyDescription?: string
+  footerDescription?: string
   buttonText: string
 
   /**
@@ -933,8 +925,12 @@ export enum ModalPosition {
  * Theme
  */
 export interface Theme {
+  code?: string
+  name?: string
+  description?: string
   watermark?: boolean
   buttonBorderRadius: number
+  font?: string
 
   bannerBackgroundColor: string
   bannerContentColor?: string
@@ -947,6 +943,7 @@ export interface Theme {
   modalContentColor: string
   modalButtonColor: string
   modalPosition?: ModalPosition
+
   /**
    * modalSwitchOnColor is the color of the consent switch in the on state for the modal this overrides standard theme
    * colors
@@ -1008,9 +1005,6 @@ export interface Vendor {
   policyUrl?: string
   cookieMaxAgeSeconds?: number
   usesCookies?: boolean
-  UsesNonCookieAccess?: boolean // deprecated
-
-  // replaces UsesNonCookieAccess
   usesNonCookieAccess?: boolean
 }
 
@@ -1103,8 +1097,6 @@ export interface Configuration {
 
   /**
    * Mapping of purposes to canonical purposes.
-   *
-   * @deprecated
    */
   canonicalPurposes?: { [key: string]: CanonicalPurpose }
 
@@ -1129,6 +1121,21 @@ export interface Configuration {
   experiences?: Experience
 
   /**
+   * Vendors (TCF)
+   */
+  vendors?: Vendor[]
+
+  /**
+   * Data subject types relevant for this configuration
+   */
+  dataSubjectTypes?: DataSubjectType[]
+
+  /**
+   * Stacks to be displayed in an experience
+   */
+  stacks?: Stack[]
+
+  /**
    * Services
    */
   services?: { [key: string]: string }
@@ -1147,21 +1154,6 @@ export interface Configuration {
    * Plugins configured for the configuration
    */
   plugins?: { [key: string]: any }
-
-  /**
-   * Vendors (TCF)
-   */
-  vendors?: Vendor[]
-
-  /**
-   * Data subject types relevant for this configuration
-   */
-  dataSubjectTypes?: DataSubjectType[]
-
-  /**
-   * Stacks to be displayed in an experience
-   */
-  stacks?: Stack[]
 }
 
 /**
