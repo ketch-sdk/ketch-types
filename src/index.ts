@@ -42,17 +42,16 @@ export type Plugin = (host: Ketch, config?: any) => Promise<void>
  */
 export interface Ketch {
   getConfig(): Promise<Configuration>
-  // Add: on('configChanged', callback)
+  // Add: on('config', callback)
 
   registerPlugin(plugin: Plugin, config?: any): Promise<void>
 
   hasConsent(): boolean
   getConsent(): Promise<Consent>
   setConsent(c: Consent): Promise<Consent>
-  changeConsent(consent: Consent): Promise<void>
   setProvisionalConsent(c: Consent): Promise<void>
 
-  // This will be changed to: on('consentChanged', callback)
+  // This will be changed to: on('consent', callback)
   onConsent(callback: Callback): Promise<void>
 
   setShowConsentExperience(): Promise<void>
@@ -82,34 +81,34 @@ export interface Ketch {
 
   setEnvironment(env: Environment): Promise<Environment>
 
-  // This is the same as: once('environmentChanged', promise.resolve)
+  // This is the same as: once('environment', promise.resolve)
   getEnvironment(): Promise<Environment>
 
-  // This will be changed to: on('environmentChanged', callback)
+  // This will be changed to: on('environment', callback)
   onEnvironment(callback: Callback): Promise<void>
 
   setGeoIP(g: IPInfo): Promise<IPInfo>
   getGeoIP(): Promise<IPInfo>
 
-  // This will be changed to: on('locationChanged', callback)
+  // This will be changed to: on('location', callback)
   onGeoIP(callback: Callback): Promise<void>
 
   setIdentities(id: Identities): Promise<Identities>
   getIdentities(): Promise<Identities>
 
-  // This will be changed to: on('identitiesChanged', callback)
+  // This will be changed to: on('identities', callback)
   onIdentities(callback: Callback): Promise<void>
 
   setJurisdiction(ps: string): Promise<string>
   getJurisdiction(): Promise<string>
 
-  // This will be changed to: on('jurisdictionChanged', callback)
+  // This will be changed to: on('jurisdiction', callback)
   onJurisdiction(callback: Callback): Promise<void>
 
   setRegionInfo(info: string): Promise<string>
   getRegionInfo(): Promise<string>
 
-  // This will be changed to: on('regionChanged', callback)
+  // This will be changed to: on('region', callback)
   onRegionInfo(callback: Callback): Promise<void>
 
   // Emit an event
@@ -174,10 +173,27 @@ export type ShowPreferenceOptions = {
 }
 
 /**
+ * ExperienceType is the type of experience that will be shown
+ */
+export enum ExperienceType {
+  Consent = 'experiences.consent',
+  Preference = 'experiences.preference',
+}
+
+/**
+ * ConsentExperienceType is the type of consent experience that will be shown
+ */
+export enum ConsentExperienceType {
+  Banner = 'experiences.consent.banner',
+  Modal = 'experiences.consent.modal',
+  JIT = 'experiences.consent.jit',
+}
+
+/**
  * ShowConsentOptions
  */
 export type ShowConsentOptions = {
-  displayHint: 'experiences.consent.jit' | 'experiences.consent.modal' | 'experiences.consent.banner'
+  displayHint: ConsentExperienceType
   purposes?: string[]
 }
 
@@ -208,6 +224,7 @@ export enum ExperienceClosedReason {
   SET_CONSENT = 'setConsent',
   INVOKE_RIGHT = 'invokeRight',
   CLOSE = 'close',
+  WILL_NOT_SHOW = 'willNotShow',
 }
 
 /**
