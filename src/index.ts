@@ -55,7 +55,6 @@ export interface Ketch {
   onConsent(callback: Callback): Promise<void>
 
   setShowConsentExperience(): Promise<void>
-  shouldShowConsent(c: Consent): boolean
   showConsentExperience(): Promise<Consent>
 
   // This will be changed to: on('showConsentExperience', callback)
