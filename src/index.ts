@@ -33,9 +33,21 @@ export function isTab(value: string): value is Tab {
 }
 
 /**
+ * Plugin class
+ */
+export interface PluginClass {
+  init(host: Ketch, config: Configuration): void
+}
+
+/**
  * Plugin factory function signature
  */
-export type Plugin = (host: Ketch, config?: any) => Promise<void>
+export type PluginFunction = (host: Ketch, config?: any) => Promise<void>
+
+/**
+ * Plugin
+ */
+export type Plugin = PluginClass | PluginFunction
 
 /**
  * Ketch host
