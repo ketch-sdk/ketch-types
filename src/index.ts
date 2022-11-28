@@ -36,7 +36,18 @@ export function isTab(value: string): value is Tab {
  * Plugin class
  */
 export interface PluginClass {
-  init(host: Ketch, config: Configuration): void
+  init?: (host: Ketch, config: Configuration) => void
+  environmentLoaded?: (host: Ketch, config: Configuration, env: Environment) => void
+  geoIPLoaded?: (host: Ketch, config: Configuration, ipInfo: IPInfo) => void
+  identitiesLoaded?: (host: Ketch, config: Configuration, identities: Identities) => void
+  jurisdictionLoaded?: (host: Ketch, config: Configuration, policyScope: string) => void
+  regionInfoLoaded?: (host: Ketch, config: Configuration, region: string) => void
+  consentChanged?: (host: Ketch, config: Configuration, consent: Consent) => void
+  rightInvoked?: (host: Ketch, config: Configuration, request: InvokeRightRequest) => void
+  showConsentExperience?: ShowConsentExperience
+  showPreferenceExperience?: ShowPreferenceExperience
+  willShowExperience?: (host: Ketch, config: Configuration) => void
+  experienceHidden?: (host: Ketch, config: Configuration, reason?: string) => void
 }
 
 /**
