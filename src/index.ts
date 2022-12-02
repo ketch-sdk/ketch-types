@@ -37,17 +37,22 @@ export function isTab(value: string): value is Tab {
  */
 export interface PluginClass {
   init?: (host: Ketch, config: Configuration) => void
-  environmentLoaded?: (env: Environment) => void
-  geoIPLoaded?: (ipInfo: IPInfo) => void
-  identitiesLoaded?: (identities: Identities) => void
-  jurisdictionLoaded?: (policyScope: string) => void
-  regionInfoLoaded?: (region: string) => void
-  consentChanged?: (consent: Consent) => void
-  rightInvoked?: (request: InvokeRightRequest) => void
-  showConsentExperience?: ShowConsentExperience
-  showPreferenceExperience?: ShowPreferenceExperience
-  willShowExperience?: (type: string) => void
-  experienceHidden?: (reason: string) => void
+  environmentLoaded?: (host: Ketch, config: Configuration, env: Environment) => void
+  geoIPLoaded?: (host: Ketch, config: Configuration, ipInfo: IPInfo) => void
+  identitiesLoaded?: (host: Ketch, config: Configuration, identities: Identities) => void
+  jurisdictionLoaded?: (host: Ketch, config: Configuration, policyScope: string) => void
+  regionInfoLoaded?: (host: Ketch, config: Configuration, region: string) => void
+  consentChanged?: (host: Ketch, config: Configuration, consent: Consent) => void
+  rightInvoked?: (host: Ketch, config: Configuration, request: InvokeRightRequest) => void
+  showConsentExperience?: (host: Ketch, config: Configuration, consents: Consent, options?: ShowConsentOptions) => void
+  showPreferenceExperience?: (
+    host: Ketch,
+    config: Configuration,
+    consents: Consent,
+    options?: ShowPreferenceOptions,
+  ) => void
+  willShowExperience?: (host: Ketch, config: Configuration, type: string) => void
+  experienceHidden?: (host: Ketch, config: Configuration, reason: string) => void
 }
 
 /**
@@ -65,72 +70,101 @@ export type Plugin = PluginClass | PluginFunction
  */
 export interface Ketch {
   getConfig(): Promise<Configuration>
-  // Add: on('config', callback)
 
   registerPlugin(plugin: Plugin, config?: any): Promise<void>
 
   hasConsent(): boolean
   getConsent(): Promise<Consent>
   setConsent(c: Consent): Promise<Consent>
-  setProvisionalConsent(c: Consent): Promise<void>
 
-  // This will be changed to: on('consent', callback)
+  /**
+   * @deprecated use on('consent', callback)
+   * @param callback
+   */
   onConsent(callback: Callback): Promise<void>
 
   setShowConsentExperience(): Promise<void>
   showConsentExperience(): Promise<Consent>
 
-  // This will be changed to: on('showConsentExperience', callback)
-  onShowConsentExperience(callback: ShowConsentExperience): Promise<void>
+  /**
+   * @deprecated use on('showConsentExperience', callback)
+   * @param callback
+   */
+  onShowConsentExperience(callback: (consents: Consent, options?: ShowConsentOptions) => void): Promise<void>
 
   showPreferenceExperience(params: ShowPreferenceOptions): Promise<Consent>
 
-  // This will be changed to: on('showPreferenceExperience', callback)
-  onShowPreferenceExperience(callback: ShowPreferenceExperience): Promise<void>
+  /**
+   * @deprecated use on('showPreferenceExperience', callback)
+   * @param callback
+   */
+  onShowPreferenceExperience(callback: (consents: Consent, options?: ShowPreferenceOptions) => void): Promise<void>
 
   experienceClosed(reason: ExperienceClosedReason): Promise<Consent>
 
-  // This will be changed to: on('experienceHidden', callback)
+  /**
+   * @deprecated use on('experienceHidden', callback)
+   * @param callback
+   */
   onHideExperience(callback: Callback): Promise<void>
 
-  // This will be changed to: on('willShowExperience', callback)
+  /**
+   * @deprecated use on('willShowExperience', callback)
+   * @param callback
+   */
   onWillShowExperience(callback: Callback): Promise<void>
 
   invokeRight(eventData: InvokeRightEvent): Promise<void>
 
-  // This will be changed to: on('rightInvoked', callback)
+  /**
+   * @deprecated use on('rightInvoked', callback)
+   * @param callback
+   */
   onInvokeRight(callback: Callback): Promise<void>
 
   setEnvironment(env: Environment): Promise<Environment>
-
-  // This is the same as: once('environment', promise.resolve)
   getEnvironment(): Promise<Environment>
 
-  // This will be changed to: on('environment', callback)
+  /**
+   * @deprecated use on('environment', callback)
+   * @param callback
+   */
   onEnvironment(callback: Callback): Promise<void>
 
   setGeoIP(g: IPInfo): Promise<IPInfo>
   getGeoIP(): Promise<IPInfo>
 
-  // This will be changed to: on('location', callback)
+  /**
+   * @deprecated use on('geoip', callback)
+   * @param callback
+   */
   onGeoIP(callback: Callback): Promise<void>
 
   setIdentities(id: Identities): Promise<Identities>
   getIdentities(): Promise<Identities>
 
-  // This will be changed to: on('identities', callback)
+  /**
+   * @deprecated use on('identities', callback)
+   * @param callback
+   */
   onIdentities(callback: Callback): Promise<void>
 
   setJurisdiction(ps: string): Promise<string>
   getJurisdiction(): Promise<string>
 
-  // This will be changed to: on('jurisdiction', callback)
+  /**
+   * @deprecated use on('jurisdiction', callback)
+   * @param callback
+   */
   onJurisdiction(callback: Callback): Promise<void>
 
   setRegionInfo(info: string): Promise<string>
   getRegionInfo(): Promise<string>
 
-  // This will be changed to: on('region', callback)
+  /**
+   * @deprecated use on('region', callback)
+   * @param callback
+   */
   onRegionInfo(callback: Callback): Promise<void>
 
   // Emit an event
@@ -151,16 +185,6 @@ export interface Ketch {
   // Remove a listener. Alias for removeListener
   off(eventName: string | symbol, listener: (...args: any[]) => void): this
 }
-
-/**
- * ShowPreferenceExperience
- */
-export type ShowPreferenceExperience = (consents: Consent, options?: ShowPreferenceOptions) => void
-
-/**
- * ShowConsentExperience
- */
-export type ShowConsentExperience = (consents: Consent, options?: ShowConsentOptions) => void
 
 /**
  * ShowPreferenceOptions
