@@ -37,17 +37,17 @@ export function isTab(value: string): value is Tab {
  */
 export interface PluginClass {
   init?: (host: Ketch, config: Configuration) => void
-  environmentLoaded?: (host: Ketch, config: Configuration, env: Environment) => void
-  geoIPLoaded?: (host: Ketch, config: Configuration, ipInfo: IPInfo) => void
-  identitiesLoaded?: (host: Ketch, config: Configuration, identities: Identities) => void
-  jurisdictionLoaded?: (host: Ketch, config: Configuration, policyScope: string) => void
-  regionInfoLoaded?: (host: Ketch, config: Configuration, region: string) => void
-  consentChanged?: (host: Ketch, config: Configuration, consent: Consent) => void
-  rightInvoked?: (host: Ketch, config: Configuration, request: InvokeRightRequest) => void
+  environmentLoaded?: (env: Environment) => void
+  geoIPLoaded?: (ipInfo: IPInfo) => void
+  identitiesLoaded?: (identities: Identities) => void
+  jurisdictionLoaded?: (policyScope: string) => void
+  regionInfoLoaded?: (region: string) => void
+  consentChanged?: (consent: Consent) => void
+  rightInvoked?: (request: InvokeRightRequest) => void
   showConsentExperience?: ShowConsentExperience
   showPreferenceExperience?: ShowPreferenceExperience
-  willShowExperience?: (host: Ketch, config: Configuration) => void
-  experienceHidden?: (host: Ketch, config: Configuration, reason?: string) => void
+  willShowExperience?: (type: string) => void
+  experienceHidden?: (reason: string) => void
 }
 
 /**
@@ -155,22 +155,12 @@ export interface Ketch {
 /**
  * ShowPreferenceExperience
  */
-export type ShowPreferenceExperience = (
-  host: Ketch,
-  config: Configuration,
-  consents: Consent,
-  options?: ShowPreferenceOptions,
-) => void
+export type ShowPreferenceExperience = (consents: Consent, options?: ShowPreferenceOptions) => void
 
 /**
  * ShowConsentExperience
  */
-export type ShowConsentExperience = (
-  host: Ketch,
-  config: Configuration,
-  consents: Consent,
-  options?: ShowConsentOptions,
-) => void
+export type ShowConsentExperience = (consents: Consent, options?: ShowConsentOptions) => void
 
 /**
  * ShowPreferenceOptions
