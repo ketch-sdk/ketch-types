@@ -206,6 +206,11 @@ export type ShowPreferenceOptions = {
    * supportedCountries is the list of supported ISO 3166 ALPHA-2 country codes to show in the rights form
    */
   supportedCountries?: string[]
+
+  /**
+   * showConsentsTab determines whether the consents tab will show. If undefined, the consents tab is displayed
+   */
+  showConsentsTab?: boolean
 }
 
 /**
@@ -836,6 +841,7 @@ export interface RightsTab {
   bodyTitle?: string
   bodyDescription?: string
   buttonText: string
+  recaptchaEnabled?: boolean
 
   /**
    * additional extensions
@@ -1212,6 +1218,21 @@ export interface Configuration {
    * Plugins configured for the configuration
    */
   plugins?: { [key: string]: any }
+
+  /**
+   * Recaptcha config
+   */
+  recaptcha?: Recaptcha
+}
+
+/**
+ * Recaptcha interface defines the Recaptcha config
+ */
+export interface Recaptcha {
+  /**
+   * siteKey: Recaptcha site/public key used to exchange for a reCaptcha token
+   */
+  siteKey?: string
 }
 
 /**
