@@ -495,6 +495,7 @@ export interface InvokeRightRequest {
   jurisdictionCode: string
   rightCode: string
   user: DataSubject
+  recaptchaToken?: string
 }
 
 /**
