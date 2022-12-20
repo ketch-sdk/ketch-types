@@ -569,6 +569,7 @@ export interface Property {
   name?: string
   platform?: string
   proxy?: string
+  recaptchaEnabled?: boolean
 }
 
 /**
@@ -842,7 +843,6 @@ export interface RightsTab {
   bodyTitle?: string
   bodyDescription?: string
   buttonText: string
-  recaptchaEnabled?: boolean
 
   /**
    * additional extensions
