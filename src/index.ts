@@ -244,6 +244,7 @@ export type ShowConsentOptions = {
 export type InvokeRightEvent = {
   right: string
   subject: DataSubject
+  recaptchaToken?: string
 }
 
 /**
@@ -842,7 +843,6 @@ export interface RightsTab {
   bodyTitle?: string
   bodyDescription?: string
   buttonText: string
-  recaptchaEnabled?: boolean
 
   /**
    * additional extensions
