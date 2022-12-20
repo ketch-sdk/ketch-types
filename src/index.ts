@@ -244,6 +244,7 @@ export type ShowConsentOptions = {
 export type InvokeRightEvent = {
   right: string
   subject: DataSubject
+  recaptchaToken?: string
 }
 
 /**
