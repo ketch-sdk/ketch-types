@@ -391,6 +391,7 @@ export interface GetLocationResponse {
  * PurposeLegalBasis
  */
 export interface PurposeLegalBasis {
+  allowed?: string
   legalBasisCode: string
 }
 
@@ -399,6 +400,7 @@ export interface PurposeLegalBasis {
  */
 export interface PurposeAllowed {
   allowed: string
+  legalBasisCode?: string
 }
 
 /**
@@ -420,6 +422,9 @@ export interface GetConsentRequest {
   jurisdictionCode: string
   identities: { [key: string]: string }
   purposes: { [key: string]: PurposeLegalBasis }
+  vendors?: string[] // list of vendor ids for which the user has opted out
+
+  collectedAt?: number
 }
 
 /**
@@ -441,20 +446,12 @@ export interface SetConsentRequest {
   controllerCode?: string
   propertyCode: string
   environmentCode: string
+  jurisdictionCode: string
   identities: { [key: string]: string }
   collectedAt?: number
-  jurisdictionCode: string
-  migrationOption?: MigrationOption
+  migrationOption?: MigrationOption // @deprecated
   purposes: { [key: string]: PurposeAllowedLegalBasis }
   vendors?: string[] // list of vendor ids for which the user has opted out
-
-  /**
-   * identityPriority is a map from the identity space code to the priority that should be used to resolve consent
-   * conflict
-   * lower values take top priority
-   * if an identity space codes is not in the identityPriority map then it is the last priority
-   */
-  identityPriority?: { [key: string]: number }
 }
 
 /**
