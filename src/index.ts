@@ -431,11 +431,19 @@ export interface GetConsentRequest {
  * GetConsentResponse
  */
 export interface GetConsentResponse {
+  organizationCode: string
+  controllerCode?: string
+  propertyCode: string
+  environmentCode: string
+  jurisdictionCode: string
+  identities: { [key: string]: string }
   purposes: { [key: string]: PurposeAllowed | string }
   /**
    * list of vendor ids for which the user has opted out
    */
   vendors?: string[]
+
+  collectedAt?: number
 }
 
 /**
