@@ -53,7 +53,6 @@ export interface PluginClass {
   ) => void
   willShowExperience?: (host: Ketch, config: Configuration, type: string) => void
   experienceHidden?: (host: Ketch, config: Configuration, reason: string) => void
-  getIdentities?: () => Promise<Identities>
 }
 
 /**
@@ -73,6 +72,7 @@ export interface Ketch {
   getConfig(): Promise<Configuration>
 
   registerPlugin(plugin: Plugin, config?: any): Promise<void>
+  registerIdentityProvider(provider: () => Promise<Identities>): Promise<void>
 
   hasConsent(): boolean
   getConsent(): Promise<Consent>
