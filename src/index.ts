@@ -72,7 +72,7 @@ export interface Ketch {
   getConfig(): Promise<Configuration>
 
   registerPlugin(plugin: Plugin, config?: any): Promise<void>
-  registerIdentityProvider(provider: () => Promise<Identities>): Promise<void>
+  registerIdentityProvider(name: string, provider: () => Promise<Identities>): Promise<void>
 
   hasConsent(): boolean
   getConsent(): Promise<Consent>
