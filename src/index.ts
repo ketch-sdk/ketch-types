@@ -66,13 +66,65 @@ export type PluginFunction = (host: Ketch, config?: any) => Promise<void>
 export type Plugin = PluginClass | PluginFunction
 
 /**
+ * IdentityProvider defines a function for providing identities
+ */
+export type IdentityProvider = () => Promise<string[]>
+
+/**
+ * StorageProvider defines an interface for storage
+ */
+export interface StorageProvider {
+  /**
+   * Get an item with the given key
+   *
+   * @param key
+   */
+  getItem(key: string): Promise<string | null>
+
+  /**
+   * Sets the value for the given key
+   *
+   * @param key
+   * @param value
+   */
+  setItem(key: string, value: string): Promise<void>
+
+  /**
+   * Removes the given key
+   *
+   * @param key
+   */
+  removeItem(key: string): Promise<void>
+}
+
+/**
  * Ketch host
  */
 export interface Ketch {
   getConfig(): Promise<Configuration>
 
+  /**
+   * Register a plugin with the given configuration
+   *
+   * @param plugin
+   * @param config
+   */
   registerPlugin(plugin: Plugin, config?: any): Promise<void>
-  registerIdentityProvider(name: string, provider: () => Promise<string[]>): Promise<void>
+
+  /**
+   * Register an identity provider for the given identity
+   *
+   * @param name
+   * @param provider
+   */
+  registerIdentityProvider(name: string, provider: IdentityProvider): Promise<void>
+
+  /**
+   * Register a storage provider
+   *
+   * @param provider
+   */
+  registerStorageProvider(provider: StorageProvider): Promise<void>
 
   hasConsent(): boolean
   getConsent(): Promise<Consent>
