@@ -22,12 +22,25 @@ export type Consent = {
 export type Identities = { [key: string]: string }
 
 /**
- * Tabs
+ * All Tabs
  */
 export const ALL_TABS = ['overviewTab', 'rightsTab', 'consentsTab'] as const
-type TabTuple = typeof ALL_TABS
+
+/**
+ * TabTuple
+ */
+export type TabTuple = typeof ALL_TABS
+
+/**
+ * Tab
+ */
 export type Tab = TabTuple[number]
 
+/**
+ * Determines if the Given value is a Tab
+ *
+ * @param value
+ */
 export function isTab(value: string): value is Tab {
   return ALL_TABS.includes(value as Tab)
 }
