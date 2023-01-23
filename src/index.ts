@@ -630,7 +630,7 @@ export interface JurisdictionInfo {
   code?: string
   defaultJurisdictionCode?: string
   variable?: string
-  scopes?: { [key: string]: string }
+  jurisdictions?: { [key: string]: string }
 }
 
 /**
