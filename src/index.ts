@@ -628,9 +628,9 @@ export interface Organization {
  */
 export interface JurisdictionInfo {
   code?: string
-  defaultScopeCode?: string
+  defaultJurisdictionCode?: string
   variable?: string
-  scopes?: { [key: string]: string }
+  jurisdictions?: { [key: string]: string }
 }
 
 /**
