@@ -1,6 +1,8 @@
 /**
  * Callback
  */
+import { EventEmitter } from 'events'
+
 export declare type Callback = (arg0: any) => void
 
 /**
@@ -110,10 +112,7 @@ export interface StorageProvider {
   removeItem(key: string): Promise<void>
 }
 
-/**
- * Ketch host
- */
-export interface Ketch {
+export interface Ketch extends EventEmitter {
   getConfig(): Promise<Configuration>
 
   /**
@@ -232,24 +231,6 @@ export interface Ketch {
    * @param callback
    */
   onRegionInfo(callback: Callback): Promise<void>
-
-  // Emit an event
-  emit(eventName: string | symbol, ...args: any[]): boolean
-
-  // Add an event listener for the named event
-  addListener(eventName: string | symbol, listener: (...args: any[]) => void): this
-
-  // Remove the given listener from the named event
-  removeListener(eventName: string | symbol, listener: (...args: any[]) => void): this
-
-  // Add a listener. Alias for addListener
-  on(eventName: string | symbol, listener: (...args: any[]) => void): this
-
-  // Add a listener that is fired once and then remove
-  once(eventName: string | symbol, listener: (...args: any[]) => void): this
-
-  // Remove a listener. Alias for removeListener
-  off(eventName: string | symbol, listener: (...args: any[]) => void): this
 }
 
 /**
@@ -281,6 +262,8 @@ export type ShowPreferenceOptions = {
 
 /**
  * ExperienceType is the type of experience that will be shown
+ *
+ * @enum
  */
 export enum ExperienceType {
   Consent = 'experiences.consent',
@@ -289,6 +272,8 @@ export enum ExperienceType {
 
 /**
  * ConsentExperienceType is the type of consent experience that will be shown
+ *
+ * @enum
  */
 export enum ConsentExperienceType {
   Banner = 'experiences.consent.banner',
@@ -327,6 +312,8 @@ export interface AppDiv {
  * setConsent = consent was accepted/set
  * invokeRight = the right was invoked
  * close = the close/exit button was clicked
+ *
+ * @enum
  */
 export enum ExperienceClosedReason {
   SET_CONSENT = 'setConsent',
@@ -337,6 +324,8 @@ export enum ExperienceClosedReason {
 
 /**
  * ExperienceDefault
+ *
+ * @enum
  */
 export enum ExperienceDefault {
   BANNER = 1,
@@ -345,6 +334,8 @@ export enum ExperienceDefault {
 
 /**
  * ExperienceButtonDestination
+ *
+ * @enum
  */
 export enum ExperienceButtonDestination {
   GOTO_MODAL = 1,
@@ -354,6 +345,8 @@ export enum ExperienceButtonDestination {
 
 /**
  * ExperiencePrimaryButtonAction
+ *
+ * @enum
  */
 export enum ExperiencePrimaryButtonAction {
   SAVE_CURRENT_STATE = 1,
@@ -362,6 +355,8 @@ export enum ExperiencePrimaryButtonAction {
 
 /**
  * MigrationOption
+ *
+ * @enum
  */
 export enum MigrationOption {
   MIGRATE_DEFAULT = 0,
@@ -373,6 +368,8 @@ export enum MigrationOption {
 
 /**
  * CookieDuration
+ *
+ * @enum
  */
 export enum CookieDuration {
   SESSION = 1,
@@ -381,6 +378,8 @@ export enum CookieDuration {
 
 /**
  * CookieProvenance
+ *
+ * @enum
  */
 export enum CookieProvenance {
   FIRST_PARTY = 1,
@@ -389,6 +388,8 @@ export enum CookieProvenance {
 
 /**
  * CookieCategory
+ *
+ * @enum
  */
 export enum CookieCategory {
   STRICTLY_NECESSARY = 1,
@@ -725,6 +726,8 @@ export interface CanonicalPurpose {
 
 /**
  * IdentityLocation is the location on the page from which to retrieve identity information
+ *
+ * @enum
  */
 export enum IdentityType {
   IDENTITY_TYPE_UNDEFINED = '',
@@ -739,6 +742,8 @@ export enum IdentityType {
 
 /**
  * IdentityFormat is the encoding of the string identity value
+ *
+ * @enum
  */
 export enum IdentityFormat {
   IDENTITY_FORMAT_UNDEFINED = '',
@@ -791,6 +796,8 @@ export interface PolicyDocument {
 
 /**
  * SwitchTextRenderLogic
+ *
+ * @enum
  */
 export enum SwitchTextRenderLogic {
   /**
@@ -1040,6 +1047,8 @@ export interface Experience {
 
 /**
  * BannerPosition
+ *
+ * @enum
  */
 export enum BannerPosition {
   BOTTOM = 1,
@@ -1050,6 +1059,8 @@ export enum BannerPosition {
 
 /**
  * ModalPosition
+ *
+ * @enum
  */
 export enum ModalPosition {
   CENTER = 1,
