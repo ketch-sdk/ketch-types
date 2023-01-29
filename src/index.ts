@@ -1,8 +1,6 @@
 /**
  * Callback
  */
-import { EventEmitter } from 'events'
-
 export declare type Callback = (arg0: any) => void
 
 /**
@@ -112,9 +110,7 @@ export interface StorageProvider {
   removeItem(key: string): Promise<void>
 }
 
-export interface Ketch extends EventEmitter {
-  getConfig(): Promise<Configuration>
-
+export interface Ketch {
   /**
    * Register a plugin with the given configuration
    *
@@ -138,99 +134,132 @@ export interface Ketch extends EventEmitter {
    */
   registerStorageProvider(provider: StorageProvider): Promise<void>
 
+  // Consent
   hasConsent(): boolean
   getConsent(): Promise<Consent>
   setConsent(c: Consent): Promise<Consent>
 
-  /**
-   * @deprecated use on('consent', callback)
-   * @param callback
-   */
-  onConsent(callback: Callback): Promise<void>
-
+  // Experience
   setShowConsentExperience(): Promise<void>
   showConsentExperience(): Promise<Consent>
-
-  /**
-   * @deprecated use on('showConsentExperience', callback)
-   * @param callback
-   */
-  onShowConsentExperience(callback: (consents: Consent, options?: ShowConsentOptions) => void): Promise<void>
-
   showPreferenceExperience(params: ShowPreferenceOptions): Promise<Consent>
-
-  /**
-   * @deprecated use on('showPreferenceExperience', callback)
-   * @param callback
-   */
-  onShowPreferenceExperience(callback: (consents: Consent, options?: ShowPreferenceOptions) => void): Promise<void>
-
   experienceClosed(reason: ExperienceClosedReason): Promise<Consent>
 
-  /**
-   * @deprecated use on('experienceHidden', callback)
-   * @param callback
-   */
-  onHideExperience(callback: Callback): Promise<void>
-
-  /**
-   * @deprecated use on('willShowExperience', callback)
-   * @param callback
-   */
-  onWillShowExperience(callback: Callback): Promise<void>
-
+  // Rights
   invokeRight(eventData: InvokeRightEvent): Promise<void>
 
-  /**
-   * @deprecated use on('rightInvoked', callback)
-   * @param callback
-   */
-  onInvokeRight(callback: Callback): Promise<void>
-
-  setEnvironment(env: Environment): Promise<Environment>
+  // Config
+  getConfig(): Promise<Configuration>
   getEnvironment(): Promise<Environment>
-
-  /**
-   * @deprecated use on('environment', callback)
-   * @param callback
-   */
-  onEnvironment(callback: Callback): Promise<void>
-
-  setGeoIP(g: IPInfo): Promise<IPInfo>
   getGeoIP(): Promise<IPInfo>
-
-  /**
-   * @deprecated use on('geoip', callback)
-   * @param callback
-   */
-  onGeoIP(callback: Callback): Promise<void>
-
-  setIdentities(id: Identities): Promise<Identities>
   getIdentities(): Promise<Identities>
-
-  /**
-   * @deprecated use on('identities', callback)
-   * @param callback
-   */
-  onIdentities(callback: Callback): Promise<void>
-
-  setJurisdiction(ps: string): Promise<string>
   getJurisdiction(): Promise<string>
-
-  /**
-   * @deprecated use on('jurisdiction', callback)
-   * @param callback
-   */
-  onJurisdiction(callback: Callback): Promise<void>
-
-  setRegionInfo(info: string): Promise<string>
   getRegionInfo(): Promise<string>
 
   /**
-   * @deprecated use on('region', callback)
-   * @param callback
+   * Alias for `emitter.on(eventName, listener)`.
    */
-  onRegionInfo(callback: Callback): Promise<void>
+  addListener(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  /**
+   * Adds the `listener` function to the end of the listeners array for the
+   * event named `eventName`. No checks are made to see if the `listener` has
+   * already been added. Multiple calls passing the same combination of `eventName`
+   * and `listener` will result in the `listener` being added, and called, multiple
+   * times.
+   *
+   * Returns a reference to the `EventEmitter`, so that calls can be chained.
+   *
+   * By default, event listeners are invoked in the order they are added. The
+   * `emitter.prependListener()` method can be used as an alternative to add the
+   * event listener to the beginning of the listeners array.
+   *
+   * @param eventName The name of the event.
+   * @param listener The callback function
+   */
+  on(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  /**
+   * Adds a **one-time**`listener` function for the event named `eventName`. The
+   * next time `eventName` is triggered, this listener is removed and then invoked.
+   *
+   * By default, event listeners are invoked in the order they are added. The
+   * `emitter.prependOnceListener()` method can be used as an alternative to add the
+   * event listener to the beginning of the listeners array.
+   *
+   * @param eventName The name of the event.
+   * @param listener The callback function
+   */
+  once(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  /**
+   * Removes the specified `listener` from the listener array for the event
+   * named `eventName`.
+   *
+   * `removeListener()` will remove, at most, one instance of a listener from the
+   * listener array. If any single listener has been added multiple times to the
+   * listener array for the specified `eventName`, then `removeListener()` must be
+   * called multiple times to remove each instance.
+   *
+   * Once an event is emitted, all listeners attached to it at the
+   * time of emitting are called in order. This implies that any`removeListener()`
+   * or `removeAllListeners()` calls _after_ emitting and _before_ the last listener
+   * finishes execution will not remove them from`emit()` in progress. Subsequent
+   * events behave as expected.
+   *
+   * Because listeners are managed using an internal array, calling this will
+   * change the position indices of any listener registered _after_ the listener
+   * being removed. This will not impact the order in which listeners are called,
+   * but it means that any copies of the listener array as returned by
+   * the `emitter.listeners()` method will need to be recreated.
+   *
+   * When a single function has been added as a handler multiple times for a single
+   * event (as in the example below), `removeListener()` will remove the most
+   * recently added instance. In the example the `once('ping')`listener is removed:
+   */
+  removeListener(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  /**
+   * Alias for `emitter.removeListener()`.
+   */
+  off(eventName: string | symbol, listener: (...args: any[]) => void): this
+
+  /**
+   * Removes all listeners, or those of the specified `eventName`.
+   *
+   * It is bad practice to remove listeners added elsewhere in the code,
+   * particularly when the `EventEmitter` instance was created by some other
+   * component or module (e.g. sockets or file streams).
+   *
+   * Returns a reference to the `EventEmitter`, so that calls can be chained.
+   */
+  removeAllListeners(event?: string | symbol): this
+
+  /**
+   * By default `EventEmitter`s will print a warning if more than `10` listeners are
+   * added for a particular event. This is a useful default that helps finding
+   * memory leaks. The `emitter.setMaxListeners()` method allows the limit to be
+   * modified for this specific `EventEmitter` instance. The value can be set to
+   * `Infinity` (or `0`) to indicate an unlimited number of listeners.
+   *
+   * Returns a reference to the `EventEmitter`, so that calls can be chained.
+   */
+  setMaxListeners(n: number): this
+
+  /**
+   * Returns the current max listener value for the `EventEmitter` which is either
+   * set by `emitter.setMaxListeners(n)` or defaults to {@link defaultMaxListeners}.
+   */
+  getMaxListeners(): number
+
+  /**
+   * Synchronously calls each of the listeners registered for the event named
+   * `eventName`, in the order they were registered, passing the supplied arguments
+   * to each.
+   *
+   * @returns `true` if the event had listeners, `false` otherwise.
+   */
+  emit(eventName: string | symbol, ...args: any[]): boolean
 }
 
 /**
@@ -240,22 +269,26 @@ export type ShowPreferenceOptions = {
   tab?: Tab
 
   /**
-   * dataSubjectTypeCodes is the list of data subjects to display. If undefined, all data subjects are displayed.
+   * dataSubjectTypeCodes is the list of data subjects to display. If undefined,
+   * all data subjects are displayed.
    */
   dataSubjectTypeCodes?: string[]
 
   /**
-   * showRightsTab determines whether the rights tab will show. If undefined, the rights tab is displayed.
+   * showRightsTab determines whether the rights tab will show. If undefined,
+   * the rights tab is displayed.
    */
   showRightsTab?: boolean
 
   /**
-   * supportedCountries is the list of supported ISO 3166 ALPHA-2 country codes to show in the rights form
+   * supportedCountries is the list of supported ISO 3166 ALPHA-2 country codes
+   * to show in the rights form
    */
   supportedCountries?: string[]
 
   /**
-   * showConsentsTab determines whether the consents tab will show. If undefined, the consents tab is displayed
+   * showConsentsTab determines whether the consents tab will show. If
+   * undefined, the consents tab is displayed
    */
   showConsentsTab?: boolean
 }
@@ -524,7 +557,6 @@ export interface SetConsentRequest {
   jurisdictionCode: string
   identities: { [key: string]: string }
   collectedAt?: number
-  migrationOption?: MigrationOption // @deprecated
   purposes: { [key: string]: PurposeAllowedLegalBasis }
   vendors?: string[] // list of vendor ids for which the user has opted out
 }
