@@ -557,7 +557,6 @@ export interface SetConsentRequest {
   jurisdictionCode: string
   identities: { [key: string]: string }
   collectedAt?: number
-  migrationOption?: MigrationOption // @deprecated
   purposes: { [key: string]: PurposeAllowedLegalBasis }
   vendors?: string[] // list of vendor ids for which the user has opted out
 }
