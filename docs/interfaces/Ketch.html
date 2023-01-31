@@ -20,7 +20,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">Ketch</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L113">index.ts:113</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L216">index.ts:216</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -37,7 +37,6 @@
 <a href="Ketch.html#getGeoIP" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>GeoIP</span></a>
 <a href="Ketch.html#getIdentities" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Identities</span></a>
 <a href="Ketch.html#getJurisdiction" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Jurisdiction</span></a>
-<a href="Ketch.html#getMaxListeners" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Max<wbr/>Listeners</span></a>
 <a href="Ketch.html#getRegionInfo" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Region<wbr/>Info</span></a>
 <a href="Ketch.html#hasConsent" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>has<wbr/>Consent</span></a>
 <a href="Ketch.html#invokeRight" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>invoke<wbr/>Right</span></a>
@@ -50,7 +49,6 @@
 <a href="Ketch.html#removeAllListeners" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>remove<wbr/>All<wbr/>Listeners</span></a>
 <a href="Ketch.html#removeListener" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>remove<wbr/>Listener</span></a>
 <a href="Ketch.html#setConsent" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>set<wbr/>Consent</span></a>
-<a href="Ketch.html#setMaxListeners" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>set<wbr/>Max<wbr/>Listeners</span></a>
 <a href="Ketch.html#setShowConsentExperience" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>set<wbr/>Show<wbr/>Consent<wbr/>Experience</span></a>
 <a href="Ketch.html#showConsentExperience" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>show<wbr/>Consent<wbr/>Experience</span></a>
 <a href="Ketch.html#showPreferenceExperience" class="tsd-index-link tsd-kind-method tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>show<wbr/>Preference<wbr/>Experience</span></a>
@@ -63,14 +61,20 @@
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-1">add<wbr/>Listener<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a><a href="#addListener.addListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Alias for <code>emitter.on(eventName, listener)</code>.</p>
+
+<h3>Deprecated</h3><p>Future versions will become asynchronous</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5></li>
+<h5>eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+<div class="tsd-comment tsd-typography"><p>The name of the event.</p>
+</div></li>
 <li>
 <h5>listener: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+<div class="tsd-comment tsd-typography"><p>The callback function</p>
+</div>
 <ul class="tsd-parameters">
 <li class="tsd-parameter-signature">
 <ul class="tsd-signatures tsd-kind-type-literal">
@@ -84,7 +88,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L162">index.ts:162</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L335">index.ts:335</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="emit" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>emit</span><a href="#emit" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -95,132 +99,162 @@
 to each.</p>
 
 <h3>Returns</h3><p><code>true</code> if the event had listeners, <code>false</code> otherwise.</p>
+
+<h3>Deprecated</h3><p>Future versions will become asynchronous</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5></li>
+<h5>eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+<div class="tsd-comment tsd-typography"><p>The name of the event.</p>
+</div></li>
 <li>
-<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5></li></ul></div>
+<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+<div class="tsd-comment tsd-typography"><p>The arguments for the event.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L262">index.ts:262</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L435">index.ts:435</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="experienceClosed" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>experience<wbr/>Closed</span><a href="#experienceClosed" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="experienceClosed.experienceClosed-1">experience<wbr/>Closed<span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><a href="../enums/ExperienceClosedReason.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ExperienceClosedReason</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span><a href="#experienceClosed.experienceClosed-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Notify that the experience was closed</p>
+
+<h3>Deprecated</h3><p>This method will be moved to an experience interface. Future
+versions will not return Consent in the Promise</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>reason: <a href="../enums/ExperienceClosedReason.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ExperienceClosedReason</a></h5></li></ul></div>
+<h5>reason: <a href="../enums/ExperienceClosedReason.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ExperienceClosedReason</a></h5>
+<div class="tsd-comment tsd-typography"><p>Reason the experience was closed</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L146">index.ts:146</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L289">index.ts:289</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="getConfig" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Config</span><a href="#getConfig" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="getConfig.getConfig-1">get<wbr/>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="Configuration.html" class="tsd-signature-type" data-tsd-kind="Interface">Configuration</a><span class="tsd-signature-symbol">&gt;</span><a href="#getConfig.getConfig-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get the Configuration.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="Configuration.html" class="tsd-signature-type" data-tsd-kind="Interface">Configuration</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L152">index.ts:152</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L301">index.ts:301</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="getConsent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Consent</span><a href="#getConsent" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="getConsent.getConsent-1">get<wbr/>Consent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span><a href="#getConsent.getConsent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the Consent</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L139">index.ts:139</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L250">index.ts:250</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="getEnvironment" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Environment</span><a href="#getEnvironment" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="getEnvironment.getEnvironment-1">get<wbr/>Environment<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="Environment.html" class="tsd-signature-type" data-tsd-kind="Interface">Environment</a><span class="tsd-signature-symbol">&gt;</span><a href="#getEnvironment.getEnvironment-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get the Environment</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="Environment.html" class="tsd-signature-type" data-tsd-kind="Interface">Environment</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L153">index.ts:153</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L306">index.ts:306</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="getGeoIP" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>GeoIP</span><a href="#getGeoIP" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="getGeoIP.getGeoIP-1">get<wbr/>GeoIP<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="IPInfo.html" class="tsd-signature-type" data-tsd-kind="Interface">IPInfo</a><span class="tsd-signature-symbol">&gt;</span><a href="#getGeoIP.getGeoIP-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get the IP information</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="IPInfo.html" class="tsd-signature-type" data-tsd-kind="Interface">IPInfo</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L154">index.ts:154</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L311">index.ts:311</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="getIdentities" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Identities</span><a href="#getIdentities" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="getIdentities.getIdentities-1">get<wbr/>Identities<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Identities.html" class="tsd-signature-type" data-tsd-kind="Type alias">Identities</a><span class="tsd-signature-symbol">&gt;</span><a href="#getIdentities.getIdentities-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get the identities</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Identities.html" class="tsd-signature-type" data-tsd-kind="Type alias">Identities</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L155">index.ts:155</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L316">index.ts:316</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="getJurisdiction" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Jurisdiction</span><a href="#getJurisdiction" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="getJurisdiction.getJurisdiction-1">get<wbr/>Jurisdiction<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#getJurisdiction.getJurisdiction-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get the jurisdiction</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L156">index.ts:156</a></li></ul></aside></li></ul></section>
-<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="getMaxListeners" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><span>get<wbr/>Max<wbr/>Listeners</span><a href="#getMaxListeners" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-<li class="tsd-signature tsd-anchor-link" id="getMaxListeners.getMaxListeners-1">get<wbr/>Max<wbr/>Listeners<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><a href="#getMaxListeners.getMaxListeners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
-<li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the current max listener value for the <code>EventEmitter</code> which is either
-set by <code>emitter.setMaxListeners(n)</code> or defaults to defaultMaxListeners.</p>
-</div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L253">index.ts:253</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L321">index.ts:321</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="getRegionInfo" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Region<wbr/>Info</span><a href="#getRegionInfo" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="getRegionInfo.getRegionInfo-1">get<wbr/>Region<wbr/>Info<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#getRegionInfo.getRegionInfo-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get the region information</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L157">index.ts:157</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L326">index.ts:326</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="hasConsent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>has<wbr/>Consent</span><a href="#hasConsent" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="hasConsent.hasConsent-1">has<wbr/>Consent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><a href="#hasConsent.hasConsent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Determines if consent has already been resolved.</p>
+
+<h3>Deprecated</h3><p>future versions will become asynchronous</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L138">index.ts:138</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L245">index.ts:245</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="invokeRight" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>invoke<wbr/>Right</span><a href="#invokeRight" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="invokeRight.invokeRight-1">invoke<wbr/>Right<span class="tsd-signature-symbol">(</span>eventData<span class="tsd-signature-symbol">: </span><a href="../types/InvokeRightEvent.html" class="tsd-signature-type" data-tsd-kind="Type alias">InvokeRightEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#invokeRight.invokeRight-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Invokes a right</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>eventData: <a href="../types/InvokeRightEvent.html" class="tsd-signature-type" data-tsd-kind="Type alias">InvokeRightEvent</a></h5></li></ul></div>
+<h5>eventData: <a href="../types/InvokeRightEvent.html" class="tsd-signature-type" data-tsd-kind="Type alias">InvokeRightEvent</a></h5>
+<div class="tsd-comment tsd-typography"><p>The definition of the right</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L149">index.ts:149</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L296">index.ts:296</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="off" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>off</span><a href="#off" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="off.off-1">off<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a><a href="#off.off-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Alias for <code>emitter.removeListener()</code>.</p>
+
+<h3>Deprecated</h3><p>Future versions will become asynchronous</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5></li>
+<h5>eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+<div class="tsd-comment tsd-typography"><p>The name of the event.</p>
+</div></li>
 <li>
 <h5>listener: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+<div class="tsd-comment tsd-typography"><p>The callback function</p>
+</div>
 <ul class="tsd-parameters">
 <li class="tsd-parameter-signature">
 <ul class="tsd-signatures tsd-kind-type-literal">
@@ -234,7 +268,7 @@ set by <code>emitter.setMaxListeners(n)</code> or defaults to defaultMaxListener
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L225">index.ts:225</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L410">index.ts:410</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="on" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on</span><a href="#on" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -249,6 +283,8 @@ times.</p>
 <p>By default, event listeners are invoked in the order they are added. The
 <code>emitter.prependListener()</code> method can be used as an alternative to add the
 event listener to the beginning of the listeners array.</p>
+
+<h3>Deprecated</h3><p>Future versions will become asynchronous</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -274,7 +310,7 @@ event listener to the beginning of the listeners array.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L180">index.ts:180</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L355">index.ts:355</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="once" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>once</span><a href="#once" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -285,6 +321,8 @@ next time <code>eventName</code> is triggered, this listener is removed and then
 <p>By default, event listeners are invoked in the order they are added. The
 <code>emitter.prependOnceListener()</code> method can be used as an alternative to add the
 event listener to the beginning of the listeners array.</p>
+
+<h3>Deprecated</h3><p>Future versions will become asynchronous</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -310,7 +348,7 @@ event listener to the beginning of the listeners array.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L193">index.ts:193</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L370">index.ts:370</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="registerIdentityProvider" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>register<wbr/>Identity<wbr/>Provider</span><a href="#registerIdentityProvider" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -322,12 +360,16 @@ event listener to the beginning of the listeners array.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>name: <span class="tsd-signature-type">string</span></h5></li>
+<h5>name: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The name of the identity</p>
+</div></li>
 <li>
-<h5>provider: <a href="../types/IdentityProvider.html" class="tsd-signature-type" data-tsd-kind="Type alias">IdentityProvider</a></h5></li></ul></div>
+<h5>provider: <a href="../types/IdentityProvider.html" class="tsd-signature-type" data-tsd-kind="Type alias">IdentityProvider</a></h5>
+<div class="tsd-comment tsd-typography"><p>The provider of the identity</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L128">index.ts:128</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L231">index.ts:231</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="registerPlugin" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>register<wbr/>Plugin</span><a href="#registerPlugin" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -339,12 +381,16 @@ event listener to the beginning of the listeners array.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>plugin: <a href="../types/Plugin.html" class="tsd-signature-type" data-tsd-kind="Type alias">Plugin</a></h5></li>
+<h5>plugin: <a href="../types/Plugin.html" class="tsd-signature-type" data-tsd-kind="Type alias">Plugin</a></h5>
+<div class="tsd-comment tsd-typography"><p>The plugin</p>
+</div></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> config: <span class="tsd-signature-type">any</span></h5></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> config: <span class="tsd-signature-type">any</span></h5>
+<div class="tsd-comment tsd-typography"><p>The plugin configuration</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L120">index.ts:120</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L223">index.ts:223</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="registerStorageProvider" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>register<wbr/>Storage<wbr/>Provider</span><a href="#registerStorageProvider" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -356,29 +402,34 @@ event listener to the beginning of the listeners array.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>provider: <a href="StorageProvider.html" class="tsd-signature-type" data-tsd-kind="Interface">StorageProvider</a></h5></li></ul></div>
+<h5>provider: <a href="StorageProvider.html" class="tsd-signature-type" data-tsd-kind="Interface">StorageProvider</a></h5>
+<div class="tsd-comment tsd-typography"><p>The provider implementation</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L135">index.ts:135</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L238">index.ts:238</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="removeAllListeners" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>remove<wbr/>All<wbr/>Listeners</span><a href="#removeAllListeners" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-<li class="tsd-signature tsd-anchor-link" id="removeAllListeners.removeAllListeners-1">remove<wbr/>All<wbr/>Listeners<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a><a href="#removeAllListeners.removeAllListeners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="removeAllListeners.removeAllListeners-1">remove<wbr/>All<wbr/>Listeners<span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a><a href="#removeAllListeners.removeAllListeners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes all listeners, or those of the specified <code>eventName</code>.</p>
 <p>It is bad practice to remove listeners added elsewhere in the code,
 particularly when the <code>EventEmitter</code> instance was created by some other
 component or module (e.g. sockets or file streams).</p>
-<p>Returns a reference to the <code>EventEmitter</code>, so that calls can be chained.</p>
+
+<h3>Deprecated</h3><p>Future versions will become asynchronous</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+<div class="tsd-comment tsd-typography"><p>The name of the event.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L236">index.ts:236</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L422">index.ts:422</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="removeListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>remove<wbr/>Listener</span><a href="#removeListener" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -402,15 +453,21 @@ but it means that any copies of the listener array as returned by
 the <code>emitter.listeners()</code> method will need to be recreated.</p>
 <p>When a single function has been added as a handler multiple times for a single
 event (as in the example below), <code>removeListener()</code> will remove the most
-recently added instance. In the example the <code>once(&#39;ping&#39;)</code>listener is removed:</p>
+recently added instance. In the example the <code>once(&#39;ping&#39;)</code> listener is removed</p>
+
+<h3>Deprecated</h3><p>Future versions will become asynchronous</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5></li>
+<h5>eventName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+<div class="tsd-comment tsd-typography"><p>The name of the event.</p>
+</div></li>
 <li>
 <h5>listener: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+<div class="tsd-comment tsd-typography"><p>The callback function</p>
+</div>
 <ul class="tsd-parameters">
 <li class="tsd-parameter-signature">
 <ul class="tsd-signatures tsd-kind-type-literal">
@@ -424,69 +481,67 @@ recently added instance. In the example the <code>once(&#39;ping&#39;)</code>lis
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L220">index.ts:220</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L401">index.ts:401</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="setConsent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Consent</span><a href="#setConsent" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-<li class="tsd-signature tsd-anchor-link" id="setConsent.setConsent-1">set<wbr/>Consent<span class="tsd-signature-symbol">(</span>c<span class="tsd-signature-symbol">: </span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span><a href="#setConsent.setConsent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="setConsent.setConsent-1">set<wbr/>Consent<span class="tsd-signature-symbol">(</span>consent<span class="tsd-signature-symbol">: </span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span><a href="#setConsent.setConsent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-parameters">
-<h4 class="tsd-parameters-title">Parameters</h4>
-<ul class="tsd-parameter-list">
-<li>
-<h5>c: <a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L140">index.ts:140</a></li></ul></aside></li></ul></section>
-<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="setMaxListeners" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><span>set<wbr/>Max<wbr/>Listeners</span><a href="#setMaxListeners" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-<li class="tsd-signature tsd-anchor-link" id="setMaxListeners.setMaxListeners-1">set<wbr/>Max<wbr/>Listeners<span class="tsd-signature-symbol">(</span>n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a><a href="#setMaxListeners.setMaxListeners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
-<li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>By default <code>EventEmitter</code>s will print a warning if more than <code>10</code> listeners are
-added for a particular event. This is a useful default that helps finding
-memory leaks. The <code>emitter.setMaxListeners()</code> method allows the limit to be
-modified for this specific <code>EventEmitter</code> instance. The value can be set to
-<code>Infinity</code> (or <code>0</code>) to indicate an unlimited number of listeners.</p>
-<p>Returns a reference to the <code>EventEmitter</code>, so that calls can be chained.</p>
+<div class="tsd-comment tsd-typography"><p>Sets the consent</p>
+
+<h3>Deprecated</h3><p>Future versions will not return the Consent promise</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>n: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Ketch.html" class="tsd-signature-type" data-tsd-kind="Interface">Ketch</a></h4><aside class="tsd-sources">
+<h5>consent: <a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L247">index.ts:247</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L258">index.ts:258</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="setShowConsentExperience" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Show<wbr/>Consent<wbr/>Experience</span><a href="#setShowConsentExperience" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="setShowConsentExperience.setShowConsentExperience-1">set<wbr/>Show<wbr/>Consent<wbr/>Experience<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#setShowConsentExperience.setShowConsentExperience-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Set a flag to show the consent experience</p>
+
+<h3>Deprecated</h3><p>Will be removed in a future version</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L143">index.ts:143</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L265">index.ts:265</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="showConsentExperience" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>show<wbr/>Consent<wbr/>Experience</span><a href="#showConsentExperience" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 <li class="tsd-signature tsd-anchor-link" id="showConsentExperience.showConsentExperience-1">show<wbr/>Consent<wbr/>Experience<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span><a href="#showConsentExperience.showConsentExperience-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Show the consent experience</p>
+
+<h3>Deprecated</h3><p>Future versions will not return Consent in the Promise</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L144">index.ts:144</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L272">index.ts:272</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface"><a id="showPreferenceExperience" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>show<wbr/>Preference<wbr/>Experience</span><a href="#showPreferenceExperience" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-<li class="tsd-signature tsd-anchor-link" id="showPreferenceExperience.showPreferenceExperience-1">show<wbr/>Preference<wbr/>Experience<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../types/ShowPreferenceOptions.html" class="tsd-signature-type" data-tsd-kind="Type alias">ShowPreferenceOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span><a href="#showPreferenceExperience.showPreferenceExperience-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="showPreferenceExperience.showPreferenceExperience-1">show<wbr/>Preference<wbr/>Experience<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">?: </span><a href="../types/ShowPreferenceOptions.html" class="tsd-signature-type" data-tsd-kind="Type alias">ShowPreferenceOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span><a href="#showPreferenceExperience.showPreferenceExperience-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Show the preference experience</p>
+
+<h3>Deprecated</h3><p>Future versions will not return Consent in the Promise</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>params: <a href="../types/ShowPreferenceOptions.html" class="tsd-signature-type" data-tsd-kind="Type alias">ShowPreferenceOptions</a></h5></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> params: <a href="../types/ShowPreferenceOptions.html" class="tsd-signature-type" data-tsd-kind="Type alias">ShowPreferenceOptions</a></h5>
+<div class="tsd-comment tsd-typography"><p>The parameters for the experience</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Consent.html" class="tsd-signature-type" data-tsd-kind="Type alias">Consent</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/c5e4dbd/src/index.ts#L145">index.ts:145</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/ketch-sdk/ketch-types/blob/85799b7/src/index.ts#L280">index.ts:280</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -521,7 +576,6 @@ modified for this specific <code>EventEmitter</code> instance. The value can be 
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#getGeoIP" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>GeoIP</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#getIdentities" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Identities</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#getJurisdiction" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Jurisdiction</a></li>
-<li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#getMaxListeners" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Max<wbr/>Listeners</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#getRegionInfo" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Region<wbr/>Info</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#hasConsent" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>has<wbr/>Consent</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#invokeRight" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>invoke<wbr/>Right</a></li>
@@ -534,7 +588,6 @@ modified for this specific <code>EventEmitter</code> instance. The value can be 
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#removeAllListeners" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>remove<wbr/>All<wbr/>Listeners</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#removeListener" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>remove<wbr/>Listener</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#setConsent" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>set<wbr/>Consent</a></li>
-<li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#setMaxListeners" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>set<wbr/>Max<wbr/>Listeners</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#setShowConsentExperience" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>set<wbr/>Show<wbr/>Consent<wbr/>Experience</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#showConsentExperience" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>show<wbr/>Consent<wbr/>Experience</a></li>
 <li class="tsd-kind-method tsd-parent-kind-interface"><a href="Ketch.html#showPreferenceExperience" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>show<wbr/>Preference<wbr/>Experience</a></li></ul></li></ul></nav></div></div>

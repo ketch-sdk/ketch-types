@@ -1,9 +1,4 @@
 /**
- * Callback
- */
-export declare type Callback = (arg0: any) => void
-
-/**
  * Status
  */
 export type Status = { [key: string]: boolean }
@@ -23,16 +18,22 @@ export type Identities = { [key: string]: string }
 
 /**
  * All Tabs
+ *
+ * @deprecated Future version will become a TypeScript enum
  */
 export const ALL_TABS = ['overviewTab', 'rightsTab', 'consentsTab'] as const
 
 /**
  * TabTuple
+ *
+ * @deprecated Future version will become a TypeScript enum
  */
 export type TabTuple = typeof ALL_TABS
 
 /**
  * Tab
+ *
+ * @deprecated Future version will become a TypeScript enum
  */
 export type Tab = TabTuple[number]
 
@@ -47,29 +48,131 @@ export function isTab(value: string): value is Tab {
 
 /**
  * Plugin class
+ *
+ * @deprecated New plugins should be functional plugins.
+ * @see PluginFunction
  */
 export interface PluginClass {
+  /**
+   * Initialize the plugin
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   */
   init?: (host: Ketch, config: Configuration) => void
+
+  /**
+   * Equivalent of on('environment')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param env The environment
+   */
   environmentLoaded?: (host: Ketch, config: Configuration, env: Environment) => void
+
+  /**
+   * Equivalent of on('geoip')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param ipInfo The IP information
+   */
   geoIPLoaded?: (host: Ketch, config: Configuration, ipInfo: IPInfo) => void
+
+  /**
+   * Equivalent of on('identities')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param identities The identities
+   */
   identitiesLoaded?: (host: Ketch, config: Configuration, identities: Identities) => void
+
+  /**
+   * Equivalent of on('jurisdiction')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param jurisdiction The jurisdiction
+   */
   jurisdictionLoaded?: (host: Ketch, config: Configuration, policyScope: string) => void
+
+  /**
+   * Equivalent of on('regionInfo')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param regionInfo The region info
+   */
   regionInfoLoaded?: (host: Ketch, config: Configuration, region: string) => void
+
+  /**
+   * Equivalent of on('consent')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param consent The consent
+   */
   consentChanged?: (host: Ketch, config: Configuration, consent: Consent) => void
+
+  /**
+   * Equivalent of on('rightInvoked')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param request The right invocation request
+   */
   rightInvoked?: (host: Ketch, config: Configuration, request: InvokeRightRequest) => void
+
+  /**
+   * Equivalent of on('showConsentExperience')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param consents The current consents
+   * @param options The options for the experience
+   */
   showConsentExperience?: (host: Ketch, config: Configuration, consents: Consent, options?: ShowConsentOptions) => void
+
+  /**
+   * Equivalent of on('showPreferenceExperience')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param consents The current consents
+   * @param options The options for the experience
+   */
   showPreferenceExperience?: (
     host: Ketch,
     config: Configuration,
     consents: Consent,
     options?: ShowPreferenceOptions,
   ) => void
+
+  /**
+   * Equivalent of on('willShowExperience')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param type The type of the experience
+   */
   willShowExperience?: (host: Ketch, config: Configuration, type: string) => void
+
+  /**
+   * Equivalent of on('experienceHidden')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param reason The reason the experience was hidden
+   */
   experienceHidden?: (host: Ketch, config: Configuration, reason: string) => void
 }
 
 /**
  * Plugin factory function signature
+ *
+ * @param host The Ketch instance
+ * @param config The plugin configuration
  */
 export type PluginFunction = (host: Ketch, config?: any) => Promise<void>
 
@@ -90,22 +193,22 @@ export interface StorageProvider {
   /**
    * Get an item with the given key
    *
-   * @param key
+   * @param key The item key
    */
   getItem(key: string): Promise<string | null>
 
   /**
    * Sets the value for the given key
    *
-   * @param key
-   * @param value
+   * @param key The item key
+   * @param value The item value
    */
   setItem(key: string, value: string): Promise<void>
 
   /**
-   * Removes the given key
+   * Removes the given item
    *
-   * @param key
+   * @param key The item key
    */
   removeItem(key: string): Promise<void>
 }
@@ -114,50 +217,120 @@ export interface Ketch {
   /**
    * Register a plugin with the given configuration
    *
-   * @param plugin
-   * @param config
+   * @param plugin The plugin
+   * @param config The plugin configuration
    */
   registerPlugin(plugin: Plugin, config?: any): Promise<void>
 
   /**
    * Register an identity provider for the given identity
    *
-   * @param name
-   * @param provider
+   * @param name The name of the identity
+   * @param provider The provider of the identity
    */
   registerIdentityProvider(name: string, provider: IdentityProvider): Promise<void>
 
   /**
    * Register a storage provider
    *
-   * @param provider
+   * @param provider The provider implementation
    */
   registerStorageProvider(provider: StorageProvider): Promise<void>
 
-  // Consent
+  /**
+   * Determines if consent has already been resolved.
+   *
+   * @deprecated future versions will become asynchronous
+   */
   hasConsent(): boolean
-  getConsent(): Promise<Consent>
-  setConsent(c: Consent): Promise<Consent>
 
-  // Experience
+  /**
+   * Returns the Consent
+   */
+  getConsent(): Promise<Consent>
+
+  /**
+   * Sets the consent
+   *
+   * @param consent
+   * @deprecated Future versions will not return the Consent promise
+   */
+  setConsent(consent: Consent): Promise<Consent>
+
+  /**
+   * Set a flag to show the consent experience
+   *
+   * @deprecated Will be removed in a future version
+   */
   setShowConsentExperience(): Promise<void>
+
+  /**
+   * Show the consent experience
+   *
+   * @deprecated Future versions will not return Consent in the Promise
+   */
   showConsentExperience(): Promise<Consent>
-  showPreferenceExperience(params: ShowPreferenceOptions): Promise<Consent>
+
+  /**
+   * Show the preference experience
+   *
+   * @param params The parameters for the experience
+   * @deprecated Future versions will not return Consent in the Promise
+   */
+  showPreferenceExperience(params?: ShowPreferenceOptions): Promise<Consent>
+
+  /**
+   * Notify that the experience was closed
+   *
+   * @param reason Reason the experience was closed
+   * @deprecated This method will be moved to an experience interface. Future
+   * versions will not return Consent in the Promise
+   */
   experienceClosed(reason: ExperienceClosedReason): Promise<Consent>
 
-  // Rights
+  /**
+   * Invokes a right
+   *
+   * @param eventData The definition of the right
+   */
   invokeRight(eventData: InvokeRightEvent): Promise<void>
 
-  // Config
+  /**
+   * Get the Configuration.
+   */
   getConfig(): Promise<Configuration>
+
+  /**
+   * Get the Environment
+   */
   getEnvironment(): Promise<Environment>
+
+  /**
+   * Get the IP information
+   */
   getGeoIP(): Promise<IPInfo>
+
+  /**
+   * Get the identities
+   */
   getIdentities(): Promise<Identities>
+
+  /**
+   * Get the jurisdiction
+   */
   getJurisdiction(): Promise<string>
+
+  /**
+   * Get the region information
+   */
   getRegionInfo(): Promise<string>
 
   /**
    * Alias for `emitter.on(eventName, listener)`.
+   *
+   * @param eventName The name of the event.
+   * @param listener The callback function
+   * @deprecated Future versions will become asynchronous
    */
   addListener(eventName: string | symbol, listener: (...args: any[]) => void): this
 
@@ -176,6 +349,8 @@ export interface Ketch {
    *
    * @param eventName The name of the event.
    * @param listener The callback function
+   *
+   * @deprecated Future versions will become asynchronous
    */
   on(eventName: string | symbol, listener: (...args: any[]) => void): this
 
@@ -189,6 +364,8 @@ export interface Ketch {
    *
    * @param eventName The name of the event.
    * @param listener The callback function
+   *
+   * @deprecated Future versions will become asynchronous
    */
   once(eventName: string | symbol, listener: (...args: any[]) => void): this
 
@@ -215,12 +392,20 @@ export interface Ketch {
    *
    * When a single function has been added as a handler multiple times for a single
    * event (as in the example below), `removeListener()` will remove the most
-   * recently added instance. In the example the `once('ping')`listener is removed:
+   * recently added instance. In the example the `once('ping')` listener is removed
+   *
+   * @param eventName The name of the event.
+   * @param listener The callback function
+   * @deprecated Future versions will become asynchronous
    */
   removeListener(eventName: string | symbol, listener: (...args: any[]) => void): this
 
   /**
    * Alias for `emitter.removeListener()`.
+   *
+   * @param eventName The name of the event.
+   * @param listener The callback function
+   * @deprecated Future versions will become asynchronous
    */
   off(eventName: string | symbol, listener: (...args: any[]) => void): this
 
@@ -231,26 +416,10 @@ export interface Ketch {
    * particularly when the `EventEmitter` instance was created by some other
    * component or module (e.g. sockets or file streams).
    *
-   * Returns a reference to the `EventEmitter`, so that calls can be chained.
+   * @param eventName The name of the event.
+   * @deprecated Future versions will become asynchronous
    */
-  removeAllListeners(event?: string | symbol): this
-
-  /**
-   * By default `EventEmitter`s will print a warning if more than `10` listeners are
-   * added for a particular event. This is a useful default that helps finding
-   * memory leaks. The `emitter.setMaxListeners()` method allows the limit to be
-   * modified for this specific `EventEmitter` instance. The value can be set to
-   * `Infinity` (or `0`) to indicate an unlimited number of listeners.
-   *
-   * Returns a reference to the `EventEmitter`, so that calls can be chained.
-   */
-  setMaxListeners(n: number): this
-
-  /**
-   * Returns the current max listener value for the `EventEmitter` which is either
-   * set by `emitter.setMaxListeners(n)` or defaults to {@link defaultMaxListeners}.
-   */
-  getMaxListeners(): number
+  removeAllListeners(eventName?: string | symbol): this
 
   /**
    * Synchronously calls each of the listeners registered for the event named
@@ -258,6 +427,10 @@ export interface Ketch {
    * to each.
    *
    * @returns `true` if the event had listeners, `false` otherwise.
+   *
+   * @param eventName The name of the event.
+   * @param args The arguments for the event.
+   * @deprecated Future versions will become asynchronous
    */
   emit(eventName: string | symbol, ...args: any[]): boolean
 }
@@ -266,6 +439,9 @@ export interface Ketch {
  * ShowPreferenceOptions
  */
 export type ShowPreferenceOptions = {
+  /**
+   * The tab to display.
+   */
   tab?: Tab
 
   /**
@@ -332,19 +508,12 @@ export type InvokeRightEvent = {
 }
 
 /**
- * AppDiv
- */
-export interface AppDiv {
-  id: string
-  zIndex: string
-}
-
-/**
  * ExperienceClosedReason describes the reason the experience was closed.
  *
  * setConsent = consent was accepted/set
  * invokeRight = the right was invoked
  * close = the close/exit button was clicked
+ * willNotShow = the experience was skipped
  *
  * @enum
  */
@@ -522,7 +691,10 @@ export interface GetConsentRequest {
   jurisdictionCode: string
   identities: { [key: string]: string }
   purposes: { [key: string]: PurposeLegalBasis }
-  vendors?: string[] // list of vendor ids for which the user has opted out
+  /**
+   * list of vendor ids for which the user has opted out
+   */
+  vendors?: string[]
 
   collectedAt?: number
 }
@@ -558,7 +730,10 @@ export interface SetConsentRequest {
   identities: { [key: string]: string }
   collectedAt?: number
   purposes: { [key: string]: PurposeAllowedLegalBasis }
-  vendors?: string[] // list of vendor ids for which the user has opted out
+  /**
+   * list of vendor ids for which the user has opted out
+   */
+  vendors?: string[]
 }
 
 /**
@@ -1375,8 +1550,17 @@ export interface Loaded {
 declare global {
   interface Window {
     /**
-     * Semaphore is the main entrypoint.
+     * Semaphore is the action queue (should not be accessed directly except by legacy code
+     * which should be migrated to the `ketch` function).
      */
     semaphore: Pusher & Loaded
+
+    /**
+     * Ketch is the main entrypoint to the JS API.
+     *
+     * @param action The action to invoke
+     * @param args The arguments to the action
+     */
+    ketch(action: string, ...args: any[]): void
   }
 }
