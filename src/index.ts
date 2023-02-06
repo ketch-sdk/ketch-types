@@ -17,25 +17,13 @@ export type Consent = {
 export type Identities = { [key: string]: string }
 
 /**
- * All Tabs
- *
- * @deprecated Future version will become a TypeScript enum
- */
-export const ALL_TABS = ['overviewTab', 'rightsTab', 'consentsTab'] as const
-
-/**
- * TabTuple
- *
- * @deprecated Future version will become a TypeScript enum
- */
-export type TabTuple = typeof ALL_TABS
-
-/**
  * Tab
- *
- * @deprecated Future version will become a TypeScript enum
  */
-export type Tab = TabTuple[number]
+export enum Tab {
+  Overview = 'overviewTab',
+  Rights = 'rightsTab',
+  Consents = 'consentsTab',
+}
 
 /**
  * Determines if the Given value is a Tab
@@ -43,7 +31,7 @@ export type Tab = TabTuple[number]
  * @param value
  */
 export function isTab(value: string): value is Tab {
-  return ALL_TABS.includes(value as Tab)
+  return value in Tab
 }
 
 /**
