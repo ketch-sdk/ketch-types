@@ -213,6 +213,21 @@ export interface StorageProvider {
   removeItem(key: string): Promise<void>
 }
 
+/**
+ * Storage policy setting
+ */
+export enum StorageOriginPolicy {
+  /**
+   * Storage saved cross-origin.
+   */
+  CrossOrigin = 'cross-origin',
+
+  /**
+   * Storage is same-origin only.
+   */
+  SameOrigin = 'same-origin,',
+}
+
 export interface Ketch {
   /**
    * Register a plugin with the given configuration
@@ -233,16 +248,10 @@ export interface Ketch {
   /**
    * Register a storage provider
    *
+   * @param policy The storage origin policy
    * @param provider The provider implementation
    */
-  registerStorageProvider(provider: StorageProvider): Promise<void>
-
-  /**
-   * Determines if consent has already been resolved.
-   *
-   * @deprecated future versions will become asynchronous
-   */
-  hasConsent(): boolean
+  registerStorageProvider(policy: StorageOriginPolicy, provider: StorageProvider): Promise<void>
 
   /**
    * Returns the Consent
@@ -253,40 +262,28 @@ export interface Ketch {
    * Sets the consent
    *
    * @param consent
-   * @deprecated Future versions will not return the Consent promise
    */
-  setConsent(consent: Consent): Promise<Consent>
-
-  /**
-   * Set a flag to show the consent experience
-   *
-   * @deprecated Will be removed in a future version
-   */
-  setShowConsentExperience(): Promise<void>
+  setConsent(consent: Consent): Promise<void>
 
   /**
    * Show the consent experience
-   *
-   * @deprecated Future versions will not return Consent in the Promise
    */
-  showConsentExperience(): Promise<Consent>
+  showConsent(): Promise<void>
 
   /**
    * Show the preference experience
    *
    * @param params The parameters for the experience
-   * @deprecated Future versions will not return Consent in the Promise
    */
-  showPreferenceExperience(params?: ShowPreferenceOptions): Promise<Consent>
+  showPreferences(params?: ShowPreferenceOptions): Promise<void>
 
   /**
    * Notify that the experience was closed
    *
    * @param reason Reason the experience was closed
-   * @deprecated This method will be moved to an experience interface. Future
-   * versions will not return Consent in the Promise
+   * @deprecated This method will be moved to an experience interface.
    */
-  experienceClosed(reason: ExperienceClosedReason): Promise<Consent>
+  experienceClosed(reason: ExperienceClosedReason): Promise<void>
 
   /**
    * Invokes a right
@@ -330,9 +327,8 @@ export interface Ketch {
    *
    * @param eventName The name of the event.
    * @param listener The callback function
-   * @deprecated Future versions will become asynchronous
    */
-  addListener(eventName: string | symbol, listener: (...args: any[]) => void): this
+  addListener(eventName: string | symbol, listener: (...args: any[]) => void): Promise<void>
 
   /**
    * Adds the `listener` function to the end of the listeners array for the
@@ -349,10 +345,8 @@ export interface Ketch {
    *
    * @param eventName The name of the event.
    * @param listener The callback function
-   *
-   * @deprecated Future versions will become asynchronous
    */
-  on(eventName: string | symbol, listener: (...args: any[]) => void): this
+  on(eventName: string | symbol, listener: (...args: any[]) => void): Promise<void>
 
   /**
    * Adds a **one-time**`listener` function for the event named `eventName`. The
@@ -364,10 +358,8 @@ export interface Ketch {
    *
    * @param eventName The name of the event.
    * @param listener The callback function
-   *
-   * @deprecated Future versions will become asynchronous
    */
-  once(eventName: string | symbol, listener: (...args: any[]) => void): this
+  once(eventName: string | symbol, listener: (...args: any[]) => void): Promise<void>
 
   /**
    * Removes the specified `listener` from the listener array for the event
@@ -396,18 +388,16 @@ export interface Ketch {
    *
    * @param eventName The name of the event.
    * @param listener The callback function
-   * @deprecated Future versions will become asynchronous
    */
-  removeListener(eventName: string | symbol, listener: (...args: any[]) => void): this
+  removeListener(eventName: string | symbol, listener: (...args: any[]) => void): Promise<void>
 
   /**
    * Alias for `emitter.removeListener()`.
    *
    * @param eventName The name of the event.
    * @param listener The callback function
-   * @deprecated Future versions will become asynchronous
    */
-  off(eventName: string | symbol, listener: (...args: any[]) => void): this
+  off(eventName: string | symbol, listener: (...args: any[]) => void): Promise<void>
 
   /**
    * Removes all listeners, or those of the specified `eventName`.
@@ -417,9 +407,8 @@ export interface Ketch {
    * component or module (e.g. sockets or file streams).
    *
    * @param eventName The name of the event.
-   * @deprecated Future versions will become asynchronous
    */
-  removeAllListeners(eventName?: string | symbol): this
+  removeAllListeners(eventName?: string | symbol): Promise<void>
 
   /**
    * Synchronously calls each of the listeners registered for the event named
@@ -430,9 +419,8 @@ export interface Ketch {
    *
    * @param eventName The name of the event.
    * @param args The arguments for the event.
-   * @deprecated Future versions will become asynchronous
    */
-  emit(eventName: string | symbol, ...args: any[]): boolean
+  emit(eventName: string | symbol, ...args: any[]): Promise<void>
 }
 
 /**
