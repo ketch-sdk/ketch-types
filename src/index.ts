@@ -1352,6 +1352,7 @@ export declare interface ExperienceServer {
    */
   render(options: ExperienceOptions): Promise<ExperienceAction[]>
 }
+
 /**
  * Plugin class
  *
