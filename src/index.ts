@@ -1700,6 +1700,13 @@ export interface Ketch {
   setConsent(consent: Consent): Promise<void>
 
   /**
+   * Sets the provisional consent
+   *
+   * @param consent Consents
+   */
+  setProvisionalConsent(consent: Consent): Promise<void>
+
+  /**
    * Show the consent experience
    */
   showConsent(): Promise<void>
