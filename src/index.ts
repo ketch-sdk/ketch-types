@@ -725,6 +725,61 @@ export interface ConsentsTab {
 }
 
 /**
+ * SubscriptionsTab
+ */
+export interface SubscriptionsTab {
+  /**
+   * Name of the tab
+   */
+  tabName: string
+
+  /**
+   * Title of the Subscriptions list
+   */
+  title: string
+
+  /**
+   * Body title
+   */
+  bodyTitle?: string
+
+  /**
+   * Body description
+   */
+  bodyDescription: string
+
+  /**
+   * List of topics/controls codes
+   */
+  subscriptions: string[]
+
+  /**
+   * switchOnText overrides the standard text for a consent switch in the on state
+   */
+  switchOnText?: string
+
+  /**
+   * switchOffText overrides the standard text for a consent switch in the off state
+   */
+  switchOffText?: string
+
+  /**
+   * switchTextRenderLogic determines the logic for showing the switch text
+   */
+  switchTextRenderLogic?: SwitchTextRenderLogic
+
+  /**
+   * Primary button text
+   */
+  primaryButtonText: string
+
+  /**
+   * Secondary button text
+   */
+  secondaryButtonText?: string
+}
+
+/**
  * OverviewTab
  */
 export interface OverviewTab {
@@ -762,9 +817,10 @@ export interface PreferenceExperience {
   code: string
   version: number
   title: string
+  overview: OverviewTab
   rights?: RightsTab
   consents?: ConsentsTab
-  overview: OverviewTab
+  subscriptions?: SubscriptionsTab
 
   /**
    * additional extensions
@@ -1908,4 +1964,126 @@ declare global {
      */
     ketch(action: string, ...args: any[]): void
   }
+}
+
+export interface SubscriptionControlSetting {
+  status: SubscriptionStatus
+}
+
+export interface SubscriptionTopicSetting {
+  status: SubscriptionStatus
+  contactMethods: string[]
+}
+
+export enum SubscriptionStatus {
+  Denied = 'denied',
+  Granted = 'granted',
+}
+
+export interface SubscriptionControl {
+  /**
+   * The code of the Subscription Control
+   */
+  code: string
+
+  /**
+   *  The name of the Subscription Control
+   */
+  name: string
+
+  /**
+   * The display description of the Subscription Control
+   */
+  description: string
+}
+
+export interface SubscriptionTopic {
+  /**
+   * The code of the Subscription Topic
+   */
+  code: string
+
+  /**
+   * The name of the Subscription Topic
+   */
+  name: string
+
+  /**
+   * The display description of the Subscription Topic
+   */
+  description: string
+
+  /**
+   * The legal basis code (e.g., consent_optin).
+   */
+  legalBasis: string
+
+  /**
+   * An array of the contact method codes ('email', 'sms', etc).
+   */
+  contactMethods: string[]
+}
+
+/**
+ * GetSubscriptionRequest
+ */
+export interface GetSubscriptionsRequest {
+  organizationCode: string
+  controllerCode?: string
+  propertyCode?: string
+  environmentCode?: string
+  identities?: { [key: string]: string }
+  topics?: { [key: string]: SubscriptionTopicSetting }
+  controls?: { [key: string]: SubscriptionControlSetting }
+  collectedAt?: number
+}
+
+/**
+ * GetSubscriptionResponse
+ */
+export interface GetSubscriptionsResponse {
+  organizationCode: string
+  controllerCode?: string
+  propertyCode?: string
+  environmentCode?: string
+  identities?: { [key: string]: string }
+  topics?: { [key: string]: SubscriptionTopicSetting }
+  controls?: { [key: string]: SubscriptionControlSetting }
+  collectedAt?: number
+}
+
+/**
+ * SetSubscriptionRequest
+ */
+export interface SetSubscriptionsRequest {
+  organizationCode: string
+  controllerCode?: string
+  propertyCode?: string
+  environmentCode?: string
+  identities?: { [key: string]: string }
+  topics?: { [key: string]: SubscriptionTopicSetting }
+  controls?: { [key: string]: SubscriptionControlSetting }
+  collectedAt?: number
+}
+
+/**
+ * GetSubscriptionConfigurationRequest
+ */
+export interface GetSubscriptionConfigurationRequest {
+  language: string
+  organizationCode: string
+  propertyCode: string
+  languageCode: string
+}
+
+/**
+ * GetSubscriptionConfigurationResponse
+ */
+export interface GetSubscriptionConfigurationResponse {
+  language: string
+  organization: Organization
+  property: Property
+  identities: { [key: string]: Identity }
+  controls: SubscriptionControl[]
+  topics: SubscriptionTopic[]
 }
