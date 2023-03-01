@@ -2070,7 +2070,6 @@ export interface SetSubscriptionsRequest {
  * GetSubscriptionConfigurationRequest
  */
 export interface GetSubscriptionConfigurationRequest {
-  language: string
   organizationCode: string
   propertyCode: string
   languageCode: string
