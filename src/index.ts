@@ -725,6 +725,23 @@ export interface ConsentsTab {
 }
 
 /**
+ * SubscriptionExperienceItemType
+ */
+export enum SubscriptionExperienceItemType {
+  SUBSCRIPTION_EXPERIENCE_ITEM_TYPE_UNKNOWN = 0,
+  SUBSCRIPTION_EXPERIENCE_ITEM_TYPE_TOPIC = 1,
+  SUBSCRIPTION_EXPERIENCE_ITEM_TYPE_CONTROL = 2,
+}
+
+/**
+ * SubscriptionExperienceItem
+ */
+export interface SubscriptionExperienceItem {
+  type: SubscriptionExperienceItemType
+  code: string
+}
+
+/**
  * SubscriptionsTab
  */
 export interface SubscriptionsTab {
@@ -751,7 +768,7 @@ export interface SubscriptionsTab {
   /**
    * List of topics/controls codes
    */
-  subscriptions: string[]
+  items: SubscriptionExperienceItemType[]
 
   /**
    * switchOnText overrides the standard text for a consent switch in the on state
