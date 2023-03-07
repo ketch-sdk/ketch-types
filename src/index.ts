@@ -7,6 +7,7 @@ export enum Tab {
   Overview = 'overviewTab',
   Rights = 'rightsTab',
   Consents = 'consentsTab',
+  Subscriptions = 'subscriptionsTab',
 }
 
 /**
@@ -298,6 +299,12 @@ export type ShowPreferenceOptions = {
    * the rights tab is displayed.
    */
   showRightsTab?: boolean
+
+  /**
+   * showSubscriptionsTab determines whether the subscriptions tab will show. If undefined,
+   * the subscriptions tab is displayed.
+   */
+  showSubscriptionsTab?: boolean
 
   /**
    * supportedCountries is the list of supported ISO 3166 ALPHA-2 country codes
