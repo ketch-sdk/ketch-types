@@ -1050,6 +1050,11 @@ export interface Configuration {
   purposes?: Purpose[]
 
   /**
+   * subscription configuration
+   */
+  subscriptionConfiguration?: GetSubscriptionConfigurationResponse
+
+  /**
    * Mapping of purposes to canonical purposes.
    */
   canonicalPurposes?: { [key: string]: CanonicalPurpose }
@@ -1766,6 +1771,13 @@ export interface Ketch {
    * @param provider The provider implementation
    */
   registerStorageProvider(policy: StorageOriginPolicy, provider: StorageProvider): Promise<void>
+
+  /**
+   * Sets subscriptions
+   *
+   * @param subscriptions SetSubscriptionsRequest
+   */
+  setSubscriptionsRequest(subscriptions: SetSubscriptionsRequest): Promise<void>
 
   /**
    * Returns the Consent
