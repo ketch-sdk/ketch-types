@@ -1780,6 +1780,23 @@ export interface Ketch {
   setConsent(consent: Consent): Promise<void>
 
   /**
+   * Get subscriptions
+   */
+  getSubscriptions(): Promise<Subscriptions>
+
+  /**
+   * Set subscriptions
+   *
+   * @param request
+   */
+  setSubscriptions(request: Subscriptions): Promise<void>
+
+  /**
+   * Get Subscription configuration
+   */
+  getSubscriptionConfiguration(): Promise<SubscriptionConfiguration>
+
+  /**
    * Sets the provisional consent
    *
    * @param consent Consents
@@ -2049,6 +2066,14 @@ export interface SubscriptionTopic {
 }
 
 /**
+ * Subscriptions
+ */
+export interface Subscriptions {
+  topics?: { [key: string]: SubscriptionTopicSetting }
+  controls?: { [key: string]: SubscriptionControlSetting }
+}
+
+/**
  * GetSubscriptionRequest
  */
 export interface GetSubscriptionsRequest {
@@ -2100,13 +2125,21 @@ export interface GetSubscriptionConfigurationRequest {
 }
 
 /**
- * GetSubscriptionConfigurationResponse
+ * ContactMethod
  */
-export interface GetSubscriptionConfigurationResponse {
+export interface ContactMethod {
+  name: string
+}
+
+/**
+ * SubscriptionConfiguration
+ */
+export interface SubscriptionConfiguration {
   language: string
   organization: Organization
   property: Property
   identities: { [key: string]: Identity }
+  contactMethods: { [key: string]: ContactMethod }
   controls: SubscriptionControl[]
   topics: SubscriptionTopic[]
 }
