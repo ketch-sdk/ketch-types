@@ -1050,6 +1050,11 @@ export interface Configuration {
   purposes?: Purpose[]
 
   /**
+   * User subscriptions
+   */
+  dataSubjectSubscriptions?: GetSubscriptionsResponse
+
+  /**
    * subscription configuration
    */
   subscriptionConfiguration?: GetSubscriptionConfigurationResponse
