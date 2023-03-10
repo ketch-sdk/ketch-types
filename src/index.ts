@@ -1050,16 +1050,6 @@ export interface Configuration {
   purposes?: Purpose[]
 
   /**
-   * User subscriptions
-   */
-  dataSubjectSubscriptions?: GetSubscriptionsResponse
-
-  /**
-   * subscription configuration
-   */
-  subscriptionConfiguration?: GetSubscriptionConfigurationResponse
-
-  /**
    * Mapping of purposes to canonical purposes.
    */
   canonicalPurposes?: { [key: string]: CanonicalPurpose }
@@ -1778,13 +1768,6 @@ export interface Ketch {
   registerStorageProvider(policy: StorageOriginPolicy, provider: StorageProvider): Promise<void>
 
   /**
-   * Sets subscriptions
-   *
-   * @param subscriptions SetSubscriptionsRequest
-   */
-  setSubscriptionsRequest(subscriptions: SetSubscriptionsRequest): Promise<void>
-
-  /**
    * Returns the Consent
    */
   getConsent(): Promise<Consent>
@@ -1795,6 +1778,23 @@ export interface Ketch {
    * @param consent Consents
    */
   setConsent(consent: Consent): Promise<void>
+
+  /**
+   * Get subscriptions
+   */
+  getSubscriptions(): Promise<Subscriptions>
+
+  /**
+   * Set subscriptions
+   *
+   * @param request
+   */
+  setSubscriptions(request: Subscriptions): Promise<void>
+
+  /**
+   * Get Subscription configuration
+   */
+  getSubscriptionConfiguration(): Promise<SubscriptionConfiguration>
 
   /**
    * Sets the provisional consent
@@ -2066,6 +2066,14 @@ export interface SubscriptionTopic {
 }
 
 /**
+ * Subscriptions
+ */
+export interface Subscriptions {
+  topics?: { [key: string]: SubscriptionTopicSetting }
+  controls?: { [key: string]: SubscriptionControlSetting }
+}
+
+/**
  * GetSubscriptionRequest
  */
 export interface GetSubscriptionsRequest {
@@ -2117,13 +2125,21 @@ export interface GetSubscriptionConfigurationRequest {
 }
 
 /**
- * GetSubscriptionConfigurationResponse
+ * ContactMethod
  */
-export interface GetSubscriptionConfigurationResponse {
+export interface ContactMethod {
+  name: string
+}
+
+/**
+ * SubscriptionConfiguration
+ */
+export interface SubscriptionConfiguration {
   language: string
   organization: Organization
   property: Property
   identities: { [key: string]: Identity }
+  contactMethods: { [key: string]: ContactMethod }
   controls: SubscriptionControl[]
   topics: SubscriptionTopic[]
 }
