@@ -1,0 +1,61 @@
+function service(target: any) {
+  console.log(target)
+}
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+function rpc(target: any) {
+  console.log(target)
+}
+
+// eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-unused-vars
+function event(target: any) {
+  console.log(target)
+}
+
+type DataSubject = {
+  email: string
+  firstName: string
+  lastName: string
+  addressLine1: string
+  addressLine2: string
+  city: string
+  stateRegionCode: string
+  postalCode: string
+  countryCode: string
+  description: string
+}
+
+type Identity = {
+  identitySpace: string
+  identityFormat: string
+  identityValue: string
+}
+
+type AccessRequest = {
+  controller: string
+  property: string
+  environment: string
+  regulation: string
+  jurisdiction: string
+  identities: Identity[]
+  subject: DataSubject
+  context: { [key: string]: any }
+}
+
+enum DSRStatus {
+  InProgress = 'in_progress',
+}
+
+type AccessResponse = {
+  status: DSRStatus
+  expectedCompletionTimestamp: number
+  identities: Identity[]
+  subject: DataSubject
+  context: { [key: string]: any }
+}
+
+@service
+class MyService {
+  Access(request: AccessRequest): AccessResponse
+  AccessStatus(request: AccessResponse): void
+}

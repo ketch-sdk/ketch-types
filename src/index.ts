@@ -775,7 +775,7 @@ export interface SubscriptionsTab {
   /**
    * List of topics/controls codes
    */
-  items: SubscriptionExperienceItemType[]
+  items: SubscriptionExperienceItem[]
 
   /**
    * switchOnText overrides the standard text for a consent switch in the on state
