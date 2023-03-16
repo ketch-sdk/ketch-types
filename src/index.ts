@@ -671,6 +671,102 @@ export interface JIT {
 }
 
 /**
+ * FormFieldIdentitySpace
+ */
+export interface FormFieldIdentitySpace {
+  id?: string
+  name?: string
+  code?: string
+}
+
+/**
+ * FormFieldConfig
+ */
+export interface FormFieldConfig {
+  formFieldId?: string
+  required?: boolean
+  label?: string
+  hint?: string
+  category?: FormFieldCategory
+  type?: FormFieldType
+  Variant?: FormFieldVariant
+  maxLength?: number
+  name?: string
+  width?: FormFieldWidth
+  identitySpace?: FormFieldIdentitySpace
+  options?: FormFieldDropdownOption[]
+}
+
+/**
+ * FormFieldDropdownOption
+ */
+export type FormFieldDropdownOption = {
+  label?: string
+  value?: string
+  translations?: { [key: string]: string }
+}
+
+/**
+ * FormFieldWidth describes the width of the form field in Rights Form
+ *
+ * unspecified = width is unspecified
+ * half = half width
+ * full = full width
+ *
+ * @enum
+ */
+export enum FormFieldWidth {
+  UNSPECIFIED = 'unspecified',
+  HALF = 'half',
+  FULL = 'full',
+}
+
+/**
+ * FormFieldCategory describes the category of the form field in Rights Form
+ *
+ * unspecified = category is unspecified
+ * default = default field (ex: firstName, lastName, email etc.)
+ * custom = user created form field
+ *
+ * @enum
+ */
+export enum FormFieldCategory {
+  UNSPECIFIED = 'unspecified',
+  DEFAULT = 'default',
+  CUSTOM = 'custom',
+}
+
+/**
+ * FormFieldType describes the type of the form field in Rights Form
+ *
+ * unspecified = category is unspecified
+ * text = text field
+ * dropdown = dropdown field
+ *
+ * @enum
+ */
+export enum FormFieldType {
+  UNSPECIFIED = 'unspecified',
+  TEXT = 'text',
+  DROPDOWN = 'dropdown',
+}
+
+/**
+ * FormFieldVariant describes the variant of a text field in Rights Form
+ *
+ * unspecified = unspecified variant
+ * input = input variant
+ * textarea = textarea variant
+ *
+ * @enum
+ */
+export enum FormFieldVariant {
+  UNSPECIFIED = 'unspecified',
+  INPUT = 'input',
+  TEXTAREA = 'textarea',
+}
+
+/**
  * RightsTab
  */
 export interface RightsTab {
@@ -683,6 +779,25 @@ export interface RightsTab {
    * additional extensions
    */
   extensions?: { [key: string]: string }
+
+  /**
+   * Request Details Section
+   */
+  requestDetailsTitle?: string
+  hideRequestDetailsField?: boolean
+  hideRequestDetailsTitle?: boolean
+  requestDetailsRequired?: boolean
+
+  /**
+   * Personal Details Section
+   */
+  personalDetailsTitle?: string
+  hidePersonalDetailsTitle?: boolean
+
+  /**
+   * Form Fields Config for Custom Rights Form
+   */
+  inputConfigs?: FormFieldConfig[]
 }
 
 /**
