@@ -784,15 +784,15 @@ export interface RightsTab {
    * Request Details Section
    */
   requestDetailsTitle?: string
-  hideRequestDetailsField?: boolean
-  hideRequestDetailsTitle?: boolean
+  showRequestDetailsField?: boolean
+  showRequestDetailsTitle?: boolean
   requestDetailsRequired?: boolean
 
   /**
    * Personal Details Section
    */
   personalDetailsTitle?: string
-  hidePersonalDetailsTitle?: boolean
+  showPersonalDetailsTitle?: boolean
 
   /**
    * Form Fields Config for Custom Rights Form
