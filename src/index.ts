@@ -61,6 +61,7 @@ export enum ExperienceClosedReason {
   INVOKE_RIGHT = 'invokeRight',
   CLOSE = 'close',
   WILL_NOT_SHOW = 'willNotShow',
+  SET_SUBSCRIPTIONS = 'setSubscriptions',
 }
 
 /**
