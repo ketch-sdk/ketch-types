@@ -683,14 +683,14 @@ export interface FormFieldIdentitySpace {
 /**
  * FormFieldConfig
  */
-export interface FormFieldConfig {
-  formFieldId?: string
+export interface FormField {
+  id?: string
   required?: boolean
   label?: string
   hint?: string
   category?: FormFieldCategory
   type?: FormFieldType
-  Variant?: FormFieldVariant
+  variant?: FormFieldVariant
   maxLength?: number
   name?: string
   width?: FormFieldWidth
@@ -798,7 +798,7 @@ export interface RightsTab {
   /**
    * Form Fields Config for Custom Rights Form
    */
-  inputConfigs?: FormFieldConfig[]
+  formFields?: FormField[]
 }
 
 /**
