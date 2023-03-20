@@ -675,7 +675,6 @@ export interface JIT {
  * FormFieldIdentitySpace
  */
 export interface FormFieldIdentitySpace {
-  id?: string
   name?: string
   code?: string
 }
