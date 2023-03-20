@@ -672,17 +672,9 @@ export interface JIT {
 }
 
 /**
- * FormFieldIdentitySpace
- */
-export interface FormFieldIdentitySpace {
-  name?: string
-  code?: string
-}
-
-/**
  * FormField
  */
-export interface FormField {
+export interface ExperienceFormField {
   id?: string
   required?: boolean
   label?: string
@@ -693,7 +685,7 @@ export interface FormField {
   maxLength?: number
   name?: string
   width?: FormFieldWidth
-  identitySpace?: FormFieldIdentitySpace
+  identitySpaceCode?: string
   options?: FormFieldDropdownOption[]
 }
 
@@ -796,7 +788,7 @@ export interface RightsTab {
   /**
    * Form Fields Config for Custom Rights Form
    */
-  formFields?: FormField[]
+  formFields?: ExperienceFormField[]
 }
 
 /**
