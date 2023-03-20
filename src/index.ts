@@ -704,7 +704,6 @@ export interface FormField {
 export type FormFieldDropdownOption = {
   label?: string
   value?: string
-  translations?: { [key: string]: string }
 }
 
 /**
