@@ -672,7 +672,7 @@ export interface JIT {
 }
 
 /**
- * FormField
+ * ExperienceFormField
  */
 export interface ExperienceFormField {
   id?: string
