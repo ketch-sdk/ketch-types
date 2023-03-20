@@ -681,7 +681,7 @@ export interface FormFieldIdentitySpace {
 }
 
 /**
- * FormFieldConfig
+ * FormField
  */
 export interface FormField {
   id?: string
