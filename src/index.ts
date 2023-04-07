@@ -412,6 +412,7 @@ export interface DataSubject {
   lastName: string
   country?: string
   stateRegion?: string
+  city?: string
   description?: string
   phone?: string
   postalCode?: string
