@@ -2119,10 +2119,11 @@ export interface SubscriptionControlSetting {
   status: SubscriptionStatus
 }
 
-export interface SubscriptionTopicSetting {
+export interface SubscriptionTopicContactMethodSetting {
   status: SubscriptionStatus
-  contactMethods: string[]
 }
+
+export type SubscriptionTopicSetting = { [key: string]: SubscriptionTopicContactMethodSetting }
 
 export enum SubscriptionStatus {
   Denied = 'denied',
