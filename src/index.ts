@@ -318,6 +318,12 @@ export type ShowPreferenceOptions = {
    * undefined, the consents tab is displayed
    */
   showConsentsTab?: boolean
+
+  /**
+   * showOverviewTab determines whether the overview tab will show. If
+   * undefined, the overview tab is displayed
+   */
+  showOverviewTab?: boolean
 }
 
 /**
