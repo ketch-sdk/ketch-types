@@ -1050,6 +1050,12 @@ export interface Theme {
    * qrForegroundColor is the override for the QR code foreground color
    */
   qrForegroundColor?: string
+
+  /**
+   * theme updates for button presentation layer
+   */
+  bannerSecondaryButtonVariant?: ButtonVariant
+  purposeButtonsLookIdentical?: boolean
 }
 
 /**
@@ -2257,4 +2263,14 @@ export interface SubscriptionConfiguration {
   contactMethods: { [key: string]: ContactMethod }
   controls: SubscriptionControl[]
   topics: SubscriptionTopic[]
+}
+
+/**
+ * ButtonVariant
+ *
+ * @enum
+ */
+export enum ButtonVariant {
+  Outlined = 'outlined',
+  Contained = 'contained',
 }
