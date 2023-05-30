@@ -1050,20 +1050,24 @@ export interface Theme {
    * qrForegroundColor is the override for the QR code foreground color
    */
   qrForegroundColor?: string
+
   /**
    * banner secondary button can be one of contained|outlined
    */
+
   bannerSecondaryButtonVariant?: ButtonVariant
+
   /**
    * accept/reject all buttons can now be set to look identical
    */
   purposeButtonsLookIdentical?: boolean
-  purposeFormButtonsLookIdentical?: boolean,
+  purposeFormButtonsLookIdentical?: boolean
+
   /**
    * custom background color for preference & modal form body
    */
-  formBodyBackgroundColor?: string,
-  modalBodyBackgroundColor?: string,
+  formBodyBackgroundColor?: string
+  modalBodyBackgroundColor?: string
 }
 
 /**
