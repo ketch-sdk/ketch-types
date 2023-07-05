@@ -424,7 +424,7 @@ export interface DataSubject {
   postalCode?: string
   addressLine1?: string
   addressLine2?: string
-  formData?: { [key: string]: string }
+  formData?: { [key: string]: string | string[] }
 
   /**
    * typeCode is the identifier representing the data subject type specified by the user
