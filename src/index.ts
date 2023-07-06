@@ -1,3 +1,5 @@
+import { ExperienceFormField, CanonicalRightForm, CustomRightForm, FormTemplate } from './forms'
+
 /**
  * Tab
  *
@@ -680,92 +682,6 @@ export interface JIT {
 }
 
 /**
- * ExperienceFormField
- */
-export interface ExperienceFormField {
-  id?: string
-  required?: boolean
-  label?: string
-  hint?: string
-  category?: FormFieldCategory
-  type?: FormFieldType
-  variant?: FormFieldVariant
-  maxLength?: number
-  name?: string
-  width?: FormFieldWidth
-  identitySpaceCode?: string
-  options?: FormFieldDropdownOption[]
-}
-
-/**
- * FormFieldDropdownOption
- */
-export type FormFieldDropdownOption = {
-  label?: string
-  value?: string
-}
-
-/**
- * FormFieldWidth describes the width of the form field in Rights Form
- *
- * unspecified = width is unspecified
- * half = half width
- * full = full width
- *
- * @enum
- */
-export enum FormFieldWidth {
-  UNSPECIFIED = 'unspecified',
-  HALF = 'half',
-  FULL = 'full',
-}
-
-/**
- * FormFieldCategory describes the category of the form field in Rights Form
- *
- * unspecified = category is unspecified
- * default = default field (ex: firstName, lastName, email etc.)
- * custom = user created form field
- *
- * @enum
- */
-export enum FormFieldCategory {
-  UNSPECIFIED = 'unspecified',
-  DEFAULT = 'default',
-  CUSTOM = 'custom',
-}
-
-/**
- * FormFieldType describes the type of the form field in Rights Form
- *
- * unspecified = category is unspecified
- * text = text field
- * dropdown = dropdown field
- *
- * @enum
- */
-export enum FormFieldType {
-  UNSPECIFIED = 'unspecified',
-  TEXT = 'text',
-  DROPDOWN = 'dropdown',
-}
-
-/**
- * FormFieldVariant describes the variant of a text field in Rights Form
- *
- * unspecified = unspecified variant
- * input = input variant
- * textarea = textarea variant
- *
- * @enum
- */
-export enum FormFieldVariant {
-  UNSPECIFIED = 'unspecified',
-  INPUT = 'input',
-  TEXTAREA = 'textarea',
-}
-
-/**
  * RightsTab
  */
 export interface RightsTab {
@@ -979,6 +895,7 @@ export interface Right {
    * data subject types
    */
   dataSubjectTypeCodes?: string[]
+  canonicalRightCode: string
 }
 
 /**
@@ -1245,6 +1162,10 @@ export interface Configuration {
    * Recaptcha config
    */
   recaptcha?: Recaptcha
+
+  canonicalRightForms?: CanonicalRightForm[]
+  customRightForms?: CustomRightForm[]
+  formTemplates: FormTemplate[]
 }
 
 /**
@@ -2286,3 +2207,16 @@ export enum ButtonVariant {
   Outlined = 'outlined',
   Contained = 'contained',
 }
+
+export {
+  ExperienceFormField,
+  FormFieldDropdownOption,
+  FormFieldWidth,
+  FormFieldCategory,
+  FormFieldType,
+  FormFieldVariant,
+  CanonicalRightForm,
+  CustomRightForm,
+  FormSection,
+  FormTemplate,
+} from './forms'
