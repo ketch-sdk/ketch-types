@@ -748,6 +748,7 @@ export enum FormFieldType {
   UNSPECIFIED = 'unspecified',
   TEXT = 'text',
   DROPDOWN = 'dropdown',
+  CHECKBOX = 'checkbox',
 }
 
 /**
@@ -795,6 +796,7 @@ export interface RightsTab {
 
   /**
    * Form Fields Config for Custom Rights Form
+   * TODO: forms v2 - remove
    */
   formFields?: ExperienceFormField[]
 }
@@ -979,6 +981,11 @@ export interface Right {
    * data subject types
    */
   dataSubjectTypeCodes?: string[]
+
+  /**
+   * canonical right code for this right
+   */
+  canonicalRightCode?: string
 }
 
 /**
@@ -1245,6 +1252,37 @@ export interface Configuration {
    * Recaptcha config
    */
   recaptcha?: Recaptcha
+
+  /**
+   * CanonicalRightFormTemplates Form Templates IDs associated w/ Canonical Right Codes
+   */
+  canonicalRightFormTemplates?: ExperienceCanonicalRightFormTemplate[]
+
+  /**
+   * CustomRightFormTemplates Form Templates IDs associated w/ Right Codes
+   */
+  customRightFormTemplates?: ExperienceCustomRightFormTemplate[]
+
+  /**
+   * Form Templates to render for the deployed experience
+   */
+  formTemplates?: FormTemplate[]
+}
+
+/**
+ * ExperienceCanonicalRightFormTemplate associations of formTemplateIDs & canonicalRightCode
+ */
+export interface ExperienceCanonicalRightFormTemplate {
+  formTemplateID?: string
+  canonicalRightCode?: string
+}
+
+/**
+ * ExperienceCustomRightFormTemplate associations of formTemplateIDs & rightCode
+ */
+export interface ExperienceCustomRightFormTemplate {
+  formTemplateID?: string
+  rightCode?: string
 }
 
 /**
@@ -2285,4 +2323,24 @@ export interface SubscriptionConfiguration {
 export enum ButtonVariant {
   Outlined = 'outlined',
   Contained = 'contained',
+}
+
+/**
+ * Form Template
+ */
+export interface FormTemplate {
+  id?: string
+  code?: string
+  name?: string
+  title?: string
+  sections?: FormTemplateSection[]
+}
+
+/**
+ * FormTemplateSection
+ */
+export interface FormTemplateSection {
+  title?: string
+  description?: string
+  formFields?: ExperienceFormField[]
 }
