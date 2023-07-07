@@ -1163,8 +1163,8 @@ export interface Configuration {
    */
   recaptcha?: Recaptcha
 
-  canonicalRightForms?: CanonicalRightForm[]
-  customRightForms?: CustomRightForm[]
+  canonicalRightFormTemplates?: CanonicalRightForm[]
+  customRightFormTemplates?: CustomRightForm[]
   formTemplates: FormTemplate[]
 }
 
