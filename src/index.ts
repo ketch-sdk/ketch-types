@@ -538,6 +538,25 @@ export interface Purpose {
 }
 
 /**
+ * PluginPurposeMapping
+ */
+export interface PluginPurposeMapping {
+  pluginPurposeID: string
+  purposes?: string[]
+  canonicalPurposes?: string[]
+}
+
+/**
+ * PluginOptions
+ */
+export interface PluginOptions {
+  regulations?: string[]
+  jurisdictions?: string[]
+  regions?: string[]
+  purposeMappings?: PluginPurposeMapping[]
+}
+
+/*
  * CanonicalPurpose
  */
 export interface CanonicalPurpose {
@@ -1156,7 +1175,7 @@ export interface Configuration {
   /**
    * Plugins configured for the configuration
    */
-  plugins?: { [key: string]: any }
+  plugins?: { [key: string]:  PluginOptions}
 
   /**
    * Recaptcha config
