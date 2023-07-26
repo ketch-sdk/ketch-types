@@ -1175,7 +1175,7 @@ export interface Configuration {
   /**
    * Plugins configured for the configuration
    */
-  plugins?: { [key: string]:  PluginOptions}
+  plugins?: { [key: string]: PluginOptions }
 
   /**
    * Recaptcha config
