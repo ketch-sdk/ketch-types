@@ -941,6 +941,7 @@ export interface Theme {
   bannerButtonColor: string
   bannerSecondaryButtonColor?: string
   bannerPosition?: BannerPosition
+  bannerForceInteraction?: boolean
 
   modalHeaderBackgroundColor: string
   modalHeaderContentColor?: string
