@@ -535,6 +535,11 @@ export interface Purpose {
    * data subject types
    */
   dataSubjectTypeCodes?: string[]
+
+  /**
+   * the canonical purposes (ketch purposes) assigned to this purpose
+   */
+  canonicalPurposeCodes?: string[]
 }
 
 /**
