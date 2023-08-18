@@ -1195,7 +1195,7 @@ export interface Configuration {
   /**
    * Translations static translations
    */
-  translations?: Translations
+  translations: Translations
 }
 
 export interface Translations {
