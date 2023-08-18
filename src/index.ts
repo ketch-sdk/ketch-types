@@ -1392,7 +1392,7 @@ export interface Translations {
   country_saint_vincent_and_the_grenadines: string
   country_samoa: string
   country_san_marino: string
-  country_sao_tome_and_principe?: string
+  country_sao_tome_and_principe: string
   country_saudi_arabia: string
   country_senegal: string
   country_serbia: string
