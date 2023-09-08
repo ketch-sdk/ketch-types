@@ -1465,6 +1465,14 @@ export interface Translations {
   please_select_a_request_type?: string
   greeting?: string
   provenance?: string
+  this_site_is_protected_by?: string
+  and_the?: string
+  apply?: string
+  terms_of_service?: string
+  unfortunately?: string
+  we_are_unable_to_fulfill_your_request?: string
+  at_this_time_due_to_suspected_bot_like_behavior_as_indicated_by_our?: string
+  verification?: string
 }
 
 /**

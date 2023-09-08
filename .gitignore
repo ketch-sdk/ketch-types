@@ -72,3 +72,6 @@ test-reports/
 
 /.vscode
 .DS_Store
+
+# Ignore temp folder in root
+/temp
