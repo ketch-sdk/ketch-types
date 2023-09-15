@@ -737,6 +737,11 @@ export interface RightsTab {
    * Form Fields Config for Custom Rights Form
    */
   formFields?: ExperienceFormField[]
+
+  /**
+   * Recaptcha Enabled
+   */
+  recaptchaEnabled?: boolean
 }
 
 /**
