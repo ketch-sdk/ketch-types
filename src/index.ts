@@ -2521,6 +2521,195 @@ export enum ButtonVariant {
   Contained = 'contained',
 }
 
+/** Experience V2 Types */
+
+export enum BannerContainerLayout {
+  Horizontal,
+  Vertical,
+  Centered,
+}
+
+export enum BannerContainerSize {
+  Standard,
+  Compact
+}
+
+export enum BannerContainerPosition {
+  Bottom,
+  Top,
+  LeftCorner,
+  RightCorner,
+  Middle,
+  Center,
+}
+
+export enum BannerButtonAction {
+  SaveCurrentState,
+  AcceptAll,
+  OpenModal,
+  OpenPreferences,
+  RejectAll,
+}
+
+export enum BannerButtonStyle {
+  Outlined,
+  Filled,
+}
+
+/** Banner Container */
+
+export interface BannerContainerThemeConfig {
+  backdrop: BannerBackdropThemeConfig
+  bgColor: string
+  cornerRadius: number
+  position: BannerContainerPosition
+  layout: BannerContainerLayout
+  size: BannerContainerSize
+  font: string
+}
+
+/** Banner Action Button */
+
+export interface BannerActionButtonThemeConfig {
+  bgColor: string
+  bgOpacity: number
+  textColor: string
+  textOpacity: number
+  cornerRadius: number
+  style: BannerButtonStyle
+}
+
+export interface BannerActionButtonExperienceConfig {
+  visible: boolean
+  text: string
+  action: BannerButtonAction,
+}
+
+/** Banner Close Button */
+
+export interface BannerCloseButtonThemeConfig {
+  bgColor: string
+  bgOpacity: number
+  iconColor: string
+  iconOpacity: number
+  cornerRadius: number
+}
+
+export interface BannerCloseButtonExperienceConfig {
+  visible: boolean,
+}
+
+/** Banner Link */
+
+export interface BannerLinkThemeConfig {
+  textColor: string
+  underline: boolean
+}
+
+/** Banner Description */
+
+export interface BannerDescriptionThemeConfig {
+  link: BannerLinkThemeConfig
+  textColor: string
+  textOpacity: number
+}
+
+export interface BannerDescriptionExperienceConfig {
+  text: string
+}
+
+/** Banner Title */
+
+export interface BannerTitleThemeConfig {
+  textColor: string
+  textOpacity: number
+}
+
+export interface BannerTitleExperienceConfig {
+  text: string
+}
+
+/** Banner Backdrop */
+
+export interface BannerBackdropThemeConfig {
+  visible: boolean
+  bgColor: string
+  bgOpacity: number
+  disableContentInteractions: boolean
+}
+
+/** Banner Header */
+
+export interface BannerHeaderThemeConfig {
+  title: BannerTitleThemeConfig
+  closeButton: BannerCloseButtonThemeConfig
+}
+
+export interface BannerHeaderExperienceConfig {
+  visible: boolean,
+  title: BannerTitleExperienceConfig
+}
+
+/** Banner Footer */
+
+export interface BannerFooterExperienceConfig {
+  ketchBadgeVisible: boolean
+  gpcBadgeVisible: boolean
+}
+
+/** Banner Theme Config */
+
+export interface BannerThemeConfig {
+  container: BannerContainerThemeConfig
+  header: BannerHeaderThemeConfig
+  description: BannerDescriptionThemeConfig
+  primaryButton: BannerActionButtonThemeConfig
+  secondaryButton: BannerActionButtonThemeConfig
+  tertiaryButton: BannerActionButtonThemeConfig
+}
+
+/** Banner Experience Config */
+
+export interface BannerExperienceConfig {
+  header: BannerHeaderExperienceConfig
+  description: BannerDescriptionExperienceConfig
+  primaryButton: BannerActionButtonExperienceConfig
+  secondaryButton: BannerActionButtonExperienceConfig
+  tertiaryButton: BannerActionButtonExperienceConfig
+  closeButton: BannerCloseButtonExperienceConfig
+  footer: BannerFooterExperienceConfig
+}
+
+export interface ModalThemeConfig {
+  // TODO:JB
+}
+
+export interface PreferenceThemeConfig {
+  // TODO:JB
+}
+
+export interface ModalExperienceConfig {
+  // TODO:JB
+}
+
+export interface PreferenceExperienceConfig {
+  // TODO:JB
+}
+
+/** Top level config objects, one per locale */
+
+export interface ThemeConfigObject {
+  banner: BannerThemeConfig
+  modal: ModalThemeConfig
+  preference: PreferenceThemeConfig
+}
+
+export interface ExperienceConfigObject {
+  banner: BannerExperienceConfig
+  modal: ModalExperienceConfig
+  preference: PreferenceExperienceConfig
+}
+
 export {
   ExperienceFormField,
   FormFieldDropdownOption,
