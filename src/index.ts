@@ -2676,7 +2676,7 @@ export interface FooterExperienceConfig {
 
 export enum SwitchButtonDisplay {
   Always = 'always',
-  WhenLegalBasisDiffers = 'when-legal-basis-differs'
+  WhenLegalBasisDiffers = 'whenLegalBasisDiffers'
 }
 
 export interface SwitchButtonsExperienceConfig {
@@ -2715,8 +2715,8 @@ export enum BannerContainerSize {
 export enum BannerContainerPosition {
   Bottom = 'bottom',
   Top = 'top',
-  LeftCorner = 'left-corner',
-  RightCorner = 'right-corner',
+  LeftCorner = 'leftCorner',
+  RightCorner = 'rightCorner',
   Middle = 'middle',
   Center = 'center',
 }
@@ -2771,11 +2771,11 @@ export interface BannerThemeConfig {
 /** Banner Experience Config */
 
 export enum BannerButtonAction {
-  SaveCurrentState = 'save-current-state',
-  AcceptAll = 'accept-all',
-  OpenModal = 'open-modal',
-  OpenPreferences = 'open-preferences',
-  RejectAll = 'reject-all',
+  SaveCurrentState = 'saveCurrentState',
+  AcceptAll = 'acceptAll',
+  OpenModal = 'openModal',
+  OpenPreferences = 'openPreferences',
+  RejectAll = 'rejectAll',
 }
 
 /** Banner Action Button */
@@ -2854,8 +2854,8 @@ export interface ModalExperienceConfig {
 /** Preferences - Welcome Theme Config */
 
 export enum ExitButtonPosition {
-  topRight = 'top-right',
-  bottomLeft = 'bottom-left',
+  topRight = 'topRight',
+  bottomLeft = 'bottomLeft',
 }
 
 export interface WelcomeTabContainerThemeConfig {
@@ -3094,17 +3094,17 @@ export interface PreferenceThemeConfig {
 /** Preferences - Welcome Experience Config */
 
 export enum QuickLinkAction {
-  OpenUrl = 'open-url',
-  OpenPage = 'open-page',
+  OpenUrl = 'openUrl',
+  OpenPage = 'openPage',
 }
 
 export enum PreferenceCenterPage {
   Welcome= 'welcome',
-  PrivacyPolicy = 'privacy-policy',
+  PrivacyPolicy = 'privacyPolicy',
   Purpose = 'purpose',
   Subscriptions = 'subscriptions',
   Requests = 'requests',
-  RequestForm = 'request-form',
+  RequestForm = 'requestForm',
   Summary = 'summary',
 }
 
@@ -3197,10 +3197,10 @@ export enum RightsFormMode {
 }
 
 export enum RequestType {
-  ProvideData = 'provide-data',
-  DeleteData = 'delete-data',
-  RestrictProcessing = 'restrict-processing',
-  UpdateData = 'update-data',
+  ProvideData = 'provideData',
+  DeleteData = 'deleteData',
+  RestrictProcessing = 'restrictProcessing',
+  UpdateData = 'updateData',
 }
 
 export interface RequestsTabDsrLinkExperienceConfig {
@@ -3269,15 +3269,15 @@ export interface PreferenceExperienceConfig {
 /** Top level config objects, one per locale */
 
 export interface ThemeConfigObject {
-  banner: BannerThemeConfig
-  modal: ModalThemeConfig
-  preference: PreferenceThemeConfig
+  banner?: BannerThemeConfig
+  modal?: ModalThemeConfig
+  preference?: PreferenceThemeConfig
 }
 
 export interface ExperienceConfigObject {
-  banner: BannerExperienceConfig
-  modal: ModalExperienceConfig
-  preference: PreferenceExperienceConfig
+  banner?: BannerExperienceConfig
+  modal?: ModalExperienceConfig
+  preference?: PreferenceExperienceConfig
 }
 
 export {

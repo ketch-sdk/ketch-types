@@ -354,13 +354,13 @@ const defaultModalExperienceConfig: ModalExperienceConfig = {
 export const DefaultLanyardThemeConfig: ThemeConfigObject = {
   banner: defaultBannerThemeConfig,
   modal: defaultModalThemeConfig,
-  preference: {}, // TODO: Preference default theme
+  // preference: {}, // TODO: Preference default theme
 }
 
 export const DefaultLanyardExperienceConfig: {[locale: string]: ExperienceConfigObject} = {
   en: {
     banner: defaultBannerExperienceConfig,
     modal: defaultModalExperienceConfig,
-    preference: {} // TODO: Preference default experience
+    // preference: {} // TODO: Preference default experience
   }
 }
