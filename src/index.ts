@@ -1154,6 +1154,16 @@ export interface Configuration {
   experiences?: Experience
 
   /**
+   * Theme
+   */
+  themeV2?: Theme // TODO new theme
+
+  /**
+   * Experience definitions
+   */
+  experiencesV2?: Experience // TODO new experience
+
+  /**
    * Vendors (TCF)
    */
   vendors?: Vendor[]
