@@ -3197,7 +3197,7 @@ export enum RightsFormMode {
 }
 
 export enum RequestType {
-  ProvideData = 'provideData',
+  AccessData = 'accessData',
   DeleteData = 'deleteData',
   RestrictProcessing = 'restrictProcessing',
   UpdateData = 'updateData',
