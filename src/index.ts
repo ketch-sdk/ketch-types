@@ -2717,7 +2717,7 @@ export enum BannerContainerPosition {
   Top = 'top',
   LeftCorner = 'leftCorner',
   RightCorner = 'rightCorner',
-  Middle = 'middle',
+  BottomMiddle = 'bottomMiddle',
   Center = 'center',
 }
 
