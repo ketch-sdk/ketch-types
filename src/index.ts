@@ -3218,25 +3218,20 @@ export interface RightsTitleExperienceConfig {
 
 export interface RightFormMapping {
   right: string
-  form: string
+  form: string  // Form ID
 }
 
 export interface CustomRequestMapping {
-  defaultForm: string
+  requestType: RequestType
+  defaultForm: string  // Form ID
   rightMappings: RightFormMapping[]
-}
-
-export interface RightsFormCustomMappingExperienceConfig {
-  [RequestType.ProvideData]: CustomRequestMapping
-  [RequestType.DeleteData]: CustomRequestMapping
-  [RequestType.RestrictProcessing]: CustomRequestMapping
-  [RequestType.UpdateData]: CustomRequestMapping
 }
 
 export interface RightsFormsExperienceConfig {
   mode: RightsFormMode
+  singleForm: string  // Form ID
   order: RequestType[]
-  customFormMappings: RightsFormCustomMappingExperienceConfig
+  customFormMappings: CustomRequestMapping[]
 }
 
 export interface RequestsTabRightsExperienceConfig {
