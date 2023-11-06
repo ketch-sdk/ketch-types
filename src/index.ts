@@ -3247,6 +3247,7 @@ export interface RequestsTabRightsExperienceConfig {
 export interface RequestsTabHomeExperienceConfig {
   header: TextBlockExperienceConfig
   dsrPortalLink: RequestsTabDsrLinkExperienceConfig
+  rights: RequestsTabRightsExperienceConfig
 }
 
 export interface RequestsTabAccessDataExperienceConfig {
