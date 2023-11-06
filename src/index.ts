@@ -3015,7 +3015,7 @@ export interface RequestsTabDsrLinkThemeConfig {
 export interface RightsListItemThemeConfig {
   title: TextThemeConfig
   subtitle: TextThemeConfig
-  arrow: ColorThemeConfig
+  arrowIcon: ColorThemeConfig
   background: ColorThemeConfig
   cornerRadius: number
 }
@@ -3029,11 +3029,6 @@ export interface RequestsTabHomeThemeConfig {
   header: PageTextThemeConfig
   dsrPortalLink: RequestsTabDsrLinkThemeConfig
   rightsList: RequestsTabRightsListThemeConfig
-}
-
-export interface AccessDataHeaderThemeConfig {
-  title: TextThemeConfig
-  backButton: ActionButtonThemeConfig
 }
 
 export interface FormDividersThemeConfig {
@@ -3051,21 +3046,21 @@ export interface FormFieldsThemeConfig {
   active: FieldThemeConfig
   inactive: FieldThemeConfig
   cornerRadius: number
-  fieldLabel: ColorThemeConfig
-  hintText: ColorThemeConfig
-  inputText: ColorThemeConfig
+  fieldLabel: TextThemeConfig
+  hintText: TextThemeConfig
+  inputText: TextThemeConfig
 }
 
-export interface AccessDataFormThemeConfig {
+export interface RequestFormFormThemeConfig {
   dividers: FormDividersThemeConfig
   fields: FormFieldsThemeConfig
   checkboxes: CheckboxesThemeConfig
   actionButton: ActionButtonThemeConfig
 }
 
-export interface RequestsTabAccessDataThemeConfig {
-  header: AccessDataHeaderThemeConfig
-  form: AccessDataFormThemeConfig
+export interface RequestsTabRequestFormThemeConfig {
+  header: HeaderThemeConfig
+  form: RequestFormFormThemeConfig
 }
 
 export interface SubmittedRequestThemeConfig {
@@ -3082,7 +3077,7 @@ export interface RequestsTabSubmittedThemeConfig {
 
 export interface PreferenceRequestsTabThemeConfig {
   home: RequestsTabHomeThemeConfig
-  accessData: RequestsTabAccessDataThemeConfig
+  requestForm: RequestsTabRequestFormThemeConfig
   submitted: RequestsTabSubmittedThemeConfig
 }
 
@@ -3247,7 +3242,7 @@ export interface RequestsTabHomeExperienceConfig {
   rights: RequestsTabRightsExperienceConfig
 }
 
-export interface RequestsTabAccessDataExperienceConfig {
+export interface RequestsTabRequestFormExperienceConfig {
   enableRecaptcha: boolean
 }
 
@@ -3259,7 +3254,7 @@ export interface RequestsTabSubmittedExperienceConfig {
 
 export interface PreferenceRequestsTabExperienceConfig {
   home: RequestsTabHomeExperienceConfig
-  accessData: RequestsTabAccessDataExperienceConfig
+  requestForm: RequestsTabRequestFormExperienceConfig
   submitted: RequestsTabSubmittedExperienceConfig
 }
 
