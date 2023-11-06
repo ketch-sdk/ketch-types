@@ -2687,6 +2687,8 @@ export interface SwitchButtonsExperienceConfig {
   offText: string
 }
 
+/** Text Block - A block of text with optional title */
+
 export interface TextBlockTitleExperienceConfig {
   visible: boolean
   text: string
@@ -3217,19 +3219,19 @@ export interface RightsTitleExperienceConfig {
 }
 
 export interface RightFormMapping {
-  right: string
-  form: string  // Form ID
+  rightId: string
+  formId: string
 }
 
 export interface CustomRequestMapping {
   requestType: RequestType
-  defaultForm: string  // Form ID
+  defaultFormId: string
   rightMappings: RightFormMapping[]
 }
 
 export interface RightsFormsExperienceConfig {
   mode: RightsFormMode
-  singleForm: string  // Form ID
+  singleFormId: string
   order: RequestType[]
   customFormMappings: CustomRequestMapping[]
 }
