@@ -1154,6 +1154,16 @@ export interface Configuration {
   experiences?: Experience
 
   /**
+   * Theme V2 definition
+   */
+  themeV2?: ThemeConfigObject
+
+  /**
+   * Experience V2 definitions
+   */
+  experiencesV2?: ExperienceConfigObject
+
+  /**
    * Vendors (TCF)
    */
   vendors?: Vendor[]
@@ -2519,6 +2529,758 @@ export interface SubscriptionConfiguration {
 export enum ButtonVariant {
   Outlined = 'outlined',
   Contained = 'contained',
+}
+
+/** Experience V2 Types */
+
+/** Shared Theme Config Entities */
+
+/** Banner/Modal Text */
+
+export interface TextThemeConfig {
+  color?: string
+  opacity?: number
+  underline?: boolean
+}
+
+/** Banner/Modal Color */
+
+export interface ColorThemeConfig {
+  color?: string
+  opacity?: number
+}
+
+/** Banner/Modal Backdrop */
+
+export interface BackdropThemeConfig {
+  visible?: boolean
+  background?: ColorThemeConfig
+  disableContentInteractions?: boolean
+}
+
+/** Banner/Modal Close Button */
+export interface ReturnButtonThemeConfig {
+  background?: ColorThemeConfig
+  icon?: ColorThemeConfig
+  cornerRadius?: number
+}
+
+/** Banner/Modal Header */
+
+export interface HeaderThemeConfig {
+  background?: ColorThemeConfig
+  title?: TextThemeConfig
+  returnButton?: ReturnButtonThemeConfig // This is either a close or back button
+}
+
+/** Action Button */
+
+export enum ItemStyle {
+  Filled = 'filled',
+  Outlined = 'outlined',
+}
+
+export interface ActionButtonThemeConfig {
+  style?: ItemStyle
+  background?: ColorThemeConfig
+  text?: TextThemeConfig
+  icon?: ColorThemeConfig
+  cornerRadius?: number
+}
+
+/** Footer */
+
+export interface FooterThemeConfig {
+  background?: ColorThemeConfig
+  actionButton?: ActionButtonThemeConfig
+}
+
+/** Purpose List Header */
+
+export interface PurposeListHeaderThemeConfig {
+  title?: TextThemeConfig
+  acceptAllButton?: ActionButtonThemeConfig
+  rejectAllButton?: ActionButtonThemeConfig
+}
+
+/** Purpose List */
+
+export enum ListLayout {
+  Expandable = 'expandable',
+  Cards = 'cards',
+}
+
+export interface ListItemsThemeConfig {
+  layout?: ListLayout
+  style?: ItemStyle
+  purposeFill?: ColorThemeConfig
+  purposeContent?: ColorThemeConfig
+  purposeLinks?: ColorThemeConfig
+  arrowIcon?: ColorThemeConfig
+  purposeCornerRadius?: number
+}
+
+export interface SwitchButtonThemeConfig {
+  background?: ColorThemeConfig
+  text?: TextThemeConfig
+}
+
+export interface SwitchButtonsThemeConfig {
+  on?: SwitchButtonThemeConfig
+  off?: SwitchButtonThemeConfig
+}
+
+export interface PurposeListThemeConfig {
+  listItems?: ListItemsThemeConfig
+  switchButtons?: SwitchButtonsThemeConfig
+}
+
+/** Page Text Theme */
+export interface PageTextThemeConfig {
+  title?: TextThemeConfig
+  description?: TextThemeConfig
+  link?: TextThemeConfig
+}
+
+/** Checkboxes Theme */
+
+export interface CheckboxThemeConfig {
+  background?: ColorThemeConfig
+  label?: ColorThemeConfig
+}
+
+export interface CheckboxesThemeConfig {
+  selected?: CheckboxThemeConfig
+  unselected?: CheckboxThemeConfig
+}
+
+export interface ImageThemeConfig {
+  name?: string
+  url?: string
+}
+
+/** Shared Experience Config Entities */
+
+/** Banner/Modal Header */
+
+export interface HeaderExperienceConfig {
+  visible?: boolean
+  closeButtonVisible?: boolean
+  title?: string
+}
+
+/** Banner/Modal Footer */
+
+export interface FooterExperienceConfig {
+  ketchBadgeVisible?: boolean
+  gpcBadgeVisible?: boolean
+  actionButtonText?: string
+}
+
+/** Switch Buttons */
+
+export enum SwitchButtonDisplay {
+  Always = 'always',
+  WhenLegalBasisDiffers = 'whenLegalBasisDiffers',
+}
+
+export interface SwitchButtonsExperienceConfig {
+  visible?: boolean
+  display?: SwitchButtonDisplay
+  useDefaultText?: boolean
+  onText?: string
+  offText?: string
+}
+
+/** Text Block - A block of text with optional title */
+
+export interface TextBlockTitleExperienceConfig {
+  visible?: boolean
+  text?: string
+}
+
+export interface TextBlockExperienceConfig {
+  title?: TextBlockTitleExperienceConfig
+  text?: string
+}
+
+export interface PreferenceTabHeaderExperienceConfig {
+  description?: string
+  title?: TextBlockTitleExperienceConfig
+}
+
+/** Banner Config */
+
+export enum BannerContainerLayout {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
+  Centered = 'centered',
+}
+
+export enum BannerContainerSize {
+  Standard = 'standard',
+  Compact = 'compact',
+}
+
+export enum BannerContainerPosition {
+  Bottom = 'bottom',
+  Top = 'top',
+  LeftCorner = 'leftCorner',
+  RightCorner = 'rightCorner',
+  BottomMiddle = 'bottomMiddle',
+  Center = 'center',
+}
+
+export enum BannerButtonStyle {
+  Outlined = 'outlined',
+  Filled = 'filled',
+}
+
+/** Banner Container */
+
+export interface BannerContainerThemeConfig {
+  backdrop?: BackdropThemeConfig
+  background?: ColorThemeConfig
+  cornerRadius?: number
+  position?: BannerContainerPosition
+  layout?: BannerContainerLayout
+  size?: BannerContainerSize
+  font?: string
+}
+
+/** Banner Action Button */
+
+/** Banner Description */
+export interface BannerDescriptionThemeConfig {
+  link?: TextThemeConfig
+  text?: TextThemeConfig
+}
+
+/** Banner Buttons Theme Config - Rightmost === primary */
+export interface BannerButtonsThemeConfig {
+  primary?: ActionButtonThemeConfig
+  secondary?: ActionButtonThemeConfig
+  tertiary?: ActionButtonThemeConfig
+}
+
+/** Banner Theme Config */
+
+export interface BannerThemeConfig {
+  container?: BannerContainerThemeConfig
+  header?: HeaderThemeConfig
+  description?: BannerDescriptionThemeConfig
+  buttons?: BannerButtonsThemeConfig
+}
+
+/** Banner Experience Config */
+
+export enum BannerButtonAction {
+  SaveCurrentState = 'saveCurrentState',
+  AcceptAll = 'acceptAll',
+  OpenModal = 'openModal',
+  OpenPreferences = 'openPreferences',
+  RejectAll = 'rejectAll',
+}
+
+/** Banner Action Button */
+export interface BannerActionButtonExperienceConfig {
+  visible?: boolean
+  text?: string
+  action?: BannerButtonAction
+}
+
+/** Banner Buttons Experience Config - Rightmost === primary */
+export interface BannerButtonsExperienceConfig {
+  primary?: BannerActionButtonExperienceConfig
+  secondary?: BannerActionButtonExperienceConfig
+  tertiary?: BannerActionButtonExperienceConfig
+  close?: boolean
+}
+
+export interface BannerExperienceConfig {
+  header?: HeaderExperienceConfig
+  description?: string
+  buttons?: BannerButtonsExperienceConfig
+  footer?: FooterExperienceConfig
+}
+
+/** Modal Theme Config */
+
+export enum ModalContainerPosition {
+  Center = 'center',
+  Left = 'left',
+  Right = 'right',
+}
+
+export interface ModalContainerThemeConfig {
+  position?: ModalContainerPosition
+  font?: string
+  background?: ColorThemeConfig
+  cornerRadius?: number
+  backdrop?: BackdropThemeConfig
+}
+
+export interface ModalDescriptionThemeConfig {
+  title?: TextThemeConfig
+  text?: TextThemeConfig
+  link?: TextThemeConfig
+}
+
+export interface ModalThemeConfig {
+  container?: ModalContainerThemeConfig
+  header?: HeaderThemeConfig
+  description?: ModalDescriptionThemeConfig
+  listHeader?: PurposeListHeaderThemeConfig
+  purposeList?: PurposeListThemeConfig
+  footer?: FooterThemeConfig
+}
+
+/** Modal Experience Config */
+
+export interface ModalListHeaderExperienceConfig {
+  visible?: boolean
+  useDefault?: boolean
+  text?: string
+}
+
+export interface ModalPurposeListExperienceConfig {
+  legalBasisVisible?: boolean
+  switchButtonLabels?: SwitchButtonsExperienceConfig
+}
+
+export interface ModalExperienceConfig {
+  header?: HeaderExperienceConfig
+  description?: TextBlockExperienceConfig
+  listHeader?: ModalListHeaderExperienceConfig
+  purposeList?: ModalPurposeListExperienceConfig
+  footer?: FooterExperienceConfig
+}
+
+/** Preferences - Welcome Theme Config */
+
+export enum ExitButtonPosition {
+  topRight = 'topRight',
+  bottomLeft = 'bottomLeft',
+}
+
+export interface WelcomeTabContainerThemeConfig {
+  exitPosition?: ExitButtonPosition
+  font?: string
+  background?: ColorThemeConfig
+}
+
+export interface WelcomeTabHeaderThemeConfig {
+  background?: ColorThemeConfig
+  title?: TextThemeConfig
+  logo?: ImageThemeConfig
+}
+
+export interface NavigationLayoutItemThemeConfig {
+  unselectedBackground?: ColorThemeConfig
+  unselectedText?: TextThemeConfig
+  selectedBackground?: ColorThemeConfig
+  selectedText?: TextThemeConfig
+  cornerRadius?: number
+}
+
+export interface NavigationLayoutThemeConfig {
+  background?: ColorThemeConfig
+  cornerRadius?: number
+  item?: NavigationLayoutItemThemeConfig
+}
+
+export interface NavigationIconsThemeConfig {
+  welcome?: ImageThemeConfig
+  privacyPolicy?: ImageThemeConfig
+  purposes?: ImageThemeConfig
+  subscriptions?: ImageThemeConfig
+  requests?: ImageThemeConfig
+}
+
+export interface WelcomeTabNavigationThemeConfig {
+  layout?: NavigationLayoutThemeConfig
+  iconsVisible?: boolean
+  icons?: NavigationIconsThemeConfig
+}
+
+export interface WelcomeTabExitButtonThemeConfig {
+  background?: ColorThemeConfig
+  text?: TextThemeConfig
+  iconVisible?: boolean
+  useDefaultIcon?: boolean
+  iconColor?: ColorThemeConfig
+  icon?: ImageThemeConfig
+}
+
+export interface WelcomeTabHeroBannerThemeConfig {
+  visible?: boolean
+  image?: ImageThemeConfig
+}
+
+export interface WelcomeTabWelcomeMsgThemeConfig {
+  title?: TextThemeConfig
+  subtitle?: TextThemeConfig
+  link?: TextThemeConfig
+}
+
+export interface WelcomeTabQuickLinksThemeConfig {
+  title?: TextThemeConfig
+  link?: TextThemeConfig
+  showArrows?: boolean
+}
+
+export interface WelcomeTabAboutThemeConfig {
+  title?: TextThemeConfig
+  text?: TextThemeConfig
+  link?: TextThemeConfig
+}
+
+export interface PreferenceWelcomeTabThemeConfig {
+  container?: WelcomeTabContainerThemeConfig
+  header?: WelcomeTabHeaderThemeConfig
+  navigation?: WelcomeTabNavigationThemeConfig
+  exitButton?: WelcomeTabExitButtonThemeConfig
+  heroBanner?: WelcomeTabHeroBannerThemeConfig
+  welcomeMsg?: WelcomeTabWelcomeMsgThemeConfig
+  quickLinks?: WelcomeTabQuickLinksThemeConfig
+  about?: WelcomeTabAboutThemeConfig
+}
+
+/** Preferences - Privacy Policy Theme Config */
+export interface PreferencePrivacyPolicyTabThemeConfig {
+  text?: TextThemeConfig
+  link?: TextThemeConfig
+}
+
+/** Preferences - Purposes Theme Config */
+
+export interface PurposesTabHeaderThemeConfig {
+  title?: TextThemeConfig
+  description?: TextThemeConfig
+  link?: TextThemeConfig
+}
+
+export interface PreferencePurposesTabThemeConfig {
+  header?: PageTextThemeConfig
+  listHeader?: PurposeListHeaderThemeConfig
+  list?: PurposeListThemeConfig
+  footer?: FooterThemeConfig
+}
+
+/** Preferences - Subscriptions Theme Config */
+
+export enum SubscriptionListStyle {
+  Filled = 'filled',
+  Underlined = 'underlined',
+}
+
+export interface SubscriptionsTabGlobalControlThemeConfig {
+  background?: ColorThemeConfig
+  text?: ColorThemeConfig
+  cornerRadius?: number
+  switchButton?: SwitchButtonsThemeConfig
+}
+
+export interface LayoutThemeConfig {
+  style?: SubscriptionListStyle
+  background?: ColorThemeConfig
+  text?: TextThemeConfig
+  link?: TextThemeConfig
+  cornerRadius?: number
+}
+
+export interface SubscriptionsTabListThemeConfig {
+  layout?: LayoutThemeConfig
+  switchButton?: SwitchButtonsThemeConfig
+  checkbox?: CheckboxesThemeConfig
+}
+
+export interface PreferenceSubscriptionsTabThemeConfig {
+  header?: PageTextThemeConfig
+  globalControl?: SubscriptionsTabGlobalControlThemeConfig
+  list?: SubscriptionsTabListThemeConfig
+  footer?: FooterThemeConfig
+}
+
+/** Preferences - Requests Theme Config */
+
+export enum FormFieldStyle {
+  Box = 'box',
+  Underline = 'underline',
+}
+
+export interface RequestsTabDsrLinkThemeConfig {
+  title?: TextThemeConfig
+  description?: TextThemeConfig
+  arrowIcon?: ColorThemeConfig
+  background?: ColorThemeConfig
+  cornerRadius?: number
+}
+
+export interface RightsListItemThemeConfig {
+  title?: TextThemeConfig
+  subtitle?: TextThemeConfig
+  arrowIcon?: ColorThemeConfig
+  background?: ColorThemeConfig
+  cornerRadius?: number
+}
+
+export interface RequestsTabRightsListThemeConfig {
+  title?: TextThemeConfig
+  item?: RightsListItemThemeConfig
+}
+
+export interface RequestsTabHomeThemeConfig {
+  header?: PageTextThemeConfig
+  dsrPortalLink?: RequestsTabDsrLinkThemeConfig
+  rightsList?: RequestsTabRightsListThemeConfig
+}
+
+export interface FormDividersThemeConfig {
+  title?: TextThemeConfig
+  subtitle?: TextThemeConfig
+}
+
+export interface FieldThemeConfig {
+  background?: ColorThemeConfig
+  outline?: ColorThemeConfig
+}
+
+export interface FormFieldsThemeConfig {
+  style?: FormFieldStyle
+  active?: FieldThemeConfig
+  inactive?: FieldThemeConfig
+  cornerRadius?: number
+  fieldLabel?: TextThemeConfig
+  hintText?: TextThemeConfig
+  inputText?: TextThemeConfig
+}
+
+export interface RightFormThemeConfig {
+  dividers?: FormDividersThemeConfig
+  fields?: FormFieldsThemeConfig
+  checkboxes?: CheckboxesThemeConfig
+  actionButton?: ActionButtonThemeConfig
+}
+
+export interface RequestsTabRightFormThemeConfig {
+  header?: HeaderThemeConfig
+  form?: RightFormThemeConfig
+}
+
+export interface SubmittedRequestThemeConfig {
+  bannerVisible?: boolean
+  bannerImage?: ImageThemeConfig
+  title?: TextThemeConfig
+  description?: TextThemeConfig
+}
+
+export interface RequestsTabSubmittedThemeConfig {
+  header?: HeaderThemeConfig
+  summary?: SubmittedRequestThemeConfig
+}
+
+export interface PreferenceRequestsTabThemeConfig {
+  home?: RequestsTabHomeThemeConfig
+  rightForm?: RequestsTabRightFormThemeConfig
+  submitted?: RequestsTabSubmittedThemeConfig
+}
+
+/** Preferences Theme Config */
+
+export interface PreferenceThemeConfig {
+  welcome?: PreferenceWelcomeTabThemeConfig
+  privacyPolicy?: PreferencePrivacyPolicyTabThemeConfig
+  purposes?: PreferencePurposesTabThemeConfig
+  subscriptions?: PreferenceSubscriptionsTabThemeConfig
+  requests?: PreferenceRequestsTabThemeConfig
+}
+
+/** Preferences - Welcome Experience Config */
+
+export enum QuickLinkAction {
+  OpenUrl = 'openUrl',
+  OpenPage = 'openPage',
+}
+
+export enum PreferenceCenterPage {
+  Welcome = 'welcome',
+  PrivacyPolicy = 'privacyPolicy',
+  Purpose = 'purpose',
+  Subscriptions = 'subscriptions',
+  Requests = 'requests',
+  RightForm = 'rightForm',
+  Summary = 'summary',
+}
+
+export interface WelcomeTabHeaderExperienceConfig {
+  title?: string
+}
+
+export interface WelcomeTabNavigationExperienceConfig {
+  welcomeTitle?: string
+  privacyPolicyTitle?: string
+  purposesTitle?: string
+  subscriptionsTitle?: string
+  requestsTitle?: string
+}
+
+export interface WelcomeTabWelcomeMsgExperienceConfig {
+  visible?: boolean
+  title?: string
+  subtitle?: string
+}
+
+export interface QuickLinkExperienceConfig {
+  action?: QuickLinkAction
+  url?: string
+  page?: PreferenceCenterPage
+  text?: string
+}
+
+export interface WelcomeTabQuickLinksExperienceConfig {
+  visible?: boolean
+  links?: QuickLinkExperienceConfig[]
+}
+
+export interface WelcomeTabAboutExperienceConfig {
+  visible?: boolean
+  title?: string
+  description?: string
+}
+
+export interface PreferenceWelcomeTabExperienceConfig {
+  header?: WelcomeTabHeaderExperienceConfig
+  navigation?: WelcomeTabNavigationExperienceConfig
+  footer?: FooterExperienceConfig
+  welcomeMsg?: WelcomeTabWelcomeMsgExperienceConfig
+  quickLinks?: WelcomeTabQuickLinksExperienceConfig
+  about?: WelcomeTabAboutExperienceConfig
+}
+
+/** Preferences - Privacy Policy Experience Config */
+export interface PreferencePrivacyPolicyTabExperienceConfig {
+  visible?: boolean
+  policyDocumentId?: string
+}
+
+/** Preferences - Purposes Experience Config */
+
+export interface PurposesTabListHeaderExperienceConfig {
+  titleVisible?: boolean
+  useDefaultTitle?: string
+  title?: string
+}
+
+export interface PurposesTabListExperienceConfig {
+  legalBasisVisible?: boolean
+  switchButtonLabels?: SwitchButtonsExperienceConfig
+}
+
+export interface PreferencePurposesTabExperienceConfig {
+  header?: PreferenceTabHeaderExperienceConfig
+  listHeader?: PurposesTabListHeaderExperienceConfig
+  list?: PurposesTabListExperienceConfig
+  actionButtonText?: string
+}
+
+/** Preferences - Subscriptions Experience Config */
+export interface PreferenceSubscriptionsTabExperienceConfig {
+  header?: PreferenceTabHeaderExperienceConfig
+  globalControlSwitchLabel?: SwitchButtonsExperienceConfig
+  listSwitchLabels?: SwitchButtonsExperienceConfig
+  actionButtonText?: string
+}
+
+/** Preferences - Requests Experience Config */
+
+export enum RightsFormMode {
+  Single = 'single',
+  Custom = 'custom',
+}
+
+export enum RequestType {
+  AccessData = 'accessData',
+  DeleteData = 'deleteData',
+  RestrictProcessing = 'restrictProcessing',
+  UpdateData = 'updateData',
+}
+
+export interface RequestsTabDsrLinkExperienceConfig {
+  title?: string
+  subtitle?: string
+}
+
+export interface RightsTitleExperienceConfig {
+  useDefault?: boolean
+  title?: string
+}
+
+export interface RightFormMapping {
+  rightCode?: string
+  formId?: string
+}
+
+export interface CustomRequestMapping {
+  requestType?: RequestType
+  defaultFormId?: string
+  rightMappings?: RightFormMapping[]
+}
+
+export interface RightsFormsExperienceConfig {
+  mode?: RightsFormMode
+  singleFormId?: string
+  order?: RequestType[]
+  customFormMappings?: CustomRequestMapping[]
+}
+
+export interface RequestsTabRightsExperienceConfig {
+  title?: RightsTitleExperienceConfig
+  forms?: RightsFormsExperienceConfig
+}
+
+export interface RequestsTabHomeExperienceConfig {
+  header?: PreferenceTabHeaderExperienceConfig
+  dsrPortalLink?: RequestsTabDsrLinkExperienceConfig
+  rights?: RequestsTabRightsExperienceConfig
+}
+
+export interface RequestsTabRightFormExperienceConfig {
+  enableRecaptcha?: boolean
+}
+
+export interface RequestsTabSubmittedExperienceConfig {
+  title?: string
+  subtitle?: string
+  description?: string
+}
+
+export interface PreferenceRequestsTabExperienceConfig {
+  home?: RequestsTabHomeExperienceConfig
+  rightForm?: RequestsTabRightFormExperienceConfig
+  submitted?: RequestsTabSubmittedExperienceConfig
+}
+
+export interface PreferenceExperienceConfig {
+  welcome?: PreferenceWelcomeTabExperienceConfig
+  privacyPolicy?: PreferencePrivacyPolicyTabExperienceConfig
+  purposes?: PreferencePurposesTabExperienceConfig
+  subscriptions?: PreferenceSubscriptionsTabExperienceConfig
+  requests?: PreferenceRequestsTabExperienceConfig
+}
+
+/** Top level config objects, one per locale */
+
+export interface ThemeConfigObject {
+  banner?: BannerThemeConfig
+  modal?: ModalThemeConfig
+  preference?: PreferenceThemeConfig
+}
+
+export interface ExperienceConfigObject {
+  banner?: BannerExperienceConfig
+  modal?: ModalExperienceConfig
+  preference?: PreferenceExperienceConfig
 }
 
 export {
