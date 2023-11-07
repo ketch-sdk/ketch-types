@@ -3285,5 +3285,3 @@ export {
   FormSection,
   FormTemplate,
 } from './forms'
-
-export { defaultThemeConfig, defaultExperienceConfig } from './defaults'
