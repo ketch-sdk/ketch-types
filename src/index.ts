@@ -2523,10 +2523,6 @@ export enum ButtonVariant {
 
 /** Experience V2 Types */
 
-// TODO:Remove notes below
-// - Maybe all obj.text props should be renamed to obj.body, to not clash with the name TextThemeConfig
-// - Should font be moved into TextThemeConfig ?
-
 /** Shared Theme Config Entities */
 
 /** Banner/Modal Text */
@@ -2649,7 +2645,6 @@ export interface CheckboxesThemeConfig {
 }
 
 export interface ImageThemeConfig {
-  // TODO?:JB - Image handling
   name?: string
   url?: string
 }
@@ -2903,13 +2898,13 @@ export interface WelcomeTabExitButtonThemeConfig {
   text?: TextThemeConfig
   iconVisible?: boolean
   useDefaultIcon?: boolean
-  iconColor?: ColorThemeConfig // TODO?:JB - Talk with Misha about what this color means
+  iconColor?: ColorThemeConfig
   icon?: ImageThemeConfig
 }
 
 export interface WelcomeTabHeroBannerThemeConfig {
   visible?: boolean
-  image?: ImageThemeConfig // TODO?:JB - Talk with Misha about screen size considerations
+  image?: ImageThemeConfig
 }
 
 export interface WelcomeTabWelcomeMsgThemeConfig {

@@ -39,7 +39,7 @@ const defaultBannerThemeConfig: BannerThemeConfig = {
     position: BannerContainerPosition.Bottom,
     layout: BannerContainerLayout.Horizontal,
     size: BannerContainerSize.Standard,
-    font: '', // TODO:JB - Font handling + default
+    font: '',
   },
   header: {
     title: {
@@ -115,7 +115,6 @@ const defaultBannerExperienceConfig: BannerExperienceConfig = {
     closeButtonVisible: true,
     title: 'This website processes personal data',
   },
-  // TODO:JB - Rich text here
   description:
     'We and our partners are using technologies like Cookies or Targeting and process personal data like IP-address' +
     ' or browser information in order to personalize the advertisement that you see. You can read our Privacy Policy.',
@@ -755,5 +754,4 @@ export const defaultExperienceConfig: { [locale: string]: ExperienceConfigObject
     modal: defaultModalExperienceConfig,
     preference: defaultPreferenceExperienceConfig,
   },
-  // TODO:JB - Other locales here
 }
