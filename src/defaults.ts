@@ -24,106 +24,85 @@ import {
 const defaultBannerThemeConfig: BannerThemeConfig = {
   container: {
     backdrop: {
-      visible: false,
+      visible: true,
       background: {
-        color: '',
-        opacity: 0,
+        color: '#000000',
+        opacity: 1,
       },
-      disableContentInteractions: false,
+      disableContentInteractions: true,
     },
     background: {
-      color: '',
-      opacity: 0,
+      color: '#000000',
+      opacity: 1,
     },
     cornerRadius: 0,
     position: BannerContainerPosition.Bottom,
     layout: BannerContainerLayout.Horizontal,
     size: BannerContainerSize.Standard,
-    font: '',
+    font: '', // TODO:JB - Font handling + default
   },
   header: {
-    background: {
-      color: '',
-      opacity: 0,
-    },
     title: {
-      color: '',
-      opacity: 0,
-      underline: false,
+      color: '#000000',
+      opacity: 1,
     },
     returnButton: {
       background: {
-        color: '',
-        opacity: 0,
+        color: '#EBEDED',
+        opacity: 1,
       },
       icon: {
-        color: '',
-        opacity: 0,
+        color: '#000000',
+        opacity: 1,
       },
       cornerRadius: 0,
     },
   },
   description: {
     link: {
-      color: '',
-      opacity: 0,
+      color: '#000000',
+      opacity: 1,
       underline: false,
     },
     text: {
-      color: '',
-      opacity: 0,
-      underline: false,
+      color: '#000000',
+      opacity: 1,
     },
   },
   buttons: {
     primary: {
       style: ItemStyle.Filled,
       background: {
-        color: '',
-        opacity: 0,
+        color: '#000000',
+        opacity: 1,
       },
       text: {
-        color: '',
-        opacity: 0,
-        underline: false,
-      },
-      icon: {
-        color: '',
-        opacity: 0,
+        color: '#FFFFFF',
+        opacity: 1,
       },
       cornerRadius: 0,
     },
     secondary: {
       style: ItemStyle.Filled,
       background: {
-        color: '',
-        opacity: 0,
+        color: '#000000',
+        opacity: 1,
       },
       text: {
-        color: '',
-        opacity: 0,
-        underline: false,
-      },
-      icon: {
-        color: '',
-        opacity: 0,
+        color: '#FFFFFF',
+        opacity: 1,
       },
       cornerRadius: 0,
     },
     tertiary: {
       style: ItemStyle.Filled,
       background: {
-        color: '',
-        opacity: 0,
+        color: '#000000',
+        opacity: 1,
       },
       text: {
-        color: '',
-        opacity: 0,
-        underline: false,
-      },
-      icon: {
-        color: '',
-        opacity: 0,
+        color: '#FFFFFF',
+        opacity: 1,
       },
       cornerRadius: 0,
     },
@@ -132,33 +111,33 @@ const defaultBannerThemeConfig: BannerThemeConfig = {
 
 const defaultBannerExperienceConfig: BannerExperienceConfig = {
   header: {
-    visible: false,
-    closeButtonVisible: false,
-    title: '',
+    visible: true,
+    closeButtonVisible: true,
+    title: 'This website processes personal data',
   },
-  description: '',
+  // TODO:JB - Rich text here
+  description:
+    'We and our partners are using technologies like Cookies or Targeting and process personal data like IP-address' +
+    ' or browser information in order to personalize the advertisement that you see. You can read our Privacy Policy.',
   buttons: {
     primary: {
-      visible: false,
-      text: '',
+      text: 'Confirm',
       action: BannerButtonAction.SaveCurrentState,
     },
     secondary: {
-      visible: false,
-      text: '',
-      action: BannerButtonAction.SaveCurrentState,
+      visible: true,
+      text: 'Customize Settings',
+      action: BannerButtonAction.OpenModal,
     },
     tertiary: {
-      visible: false,
-      text: '',
-      action: BannerButtonAction.SaveCurrentState,
+      visible: true,
+      text: 'Decline All',
+      action: BannerButtonAction.OpenModal,
     },
-    close: false,
   },
   footer: {
-    ketchBadgeVisible: false,
-    gpcBadgeVisible: false,
-    actionButtonText: '',
+    ketchBadgeVisible: true,
+    gpcBadgeVisible: true,
   },
 }
 
