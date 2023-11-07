@@ -1154,6 +1154,16 @@ export interface Configuration {
   experiences?: Experience
 
   /**
+   * Theme V2 definition
+   */
+  themeV2?: ThemeConfigObject
+
+  /**
+   * Experience V2 definitions
+   */
+  experiencesV2?: ExperienceConfigObject
+
+  /**
    * Vendors (TCF)
    */
   vendors?: Vendor[]
