@@ -4,15 +4,22 @@ import {
   BannerContainerPosition,
   BannerContainerSize,
   BannerExperienceConfig,
-  BannerThemeConfig, ExitButtonPosition,
-  ExperienceConfigObject, FormFieldStyle,
+  BannerThemeConfig,
+  ExitButtonPosition,
+  ExperienceConfigObject,
+  FormFieldStyle,
   ItemStyle,
   ListLayout,
-  ModalContainerPosition, ModalExperienceConfig,
-  ModalThemeConfig, PreferenceExperienceConfig, PreferenceThemeConfig, RightsFormMode, SubscriptionListStyle,
+  ModalContainerPosition,
+  ModalExperienceConfig,
+  ModalThemeConfig,
+  PreferenceExperienceConfig,
+  PreferenceThemeConfig,
+  RightsFormMode,
+  SubscriptionListStyle,
   SwitchButtonDisplay,
-  ThemeConfigObject
-} from "./index";
+  ThemeConfigObject,
+} from './index'
 
 const defaultBannerThemeConfig: BannerThemeConfig = {
   container: {
@@ -121,7 +128,7 @@ const defaultBannerThemeConfig: BannerThemeConfig = {
       cornerRadius: 0,
     },
   },
-};
+}
 
 const defaultBannerExperienceConfig: BannerExperienceConfig = {
   header: {
@@ -153,7 +160,7 @@ const defaultBannerExperienceConfig: BannerExperienceConfig = {
     gpcBadgeVisible: false,
     actionButtonText: '',
   },
-};
+}
 
 const defaultModalThemeConfig: ModalThemeConfig = {
   container: {
@@ -161,97 +168,97 @@ const defaultModalThemeConfig: ModalThemeConfig = {
     font: '',
     background: {
       color: '',
-      opacity: 0
+      opacity: 0,
     },
     cornerRadius: 0,
     backdrop: {
       visible: false,
       background: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
-      disableContentInteractions: false
-    }
+      disableContentInteractions: false,
+    },
   },
   header: {
     background: {
       color: '',
-      opacity: 0
+      opacity: 0,
     },
     title: {
       color: '',
       opacity: 0,
-      underline: false
+      underline: false,
     },
     returnButton: {
       background: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
       icon: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
-      cornerRadius: 0
-    }
+      cornerRadius: 0,
+    },
   },
   description: {
     title: {
       color: '',
       opacity: 0,
-      underline: false
+      underline: false,
     },
     text: {
       color: '',
       opacity: 0,
-      underline: false
+      underline: false,
     },
     link: {
       color: '',
       opacity: 0,
-      underline: false
-    }
+      underline: false,
+    },
   },
   listHeader: {
     title: {
       color: '',
       opacity: 0,
-      underline: false
+      underline: false,
     },
     acceptAllButton: {
       style: ItemStyle.Filled,
       background: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
       text: {
         color: '',
         opacity: 0,
-        underline: false
+        underline: false,
       },
       icon: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
-      cornerRadius: 0
+      cornerRadius: 0,
     },
     rejectAllButton: {
       style: ItemStyle.Filled,
       background: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
       text: {
         color: '',
         opacity: 0,
-        underline: false
+        underline: false,
       },
       icon: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
-      cornerRadius: 0
-    }
+      cornerRadius: 0,
+    },
   },
   purposeList: {
     listItems: {
@@ -259,89 +266,89 @@ const defaultModalThemeConfig: ModalThemeConfig = {
       style: ItemStyle.Filled,
       purposeFill: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
       purposeContent: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
       purposeLinks: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
       arrowIcon: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
-      purposeCornerRadius: 0
+      purposeCornerRadius: 0,
     },
     switchButtons: {
       on: {
         background: {
           color: '',
-          opacity: 0
+          opacity: 0,
         },
         text: {
           color: '',
           opacity: 0,
-          underline: false
-        }
+          underline: false,
+        },
       },
       off: {
         background: {
           color: '',
-          opacity: 0
+          opacity: 0,
         },
         text: {
           color: '',
           opacity: 0,
-          underline: false
-        }
-      }
-    }
+          underline: false,
+        },
+      },
+    },
   },
   footer: {
     background: {
       color: '',
-      opacity: 0
+      opacity: 0,
     },
     actionButton: {
       style: ItemStyle.Filled,
       background: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
       text: {
         color: '',
         opacity: 0,
-        underline: false
+        underline: false,
       },
       icon: {
         color: '',
-        opacity: 0
+        opacity: 0,
       },
-      cornerRadius: 0
-    }
-  }
-};
+      cornerRadius: 0,
+    },
+  },
+}
 
 const defaultModalExperienceConfig: ModalExperienceConfig = {
   header: {
     visible: false,
     closeButtonVisible: false,
-    title: ''
+    title: '',
   },
   description: {
     title: {
       visible: false,
-      text: ''
+      text: '',
     },
-    text: ''
+    text: '',
   },
   listHeader: {
     visible: false,
     useDefault: false,
-    text: ''
+    text: '',
   },
   purposeList: {
     legalBasisVisible: false,
@@ -350,27 +357,27 @@ const defaultModalExperienceConfig: ModalExperienceConfig = {
       display: SwitchButtonDisplay.Always,
       useDefaultText: false,
       onText: '',
-      offText: ''
-    }
+      offText: '',
+    },
   },
   footer: {
     ketchBadgeVisible: false,
     gpcBadgeVisible: false,
-    actionButtonText: ''
-  }
-};
+    actionButtonText: '',
+  },
+}
 
 const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
   welcome: {
     container: {
       exitPosition: ExitButtonPosition.topRight,
       font: '',
-      background: { color: '', opacity: 0 }
+      background: { color: '', opacity: 0 },
     },
     header: {
       background: { color: '', opacity: 0 },
       title: { color: '', opacity: 0, underline: false },
-      logo: { name: '', url: '' }
+      logo: { name: '', url: '' },
     },
     navigation: {
       layout: {
@@ -381,8 +388,8 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
           unselectedText: { color: '', opacity: 0, underline: false },
           selectedBackground: { color: '', opacity: 0 },
           selectedText: { color: '', opacity: 0, underline: false },
-          cornerRadius: 0
-        }
+          cornerRadius: 0,
+        },
       },
       iconsVisible: false,
       icons: {
@@ -390,8 +397,8 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
         privacyPolicy: { name: '', url: '' },
         purposes: { name: '', url: '' },
         subscriptions: { name: '', url: '' },
-        requests: { name: '', url: '' }
-      }
+        requests: { name: '', url: '' },
+      },
     },
     exitButton: {
       background: { color: '', opacity: 0 },
@@ -399,37 +406,37 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
       iconVisible: false,
       useDefaultIcon: false,
       iconColor: { color: '', opacity: 0 },
-      icon: { name: '', url: '' }
+      icon: { name: '', url: '' },
     },
     heroBanner: {
       visible: false,
-      image: { name: '', url: '' }
+      image: { name: '', url: '' },
     },
     welcomeMsg: {
       title: { color: '', opacity: 0, underline: false },
       subtitle: { color: '', opacity: 0, underline: false },
-      link: { color: '', opacity: 0, underline: false }
+      link: { color: '', opacity: 0, underline: false },
     },
     quickLinks: {
       title: { color: '', opacity: 0, underline: false },
       link: { color: '', opacity: 0, underline: false },
-      showArrows: false
+      showArrows: false,
     },
     about: {
       title: { color: '', opacity: 0, underline: false },
       text: { color: '', opacity: 0, underline: false },
-      link: { color: '', opacity: 0, underline: false }
-    }
+      link: { color: '', opacity: 0, underline: false },
+    },
   },
   privacyPolicy: {
     text: { color: '', opacity: 0, underline: false },
-    link: { color: '', opacity: 0, underline: false }
+    link: { color: '', opacity: 0, underline: false },
   },
   purposes: {
     header: {
       title: { color: '', opacity: 0, underline: false },
       description: { color: '', opacity: 0, underline: false },
-      link: { color: '', opacity: 0, underline: false }
+      link: { color: '', opacity: 0, underline: false },
     },
     listHeader: {
       title: { color: '', opacity: 0, underline: false },
@@ -438,15 +445,15 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
         background: { color: '', opacity: 0 },
         text: { color: '', opacity: 0, underline: false },
         icon: { color: '', opacity: 0 },
-        cornerRadius: 0
+        cornerRadius: 0,
       },
       rejectAllButton: {
         style: ItemStyle.Filled,
         background: { color: '', opacity: 0 },
         text: { color: '', opacity: 0, underline: false },
         icon: { color: '', opacity: 0 },
-        cornerRadius: 0
-      }
+        cornerRadius: 0,
+      },
     },
     list: {
       listItems: {
@@ -456,18 +463,18 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
         purposeContent: { color: '', opacity: 0 },
         purposeLinks: { color: '', opacity: 0 },
         arrowIcon: { color: '', opacity: 0 },
-        purposeCornerRadius: 0
+        purposeCornerRadius: 0,
       },
       switchButtons: {
         on: {
           background: { color: '', opacity: 0 },
-          text: { color: '', opacity: 0, underline: false }
+          text: { color: '', opacity: 0, underline: false },
         },
         off: {
           background: { color: '', opacity: 0 },
-          text: { color: '', opacity: 0, underline: false }
-        }
-      }
+          text: { color: '', opacity: 0, underline: false },
+        },
+      },
     },
     footer: {
       background: { color: '', opacity: 0 },
@@ -476,15 +483,15 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
         background: { color: '', opacity: 0 },
         text: { color: '', opacity: 0, underline: false },
         icon: { color: '', opacity: 0 },
-        cornerRadius: 0
-      }
-    }
+        cornerRadius: 0,
+      },
+    },
   },
   subscriptions: {
     header: {
       title: { color: '', opacity: 0, underline: false },
       description: { color: '', opacity: 0, underline: false },
-      link: { color: '', opacity: 0, underline: false }
+      link: { color: '', opacity: 0, underline: false },
     },
     globalControl: {
       background: { color: '', opacity: 0 },
@@ -493,13 +500,13 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
       switchButton: {
         on: {
           background: { color: '', opacity: 0 },
-          text: { color: '', opacity: 0, underline: false }
+          text: { color: '', opacity: 0, underline: false },
         },
         off: {
           background: { color: '', opacity: 0 },
-          text: { color: '', opacity: 0, underline: false }
-        }
-      }
+          text: { color: '', opacity: 0, underline: false },
+        },
+      },
     },
     list: {
       layout: {
@@ -507,28 +514,28 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
         background: { color: '', opacity: 0 },
         text: { color: '', opacity: 0, underline: false },
         link: { color: '', opacity: 0, underline: false },
-        cornerRadius: 0
+        cornerRadius: 0,
       },
       switchButton: {
         on: {
           background: { color: '', opacity: 0 },
-          text: { color: '', opacity: 0, underline: false }
+          text: { color: '', opacity: 0, underline: false },
         },
         off: {
           background: { color: '', opacity: 0 },
-          text: { color: '', opacity: 0, underline: false }
-        }
+          text: { color: '', opacity: 0, underline: false },
+        },
       },
       checkbox: {
         selected: {
           background: { color: '', opacity: 0 },
-          label: { color: '', opacity: 0 }
+          label: { color: '', opacity: 0 },
         },
         unselected: {
           background: { color: '', opacity: 0 },
-          label: { color: '', opacity: 0 }
-        }
-      }
+          label: { color: '', opacity: 0 },
+        },
+      },
     },
     footer: {
       background: { color: '', opacity: 0 },
@@ -537,9 +544,9 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
         background: { color: '', opacity: 0 },
         text: { color: '', opacity: 0, underline: false },
         icon: { color: '', opacity: 0 },
-        cornerRadius: 0
-      }
-    }
+        cornerRadius: 0,
+      },
+    },
   },
   requests: {
     home: {
@@ -563,7 +570,7 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
           arrowIcon: { color: '', opacity: 0 },
           background: { color: '', opacity: 0 },
           cornerRadius: 0,
-        }
+        },
       },
     },
     rightForm: {
@@ -573,8 +580,8 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
         returnButton: {
           background: { color: '', opacity: 0 },
           icon: { color: '', opacity: 0 },
-          cornerRadius: 0
-        }
+          cornerRadius: 0,
+        },
       },
       form: {
         dividers: {
@@ -631,9 +638,9 @@ const defaultPreferenceThemeConfig: PreferenceThemeConfig = {
         title: { color: '', opacity: 0, underline: false },
         description: { color: '', opacity: 0, underline: false },
       },
-    }
-  }
-};
+    },
+  },
+}
 
 const defaultPreferenceExperienceConfig: PreferenceExperienceConfig = {
   welcome: {
@@ -755,7 +762,7 @@ const defaultPreferenceExperienceConfig: PreferenceExperienceConfig = {
       description: '',
     },
   },
-};
+}
 
 export const defaultThemeConfig: ThemeConfigObject = {
   banner: defaultBannerThemeConfig,
@@ -763,11 +770,11 @@ export const defaultThemeConfig: ThemeConfigObject = {
   preference: defaultPreferenceThemeConfig,
 }
 
-export const defaultExperienceConfig: {[locale: string]: ExperienceConfigObject} = {
+export const defaultExperienceConfig: { [locale: string]: ExperienceConfigObject } = {
   en: {
     banner: defaultBannerExperienceConfig,
     modal: defaultModalExperienceConfig,
-    preference: defaultPreferenceExperienceConfig
-  }
+    preference: defaultPreferenceExperienceConfig,
+  },
   // TODO:JB - Other locales here
 }

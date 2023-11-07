@@ -2540,8 +2540,8 @@ export interface TextThemeConfig {
 /** Banner/Modal Color */
 
 export interface ColorThemeConfig {
-  color: string,
-  opacity: number,
+  color: string
+  opacity: number
 }
 
 /** Banner/Modal Backdrop */
@@ -2564,7 +2564,7 @@ export interface ReturnButtonThemeConfig {
 export interface HeaderThemeConfig {
   background: ColorThemeConfig
   title: TextThemeConfig
-  returnButton: ReturnButtonThemeConfig  // This is either a close or back button
+  returnButton: ReturnButtonThemeConfig // This is either a close or back button
 }
 
 /** Action Button */
@@ -2659,7 +2659,7 @@ export interface ImageThemeConfig {
 /** Banner/Modal Header */
 
 export interface HeaderExperienceConfig {
-  visible: boolean,
+  visible: boolean
   closeButtonVisible: boolean
   title: string
 }
@@ -2676,7 +2676,7 @@ export interface FooterExperienceConfig {
 
 export enum SwitchButtonDisplay {
   Always = 'always',
-  WhenLegalBasisDiffers = 'whenLegalBasisDiffers'
+  WhenLegalBasisDiffers = 'whenLegalBasisDiffers',
 }
 
 export interface SwitchButtonsExperienceConfig {
@@ -2781,7 +2781,7 @@ export enum BannerButtonAction {
 export interface BannerActionButtonExperienceConfig {
   visible: boolean
   text: string
-  action: BannerButtonAction,
+  action: BannerButtonAction
 }
 
 /** Banner Buttons Experience Config - Rightmost === primary */
@@ -2903,13 +2903,13 @@ export interface WelcomeTabExitButtonThemeConfig {
   text: TextThemeConfig
   iconVisible: boolean
   useDefaultIcon: boolean
-  iconColor: ColorThemeConfig  // TODO:JB - Talk with Misha about what this color means
+  iconColor: ColorThemeConfig // TODO:JB - Talk with Misha about what this color means
   icon: ImageThemeConfig
 }
 
 export interface WelcomeTabHeroBannerThemeConfig {
   visible: boolean
-  image: ImageThemeConfig  // TODO:JB - Talk with Misha about screen size considerations
+  image: ImageThemeConfig // TODO:JB - Talk with Misha about screen size considerations
 }
 
 export interface WelcomeTabWelcomeMsgThemeConfig {
@@ -3001,7 +3001,7 @@ export interface PreferenceSubscriptionsTabThemeConfig {
 
 export enum FormFieldStyle {
   Box = 'box',
-  Underline = 'underline'
+  Underline = 'underline',
 }
 
 export interface RequestsTabDsrLinkThemeConfig {
@@ -3099,7 +3099,7 @@ export enum QuickLinkAction {
 }
 
 export enum PreferenceCenterPage {
-  Welcome= 'welcome',
+  Welcome = 'welcome',
   PrivacyPolicy = 'privacyPolicy',
   Purpose = 'purpose',
   Subscriptions = 'subscriptions',
@@ -3291,7 +3291,4 @@ export {
   FormTemplate,
 } from './forms'
 
-export {
-  defaultThemeConfig,
-  defaultExperienceConfig,
-} from './defaults'
+export { defaultThemeConfig, defaultExperienceConfig } from './defaults'
