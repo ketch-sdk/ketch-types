@@ -2553,7 +2553,7 @@ export interface BackdropThemeConfig {
 }
 
 /** Banner/Modal Close Button */
-export interface CloseButtonThemeConfig {
+export interface ReturnButtonThemeConfig {
   background: ColorThemeConfig
   icon: ColorThemeConfig
   cornerRadius: number
@@ -2564,7 +2564,7 @@ export interface CloseButtonThemeConfig {
 export interface HeaderThemeConfig {
   background: ColorThemeConfig
   title: TextThemeConfig
-  actionButton: CloseButtonThemeConfig  // This is either a close or back button
+  returnButton: ReturnButtonThemeConfig  // This is either a close or back button
 }
 
 /** Action Button */
@@ -3290,3 +3290,8 @@ export {
   FormSection,
   FormTemplate,
 } from './forms'
+
+export {
+  defaultThemeConfig,
+  defaultExperienceConfig,
+} from './defaults'
