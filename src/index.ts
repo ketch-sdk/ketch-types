@@ -2564,7 +2564,7 @@ export interface CloseButtonThemeConfig {
 export interface HeaderThemeConfig {
   background: ColorThemeConfig
   title: TextThemeConfig
-  closeButton: CloseButtonThemeConfig
+  actionButton: CloseButtonThemeConfig  // This is either a close or back button
 }
 
 /** Action Button */
@@ -2669,7 +2669,7 @@ export interface HeaderExperienceConfig {
 export interface FooterExperienceConfig {
   ketchBadgeVisible: boolean
   gpcBadgeVisible: boolean
-  buttonText: string
+  actionButtonText: string
 }
 
 /** Switch Buttons */
@@ -2697,6 +2697,11 @@ export interface TextBlockTitleExperienceConfig {
 export interface TextBlockExperienceConfig {
   title: TextBlockTitleExperienceConfig
   text: string
+}
+
+export interface PreferenceTabHeaderExperienceConfig {
+  description: string
+  title: TextBlockTitleExperienceConfig
 }
 
 /** Banner Config */
@@ -2740,23 +2745,17 @@ export interface BannerContainerThemeConfig {
 
 /** Banner Action Button */
 
-export interface BannerActionButtonThemeConfig {
-  background: ColorThemeConfig
-  text: TextThemeConfig
-  cornerRadius: number
-  style: BannerButtonStyle
-}
-
 /** Banner Description */
 export interface BannerDescriptionThemeConfig {
   link: TextThemeConfig
   text: TextThemeConfig
 }
 
+/** Banner Buttons Theme Config - Rightmost === primary */
 export interface BannerButtonsThemeConfig {
-  primary: BannerActionButtonThemeConfig
-  secondary: BannerActionButtonThemeConfig
-  tertiary: BannerActionButtonThemeConfig
+  primary: ActionButtonThemeConfig
+  secondary: ActionButtonThemeConfig
+  tertiary: ActionButtonThemeConfig
 }
 
 /** Banner Theme Config */
@@ -2785,6 +2784,7 @@ export interface BannerActionButtonExperienceConfig {
   action: BannerButtonAction,
 }
 
+/** Banner Buttons Experience Config - Rightmost === primary */
 export interface BannerButtonsExperienceConfig {
   primary: BannerActionButtonExperienceConfig
   secondary: BannerActionButtonExperienceConfig
@@ -2903,13 +2903,13 @@ export interface WelcomeTabExitButtonThemeConfig {
   text: TextThemeConfig
   iconVisible: boolean
   useDefaultIcon: boolean
-  iconColor: ColorThemeConfig
+  iconColor: ColorThemeConfig  // TODO:JB - Talk with Misha about what this color means
   icon: ImageThemeConfig
 }
 
 export interface WelcomeTabHeroBannerThemeConfig {
   visible: boolean
-  image: ImageThemeConfig
+  image: ImageThemeConfig  // TODO:JB - Talk with Misha about screen size considerations
 }
 
 export interface WelcomeTabWelcomeMsgThemeConfig {
@@ -3051,16 +3051,16 @@ export interface FormFieldsThemeConfig {
   inputText: TextThemeConfig
 }
 
-export interface RequestFormFormThemeConfig {
+export interface RightFormThemeConfig {
   dividers: FormDividersThemeConfig
   fields: FormFieldsThemeConfig
   checkboxes: CheckboxesThemeConfig
   actionButton: ActionButtonThemeConfig
 }
 
-export interface RequestsTabRequestFormThemeConfig {
+export interface RequestsTabRightFormThemeConfig {
   header: HeaderThemeConfig
-  form: RequestFormFormThemeConfig
+  form: RightFormThemeConfig
 }
 
 export interface SubmittedRequestThemeConfig {
@@ -3077,7 +3077,7 @@ export interface RequestsTabSubmittedThemeConfig {
 
 export interface PreferenceRequestsTabThemeConfig {
   home: RequestsTabHomeThemeConfig
-  requestForm: RequestsTabRequestFormThemeConfig
+  rightForm: RequestsTabRightFormThemeConfig
   submitted: RequestsTabSubmittedThemeConfig
 }
 
@@ -3085,7 +3085,7 @@ export interface PreferenceRequestsTabThemeConfig {
 
 export interface PreferenceThemeConfig {
   welcome: PreferenceWelcomeTabThemeConfig
-  privacyPolicy: PageTextThemeConfig
+  privacyPolicy: PreferencePrivacyPolicyTabThemeConfig
   purposes: PreferencePurposesTabThemeConfig
   subscriptions: PreferenceSubscriptionsTabThemeConfig
   requests: PreferenceRequestsTabThemeConfig
@@ -3104,7 +3104,7 @@ export enum PreferenceCenterPage {
   Purpose = 'purpose',
   Subscriptions = 'subscriptions',
   Requests = 'requests',
-  RequestForm = 'requestForm',
+  RightForm = 'rightForm',
   Summary = 'summary',
 }
 
@@ -3135,9 +3135,7 @@ export interface QuickLinkExperienceConfig {
 
 export interface WelcomeTabQuickLinksExperienceConfig {
   visible: boolean
-  linkOne: QuickLinkExperienceConfig
-  linkTwo: QuickLinkExperienceConfig
-  linkThree: QuickLinkExperienceConfig
+  links: QuickLinkExperienceConfig[]
 }
 
 export interface WelcomeTabAboutExperienceConfig {
@@ -3175,7 +3173,7 @@ export interface PurposesTabListExperienceConfig {
 }
 
 export interface PreferencePurposesTabExperienceConfig {
-  header: TextBlockExperienceConfig
+  header: PreferenceTabHeaderExperienceConfig
   listHeader: PurposesTabListHeaderExperienceConfig
   list: PurposesTabListExperienceConfig
   actionButtonText: string
@@ -3183,7 +3181,7 @@ export interface PreferencePurposesTabExperienceConfig {
 
 /** Preferences - Subscriptions Experience Config */
 export interface PreferenceSubscriptionsTabExperienceConfig {
-  header: TextBlockExperienceConfig
+  header: PreferenceTabHeaderExperienceConfig
   globalControlSwitchLabel: SwitchButtonsExperienceConfig
   listSwitchLabels: SwitchButtonsExperienceConfig
   actionButtonText: string
@@ -3214,7 +3212,7 @@ export interface RightsTitleExperienceConfig {
 }
 
 export interface RightFormMapping {
-  rightId: string
+  rightCode: string
   formId: string
 }
 
@@ -3237,24 +3235,24 @@ export interface RequestsTabRightsExperienceConfig {
 }
 
 export interface RequestsTabHomeExperienceConfig {
-  header: TextBlockExperienceConfig
+  header: PreferenceTabHeaderExperienceConfig
   dsrPortalLink: RequestsTabDsrLinkExperienceConfig
   rights: RequestsTabRightsExperienceConfig
 }
 
-export interface RequestsTabRequestFormExperienceConfig {
+export interface RequestsTabRightFormExperienceConfig {
   enableRecaptcha: boolean
 }
 
 export interface RequestsTabSubmittedExperienceConfig {
-  header: string
+  title: string
   subtitle: string
   description: string
 }
 
 export interface PreferenceRequestsTabExperienceConfig {
   home: RequestsTabHomeExperienceConfig
-  requestForm: RequestsTabRequestFormExperienceConfig
+  rightForm: RequestsTabRightFormExperienceConfig
   submitted: RequestsTabSubmittedExperienceConfig
 }
 
