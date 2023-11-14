@@ -3401,10 +3401,21 @@ export interface ThemeConfigObject {
   preference?: PreferenceThemeConfig
 }
 
-export interface ExperienceConfigObject {
+export interface ExperienceLayoutObject {
   banner?: BannerExperienceConfig
   modal?: ModalExperienceConfig
   preference?: PreferenceExperienceConfig
+}
+
+export interface ExperienceTranslationObject {
+  banner?: BannerExperienceConfig
+  modal?: ModalExperienceConfig
+  preference?: PreferenceExperienceConfig
+}
+
+export interface ExperienceConfigObject {
+  layout?: ExperienceLayoutObject
+  translations?: { [locale: string]: ExperienceTranslationObject }
 }
 
 export {
