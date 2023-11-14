@@ -3112,8 +3112,6 @@ export interface PreferenceThemeConfig {
   requests?: PreferenceRequestsTabThemeConfig
 }
 
-/** Top level config objects, one per locale */
-
 export interface ThemeConfig {
   banner?: BannerThemeConfig
   modal?: ModalThemeConfig
