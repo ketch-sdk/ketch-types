@@ -1072,6 +1072,140 @@ export interface Stack {
 /**
  * Configuration
  */
+export interface ConfigurationV2 {
+  /**
+   * Organization this configuration belongs to
+   */
+  organization: Organization
+
+  /**
+   * Property this configuration belongs to
+   */
+  property?: Property
+
+  /**
+   * Language for all text
+   */
+  language?: string
+
+  /**
+   * Available environments. Only available in the "boot" configuration.
+   */
+  environments?: Environment[]
+
+  /**
+   * Environment for this configuration. Only available in the "full" configuration.
+   */
+  environment?: Environment
+
+  /**
+   * Applicable jurisdiction.
+   */
+  jurisdiction?: JurisdictionInfo
+
+  /**
+   * Identity spaces defined for this property
+   */
+  identities?: { [key: string]: Identity }
+
+  /**
+   * Deployment information. Only available in the "full" configuration.
+   */
+  deployment?: Deployment
+
+  /**
+   * Regulations enabled for this jurisdiction.
+   */
+  regulations?: string[]
+
+  /**
+   * Rights available in this jurisdiction.
+   */
+  rights?: Right[]
+
+  /**
+   * Purposes in this jurisdiction.
+   */
+  purposes?: Purpose[]
+
+  /**
+   * Mapping of purposes to canonical purposes.
+   */
+  canonicalPurposes?: { [key: string]: CanonicalPurpose }
+
+  /**
+   * Privacy policy document
+   */
+  privacyPolicy?: PolicyDocument
+
+  /**
+   * Terms of Service (ToS) policy document
+   */
+  termsOfService?: PolicyDocument
+
+  /**
+   * Theme V2 definition
+   */
+  theme?: ThemeConfigObject
+
+  /**
+   * Experience V2 definitions
+   */
+  experiences?: ExperienceConfigObject
+
+  /**
+   * Vendors (TCF)
+   */
+  vendors?: Vendor[]
+
+  /**
+   * Data subject types relevant for this configuration
+   */
+  dataSubjectTypes?: DataSubjectType[]
+
+  /**
+   * Stacks to be displayed in an experience
+   */
+  stacks?: Stack[]
+
+  /**
+   * Services
+   */
+  services?: { [key: string]: string }
+
+  /**
+   * Flexible options
+   */
+  options?: { [key: string]: string }
+
+  /**
+   * Scripts to load
+   */
+  scripts?: string[]
+
+  /**
+   * Plugins configured for the configuration
+   */
+  plugins?: { [key: string]: PluginOptions }
+
+  /**
+   * Recaptcha config
+   */
+  recaptcha?: Recaptcha
+
+  canonicalRightFormTemplates?: CanonicalRightForm[]
+  customRightFormTemplates?: CustomRightForm[]
+  formTemplates: FormTemplate[]
+
+  /**
+   * Translations static translations
+   */
+  translations?: Translations
+}
+
+/**
+ * Configuration
+ */
 export interface Configuration {
   /**
    * Organization this configuration belongs to
@@ -1152,16 +1286,6 @@ export interface Configuration {
    * Experience definitions
    */
   experiences?: Experience
-
-  /**
-   * Theme V2 definition
-   */
-  themeV2?: ThemeConfigObject
-
-  /**
-   * Experience V2 definitions
-   */
-  experiencesV2?: ExperienceConfigObject
 
   /**
    * Vendors (TCF)
