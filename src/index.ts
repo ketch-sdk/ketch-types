@@ -2546,6 +2546,7 @@ declare global {
 
 export interface SubscriptionControlSetting {
   status: SubscriptionStatus
+  impact?: SubscriptionControlImpactType
 }
 
 export interface SubscriptionTopicContactMethodSetting {
