@@ -197,6 +197,38 @@ export enum SwitchTextRenderLogic {
 }
 
 /**
+ * SubscriptionControlImpactType
+ *
+ * @enum
+ */
+export enum SubscriptionControlImpactType {
+  /**
+   * Unsubscribe from all subscription topics
+   */
+  GLOBAL = 1,
+  /**
+   * Unsubscribe from subscription topics configured to experience
+   */
+  LOCAL = 2,
+}
+
+/**
+ * SubscriptionControlPositionType
+ *
+ * @enum
+ */
+export enum SubscriptionControlPositionType {
+  /**
+   * Position control at top
+   */
+  TOP = 1,
+  /**
+   * Position control at bottom
+   */
+  BOTTOM = 2,
+}
+
+/**
  * BannerPosition
  *
  * @enum
@@ -2297,6 +2329,11 @@ export interface Ketch {
   getSubscriptionConfiguration(): Promise<SubscriptionConfiguration>
 
   /**
+   * Get Subscription configuration V2
+   */
+  getSubscriptionConfigurationV2(): Promise<SubscriptionConfigurationV2>
+
+  /**
    * Sets the provisional consent
    *
    * @param consent Consents
@@ -2539,6 +2576,48 @@ export interface SubscriptionControl {
   description: string
 }
 
+export interface SubscriptionControlV2 {
+  /**
+   * The code of the Subscription Control
+   */
+  code: string
+
+  /**
+   *  The impactType of the Subscription Control
+   */
+  description: string
+
+  /**
+   *  The impactType of the Subscription Control
+   */
+  impactType: SubscriptionControlImpactType
+
+  /**
+   *  The name of the Subscription Control
+   */
+  name: string
+
+  /**
+   *  The positionType of the Subscription Control
+   */
+  positionType: SubscriptionControlPositionType
+
+  /**
+   *  The switchOffText of the Subscription Control
+   */
+  switchOffText: string
+
+  /**
+   *  The switchOnText of the Subscription Control
+   */
+  switchOnText: string
+
+  /**
+   *  The switchTextRenderLogic of the Subscription Control
+   */
+  switchTextRenderLogic: SwitchTextRenderLogic
+}
+
 export interface SubscriptionTopic {
   /**
    * The code of the Subscription Topic
@@ -2626,6 +2705,16 @@ export interface GetSubscriptionConfigurationRequest {
 }
 
 /**
+ * GetSubscriptionConfigurationV2Request
+ */
+export interface GetSubscriptionConfigurationV2Request {
+  organizationCode: string
+  propertyCode: string
+  languageCode: string
+  experienceCode: string
+}
+
+/**
  * ContactMethod
  */
 export interface ContactMethod {
@@ -2642,6 +2731,19 @@ export interface SubscriptionConfiguration {
   identities: { [key: string]: Identity }
   contactMethods: { [key: string]: ContactMethod }
   controls: SubscriptionControl[]
+  topics: SubscriptionTopic[]
+}
+
+/**
+ * SubscriptionConfigurationV2
+ */
+export interface SubscriptionConfigurationV2 {
+  language: string
+  organization: Organization
+  property: Property
+  identities: { [key: string]: Identity }
+  contactMethods: { [key: string]: ContactMethod }
+  controls: SubscriptionControlV2[]
   topics: SubscriptionTopic[]
 }
 
