@@ -2511,12 +2511,12 @@ declare global {
  * SubscriptionControlImpact: Describes the impact caused by global control.
  *
  * @enum
- * @values UNSPECIFIED = category is unspecified
+ * @values  UNKNOWN = category is unspecified
  *          GLOBAL = Unsubscribe from all subscriptions
  *          LOCAL = Unsubscribe from experience subscriptions
  */
 export enum SubscriptionControlImpact {
-  UNSPECIFIED = 'unspecified',
+  UNKNOWN = 'unknown',
   GLOBAL = 'global',
   LOCAL = 'local',
 }
