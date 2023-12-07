@@ -2507,8 +2507,23 @@ declare global {
   }
 }
 
+/**
+ * SubscriptionControlImpact: Describes the impact caused by global control.
+ *
+ * @enum
+ * @values UNSPECIFIED = category is unspecified
+ *          GLOBAL = Unsubscribe from all subscriptions
+ *          LOCAL = Unsubscribe from experience subscriptions
+ */
+export enum SubscriptionControlImpact {
+  UNSPECIFIED = 'unspecified',
+  GLOBAL = 'global',
+  LOCAL = 'local',
+}
+
 export interface SubscriptionControlSetting {
   status: SubscriptionStatus
+  impact: SubscriptionControlImpact
 }
 
 export interface SubscriptionTopicContactMethodSetting {
@@ -2537,6 +2552,19 @@ export interface SubscriptionControl {
    * The display description of the Subscription Control
    */
   description: string
+
+  /**
+   * Subscription Control item detail configuration
+   */
+  itemDetail: {
+    title: string
+    description: string
+    switchOffText: string
+    switchOnText: string
+    switchTextRenderLogic: number
+    positionType: number
+    impactType: number
+  }
 }
 
 export interface SubscriptionTopic {
@@ -2623,6 +2651,7 @@ export interface GetSubscriptionConfigurationRequest {
   organizationCode: string
   propertyCode: string
   languageCode: string
+  experienceCode: string
 }
 
 /**
