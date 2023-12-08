@@ -2329,11 +2329,6 @@ export interface Ketch {
   getSubscriptionConfiguration(): Promise<SubscriptionConfiguration>
 
   /**
-   * Get Subscription configuration V2
-   */
-  getSubscriptionConfigurationV2(): Promise<SubscriptionConfigurationV2>
-
-  /**
    * Sets the provisional consent
    *
    * @param consent Consents
@@ -2575,48 +2570,31 @@ export interface SubscriptionControl {
    * The display description of the Subscription Control
    */
   description: string
-}
-
-export interface SubscriptionControlV2 {
-  /**
-   * The code of the Subscription Control
-   */
-  code: string
 
   /**
    *  The impactType of the Subscription Control
    */
-  description: string
-
-  /**
-   *  The impactType of the Subscription Control
-   */
-  impactType: SubscriptionControlImpactType
-
-  /**
-   *  The name of the Subscription Control
-   */
-  name: string
+  impactType?: SubscriptionControlImpactType
 
   /**
    *  The positionType of the Subscription Control
    */
-  positionType: SubscriptionControlPositionType
+  positionType?: SubscriptionControlPositionType
 
   /**
    *  The switchOffText of the Subscription Control
    */
-  switchOffText: string
+  switchOffText?: string
 
   /**
    *  The switchOnText of the Subscription Control
    */
-  switchOnText: string
+  switchOnText?: string
 
   /**
    *  The switchTextRenderLogic of the Subscription Control
    */
-  switchTextRenderLogic: SwitchTextRenderLogic
+  switchTextRenderLogic?: SwitchTextRenderLogic
 }
 
 export interface SubscriptionTopic {
@@ -2732,19 +2710,6 @@ export interface SubscriptionConfiguration {
   identities: { [key: string]: Identity }
   contactMethods: { [key: string]: ContactMethod }
   controls: SubscriptionControl[]
-  topics: SubscriptionTopic[]
-}
-
-/**
- * SubscriptionConfigurationV2
- */
-export interface SubscriptionConfigurationV2 {
-  language: string
-  organization: Organization
-  property: Property
-  identities: { [key: string]: Identity }
-  contactMethods: { [key: string]: ContactMethod }
-  controls: SubscriptionControlV2[]
   topics: SubscriptionTopic[]
 }
 
