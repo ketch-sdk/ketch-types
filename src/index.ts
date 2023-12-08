@@ -197,6 +197,38 @@ export enum SwitchTextRenderLogic {
 }
 
 /**
+ * SubscriptionControlImpactType
+ *
+ * @enum
+ */
+export enum SubscriptionControlImpactType {
+  /**
+   * Unsubscribe from all subscription topics
+   */
+  GLOBAL = 1,
+  /**
+   * Unsubscribe from subscription topics configured to experience
+   */
+  LOCAL = 2,
+}
+
+/**
+ * SubscriptionControlPositionType
+ *
+ * @enum
+ */
+export enum SubscriptionControlPositionType {
+  /**
+   * Position control at top
+   */
+  TOP = 1,
+  /**
+   * Position control at bottom
+   */
+  BOTTOM = 2,
+}
+
+/**
  * BannerPosition
  *
  * @enum
@@ -2509,6 +2541,7 @@ declare global {
 
 export interface SubscriptionControlSetting {
   status: SubscriptionStatus
+  impact?: SubscriptionControlImpactType
 }
 
 export interface SubscriptionTopicContactMethodSetting {
@@ -2537,6 +2570,31 @@ export interface SubscriptionControl {
    * The display description of the Subscription Control
    */
   description: string
+
+  /**
+   *  The impactType of the Subscription Control
+   */
+  impactType?: SubscriptionControlImpactType
+
+  /**
+   *  The positionType of the Subscription Control
+   */
+  positionType?: SubscriptionControlPositionType
+
+  /**
+   *  The switchOffText of the Subscription Control
+   */
+  switchOffText?: string
+
+  /**
+   *  The switchOnText of the Subscription Control
+   */
+  switchOnText?: string
+
+  /**
+   *  The switchTextRenderLogic of the Subscription Control
+   */
+  switchTextRenderLogic?: SwitchTextRenderLogic
 }
 
 export interface SubscriptionTopic {
@@ -2623,6 +2681,7 @@ export interface GetSubscriptionConfigurationRequest {
   organizationCode: string
   propertyCode: string
   languageCode: string
+  experienceCode?: string
 }
 
 /**
