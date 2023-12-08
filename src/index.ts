@@ -2681,16 +2681,7 @@ export interface GetSubscriptionConfigurationRequest {
   organizationCode: string
   propertyCode: string
   languageCode: string
-}
-
-/**
- * GetSubscriptionConfigurationV2Request
- */
-export interface GetSubscriptionConfigurationV2Request {
-  organizationCode: string
-  propertyCode: string
-  languageCode: string
-  experienceCode: string
+  experienceCode?: string
 }
 
 /**
