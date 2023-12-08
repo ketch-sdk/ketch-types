@@ -203,6 +203,10 @@ export enum SwitchTextRenderLogic {
  */
 export enum SubscriptionControlImpactType {
   /**
+   * Impact type unspecified
+   */
+  UNSPECIFIED = 0,
+  /**
    * Unsubscribe from all subscription topics
    */
   GLOBAL = 1,
@@ -218,6 +222,10 @@ export enum SubscriptionControlImpactType {
  * @enum
  */
 export enum SubscriptionControlPositionType {
+  /**
+   * Position control unspecified
+   */
+  UNSPECIFIED = 0,
   /**
    * Position control at top
    */
