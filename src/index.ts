@@ -3347,6 +3347,7 @@ export interface PreferencePurposesTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
   listHeader?: PurposesTabListHeaderExperienceLayoutConfig
   list?: PurposesTabListExperienceLayoutConfig
+  actionButtonUseDefaultText?: boolean
 }
 
 /** Preferences - Subscriptions Experience Layout Config */
