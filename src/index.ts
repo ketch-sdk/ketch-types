@@ -3139,6 +3139,7 @@ export interface FormFieldsThemeConfig {
   style?: FormFieldStyle
   active?: FieldThemeConfig
   inactive?: FieldThemeConfig
+  error?: FieldThemeConfig
   cornerRadius?: number
   fieldLabel?: TextThemeConfig
   hintText?: TextThemeConfig
@@ -3149,24 +3150,34 @@ export interface RightFormThemeConfig {
   dividers?: FormDividersThemeConfig
   fields?: FormFieldsThemeConfig
   checkboxes?: CheckboxesThemeConfig
-  actionButton?: ActionButtonThemeConfig
 }
 
 export interface RequestsTabRightFormThemeConfig {
   header?: HeaderThemeConfig
   form?: RightFormThemeConfig
+  actionButton?: ActionButtonThemeConfig
 }
 
-export interface SubmittedRequestThemeConfig {
+export interface SubmittedRequestSummaryBannerThemeConfig {
   bannerVisible?: boolean
   bannerImage?: ImageThemeConfig
+}
+
+export interface SubmittedRequestSummaryTextThemeConfig {
   title?: TextThemeConfig
   description?: TextThemeConfig
 }
 
+export interface SubmittedRequestFooterThemeConfig {
+  background?: ColorThemeConfig
+  actionButton?: ActionButtonThemeConfig
+}
+
 export interface RequestsTabSubmittedThemeConfig {
   header?: HeaderThemeConfig
-  summary?: SubmittedRequestThemeConfig
+  banner?: SubmittedRequestSummaryBannerThemeConfig
+  text?: SubmittedRequestSummaryTextThemeConfig
+  footer?: SubmittedRequestFooterThemeConfig
 }
 
 export interface PreferenceRequestsTabThemeConfig {
@@ -3457,9 +3468,19 @@ export interface RequestsTabRightFormExperienceLayoutConfig {
   enableRecaptcha?: boolean
 }
 
+export interface SubmittedActionButtonExperienceLayoutConfig {
+  visible?: boolean
+  useDefault?: boolean
+}
+
+export interface RequestsTabSubmittedExperienceLayoutConfig {
+  actionButton: SubmittedActionButtonExperienceLayoutConfig
+}
+
 export interface PreferenceRequestsTabExperienceLayoutConfig {
   home?: RequestsTabHomeExperienceLayoutConfig
   rightForm?: RequestsTabRightFormExperienceLayoutConfig
+  submitted?: RequestsTabSubmittedExperienceLayoutConfig
 }
 
 export interface PreferenceExperienceLayoutConfig {
@@ -3651,14 +3672,20 @@ export interface RequestsTabHomeExperienceTranslationConfig {
   rights?: RequestsTabRightsExperienceTranslationConfig
 }
 
+export interface RequestsTabRightFormExperienceTranslationConfig {
+  recaptchaFailureText?: string
+}
+
 export interface RequestsTabSubmittedExperienceTranslationConfig {
   title?: string
   subtitle?: string
   description?: string
+  actionButtonText?: string
 }
 
 export interface PreferenceRequestsTabExperienceTranslationConfig {
   home?: RequestsTabHomeExperienceTranslationConfig
+  rightForm?: RequestsTabRightFormExperienceTranslationConfig
   submitted?: RequestsTabSubmittedExperienceTranslationConfig
 }
 
