@@ -3386,7 +3386,6 @@ export interface UnsubscribeAllTitleExperienceLayoutConfig {
 
 export interface UnsubscribeAllDescriptionExperienceLayoutConfig {
   visible?: boolean
-  useDefault?: boolean
 }
 
 export interface UnsubscribeAllImpactExperienceLayoutConfig {
