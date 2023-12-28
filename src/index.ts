@@ -3057,7 +3057,13 @@ export enum SubscriptionListStyle {
   Underlined = 'underlined',
 }
 
-export interface SubscriptionsTabGlobalControlThemeConfig {
+export enum UnsubscribeFromAllPoisition {
+  Top = 'top',
+  Bottom = 'bottom',
+}
+
+export interface SubscriptionsTabUnsubscribeAllThemeConfig {
+  position?: UnsubscribeFromAllPoisition
   background?: ColorThemeConfig
   text?: ColorThemeConfig
   cornerRadius?: number
@@ -3080,7 +3086,7 @@ export interface SubscriptionsTabListThemeConfig {
 
 export interface PreferenceSubscriptionsTabThemeConfig {
   header?: PageTextThemeConfig
-  globalControl?: SubscriptionsTabGlobalControlThemeConfig
+  unsubscribeAll?: SubscriptionsTabUnsubscribeAllThemeConfig
   list?: SubscriptionsTabListThemeConfig
   footer?: FooterThemeConfig
 }
@@ -3351,10 +3357,54 @@ export interface PreferencePurposesTabExperienceLayoutConfig {
 }
 
 /** Preferences - Subscriptions Experience Layout Config */
+
+export enum UnsubscribeAllImpact {
+  Universal = 'universal',
+  SingleExperience = 'singleExperience',
+}
+
+export enum SubscriptionItemType {
+  Unknown = 0,
+  Topic = 1,
+  Control = 2,
+}
+
+export interface UnsubscribeAllTitleExperienceLayoutConfig {
+  useDefault?: boolean
+}
+
+export interface UnsubscribeAllDescriptionExperienceLayoutConfig {
+  visible?: boolean
+  useDefault?: boolean
+}
+
+export interface UnsubscribeAllImpactExperienceLayoutConfig {
+  visible?: boolean
+  useDefault?: boolean
+}
+
+export interface SubscriptionsTabUnsubscribeAllExperienceLayoutConfig {
+  title: UnsubscribeAllTitleExperienceLayoutConfig
+  description: UnsubscribeAllDescriptionExperienceLayoutConfig
+  switchButton: SwitchButtonsExperienceLayoutConfig
+  impact: UnsubscribeAllImpact
+}
+
+export interface SubscriptionListItem {
+  type: SubscriptionItemType
+  code: string
+}
+
+export interface SubscriptionsTabListExperienceLayoutConfig {
+  items: SubscriptionListItem[]
+  switchButtons?: SwitchButtonsExperienceLayoutConfig
+}
+
 export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
-  globalControlSwitchLabel?: SwitchButtonsExperienceLayoutConfig
-  listSwitchLabels?: SwitchButtonsExperienceLayoutConfig
+  unsubscribeAll?: SubscriptionsTabUnsubscribeAllExperienceLayoutConfig
+  list?: SubscriptionsTabListExperienceLayoutConfig
+  actionButtonUseDefaultText?: boolean
 }
 
 /** Preferences - Requests Experience Layout Config */
@@ -3567,9 +3617,15 @@ export interface PreferencePurposesTabExperienceTranslationConfig {
 }
 
 /** Preferences - Subscriptions Experience Translation Config */
+export interface SubscriptionsTabUnsubscribeAllExperienceTranslationConfig {
+  title?: string
+  description?: string
+  switchLabels?: SwitchButtonsExperienceTranslationConfig
+}
+
 export interface PreferenceSubscriptionsTabExperienceTranslationConfig {
   header?: PreferenceTabHeaderExperienceTranslationConfig
-  globalControlSwitchLabel?: SwitchButtonsExperienceTranslationConfig
+  unsubscribeAll?: SubscriptionsTabUnsubscribeAllExperienceTranslationConfig
   listSwitchLabels?: SwitchButtonsExperienceTranslationConfig
   actionButtonText?: string
 }
