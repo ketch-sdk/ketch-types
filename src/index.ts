@@ -3660,8 +3660,16 @@ export interface RightsTitleExperienceTranslationConfig {
   title?: string
 }
 
+export interface RightsRequestTypesExperienceTranslationConfig {
+  provideData: string
+  deleteData: string
+  restrictProcessing: string
+  updateData: string
+}
+
 export interface RequestsTabRightsExperienceTranslationConfig {
   title?: RightsTitleExperienceTranslationConfig
+  requestTypes?: RightsRequestTypesExperienceTranslationConfig
 }
 
 export interface RequestsTabHomeExperienceTranslationConfig {
