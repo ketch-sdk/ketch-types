@@ -3108,7 +3108,6 @@ export interface RequestsTabDsrLinkThemeConfig {
 
 export interface RightsListItemThemeConfig {
   title?: TextThemeConfig
-  subtitle?: TextThemeConfig
   arrowIcon?: ColorThemeConfig
   background?: ColorThemeConfig
   cornerRadius?: number
