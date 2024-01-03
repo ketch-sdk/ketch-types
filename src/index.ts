@@ -3374,9 +3374,9 @@ export enum UnsubscribeAllImpact {
 }
 
 export enum SubscriptionItemType {
-  Unknown = 0,
-  Topic = 1,
-  Control = 2,
+  Unknown = 'unknown',
+  Topic = 'topic',
+  Control = 'control',
 }
 
 export interface UnsubscribeAllTitleExperienceLayoutConfig {
