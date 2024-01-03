@@ -3057,13 +3057,13 @@ export enum SubscriptionListStyle {
   Underlined = 'underlined',
 }
 
-export enum UnsubscribeFromAllPoisition {
+export enum UnsubscribeFromAllPosition {
   Top = 'top',
   Bottom = 'bottom',
 }
 
 export interface SubscriptionsTabUnsubscribeAllThemeConfig {
-  position?: UnsubscribeFromAllPoisition
+  position?: UnsubscribeFromAllPosition
   background?: ColorThemeConfig
   text?: ColorThemeConfig
   cornerRadius?: number
