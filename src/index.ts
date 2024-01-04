@@ -1110,7 +1110,29 @@ export interface Stack {
 }
 
 /**
- * Configuration
+ * GetConsentConfigurationV2 request body
+ */
+export interface GetConsentConfigurationV2Request {
+  propertyCode: string
+  envCode: string
+  jurisdictionCode: string
+  langCode: string
+  hash?: string
+}
+
+/**
+ * GetPreferenceConfigurationV2 request body
+ */
+export interface GetPreferenceConfigurationV2Request {
+  propertyCode: string
+  envCode: string
+  jurisdictionCode: string
+  langCode: string
+  hash?: string
+}
+
+/**
+ * Configuration V2
  */
 export interface ConfigurationV2 {
   /**
