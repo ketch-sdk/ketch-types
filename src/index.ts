@@ -3057,7 +3057,13 @@ export enum SubscriptionListStyle {
   Underlined = 'underlined',
 }
 
-export interface SubscriptionsTabGlobalControlThemeConfig {
+export enum UnsubscribeFromAllPosition {
+  Top = 'top',
+  Bottom = 'bottom',
+}
+
+export interface SubscriptionsTabUnsubscribeAllThemeConfig {
+  position?: UnsubscribeFromAllPosition
   background?: ColorThemeConfig
   text?: ColorThemeConfig
   cornerRadius?: number
@@ -3080,7 +3086,7 @@ export interface SubscriptionsTabListThemeConfig {
 
 export interface PreferenceSubscriptionsTabThemeConfig {
   header?: PageTextThemeConfig
-  globalControl?: SubscriptionsTabGlobalControlThemeConfig
+  unsubscribeAll?: SubscriptionsTabUnsubscribeAllThemeConfig
   list?: SubscriptionsTabListThemeConfig
   footer?: FooterThemeConfig
 }
@@ -3102,7 +3108,6 @@ export interface RequestsTabDsrLinkThemeConfig {
 
 export interface RightsListItemThemeConfig {
   title?: TextThemeConfig
-  subtitle?: TextThemeConfig
   arrowIcon?: ColorThemeConfig
   background?: ColorThemeConfig
   cornerRadius?: number
@@ -3133,6 +3138,7 @@ export interface FormFieldsThemeConfig {
   style?: FormFieldStyle
   active?: FieldThemeConfig
   inactive?: FieldThemeConfig
+  error?: FieldThemeConfig
   cornerRadius?: number
   fieldLabel?: TextThemeConfig
   hintText?: TextThemeConfig
@@ -3143,24 +3149,34 @@ export interface RightFormThemeConfig {
   dividers?: FormDividersThemeConfig
   fields?: FormFieldsThemeConfig
   checkboxes?: CheckboxesThemeConfig
-  actionButton?: ActionButtonThemeConfig
 }
 
 export interface RequestsTabRightFormThemeConfig {
   header?: HeaderThemeConfig
   form?: RightFormThemeConfig
+  actionButton?: ActionButtonThemeConfig
 }
 
-export interface SubmittedRequestThemeConfig {
+export interface SubmittedRequestSummaryBannerThemeConfig {
   bannerVisible?: boolean
   bannerImage?: ImageThemeConfig
+}
+
+export interface SubmittedRequestSummaryTextThemeConfig {
   title?: TextThemeConfig
   description?: TextThemeConfig
 }
 
+export interface SubmittedRequestFooterThemeConfig {
+  background?: ColorThemeConfig
+  actionButton?: ActionButtonThemeConfig
+}
+
 export interface RequestsTabSubmittedThemeConfig {
   header?: HeaderThemeConfig
-  summary?: SubmittedRequestThemeConfig
+  banner?: SubmittedRequestSummaryBannerThemeConfig
+  text?: SubmittedRequestSummaryTextThemeConfig
+  footer?: SubmittedRequestFooterThemeConfig
 }
 
 export interface PreferenceRequestsTabThemeConfig {
@@ -3351,10 +3367,53 @@ export interface PreferencePurposesTabExperienceLayoutConfig {
 }
 
 /** Preferences - Subscriptions Experience Layout Config */
+
+export enum UnsubscribeAllImpact {
+  Universal = 'universal',
+  SingleExperience = 'singleExperience',
+}
+
+export enum SubscriptionItemType {
+  Unknown = 'unknown',
+  Topic = 'topic',
+  Control = 'control',
+}
+
+export interface UnsubscribeAllTitleExperienceLayoutConfig {
+  useDefault?: boolean
+}
+
+export interface UnsubscribeAllDescriptionExperienceLayoutConfig {
+  visible?: boolean
+}
+
+export interface UnsubscribeAllImpactExperienceLayoutConfig {
+  visible?: boolean
+  useDefault?: boolean
+}
+
+export interface SubscriptionsTabUnsubscribeAllExperienceLayoutConfig {
+  title: UnsubscribeAllTitleExperienceLayoutConfig
+  description: UnsubscribeAllDescriptionExperienceLayoutConfig
+  switchButton: SwitchButtonsExperienceLayoutConfig
+  impact: UnsubscribeAllImpact
+}
+
+export interface SubscriptionListItem {
+  type: SubscriptionItemType
+  code: string
+}
+
+export interface SubscriptionsTabListExperienceLayoutConfig {
+  items: SubscriptionListItem[]
+  switchButtons?: SwitchButtonsExperienceLayoutConfig
+}
+
 export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
-  globalControlSwitchLabel?: SwitchButtonsExperienceLayoutConfig
-  listSwitchLabels?: SwitchButtonsExperienceLayoutConfig
+  unsubscribeAll?: SubscriptionsTabUnsubscribeAllExperienceLayoutConfig
+  list?: SubscriptionsTabListExperienceLayoutConfig
+  actionButtonUseDefaultText?: boolean
 }
 
 /** Preferences - Requests Experience Layout Config */
@@ -3407,9 +3466,19 @@ export interface RequestsTabRightFormExperienceLayoutConfig {
   enableRecaptcha?: boolean
 }
 
+export interface SubmittedActionButtonExperienceLayoutConfig {
+  visible?: boolean
+  useDefault?: boolean
+}
+
+export interface RequestsTabSubmittedExperienceLayoutConfig {
+  actionButton: SubmittedActionButtonExperienceLayoutConfig
+}
+
 export interface PreferenceRequestsTabExperienceLayoutConfig {
   home?: RequestsTabHomeExperienceLayoutConfig
   rightForm?: RequestsTabRightFormExperienceLayoutConfig
+  submitted?: RequestsTabSubmittedExperienceLayoutConfig
 }
 
 export interface PreferenceExperienceLayoutConfig {
@@ -3567,9 +3636,15 @@ export interface PreferencePurposesTabExperienceTranslationConfig {
 }
 
 /** Preferences - Subscriptions Experience Translation Config */
+export interface SubscriptionsTabUnsubscribeAllExperienceTranslationConfig {
+  title?: string
+  description?: string
+  switchLabels?: SwitchButtonsExperienceTranslationConfig
+}
+
 export interface PreferenceSubscriptionsTabExperienceTranslationConfig {
   header?: PreferenceTabHeaderExperienceTranslationConfig
-  globalControlSwitchLabel?: SwitchButtonsExperienceTranslationConfig
+  unsubscribeAll?: SubscriptionsTabUnsubscribeAllExperienceTranslationConfig
   listSwitchLabels?: SwitchButtonsExperienceTranslationConfig
   actionButtonText?: string
 }
@@ -3585,8 +3660,16 @@ export interface RightsTitleExperienceTranslationConfig {
   title?: string
 }
 
+export interface RightsRequestTypesExperienceTranslationConfig {
+  provideData: string
+  deleteData: string
+  restrictProcessing: string
+  updateData: string
+}
+
 export interface RequestsTabRightsExperienceTranslationConfig {
   title?: RightsTitleExperienceTranslationConfig
+  requestTypes?: RightsRequestTypesExperienceTranslationConfig
 }
 
 export interface RequestsTabHomeExperienceTranslationConfig {
@@ -3595,14 +3678,20 @@ export interface RequestsTabHomeExperienceTranslationConfig {
   rights?: RequestsTabRightsExperienceTranslationConfig
 }
 
+export interface RequestsTabRightFormExperienceTranslationConfig {
+  recaptchaFailureText?: string
+}
+
 export interface RequestsTabSubmittedExperienceTranslationConfig {
   title?: string
   subtitle?: string
   description?: string
+  actionButtonText?: string
 }
 
 export interface PreferenceRequestsTabExperienceTranslationConfig {
   home?: RequestsTabHomeExperienceTranslationConfig
+  rightForm?: RequestsTabRightFormExperienceTranslationConfig
   submitted?: RequestsTabSubmittedExperienceTranslationConfig
 }
 
