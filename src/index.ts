@@ -3425,6 +3425,7 @@ export interface UnsubscribeAllImpactExperienceLayoutConfig {
 }
 
 export interface SubscriptionsTabUnsubscribeAllExperienceLayoutConfig {
+  visible: boolean
   title: UnsubscribeAllTitleExperienceLayoutConfig
   description: UnsubscribeAllDescriptionExperienceLayoutConfig
   switchButton: SwitchButtonsExperienceLayoutConfig
