@@ -2359,6 +2359,16 @@ export interface Ketch {
   getSubscriptionConfiguration(): Promise<SubscriptionConfiguration>
 
   /**
+   * Get consent experience configuration
+   */
+  getConsentConfiguration(): Promise<ConfigurationV2>
+
+  /**
+   * Get preference experience configuration
+   */
+  getPreferenceConfiguration(): Promise<ConfigurationV2>
+
+  /**
    * Sets the provisional consent
    *
    * @param consent Consents
