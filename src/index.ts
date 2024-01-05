@@ -1113,6 +1113,7 @@ export interface Stack {
  * GetConsentConfigurationV2 request body
  */
 export interface GetConsentConfigurationV2Request {
+  organizationCode: string
   propertyCode: string
   envCode: string
   jurisdictionCode: string
@@ -1124,6 +1125,7 @@ export interface GetConsentConfigurationV2Request {
  * GetPreferenceConfigurationV2 request body
  */
 export interface GetPreferenceConfigurationV2Request {
+  organizationCode: string
   propertyCode: string
   envCode: string
   jurisdictionCode: string
