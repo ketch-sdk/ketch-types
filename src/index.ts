@@ -3435,8 +3435,9 @@ export interface SubscriptionsTabUnsubscribeAllExperienceLayoutConfig {
 }
 
 export interface SubscriptionListItem {
-  type: SubscriptionItemType
-  code: string
+  type?: SubscriptionItemType
+  code?: string
+  name?: string
 }
 
 export interface SubscriptionsTabListExperienceLayoutConfig {
