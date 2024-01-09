@@ -3498,8 +3498,13 @@ export interface RequestsTabHomeExperienceLayoutConfig {
   rights?: RequestsTabRightsExperienceLayoutConfig
 }
 
+export interface RightFormActionButtonExperienceLayoutConfig {
+  useDefaultText?: boolean
+}
+
 export interface RequestsTabRightFormExperienceLayoutConfig {
   enableRecaptcha?: boolean
+  actionButton?: RightFormActionButtonExperienceLayoutConfig
 }
 
 export interface SubmittedActionButtonExperienceLayoutConfig {
@@ -3716,6 +3721,7 @@ export interface RequestsTabHomeExperienceContentConfig {
 
 export interface RequestsTabRightFormExperienceContentConfig {
   recaptchaFailureText?: string
+  actionButtonText?: string
 }
 
 export interface RequestsTabSubmittedExperienceContentConfig {
