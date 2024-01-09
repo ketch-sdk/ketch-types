@@ -3344,9 +3344,9 @@ export enum PreferenceCenterPage {
   PrivacyPolicy = 'privacyPolicy',
   Purpose = 'purpose',
   Subscriptions = 'subscriptions',
-  Requests = 'requests',
-  RightForm = 'rightForm',
-  Summary = 'summary',
+  RequestsHome = 'requestsHome',
+  RequestsForm = 'requestsForm',
+  RequestsSubmitted = 'requestsSubmitted',
 }
 
 export interface WelcomeTabWelcomeMsgExperienceLayoutConfig {
