@@ -2879,6 +2879,7 @@ export interface CheckboxThemeConfig {
 export interface CheckboxesThemeConfig {
   selected?: CheckboxThemeConfig
   unselected?: CheckboxThemeConfig
+  error?: CheckboxThemeConfig
 }
 
 export interface ImageThemeConfig {
