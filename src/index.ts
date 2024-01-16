@@ -627,7 +627,7 @@ export interface Identity {
   /**
    * format is the encoding of the value
    */
-  format: IdentityFormat
+  format?: IdentityFormat
 
   /**
    * key is the identifier to find the identity within the value if the format is IDENTITY_FORMAT_STRING then key
