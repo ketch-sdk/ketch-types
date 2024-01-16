@@ -3689,6 +3689,13 @@ export enum CanonicalRightCode {
   Update = 'update',
 }
 
+export enum CanonicalRightCode {
+  Get = 'get',
+  Delete = 'delete',
+  Restrict = 'restrict',
+  Update = 'update',
+}
+
 export enum RightsFormMode {
   Single = 'single',
   Custom = 'custom',
