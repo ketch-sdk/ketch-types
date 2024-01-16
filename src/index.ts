@@ -627,7 +627,7 @@ export interface Identity {
   /**
    * format is the encoding of the value
    */
-  format: IdentityFormat
+  format?: IdentityFormat
 
   /**
    * key is the identifier to find the identity within the value if the format is IDENTITY_FORMAT_STRING then key
@@ -1260,6 +1260,11 @@ export interface ConfigurationV2 {
   canonicalRightFormTemplates?: CanonicalRightForm[]
   customRightFormTemplates?: CustomRightForm[]
   formTemplates: FormTemplate[]
+
+  /**
+   * Subscription config
+   */
+  subscription?: SubscriptionConfiguration
 
   /**
    * Translations static translations
@@ -2762,7 +2767,9 @@ export enum ButtonVariant {
 
 /** Shared Theme Config Entities */
 
-/** Banner/Modal Text */
+/**
+ * Banner/Modal Text Theme Configuration
+ */
 
 export interface TextThemeConfig {
   color?: string
@@ -2770,14 +2777,18 @@ export interface TextThemeConfig {
   underline?: boolean
 }
 
-/** Banner/Modal Color */
+/**
+ * Banner/Modal Color Theme Configuration
+ */
 
 export interface ColorThemeConfig {
   color?: string
   opacity?: number
 }
 
-/** Banner/Modal Backdrop */
+/**
+ * Banner/Modal Backdrop Theme Configuration
+ */
 
 export interface BackdropThemeConfig {
   visible?: boolean
@@ -2785,22 +2796,29 @@ export interface BackdropThemeConfig {
   disableContentInteractions?: boolean
 }
 
-/** Banner/Modal Close Button */
+/**
+ * Back/Close Button Theme Configuration
+ */
+
 export interface ReturnButtonThemeConfig {
   background?: ColorThemeConfig
   icon?: ColorThemeConfig
   cornerRadius?: number
 }
 
-/** Banner/Modal Header */
+/**
+ * Banner/Modal Header Theme Configuration
+ */
 
 export interface HeaderThemeConfig {
   background?: ColorThemeConfig
   title?: TextThemeConfig
-  returnButton?: ReturnButtonThemeConfig // This is either a close or back button
+  returnButton?: ReturnButtonThemeConfig // This is either a Back or Close button
 }
 
-/** Action Button */
+/**
+ * Action Button Theme Configuration
+ */
 
 export enum ItemStyle {
   Filled = 'filled',
@@ -2810,19 +2828,25 @@ export enum ItemStyle {
 export interface ActionButtonThemeConfig {
   style?: ItemStyle
   background?: ColorThemeConfig
+  outline?: ColorThemeConfig
   text?: TextThemeConfig
   icon?: ColorThemeConfig
   cornerRadius?: number
 }
 
-/** Footer */
+/**
+ * Banner and Modal Footer Theme Configuration
+ */
 
-export interface FooterThemeConfig {
+export interface BannerModalFooterThemeConfig {
   background?: ColorThemeConfig
   actionButton?: ActionButtonThemeConfig
+  ketchBadgeVisible?: boolean
 }
 
-/** Purpose List Header */
+/**
+ * Purpose List Header Theme Configuration
+ */
 
 export interface PurposeListHeaderThemeConfig {
   title?: TextThemeConfig
@@ -2830,7 +2854,9 @@ export interface PurposeListHeaderThemeConfig {
   rejectAllButton?: ActionButtonThemeConfig
 }
 
-/** Purpose List */
+/**
+ * List Theme Configuration
+ */
 
 export enum ListLayout {
   Expandable = 'expandable',
@@ -2847,6 +2873,10 @@ export interface ListItemsThemeConfig {
   purposeCornerRadius?: number
 }
 
+/**
+ * Switch Buttons Theme Configuration
+ */
+
 export interface SwitchButtonThemeConfig {
   background?: ColorThemeConfig
   text?: TextThemeConfig
@@ -2857,19 +2887,27 @@ export interface SwitchButtonsThemeConfig {
   off?: SwitchButtonThemeConfig
 }
 
+/**
+ * Purpose List Theme Configuration
+ */
+
 export interface PurposeListThemeConfig {
-  listItems?: ListItemsThemeConfig
+  purposeListItems?: ListItemsThemeConfig
   switchButtons?: SwitchButtonsThemeConfig
 }
 
-/** Page Text Theme */
+/**
+ * Page Text Theme Configuration
+ */
 export interface PageTextThemeConfig {
   title?: TextThemeConfig
   description?: TextThemeConfig
   link?: TextThemeConfig
 }
 
-/** Checkboxes Theme */
+/**
+ * Checkboxes Theme Configuration
+ */
 
 export interface CheckboxThemeConfig {
   background?: ColorThemeConfig
@@ -2882,12 +2920,18 @@ export interface CheckboxesThemeConfig {
   error?: CheckboxThemeConfig
 }
 
+/**
+ * Image Theme Configuration
+ */
+
 export interface ImageThemeConfig {
   name?: string
   url?: string
 }
 
-/** Banner Config */
+/**
+ * Banner Theme Configuration Enums
+ */
 
 export enum BannerContainerLayout {
   Horizontal = 'horizontal',
@@ -2909,7 +2953,9 @@ export enum BannerContainerPosition {
   Center = 'center',
 }
 
-/** Banner Container */
+/**
+ * Banner Container Theme Configuration
+ */
 
 export interface BannerContainerThemeConfig {
   backdrop?: BackdropThemeConfig
@@ -2921,35 +2967,48 @@ export interface BannerContainerThemeConfig {
   font?: string
 }
 
-/** Banner Description */
+/**
+ * Banner Description Theme Configuration
+ */
 export interface BannerDescriptionThemeConfig {
   link?: TextThemeConfig
   text?: TextThemeConfig
 }
 
-/** Banner Buttons Theme Config - Rightmost === primary */
+/**
+ * Banner Buttons Theme Configuration - Rightmost === primary
+ */
 export interface BannerButtonsThemeConfig {
   primary?: ActionButtonThemeConfig
   secondary?: ActionButtonThemeConfig
   tertiary?: ActionButtonThemeConfig
 }
 
-/** Banner Theme Config */
+/**
+ * Banner Theme Configuration
+ */
 
 export interface BannerThemeConfig {
   container?: BannerContainerThemeConfig
   header?: HeaderThemeConfig
   description?: BannerDescriptionThemeConfig
   buttons?: BannerButtonsThemeConfig
+  footer?: BannerModalFooterThemeConfig
 }
 
-/** Modal Theme Config */
+/**
+ * Modal Theme Theme Configuration Enums
+ */
 
 export enum ModalContainerPosition {
   Center = 'center',
   Left = 'left',
   Right = 'right',
 }
+
+/**
+ * Modal Container Theme Configuration
+ */
 
 export interface ModalContainerThemeConfig {
   position?: ModalContainerPosition
@@ -2959,39 +3018,70 @@ export interface ModalContainerThemeConfig {
   backdrop?: BackdropThemeConfig
 }
 
+/**
+ * Modal Description Theme Configuration
+ */
+
 export interface ModalDescriptionThemeConfig {
   title?: TextThemeConfig
   text?: TextThemeConfig
   link?: TextThemeConfig
 }
 
+/**
+ * Modal Theme Configuration
+ */
+
 export interface ModalThemeConfig {
   container?: ModalContainerThemeConfig
   header?: HeaderThemeConfig
   description?: ModalDescriptionThemeConfig
-  listHeader?: PurposeListHeaderThemeConfig
+  purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
-  footer?: FooterThemeConfig
+  footer?: BannerModalFooterThemeConfig
 }
 
-/** Preferences - Welcome Theme Config */
+/**
+ * Preference Center Exit Button Theme Configuration
+ */
 
 export enum ExitButtonPosition {
   topRight = 'topRight',
   bottomLeft = 'bottomLeft',
 }
 
-export interface WelcomeTabContainerThemeConfig {
+/**
+ * Preference Center Footer Theme Configuration
+ */
+
+export interface PreferenceFooterThemeConfig {
+  background?: ColorThemeConfig
+  actionButton?: ActionButtonThemeConfig
+}
+
+/**
+ * Preference Center Welcome Tab Container Theme Configuration
+ */
+
+export interface PreferenceContainerThemeConfig {
   exitPosition?: ExitButtonPosition
   font?: string
   background?: ColorThemeConfig
 }
 
-export interface WelcomeTabHeaderThemeConfig {
+/**
+ * Preference Center Welcome Tab Header Theme Configuration
+ */
+
+export interface PreferenceHeaderThemeConfig {
   background?: ColorThemeConfig
   title?: TextThemeConfig
   logo?: ImageThemeConfig
 }
+
+/**
+ * Preference Center Navigation Panel Theme Configuration
+ */
 
 export interface NavigationLayoutItemThemeConfig {
   unselectedBackground?: ColorThemeConfig
@@ -3015,13 +3105,17 @@ export interface NavigationIconsThemeConfig {
   requests?: ImageThemeConfig
 }
 
-export interface WelcomeTabNavigationThemeConfig {
+export interface PreferenceNavigationThemeConfig {
   layout?: NavigationLayoutThemeConfig
   iconsVisible?: boolean
   icons?: NavigationIconsThemeConfig
 }
 
-export interface WelcomeTabExitButtonThemeConfig {
+/**
+ * Preference Center Welcome Tab Exit Button Theme Configuration
+ */
+
+export interface PreferenceExitButtonThemeConfig {
   background?: ColorThemeConfig
   text?: TextThemeConfig
   iconVisible?: boolean
@@ -3030,10 +3124,18 @@ export interface WelcomeTabExitButtonThemeConfig {
   icon?: ImageThemeConfig
 }
 
+/**
+ * Preference Center Welcome Tab Hero Banner Theme Configuration
+ */
+
 export interface WelcomeTabHeroBannerThemeConfig {
   visible?: boolean
   image?: ImageThemeConfig
 }
+
+/**
+ * Preference Center Welcome Tab Welcome Message Theme Configuration
+ */
 
 export interface WelcomeTabWelcomeMsgThemeConfig {
   title?: TextThemeConfig
@@ -3041,11 +3143,19 @@ export interface WelcomeTabWelcomeMsgThemeConfig {
   link?: TextThemeConfig
 }
 
+/**
+ * Preference Center Welcome Tab Quick Links Theme Configuration
+ */
+
 export interface WelcomeTabQuickLinksThemeConfig {
   title?: TextThemeConfig
   link?: TextThemeConfig
   showArrows?: boolean
 }
+
+/**
+ * Preference Center Welcome Tab About Section Theme Configuration
+ */
 
 export interface WelcomeTabAboutThemeConfig {
   title?: TextThemeConfig
@@ -3053,39 +3163,40 @@ export interface WelcomeTabAboutThemeConfig {
   link?: TextThemeConfig
 }
 
+/**
+ * Preference Center Welcome Tab Theme Configuration
+ */
+
 export interface PreferenceWelcomeTabThemeConfig {
-  container?: WelcomeTabContainerThemeConfig
-  header?: WelcomeTabHeaderThemeConfig
-  navigation?: WelcomeTabNavigationThemeConfig
-  exitButton?: WelcomeTabExitButtonThemeConfig
   heroBanner?: WelcomeTabHeroBannerThemeConfig
   welcomeMsg?: WelcomeTabWelcomeMsgThemeConfig
   quickLinks?: WelcomeTabQuickLinksThemeConfig
   about?: WelcomeTabAboutThemeConfig
 }
 
-/** Preferences - Privacy Policy Theme Config */
+/**
+ * Preference Center Privacy Policy Theme Configuration
+ */
+
 export interface PreferencePrivacyPolicyTabThemeConfig {
   text?: TextThemeConfig
   link?: TextThemeConfig
 }
 
-/** Preferences - Purposes Theme Config */
-
-export interface PurposesTabHeaderThemeConfig {
-  title?: TextThemeConfig
-  description?: TextThemeConfig
-  link?: TextThemeConfig
-}
+/**
+ * Preference Center Purposes Tab Theme Configuration
+ */
 
 export interface PreferencePurposesTabThemeConfig {
   header?: PageTextThemeConfig
-  listHeader?: PurposeListHeaderThemeConfig
-  list?: PurposeListThemeConfig
-  footer?: FooterThemeConfig
+  purposeListHeader?: PurposeListHeaderThemeConfig
+  purposeList?: PurposeListThemeConfig
+  footer?: PreferenceFooterThemeConfig
 }
 
-/** Preferences - Subscriptions Theme Config */
+/**
+ * Preference Center Subscriptions Tab Theme Configuration Enums
+ */
 
 export enum SubscriptionListStyle {
   Filled = 'filled',
@@ -3097,6 +3208,10 @@ export enum UnsubscribeFromAllPosition {
   Bottom = 'bottom',
 }
 
+/**
+ * Preference Center Subscriptions Tab Unsubscribe All Theme Configuration
+ */
+
 export interface SubscriptionsTabUnsubscribeAllThemeConfig {
   position?: UnsubscribeFromAllPosition
   background?: ColorThemeConfig
@@ -3104,6 +3219,10 @@ export interface SubscriptionsTabUnsubscribeAllThemeConfig {
   cornerRadius?: number
   switchButton?: SwitchButtonsThemeConfig
 }
+
+/**
+ * Preference Center Subscriptions Tab List Theme Configuration
+ */
 
 export interface LayoutThemeConfig {
   style?: SubscriptionListStyle
@@ -3119,19 +3238,28 @@ export interface SubscriptionsTabListThemeConfig {
   checkbox?: CheckboxesThemeConfig
 }
 
+/**
+ * Preference Center Subscriptions Tab Theme Configuration
+ */
+
 export interface PreferenceSubscriptionsTabThemeConfig {
   header?: PageTextThemeConfig
   unsubscribeAll?: SubscriptionsTabUnsubscribeAllThemeConfig
   list?: SubscriptionsTabListThemeConfig
-  footer?: FooterThemeConfig
+  footer?: PreferenceFooterThemeConfig
 }
 
-/** Preferences - Requests Theme Config */
+/**
+ * Preference Center Requests Tab Theme Configuration Enums */
 
 export enum FormFieldStyle {
   Box = 'box',
   Underline = 'underline',
 }
+
+/**
+ * Preference Center Requests Tab Home View DSR Link Theme Configuration
+ */
 
 export interface RequestsTabDsrLinkThemeConfig {
   title?: TextThemeConfig
@@ -3140,6 +3268,10 @@ export interface RequestsTabDsrLinkThemeConfig {
   background?: ColorThemeConfig
   cornerRadius?: number
 }
+
+/**
+ * Preference Center Requests Tab Home View Rights List Theme Configuration
+ */
 
 export interface RightsListItemThemeConfig {
   title?: TextThemeConfig
@@ -3158,6 +3290,10 @@ export interface RequestsTabHomeThemeConfig {
   dsrPortalLink?: RequestsTabDsrLinkThemeConfig
   rightsList?: RequestsTabRightsListThemeConfig
 }
+
+/**
+ * Preference Center Requests Tab Right Form View Theme Configuration
+ */
 
 export interface FormDividersThemeConfig {
   title?: TextThemeConfig
@@ -3192,10 +3328,18 @@ export interface RequestsTabRightFormThemeConfig {
   actionButton?: ActionButtonThemeConfig
 }
 
+/**
+ * Preference Center Requests Tab Submmited View Summary Banner Theme Configuration
+ */
+
 export interface SubmittedRequestSummaryBannerThemeConfig {
-  bannerVisible?: boolean
-  bannerImage?: ImageThemeConfig
+  visible?: boolean
+  image?: ImageThemeConfig
 }
+
+/**
+ * Preference Center Requests Tab Submmited View Summary Text Theme Configuration
+ */
 
 export interface SubmittedRequestSummaryTextThemeConfig {
   title?: TextThemeConfig
@@ -3220,15 +3364,34 @@ export interface PreferenceRequestsTabThemeConfig {
   submitted?: RequestsTabSubmittedThemeConfig
 }
 
-/** Preferences Theme Config */
+/**
+ * Preference Center Tabs Theme Configuration
+ */
 
-export interface PreferenceThemeConfig {
+export interface PreferenceTabsThemeConfig {
   welcome?: PreferenceWelcomeTabThemeConfig
   privacyPolicy?: PreferencePrivacyPolicyTabThemeConfig
   purposes?: PreferencePurposesTabThemeConfig
   subscriptions?: PreferenceSubscriptionsTabThemeConfig
   requests?: PreferenceRequestsTabThemeConfig
 }
+
+/**
+ * Preference Center Theme Configuration
+ */
+
+export interface PreferenceThemeConfig {
+  container?: PreferenceContainerThemeConfig
+  header?: PreferenceHeaderThemeConfig
+  navigation?: PreferenceNavigationThemeConfig
+  exitButton?: PreferenceExitButtonThemeConfig
+  ketchBadgeVisible?: boolean
+  tabs?: PreferenceTabsThemeConfig
+}
+
+/**
+ * Theme Configuration
+ */
 
 export interface ThemeConfig {
   banner?: BannerThemeConfig
@@ -3240,23 +3403,26 @@ export interface ThemeConfig {
  * Experience V2 Layout Config
  */
 
-/** Shared Experience Layout Config Entities */
-
-/** Banner/Modal Header */
+/**
+ * Banner/Modal Header Experience Layout Configuration
+ */
 
 export interface HeaderExperienceLayoutConfig {
   visible?: boolean
   closeButtonVisible?: boolean
 }
 
-/** Banner/Modal Footer */
+/**
+ * Banner/Modal Footer Experience Layout Configuration
+ */
 
-export interface FooterExperienceLayoutConfig {
-  ketchBadgeVisible?: boolean
+export interface BannerModalFooterExperienceLayoutConfig {
   gpcBadgeVisible?: boolean
 }
 
-/** Switch Buttons */
+/**
+ * Switch Buttons Experience Layout Configuration
+ */
 
 export enum SwitchButtonDisplay {
   Always = 'always',
@@ -3269,7 +3435,9 @@ export interface SwitchButtonsExperienceLayoutConfig {
   useDefaultText?: boolean
 }
 
-/** Text Block - A block of text with optional title */
+/**
+ * Text Block Experience Layout Configuration
+ */
 
 export interface TextBlockTitleExperienceLayoutConfig {
   visible?: boolean
@@ -3279,11 +3447,9 @@ export interface TextBlockExperienceLayoutConfig {
   title?: TextBlockTitleExperienceLayoutConfig
 }
 
-export interface PreferenceTabHeaderExperienceLayoutConfig {
-  title?: TextBlockTitleExperienceLayoutConfig
-}
-
-/** Banner Experience Layout Config */
+/**
+ * Banner Action Button Experience Layout Configuration
+ */
 
 export enum BannerButtonAction {
   SaveCurrentState = 'saveCurrentState',
@@ -3293,13 +3459,15 @@ export enum BannerButtonAction {
   RejectAll = 'rejectAll',
 }
 
-/** Banner Action Button */
 export interface BannerActionButtonExperienceLayoutConfig {
   visible?: boolean
   action?: BannerButtonAction
 }
 
-/** Banner Buttons Experience Layout Config - Rightmost === primary */
+/**
+ * Banner Buttons Experience Experience Layout Configuration
+ */
+
 export interface BannerButtonsExperienceLayoutConfig {
   primary?: BannerActionButtonExperienceLayoutConfig
   secondary?: BannerActionButtonExperienceLayoutConfig
@@ -3307,33 +3475,49 @@ export interface BannerButtonsExperienceLayoutConfig {
   close?: boolean
 }
 
+/**
+ * Banner Experience Layout Configuration
+ */
+
 export interface BannerExperienceLayoutConfig {
   header?: HeaderExperienceLayoutConfig
   buttons?: BannerButtonsExperienceLayoutConfig
-  footer?: FooterExperienceLayoutConfig
+  footer?: BannerModalFooterExperienceLayoutConfig
 }
 
-/** Modal Experience Layout Config */
+/**
+ * Modal List Header Experience Layout Configuration
+ */
 
 export interface ModalListHeaderExperienceLayoutConfig {
   visible?: boolean
-  useDefault?: boolean
+  useDefaultText?: boolean
 }
+
+/**
+ * Modal Purpose List Experience Layout Configuration
+ */
 
 export interface ModalPurposeListExperienceLayoutConfig {
   legalBasisVisible?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
 }
 
+/**
+ * Modal Experience Layout Configuration
+ */
+
 export interface ModalExperienceLayoutConfig {
   header?: HeaderExperienceLayoutConfig
   description?: TextBlockExperienceLayoutConfig
-  listHeader?: ModalListHeaderExperienceLayoutConfig
+  purposeListHeader?: ModalListHeaderExperienceLayoutConfig
   purposeList?: ModalPurposeListExperienceLayoutConfig
-  footer?: FooterExperienceLayoutConfig
+  footer?: BannerModalFooterExperienceLayoutConfig
 }
 
-/** Preferences - Welcome Experience Layout Config */
+/**
+ * Preference Center Welcome Tab Experience Layout Configuration Enums
+ */
 
 export enum QuickLinkAction {
   OpenUrl = 'openUrl',
@@ -3350,9 +3534,17 @@ export enum PreferenceCenterPage {
   RequestsSubmitted = 'requestsSubmitted',
 }
 
+/**
+ * Preference Center Welcome Tab Welcome Message Experience Layout Configuration
+ */
+
 export interface WelcomeTabWelcomeMsgExperienceLayoutConfig {
   visible?: boolean
 }
+
+/**
+ * Preference Center Welcome Tab Quick Links Layout Configuration
+ */
 
 export interface QuickLinkExperienceLayoutConfig {
   action?: QuickLinkAction
@@ -3365,28 +3557,47 @@ export interface WelcomeTabQuickLinksExperienceLayoutConfig {
   links?: QuickLinkExperienceLayoutConfig[]
 }
 
+/**
+ * Preference Center Welcome Tab About Section Layout Configuration
+ */
+
 export interface WelcomeTabAboutExperienceLayoutConfig {
   visible?: boolean
 }
 
+/**
+ * Preference Center Welcome Tab Experience Layout Configuration
+ */
+
 export interface PreferenceWelcomeTabExperienceLayoutConfig {
-  footer?: FooterExperienceLayoutConfig
   welcomeMsg?: WelcomeTabWelcomeMsgExperienceLayoutConfig
   quickLinks?: WelcomeTabQuickLinksExperienceLayoutConfig
   about?: WelcomeTabAboutExperienceLayoutConfig
 }
 
-/** Preferences - Privacy Policy Experience Layout Config */
+/**
+ * Preference Center Privacy Policy Tab Experience Layout Configuration
+ */
 export interface PreferencePrivacyPolicyTabExperienceLayoutConfig {
   visible?: boolean
   policyDocumentId?: string
 }
 
-/** Preferences - Purposes Experience Layout Config */
+/**
+ * Preference Center Purposes Tab Header Experience Layout Configuration
+ */
+
+export interface PreferenceTabHeaderExperienceLayoutConfig {
+  title?: TextBlockTitleExperienceLayoutConfig
+}
+
+/**
+ * Preference Center Purposes Tab List Experience Layout Configuration
+ */
 
 export interface PurposesTabListHeaderExperienceLayoutConfig {
   titleVisible?: boolean
-  useDefaultTitle?: boolean
+  useDefaultText?: boolean
 }
 
 export interface PurposesTabListExperienceLayoutConfig {
@@ -3394,14 +3605,20 @@ export interface PurposesTabListExperienceLayoutConfig {
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
 }
 
+/**
+ * Preference Center Purposes Tab Experience Layout Configuration
+ */
+
 export interface PreferencePurposesTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
-  listHeader?: PurposesTabListHeaderExperienceLayoutConfig
-  list?: PurposesTabListExperienceLayoutConfig
+  purposeListHeader?: PurposesTabListHeaderExperienceLayoutConfig
+  purposeList?: PurposesTabListExperienceLayoutConfig
   actionButtonUseDefaultText?: boolean
 }
 
-/** Preferences - Subscriptions Experience Layout Config */
+/**
+ * Preference Center Subscriptions Tab Experience Layout Configuration Enums
+ */
 
 export enum UnsubscribeAllImpact {
   Universal = 'universal',
@@ -3414,8 +3631,12 @@ export enum SubscriptionItemType {
   Control = 'control',
 }
 
+/**
+ * Preference Center Subscriptions Tab Unsubscribe All Experience Layout Configuration
+ */
+
 export interface UnsubscribeAllTitleExperienceLayoutConfig {
-  useDefault?: boolean
+  useDefaultText?: boolean
 }
 
 export interface UnsubscribeAllDescriptionExperienceLayoutConfig {
@@ -3424,7 +3645,7 @@ export interface UnsubscribeAllDescriptionExperienceLayoutConfig {
 
 export interface UnsubscribeAllImpactExperienceLayoutConfig {
   visible?: boolean
-  useDefault?: boolean
+  useDefaultText?: boolean
 }
 
 export interface SubscriptionsTabUnsubscribeAllExperienceLayoutConfig {
@@ -3434,6 +3655,10 @@ export interface SubscriptionsTabUnsubscribeAllExperienceLayoutConfig {
   switchButton: SwitchButtonsExperienceLayoutConfig
   impact: UnsubscribeAllImpact
 }
+
+/**
+ * Preference Center Subscriptions Tab List Experience Layout Configuration
+ */
 
 export interface SubscriptionListItem {
   type?: SubscriptionItemType
@@ -3453,7 +3678,9 @@ export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
   actionButtonUseDefaultText?: boolean
 }
 
-/** Preferences - Requests Experience Layout Config */
+/**
+ * Preference Center Requests Tab Experience Layout Configuration Enums
+ */
 
 export enum CanonicalRightCode {
   Get = 'get',
@@ -3467,8 +3694,12 @@ export enum RightsFormMode {
   Custom = 'custom',
 }
 
+/**
+ * Preference Center Requests Tab Home Right Forms Experience Layout Configuration
+ */
+
 export interface RightsTitleExperienceLayoutConfig {
-  useDefault?: boolean
+  useDefaultText?: boolean
 }
 
 export interface RightFormMapping {
@@ -3501,10 +3732,18 @@ export interface RequestsTabRightsExperienceLayoutConfig {
   forms?: RightFormsExperienceLayoutConfig
 }
 
+/**
+ * Preference Center Requests Tab Home Experience Layout Configuration
+ */
+
 export interface RequestsTabHomeExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
   rights?: RequestsTabRightsExperienceLayoutConfig
 }
+
+/**
+ * Preference Center Requests Tab Right Form Experience Layout Configuration
+ */
 
 export interface RightFormActionButtonExperienceLayoutConfig {
   useDefaultText?: boolean
@@ -3515,14 +3754,22 @@ export interface RequestsTabRightFormExperienceLayoutConfig {
   actionButton?: RightFormActionButtonExperienceLayoutConfig
 }
 
+/**
+ * Preference Center Requests Tab Submitted Action Button Experience Layout Configuration
+ */
+
 export interface SubmittedActionButtonExperienceLayoutConfig {
   visible?: boolean
-  useDefault?: boolean
+  useDefaultText?: boolean
 }
 
 export interface RequestsTabSubmittedExperienceLayoutConfig {
   actionButton: SubmittedActionButtonExperienceLayoutConfig
 }
+
+/**
+ * Preference Center Requests Tab Experience Layout Configuration
+ */
 
 export interface PreferenceRequestsTabExperienceLayoutConfig {
   home?: RequestsTabHomeExperienceLayoutConfig
@@ -3530,7 +3777,11 @@ export interface PreferenceRequestsTabExperienceLayoutConfig {
   submitted?: RequestsTabSubmittedExperienceLayoutConfig
 }
 
-export interface PreferenceExperienceLayoutConfig {
+/**
+ * Preference Center Tabs Experience Layout Configuration
+ */
+
+export interface PreferenceExperienceTabsLayoutConfig {
   welcome?: PreferenceWelcomeTabExperienceLayoutConfig
   privacyPolicy?: PreferencePrivacyPolicyTabExperienceLayoutConfig
   purposes?: PreferencePurposesTabExperienceLayoutConfig
@@ -3538,8 +3789,18 @@ export interface PreferenceExperienceLayoutConfig {
   requests?: PreferenceRequestsTabExperienceLayoutConfig
 }
 
-/** Top level experience layout config object */
+/**
+ * Preference Center Experience Layout Configuration
+ */
 
+export interface PreferenceExperienceLayoutConfig {
+  gpcBadgeVisible?: boolean
+  tabs?: PreferenceExperienceTabsLayoutConfig
+}
+
+/**
+ * Experience Layout Configuration
+ */
 export interface ExperienceLayoutConfig {
   banner?: BannerExperienceLayoutConfig
   modal?: ModalExperienceLayoutConfig
@@ -3547,59 +3808,60 @@ export interface ExperienceLayoutConfig {
 }
 
 /**
- * Experience V2 Content Config
+ * Banner/Modal Header Experience Content Configuration
  */
-
-/** Shared Experience Content Config Entities */
-
-/** Banner/Modal Header */
 
 export interface HeaderExperienceContentConfig {
   title?: string
 }
 
-/** Banner/Modal Footer */
+/**
+ * Banner/Modal Footer Experience Content Configuration
+ */
 
 export interface FooterExperienceContentConfig {
   actionButtonText?: string
 }
 
-/** Switch Buttons */
+/**
+ * Switch Buttons Experience Content Configuration
+ */
 
 export interface SwitchButtonsExperienceContentConfig {
   onText?: string
   offText?: string
 }
 
-/** Text Block - A block of text with optional title */
-
-export interface TextBlockTitleExperienceContentConfig {
-  text?: string
-}
+/**
+ * Text Block Experience Content Configuration
+ */
 
 export interface TextBlockExperienceContentConfig {
-  title?: TextBlockTitleExperienceContentConfig
-  text?: string
+  title?: string
+  body?: string
 }
 
-export interface PreferenceTabHeaderExperienceContentConfig {
-  description?: string
-  title?: TextBlockTitleExperienceContentConfig
-}
+/**
+ * Banner Action Button Experience Content Configuration
+ */
 
-/** Banner Experience Content Config */
-
-/** Banner Action Button */
 export interface BannerActionButtonExperienceContentConfig {
   text?: string
 }
 
-/** Banner Buttons Experience Content Config - Rightmost === primary */
+/**
+ * Banner Buttons Experience Content Configuration
+ */
+
 export interface BannerButtonsExperienceContentConfig {
   primary?: BannerActionButtonExperienceContentConfig
   secondary?: BannerActionButtonExperienceContentConfig
   tertiary?: BannerActionButtonExperienceContentConfig
 }
+
+/**
+ * Banner Experience Content Configuration
+ */
 
 export interface BannerExperienceContentConfig {
   header?: HeaderExperienceContentConfig
@@ -3608,31 +3870,47 @@ export interface BannerExperienceContentConfig {
   footer?: FooterExperienceContentConfig
 }
 
-/** Modal Experience Content Config */
+/**
+ * Modal List Header Experience Content Configuration
+ */
 
 export interface ModalListHeaderExperienceContentConfig {
   text?: string
 }
 
+/**
+ * Modal Purpose List Experience Content Configuration
+ */
+
 export interface ModalPurposeListExperienceContentConfig {
   switchButtonLabels?: SwitchButtonsExperienceContentConfig
 }
 
+/**
+ * Modal Experience Content Configuration
+ */
+
 export interface ModalExperienceContentConfig {
   header?: HeaderExperienceContentConfig
   description?: TextBlockExperienceContentConfig
-  listHeader?: ModalListHeaderExperienceContentConfig
+  purposeListHeader?: ModalListHeaderExperienceContentConfig
   purposeList?: ModalPurposeListExperienceContentConfig
   footer?: FooterExperienceContentConfig
 }
 
-/** Preferences - Welcome Experience Content Config */
+/**
+ * Preferences Center Welcome Tab Header Experience Content Configuration
+ */
 
-export interface WelcomeTabHeaderExperienceContentConfig {
+export interface PreferenceHeaderExperienceContentConfig {
   title?: string
 }
 
-export interface WelcomeTabNavigationExperienceContentConfig {
+/**
+ * Preferences Center Welcome Tab Navigation Experience Content Configuration
+ */
+
+export interface PreferenceNavigationExperienceContentConfig {
   welcomeTitle?: string
   privacyPolicyTitle?: string
   purposesTitle?: string
@@ -3640,10 +3918,18 @@ export interface WelcomeTabNavigationExperienceContentConfig {
   requestsTitle?: string
 }
 
+/**
+ * Preferences Center Welcome Tab Welcome Message Experience Content Configuration
+ */
+
 export interface WelcomeTabWelcomeMsgExperienceContentConfig {
   title?: string
   subtitle?: string
 }
+
+/**
+ * Preferences Center Welcome Tab Quick Links Experience Content Configuration
+ */
 
 export interface QuickLinkExperienceContentConfig {
   text?: string
@@ -3653,21 +3939,33 @@ export interface WelcomeTabQuickLinksExperienceContentConfig {
   links?: QuickLinkExperienceContentConfig[]
 }
 
+/**
+ * Preferences Center Welcome Tab About Experience Content Configuration
+ */
+
 export interface WelcomeTabAboutExperienceContentConfig {
   title?: string
   description?: string
 }
 
+/**
+ * Preferences Center Welcome Tab Experience Content Configuration
+ */
+
 export interface PreferenceWelcomeTabExperienceContentConfig {
-  header?: WelcomeTabHeaderExperienceContentConfig
-  navigation?: WelcomeTabNavigationExperienceContentConfig
-  footer?: FooterExperienceContentConfig
   welcomeMsg?: WelcomeTabWelcomeMsgExperienceContentConfig
   quickLinks?: WelcomeTabQuickLinksExperienceContentConfig
   about?: WelcomeTabAboutExperienceContentConfig
 }
 
-/** Preferences - Purposes Experience Content Config */
+export interface PreferenceTabHeaderExperienceContentConfig {
+  title?: string
+  description?: string
+}
+
+/**
+ * Preferences Center Purposes Tab List Experience Content Configuration
+ */
 
 export interface PurposesTabListHeaderExperienceContentConfig {
   title?: string
@@ -3677,19 +3975,30 @@ export interface PurposesTabListExperienceContentConfig {
   switchButtonLabels?: SwitchButtonsExperienceContentConfig
 }
 
+/**
+ * Preferences Center Purposes Tab Experience Content Configuration
+ */
+
 export interface PreferencePurposesTabExperienceContentConfig {
   header?: PreferenceTabHeaderExperienceContentConfig
-  listHeader?: PurposesTabListHeaderExperienceContentConfig
-  list?: PurposesTabListExperienceContentConfig
+  purposeListHeader?: PurposesTabListHeaderExperienceContentConfig
+  purposeList?: PurposesTabListExperienceContentConfig
   actionButtonText?: string
 }
 
-/** Preferences - Subscriptions Experience Content Config */
+/**
+ * Preferences Center Subscriptions Tab Unsubscribe All Experience Content Configuration
+ */
+
 export interface SubscriptionsTabUnsubscribeAllExperienceContentConfig {
   title?: string
   description?: string
   switchLabels?: SwitchButtonsExperienceContentConfig
 }
+
+/**
+ * Preferences Center Subscriptions Tab Experience Content Configuration
+ */
 
 export interface PreferenceSubscriptionsTabExperienceContentConfig {
   header?: PreferenceTabHeaderExperienceContentConfig
@@ -3698,12 +4007,18 @@ export interface PreferenceSubscriptionsTabExperienceContentConfig {
   actionButtonText?: string
 }
 
-/** Preferences - Requests Experience Content Config */
+/**
+ * Preferences Center Requests Tab Home DSR Link Experience Content Configuration
+ */
 
 export interface RequestsTabDsrLinkExperienceContentConfig {
   title?: string
-  subtitle?: string
+  description?: string
 }
+
+/**
+ * Preferences Center Requests Tab Home Rights Experience Content Configuration
+ */
 
 export interface RightsTitleExperienceContentConfig {
   title?: string
@@ -3727,10 +4042,18 @@ export interface RequestsTabHomeExperienceContentConfig {
   rights?: RequestsTabRightsExperienceContentConfig
 }
 
+/**
+ * Preferences Center Requests Tab Right Form Experience Content Configuration
+ */
+
 export interface RequestsTabRightFormExperienceContentConfig {
   recaptchaFailureText?: string
   actionButtonText?: string
 }
+
+/**
+ * Preferences Center Requests Tab Submitted Experience Content Configuration
+ */
 
 export interface RequestsTabSubmittedExperienceContentConfig {
   title?: string
@@ -3739,20 +4062,45 @@ export interface RequestsTabSubmittedExperienceContentConfig {
   actionButtonText?: string
 }
 
+/**
+ * Preferences Center Requests Tab Experience Content Configuration
+ */
+
 export interface PreferenceRequestsTabExperienceContentConfig {
   home?: RequestsTabHomeExperienceContentConfig
   rightForm?: RequestsTabRightFormExperienceContentConfig
   submitted?: RequestsTabSubmittedExperienceContentConfig
 }
 
-export interface PreferenceExperienceContentConfig {
+/**
+ * Preferences Center Tabs Experience Content Configuration
+ */
+
+export interface PreferenceExperienceTabsContentConfig {
   welcome?: PreferenceWelcomeTabExperienceContentConfig
   purposes?: PreferencePurposesTabExperienceContentConfig
   subscriptions?: PreferenceSubscriptionsTabExperienceContentConfig
   requests?: PreferenceRequestsTabExperienceContentConfig
 }
 
-/** Static text */
+/**
+ * Preferences Center Experience Content Configuration
+ */
+
+export interface PreferenceExperienceContentConfig {
+  header?: PreferenceHeaderExperienceContentConfig
+  navigation?: PreferenceNavigationExperienceContentConfig
+  footer?: FooterExperienceContentConfig
+  tabs?: PreferenceExperienceTabsContentConfig
+}
+
+/**
+ * Static Text Experience Content Configuration
+ *
+ * This is used throughout the banner, modal, and preference experiences
+ * as non-configurable text and/or defaults.
+ *
+ */
 
 export interface StaticContentConfig {
   powered_by?: string
@@ -4032,7 +4380,9 @@ export interface StaticContentConfig {
   and?: string
 }
 
-/** Top level experience content config objects */
+/**
+ * Experience Content Configuration
+ */
 
 export interface ExperienceContentConfig {
   banner?: BannerExperienceContentConfig
@@ -4042,7 +4392,14 @@ export interface ExperienceContentConfig {
 }
 
 /**
- * Experience V2 config
+ * Experience Configuration
+ *
+ * Layout configuration: all configuration options
+ * that DO NOT change with the language, e.g. button visibility.
+ *
+ * Content configuration: all configuration options
+ * that DO change with the language, e.g. banner title.
+ *
  */
 
 export interface ExperienceConfig {
