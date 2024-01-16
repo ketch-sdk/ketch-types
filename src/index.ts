@@ -3482,7 +3482,7 @@ export interface BannerButtonsExperienceLayoutConfig {
 export interface BannerExperienceLayoutConfig {
   header?: HeaderExperienceLayoutConfig
   buttons?: BannerButtonsExperienceLayoutConfig
-  footer?: FooterExperienceLayoutConfig
+  footer?: BannerModalFooterExperienceLayoutConfig
 }
 
 /**
