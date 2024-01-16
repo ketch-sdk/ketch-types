@@ -3480,7 +3480,7 @@ export interface RightFormMapping {
  * Default form and custom right to form mapping for a single canonical right.
  * Used when RightFormsExperienceLayoutConfig.mode === RightsFormMode.Custom.
  */
-export interface RequestDetail {
+export interface RightMappingDetail {
   canonicalRight?: CanonicalRightCode
   defaultFormId?: string
   rightFormMappings?: RightFormMapping[]
@@ -3493,7 +3493,7 @@ export interface RequestDetail {
 export interface RightFormsExperienceLayoutConfig {
   mode?: RightsFormMode
   singleFormCode?: string
-  details?: RequestDetail[]
+  details?: RightMappingDetail[]
 }
 
 export interface RequestsTabRightsExperienceLayoutConfig {
