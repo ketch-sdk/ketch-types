@@ -2892,7 +2892,7 @@ export interface SwitchButtonsThemeConfig {
  */
 
 export interface PurposeListThemeConfig {
-  listItems?: ListItemsThemeConfig
+  purposeListItems?: ListItemsThemeConfig
   switchButtons?: SwitchButtonsThemeConfig
 }
 
@@ -3036,7 +3036,7 @@ export interface ModalThemeConfig {
   container?: ModalContainerThemeConfig
   header?: HeaderThemeConfig
   description?: ModalDescriptionThemeConfig
-  listHeader?: PurposeListHeaderThemeConfig
+  purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
   footer?: BannerModalFooterThemeConfig
 }
@@ -3189,8 +3189,8 @@ export interface PreferencePrivacyPolicyTabThemeConfig {
 
 export interface PreferencePurposesTabThemeConfig {
   header?: PageTextThemeConfig
-  listHeader?: PurposeListHeaderThemeConfig
-  list?: PurposeListThemeConfig
+  purposeListHeader?: PurposeListHeaderThemeConfig
+  purposeList?: PurposeListThemeConfig
   footer?: PreferenceFooterThemeConfig
 }
 
@@ -3510,7 +3510,7 @@ export interface ModalPurposeListExperienceLayoutConfig {
 export interface ModalExperienceLayoutConfig {
   header?: HeaderExperienceLayoutConfig
   description?: TextBlockExperienceLayoutConfig
-  listHeader?: ModalListHeaderExperienceLayoutConfig
+  purposeListHeader?: ModalListHeaderExperienceLayoutConfig
   purposeList?: ModalPurposeListExperienceLayoutConfig
   footer?: BannerModalFooterExperienceLayoutConfig
 }
@@ -3611,8 +3611,8 @@ export interface PurposesTabListExperienceLayoutConfig {
 
 export interface PreferencePurposesTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
-  listHeader?: PurposesTabListHeaderExperienceLayoutConfig
-  list?: PurposesTabListExperienceLayoutConfig
+  purposeListHeader?: PurposesTabListHeaderExperienceLayoutConfig
+  purposeList?: PurposesTabListExperienceLayoutConfig
   actionButtonUseDefaultText?: boolean
 }
 
@@ -3893,7 +3893,7 @@ export interface ModalPurposeListExperienceContentConfig {
 export interface ModalExperienceContentConfig {
   header?: HeaderExperienceContentConfig
   description?: TextBlockExperienceContentConfig
-  listHeader?: ModalListHeaderExperienceContentConfig
+  purposeListHeader?: ModalListHeaderExperienceContentConfig
   purposeList?: ModalPurposeListExperienceContentConfig
   footer?: FooterExperienceContentConfig
 }
@@ -3981,8 +3981,8 @@ export interface PurposesTabListExperienceContentConfig {
 
 export interface PreferencePurposesTabExperienceContentConfig {
   header?: PreferenceTabHeaderExperienceContentConfig
-  listHeader?: PurposesTabListHeaderExperienceContentConfig
-  list?: PurposesTabListExperienceContentConfig
+  purposeListHeader?: PurposesTabListHeaderExperienceContentConfig
+  purposeList?: PurposesTabListExperienceContentConfig
   actionButtonText?: string
 }
 
