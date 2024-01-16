@@ -3416,7 +3416,7 @@ export interface HeaderExperienceLayoutConfig {
  * Banner/Modal Footer Experience Layout Configuration
  */
 
-export interface FooterExperienceLayoutConfig {
+export interface BannerModalFooterExperienceLayoutConfig {
   gpcBadgeVisible?: boolean
 }
 
@@ -3512,7 +3512,7 @@ export interface ModalExperienceLayoutConfig {
   description?: TextBlockExperienceLayoutConfig
   listHeader?: ModalListHeaderExperienceLayoutConfig
   purposeList?: ModalPurposeListExperienceLayoutConfig
-  footer?: FooterExperienceLayoutConfig
+  footer?: BannerModalFooterExperienceLayoutConfig
 }
 
 /**
