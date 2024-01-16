@@ -3455,16 +3455,16 @@ export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
 
 /** Preferences - Requests Experience Layout Config */
 
+export enum CanonicalRightCode {
+  Get = 'get',
+  Delete = 'delete',
+  Restrict = 'restrict',
+  Update = 'update',
+}
+
 export enum RightsFormMode {
   Single = 'single',
   Custom = 'custom',
-}
-
-export enum RequestType {
-  AccessData = 'accessData',
-  DeleteData = 'deleteData',
-  RestrictProcessing = 'restrictProcessing',
-  UpdateData = 'updateData',
 }
 
 export interface RightsTitleExperienceLayoutConfig {
@@ -3473,25 +3473,32 @@ export interface RightsTitleExperienceLayoutConfig {
 
 export interface RightFormMapping {
   rightCode?: string
-  formId?: string
+  formCode?: string
 }
 
-export interface CustomRequestMapping {
-  requestType?: RequestType
+/**
+ * Default form and custom right to form mapping for a single canonical right.
+ * Used when RightFormsExperienceLayoutConfig.mode === RightsFormMode.Custom.
+ */
+export interface RequestDetail {
+  canonicalRight?: CanonicalRightCode
   defaultFormId?: string
-  rightMappings?: RightFormMapping[]
+  rightFormMappings?: RightFormMapping[]
 }
 
-export interface RightsFormsExperienceLayoutConfig {
+/**
+ * Form config for both single form and custom mapping mode. The canonical right (request type)
+ * ordering is given by the order of the details array, for both modes.
+ */
+export interface RightFormsExperienceLayoutConfig {
   mode?: RightsFormMode
-  singleFormId?: string
-  order?: RequestType[]
-  customFormMappings?: CustomRequestMapping[]
+  singleFormCode?: string
+  details?: RequestDetail[]
 }
 
 export interface RequestsTabRightsExperienceLayoutConfig {
   title?: RightsTitleExperienceLayoutConfig
-  forms?: RightsFormsExperienceLayoutConfig
+  forms?: RightFormsExperienceLayoutConfig
 }
 
 export interface RequestsTabHomeExperienceLayoutConfig {
