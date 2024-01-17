@@ -2416,14 +2416,14 @@ export interface Ketch {
    *
    * @param type Type of experience being changed to
    */
-  willChangeExperience(type: Experience): Promise<void>
+  willChangeExperience(type: string): Promise<void>
 
   /**
    * Notify that the experience has been changed to a different format
    *
    * @param type Type of experience changed to
    */
-  hasChangedExperience(reason: ExperienceClosedReason): Promise<void>
+  hasChangedExperience(type: string): Promise<void>
 
   /**
    * Notify that the experience has mounted
