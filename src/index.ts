@@ -38,6 +38,18 @@ export enum ExperienceType {
 }
 
 /**
+ * ExperienceDisplayType is the type of experience that will be shown
+ *  - Differs from ExperienceType in that consent experiences are enumerated individually
+ *
+ * @enum
+ */
+export enum ExperienceDisplayType {
+  Banner = 'experiencedisplays.banner',
+  Modal = 'experiencedisplays.modal',
+  Preference = 'experiencedisplays.preference',
+}
+
+/**
  * ConsentExperienceType is the type of consent experience that will be shown
  *
  * @enum
@@ -2410,6 +2422,26 @@ export interface Ketch {
    * @deprecated This method will be moved to an experience interface.
    */
   experienceClosed(reason: ExperienceClosedReason): Promise<void>
+
+  /**
+   * Notify that the experience will be changed to a different format
+   *
+   * @param type Type of experience being changed to
+   */
+  willChangeExperience(type: ExperienceDisplayType): Promise<void>
+
+  /**
+   * Notify that the experience has been changed to a different format
+   *
+   * @param type Type of experience changed to
+   */
+  hasChangedExperience(type: ExperienceDisplayType): Promise<void>
+
+  /**
+   * Notify that the experience has mounted
+   *
+   */
+  hasShownExperience(): Promise<void>
 
   /**
    * Invokes a right
