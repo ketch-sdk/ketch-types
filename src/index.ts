@@ -2412,6 +2412,26 @@ export interface Ketch {
   experienceClosed(reason: ExperienceClosedReason): Promise<void>
 
   /**
+   * Notify that the experience will be changed to a different format
+   *
+   * @param type Type of experience being changed to
+   */
+  willChangeExperience(type: Experience): Promise<void>
+
+  /**
+   * Notify that the experience has been changed to a different format
+   *
+   * @param type Type of experience changed to
+   */
+  hasChangedExperience(reason: ExperienceClosedReason): Promise<void>
+
+  /**
+   * Notify that the experience has mounted
+   *
+   */
+  hasShownExperience(): Promise<void>
+
+  /**
    * Invokes a right
    *
    * @param eventData The definition of the right
