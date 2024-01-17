@@ -320,6 +320,7 @@ export type Status = { [key: string]: boolean }
 export type Consent = {
   purposes: Status
   vendors?: string[] // list of vendor ids for which the user has opted out
+  protocols?: { [key: string]: string }
 }
 
 /**
@@ -2219,6 +2220,7 @@ export interface GetConsentResponse {
   vendors?: string[]
 
   collectedAt?: number
+  protocols?: { [key: string]: string }
 }
 
 /**
@@ -4402,9 +4404,15 @@ export interface ExperienceContentConfig {
  *
  */
 
+export interface ExperienceAssociationConfig {
+  subscriptionTopicCodes?: string[]
+  formCodes?: string[]
+}
+
 export interface ExperienceConfig {
   layout?: ExperienceLayoutConfig
   content?: ExperienceContentConfig
+  associations?: ExperienceAssociationConfig
 }
 
 export {
