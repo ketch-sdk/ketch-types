@@ -4021,10 +4021,6 @@ export interface RequestsTabDsrLinkExperienceContentConfig {
  * Preferences Center Requests Tab Home Rights Experience Content Configuration
  */
 
-export interface RightsTitleExperienceContentConfig {
-  title?: string
-}
-
 export interface RightsRequestTypesExperienceContentConfig {
   provideData: string
   deleteData: string
@@ -4033,7 +4029,7 @@ export interface RightsRequestTypesExperienceContentConfig {
 }
 
 export interface RequestsTabRightsExperienceContentConfig {
-  title?: RightsTitleExperienceContentConfig
+  title?: string
   requestTypes?: RightsRequestTypesExperienceContentConfig
 }
 
