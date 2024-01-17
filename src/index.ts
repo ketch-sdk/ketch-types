@@ -4404,9 +4404,15 @@ export interface ExperienceContentConfig {
  *
  */
 
+export interface ExperienceAssociationConfig {
+  subscriptionTopicCodes?: string[]
+  formCodes?: string[]
+}
+
 export interface ExperienceConfig {
   layout?: ExperienceLayoutConfig
   content?: ExperienceContentConfig
+  associations?: ExperienceAssociationConfig
 }
 
 export {
