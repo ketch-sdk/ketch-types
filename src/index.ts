@@ -2901,6 +2901,7 @@ export interface ListItemsThemeConfig {
   layout?: ListLayout
   style?: ItemStyle
   purposeFill?: ColorThemeConfig
+  purposeOutline?: ColorThemeConfig
   purposeContent?: ColorThemeConfig
   purposeLinks?: ColorThemeConfig
   arrowIcon?: ColorThemeConfig
