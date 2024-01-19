@@ -4417,6 +4417,7 @@ export interface StaticContentConfig {
 export interface ExperienceContentConfig {
   banner?: BannerExperienceContentConfig
   modal?: ModalExperienceContentConfig
+  display?: string
   preference?: PreferenceExperienceContentConfig
   static?: StaticContentConfig
 }
