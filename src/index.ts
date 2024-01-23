@@ -3747,7 +3747,7 @@ export interface RightFormMapping {
  */
 export interface RightMappingDetail {
   canonicalRight?: CanonicalRightCode
-  defaultFormId?: string
+  defaultFormCode?: string
   rightFormMappings?: RightFormMapping[]
 }
 
