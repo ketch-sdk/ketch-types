@@ -3738,7 +3738,7 @@ export interface RightsTitleExperienceLayoutConfig {
 
 export interface RightFormMapping {
   rightCode?: string
-  formCode?: string
+  formID: string
 }
 
 /**
@@ -3747,7 +3747,7 @@ export interface RightFormMapping {
  */
 export interface RightMappingDetail {
   canonicalRight?: CanonicalRightCode
-  defaultFormCode?: string
+  defaultFormID?: string
   rightFormMappings?: RightFormMapping[]
 }
 
@@ -3757,7 +3757,7 @@ export interface RightMappingDetail {
  */
 export interface RightFormsExperienceLayoutConfig {
   mode?: RightsFormMode
-  singleFormCode?: string
+  singleFormID?: string
   details?: RightMappingDetail[]
 }
 
@@ -4435,7 +4435,7 @@ export interface ExperienceContentConfig {
 
 export interface ExperienceAssociationConfig {
   subscriptionTopicCodes?: string[]
-  formCodes?: string[]
+  formID?: string[]
 }
 
 export interface ExperienceConfig {
