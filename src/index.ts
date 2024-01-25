@@ -4451,11 +4451,12 @@ export enum PreviewMessageType {
   ShowBanner = 'showBanner',
   ShowModal = 'showModal',
   ShowPreference = 'showPreferences',
+  SwitchPreferencePage = 'switchPreferencePage',
 }
 
 export type PreviewMessage = {
   type: PreviewMessageType
-  payload: ConfigurationV2
+  payload?: ConfigurationV2 | PreferenceCenterPage
 }
 
 export {
