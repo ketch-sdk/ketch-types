@@ -4447,12 +4447,15 @@ export interface ExperienceConfig {
 /** Message type for post messaging preview configs from figurehead to lanyard */
 
 export enum PreviewMessageType {
-  Config = 'config',
+  LoadConfig = 'loadConfig',
+  ShowBanner = 'showBanner',
+  ShowModal = 'showModal',
+  ShowPreference = 'showPreferences',
 }
 
 export type PreviewMessage = {
   type: PreviewMessageType
-  data: ConfigurationV2
+  payload: ConfigurationV2
 }
 
 export {
