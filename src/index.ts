@@ -4444,6 +4444,17 @@ export interface ExperienceConfig {
   associations?: ExperienceAssociationConfig
 }
 
+/** Message type for post messaging preview configs from figurehead to lanyard */
+
+export enum PreviewMessageType {
+  Config = 'config',
+}
+
+export type PreviewMessage = {
+  type: PreviewMessageType
+  data: ConfigurationV2
+}
+
 export {
   ExperienceFormField,
   FormFieldDropdownOption,
