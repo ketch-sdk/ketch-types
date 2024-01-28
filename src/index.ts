@@ -4334,7 +4334,7 @@ interface CountryTranslations {
  *
  */
 
-export interface BaseContentConfig {
+export interface BaseStaticContentConfig {
   accept_all?: string
   accept?: string
   and_the?: string
@@ -4430,7 +4430,7 @@ export interface BaseContentConfig {
  * Union of BaseContentConfig and CountryTranslations
  */
 
-export type StaticContentConfig = BaseContentConfig & CountryTranslations
+export type StaticContentConfig = BaseStaticContentConfig & CountryTranslations
 
 /**
  * Experience Content Configuration
