@@ -4125,58 +4125,10 @@ export interface PreferenceExperienceContentConfig {
 }
 
 /**
- * Static Text Experience Content Configuration
- *
- * This is used throughout the banner, modal, and preference experiences
- * as non-configurable text and/or defaults.
- *
+ * Country Translations
  */
 
-export interface StaticContentConfig {
-  powered_by?: string
-  purpose?: string
-  reject_all?: string
-  accept_all?: string
-  accept?: string
-  legal_basis?: string
-  cookies?: string
-  cookie?: string
-  data_categories?: string
-  data_category?: string
-  vendors?: string
-  vendor?: string
-  service_provider?: string
-  duration?: string
-  category?: string
-  description?: string
-  retention_period?: string
-  external_transfer?: string
-  strictly_necessary?: string
-  functional?: string
-  performance?: string
-  marketing?: string
-  session?: string
-  persistent?: string
-  first_party?: string
-  third_party?: string
-  preference_overview_button_text?: string
-  preference_consents_exit_button_text?: string
-  preference_rights_request?: string
-  preference_rights_request_details?: string
-  preference_rights_personal_details?: string
-  preference_rights_first_name?: string
-  preference_rights_last_name?: string
-  preference_rights_email?: string
-  preference_rights_country?: string
-  preference_rights_select_country?: string
-  preference_rights_state?: string
-  preference_rights_thank_you?: string
-  preference_rights_we_have_received?: string
-  preference_rights_cancel_button_text?: string
-  preference_rights_exit_button_text?: string
-  preference_rights_submit_new_request?: string
-  required?: string
-  enter_valid_email?: string
+interface CountryTranslations {
   country_afghanistan?: string
   country_albania?: string
   country_algeria?: string
@@ -4372,44 +4324,113 @@ export interface StaticContentConfig {
   country_yemen?: string
   country_zambia?: string
   country_zimbabwe?: string
-  purposes?: string
-  special_purposes?: string
-  features?: string
-  special_features?: string
-  privacy_policy?: string
-  legal_text?: string
-  maximum_storage?: string
-  preference_rights_phone_number?: string
-  preference_rights_select_state_province?: string
-  preference_rights_postal_code?: string
-  preference_rights_address_line_one?: string
-  preference_rights_address_line_two?: string
+}
+
+/**
+ * Static Text Experience Content Configuration
+ *
+ * This is used throughout the banner, modal, and preference experiences
+ * as non-configurable text and/or defaults.
+ *
+ */
+
+export interface BaseContentConfig {
+  accept_all?: string
+  accept?: string
+  and_the?: string
+  and?: string
+  apply?: string
+  at_this_time_due_to_suspected_bot_like_behavior_as_indicated_by_our?: string
+  category?: string
+  click_here?: string
+  cookie?: string
+  cookies?: string
+  data_categories?: string
+  data_category?: string
+  description?: string
+  duration?: string
+  enter_valid_email?: string
   enter_valid_phone_number?: string
-  of?: string
-  i_am_a_an?: string
-  select_a_relationship?: string
-  tell_us_about_your_relationship_to_us?: string
   ex_i_worked_in_the_it_department_in_2015?: string
+  external_transfer?: string
+  features?: string
+  first_party?: string
+  functional?: string
+  greeting?: string
+  here?: string
+  i_am_a_an?: string
+  legal_basis?: string
+  legal_text?: string
+  marketing?: string
+  maximum_storage?: string
+  object_to_legitimate_interest?: string
+  of?: string
+  off?: string
+  on?: string
   opted_in?: string
   opted_out?: string
-  rights_tab_porthole_redirect_footer?: string
-  rights_tab_porthole_redirect_footer_alt?: string
-  click_here?: string
-  here?: string
+  performance?: string
+  persistent?: string
   please_select_a_request_type?: string
-  greeting?: string
+  powered_by?: string
+  preference_consents_exit_button_text?: string
+  preference_overview_button_text?: string
+  preference_rights_address_line_one?: string
+  preference_rights_address_line_two?: string
+  preference_rights_cancel_button_text?: string
+  preference_rights_country?: string
+  preference_rights_email?: string
+  preference_rights_exit_button_text?: string
+  preference_rights_first_name?: string
+  preference_rights_last_name?: string
+  preference_rights_personal_details?: string
+  preference_rights_phone_number?: string
+  preference_rights_postal_code?: string
+  preference_rights_request_details?: string
+  preference_rights_request?: string
+  preference_rights_select_country?: string
+  preference_rights_select_state_province?: string
+  preference_rights_state?: string
+  preference_rights_submit_new_request?: string
+  preference_rights_thank_you?: string
+  preference_rights_we_have_received?: string
+  privacy_policy?: string
   provenance?: string
-  this_site_is_protected_by?: string
-  and_the?: string
-  apply?: string
-  terms_of_service?: string
-  unfortunately?: string
-  we_are_unable_to_fulfill_your_request?: string
-  at_this_time_due_to_suspected_bot_like_behavior_as_indicated_by_our?: string
-  verification?: string
-  and?: string
+  purpose?: string
+  purposes?: string
+  quick_links?: string
+  reject_all?: string
+  required?: string
+  retention_period?: string
+  rights_tab_porthole_redirect_footer_alt?: string
+  rights_tab_porthole_redirect_footer?: string
   save?: string
+  select_a_relationship?: string
+  service_provider?: string
+  session?: string
+  special_features?: string
+  special_purposes?: string
+  strictly_necessary?: string
+  submit?: string
+  submitting?: string
+  tell_us_about_your_relationship_to_us?: string
+  terms_of_service?: string
+  third_party?: string
+  this_site_is_protected_by?: string
+  unfortunately?: string
+  unsubscribe_from_all?: string
+  vendor?: string
+  vendors?: string
+  verification?: string
+  we_are_unable_to_fulfill_your_request?: string
 }
+
+/**
+ * Static Text Experience Content Configuration
+ * Union of BaseContentConfig and CountryTranslations
+ */
+
+export type StaticContentConfig = BaseContentConfig & CountryTranslations
 
 /**
  * Experience Content Configuration
