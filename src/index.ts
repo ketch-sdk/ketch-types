@@ -4405,6 +4405,7 @@ export interface BaseStaticContentConfig {
   rights_tab_porthole_redirect_footer_alt?: string
   rights_tab_porthole_redirect_footer?: string
   save?: string
+  select_a_request_type?: string
   select_a_relationship?: string
   service_provider?: string
   session?: string
