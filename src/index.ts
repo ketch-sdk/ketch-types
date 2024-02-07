@@ -1695,6 +1695,7 @@ export interface Translations {
   at_this_time_due_to_suspected_bot_like_behavior_as_indicated_by_our?: string
   verification?: string
   and?: string
+  no_rights_available?: string
 }
 
 /**
