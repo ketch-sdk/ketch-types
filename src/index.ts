@@ -3833,6 +3833,12 @@ export interface PreferenceExperienceLayoutConfig {
   tabs?: PreferenceExperienceTabsLayoutConfig
 }
 
+export interface EntitlementLayoutConfig {
+  hasPurposesEntitlement?: boolean
+  hasSubscriptionsEntitlement?: boolean
+  hasRightsEntitlement?: boolean
+}
+
 /**
  * Experience Layout Configuration
  */
@@ -3840,6 +3846,7 @@ export interface ExperienceLayoutConfig {
   banner?: BannerExperienceLayoutConfig
   modal?: ModalExperienceLayoutConfig
   preference?: PreferenceExperienceLayoutConfig
+  entitlementInfo?: EntitlementLayoutConfig
 }
 
 /**
