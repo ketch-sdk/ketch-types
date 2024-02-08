@@ -4371,6 +4371,7 @@ export interface BaseStaticContentConfig {
   legal_text?: string
   marketing?: string
   maximum_storage?: string
+  no_rights_available?: string
   object_to_legitimate_interest?: string
   of?: string
   off?: string
