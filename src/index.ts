@@ -3536,6 +3536,7 @@ export interface ModalListHeaderExperienceLayoutConfig {
 
 export interface ModalPurposeListExperienceLayoutConfig {
   legalBasisVisible?: boolean
+  purposeStacksDefaultExpanded?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
 }
 
@@ -3583,6 +3584,7 @@ export interface WelcomeTabWelcomeMsgExperienceLayoutConfig {
  */
 
 export interface QuickLinkExperienceLayoutConfig {
+  visible?: boolean
   action?: QuickLinkAction
   page?: PreferenceCenterPage
   url?: string
@@ -3638,6 +3640,7 @@ export interface PurposesTabListHeaderExperienceLayoutConfig {
 
 export interface PurposesTabListExperienceLayoutConfig {
   legalBasisVisible?: boolean
+  purposeStacksDefaultExpanded?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
 }
 
