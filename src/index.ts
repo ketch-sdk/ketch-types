@@ -2255,6 +2255,26 @@ export interface SetConsentRequest {
 }
 
 /**
+ * SetConsentResponse
+ */
+export interface SetConsentResponse {
+  organizationCode: string
+  controllerCode?: string
+  propertyCode: string
+  environmentCode: string
+  jurisdictionCode: string
+  identities: { [key: string]: string }
+  purposes: { [key: string]: PurposeAllowedLegalBasis }
+  /**
+   * list of vendor ids for which the user has opted out
+   */
+  vendors?: string[]
+
+  collectedAt?: number
+  protocols?: { [key: string]: string }
+}
+
+/**
  * InvokeRightRequest
  */
 export interface InvokeRightRequest {
