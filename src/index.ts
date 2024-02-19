@@ -2238,7 +2238,7 @@ export interface GetConsentResponse {
   vendors?: string[]
 
   collectedAt?: number
-  protocols?: { [key: string]: string }
+  protocols?: Protocols
 }
 
 /**
@@ -2276,7 +2276,7 @@ export interface SetConsentResponse {
   vendors?: string[]
 
   collectedAt?: number
-  protocols?: { [key: string]: string }
+  protocols?: Protocols
 }
 
 /**
