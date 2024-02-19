@@ -327,12 +327,17 @@ export type Identities = { [key: string]: string }
 export type Status = { [key: string]: boolean }
 
 /**
+ * Protocols
+ */
+export type Protocols = { [key: string]: string }
+
+/**
  * Consent
  */
 export type Consent = {
   purposes: Status
   vendors?: string[] // list of vendor ids for which the user has opted out
-  protocols?: { [key: string]: string }
+  protocols?: Protocols
 }
 
 /**
