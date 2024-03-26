@@ -79,6 +79,21 @@ export enum ExperienceClosedReason {
 }
 
 /**
+ * SetConsentReason describes the reason the consent is being set.
+ *
+ * userUpdate = the user set consent
+ * userExperienceDismissal = the user dismissed the experience an unset consent will be set to false
+ * defaultState = the consent is set based on the legal basis default
+ *
+ * @enum
+ */
+export enum SetConsentReason {
+  USER_UPDATE = 'userUpdate',
+  USER_EXPERIENCE_DISMISSAL = 'userExperienceDismissal',
+  DEFAULT_STATE = 'defaultState',
+}
+
+/**
  * ExperienceDefault
  *
  * @enum
@@ -2385,8 +2400,9 @@ export interface Ketch {
    * Sets the consent
    *
    * @param consent Consents
+   * @param reason the reason the consent is being set
    */
-  setConsent(consent: Consent): Promise<void>
+  setConsent(consent: Consent, reason?: SetConsentReason): Promise<void>
 
   /**
    * Get subscriptions
