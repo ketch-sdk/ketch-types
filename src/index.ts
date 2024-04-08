@@ -3142,6 +3142,7 @@ export interface PreferenceFooterThemeConfig {
  */
 
 export interface PreferenceContainerThemeConfig {
+  exitPosition?: ExitButtonPosition
   font?: string
   background?: ColorThemeConfig
 }
@@ -3290,7 +3291,6 @@ export enum UnsubscribeFromAllPosition {
  */
 
 export interface SubscriptionsTabUnsubscribeAllThemeConfig {
-  position?: UnsubscribeFromAllPosition
   background?: ColorThemeConfig
   text?: ColorThemeConfig
   cornerRadius?: number
@@ -3734,6 +3734,7 @@ export interface SubscriptionsTabUnsubscribeAllExperienceLayoutConfig {
   description: UnsubscribeAllDescriptionExperienceLayoutConfig
   switchButton: SwitchButtonsExperienceLayoutConfig
   impact: UnsubscribeAllImpact
+  position?: UnsubscribeFromAllPosition
 }
 
 /**
@@ -3874,7 +3875,6 @@ export interface PreferenceExperienceTabsLayoutConfig {
 
 export interface PreferenceExperienceLayoutConfig {
   gpcBadgeVisible?: boolean
-  exitPosition?: ExitButtonPosition
   tabs?: PreferenceExperienceTabsLayoutConfig
 }
 
