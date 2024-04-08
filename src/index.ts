@@ -3142,6 +3142,7 @@ export interface PreferenceFooterThemeConfig {
  */
 
 export interface PreferenceContainerThemeConfig {
+  exitPosition?: ExitButtonPosition
   font?: string
   background?: ColorThemeConfig
 }
@@ -3874,7 +3875,6 @@ export interface PreferenceExperienceTabsLayoutConfig {
 
 export interface PreferenceExperienceLayoutConfig {
   gpcBadgeVisible?: boolean
-  exitPosition?: ExitButtonPosition
   tabs?: PreferenceExperienceTabsLayoutConfig
 }
 
