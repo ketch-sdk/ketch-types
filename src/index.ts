@@ -3291,7 +3291,6 @@ export enum UnsubscribeFromAllPosition {
  */
 
 export interface SubscriptionsTabUnsubscribeAllThemeConfig {
-  position?: UnsubscribeFromAllPosition
   background?: ColorThemeConfig
   text?: ColorThemeConfig
   cornerRadius?: number
@@ -3735,6 +3734,7 @@ export interface SubscriptionsTabUnsubscribeAllExperienceLayoutConfig {
   description: UnsubscribeAllDescriptionExperienceLayoutConfig
   switchButton: SwitchButtonsExperienceLayoutConfig
   impact: UnsubscribeAllImpact
+  position?: UnsubscribeFromAllPosition
 }
 
 /**
