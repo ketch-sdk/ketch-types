@@ -3200,6 +3200,7 @@ export interface PreferenceExitButtonThemeConfig {
   useDefaultIcon?: boolean
   iconColor?: ColorThemeConfig
   icon?: ImageThemeConfig
+  cornerRadius?: number
 }
 
 /**
