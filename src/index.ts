@@ -74,6 +74,7 @@ export enum ExperienceClosedReason {
   SET_CONSENT = 'setConsent',
   INVOKE_RIGHT = 'invokeRight',
   CLOSE = 'close',
+  CLOSE_WITHOUT_SETTING_CONSENT = 'closeWithoutSettingConsent',
   WILL_NOT_SHOW = 'willNotShow',
   SET_SUBSCRIPTIONS = 'setSubscriptions',
 }
