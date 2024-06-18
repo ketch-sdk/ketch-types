@@ -3536,7 +3536,7 @@ export enum BannerButtonAction {
   OpenModal = 'openModal',
   OpenPreferences = 'openPreferences',
   RejectAll = 'rejectAll',
-  OpenURL = 'openURL'
+  OpenURL = 'openURL',
 }
 
 export interface BannerActionButtonExperienceLayoutConfig {
