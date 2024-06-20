@@ -2463,9 +2463,8 @@ export interface Ketch {
    * Notify that the experience was closed
    *
    * @param reason Reason the experience was closed
-   * @deprecated This method will be moved to an experience interface.
    */
-  experienceClosed(reason: ExperienceClosedReason): Promise<void>
+  experienceClosed(reason: ExperienceClosedReason, consent?: Consent): Promise<void>
 
   /**
    * Notify that the experience will be changed to a different format
