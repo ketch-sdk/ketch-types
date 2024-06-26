@@ -201,6 +201,17 @@ export enum IdentityFormat {
 }
 
 /**
+ * IdentityEncoding is the encoding of the string identity value
+ *
+ * @enum
+ */
+export enum IdentityEncoding {
+  IDENTITY_ENCODING_UNDEFINED = '',
+  IDENTITY_ENCODING_NONE = 'none',
+  IDENTITY_ENCODING_BASE64 = 'base64',
+}
+
+/**
  * SwitchTextRenderLogic
  *
  * @enum
@@ -660,7 +671,7 @@ export interface Identity {
   variable: string
 
   /**
-   * format is the encoding of the value
+   * format of the value
    */
   format?: IdentityFormat
 
@@ -674,6 +685,11 @@ export interface Identity {
    * priority of the identity for consent conflict resolution
    */
   priority?: number
+
+  /**
+   * encoding of the value
+   */
+  encoding?: IdentityEncoding
 }
 
 /**
