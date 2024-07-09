@@ -1188,7 +1188,6 @@ export interface GetPreferenceConfigurationV2Request {
  * Accessibility Button
  */
 export interface AccessibilityButtonConfiguration {
-  enabled: boolean
   color: string
   icon: string
   position: 'bottom-left' | 'bottom-right'
