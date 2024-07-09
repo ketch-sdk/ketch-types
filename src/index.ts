@@ -1185,6 +1185,16 @@ export interface GetPreferenceConfigurationV2Request {
 }
 
 /**
+ * Accessibility Button
+ */
+export interface AccessibilityButtonConfiguration {
+  enabled: boolean
+  color: string
+  icon: string
+  position: 'bottom-left' | 'bottom-right'
+}
+
+/**
  * Configuration V2
  */
 export interface ConfigurationV2 {
@@ -1321,6 +1331,11 @@ export interface ConfigurationV2 {
    * Translations static translations
    */
   translations?: Translations
+
+  /**
+   * Accessibility button configuration
+   */
+  accessibilityButton?: AccessibilityButtonConfiguration
 }
 
 /**
