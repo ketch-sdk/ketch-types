@@ -2557,7 +2557,7 @@ export interface Ketch {
   /**
    * Check if an experience is currently showing
    */
-  getIsExperienceDisplayed(): Promise<boolean>
+  getIsExperienceDisplayed(): boolean
 
   /**
    * Alias for `emitter.on(eventName, listener)`.
