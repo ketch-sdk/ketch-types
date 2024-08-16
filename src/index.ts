@@ -1191,6 +1191,7 @@ export interface AccessibilityButtonConfiguration {
   color: string
   icon: string
   position: 'bottom-left' | 'bottom-right'
+  experienceDisplayType: ExperienceDisplayType
 }
 
 /**
@@ -2552,6 +2553,11 @@ export interface Ketch {
    * Get the region information
    */
   getRegionInfo(): Promise<string>
+
+  /**
+   * Check if an experience is currently showing
+   */
+  getIsExperienceDisplayed(): boolean
 
   /**
    * Alias for `emitter.on(eventName, listener)`.
