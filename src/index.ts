@@ -1336,6 +1336,11 @@ export interface ConfigurationV2 {
    * Accessibility button configuration
    */
   accessibilityButton?: AccessibilityButtonConfiguration
+
+  /**
+   * PLG (ketch free/starter) config set when a plan is suspended
+   */
+  isConfigPaused?: boolean
 }
 
 /**
@@ -1470,6 +1475,11 @@ export interface Configuration {
    * Translations static translations
    */
   translations?: Translations
+
+  /**
+   * PLG (ketch free/starter) config set when a plan is suspended
+   */
+  isConfigPaused?: boolean
 }
 
 export interface Translations {
