@@ -419,7 +419,7 @@ export type ShowPreferenceOptions = {
 export type ShowConsentOptions = {
   displayHint?: ConsentExperienceType
   purposes?: string[]
-  experienceCode?: string
+  experience?: string
 }
 
 /**
