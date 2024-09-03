@@ -1341,6 +1341,11 @@ export interface ConfigurationV2 {
    * PLG (ketch free/starter) config set when a plan is suspended
    */
   isConfigPaused?: boolean
+
+  /**
+   * Tags tags from tag managers and websites
+   */
+  tags?: { [key: string]: TagPurposeMapping }
 }
 
 /**
@@ -4597,3 +4602,7 @@ export {
   FormSection,
   FormTemplate,
 } from './forms'
+
+export interface TagPurposeMapping {
+  purposeCodes?: string[]
+}
