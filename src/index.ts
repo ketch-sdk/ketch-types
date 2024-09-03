@@ -417,9 +417,9 @@ export type ShowPreferenceOptions = {
  * ShowConsentOptions
  */
 export type ShowConsentOptions = {
-  displayHint: ConsentExperienceType
+  displayHint?: ConsentExperienceType
   purposes?: string[]
-  experienceCode?: string
+  experience?: string
 }
 
 /**
@@ -2490,7 +2490,7 @@ export interface Ketch {
   /**
    * Show the consent experience
    */
-  showConsent(): Promise<void>
+  showConsent(params?: ShowConsentOptions): Promise<void>
 
   /**
    * Show the experience as described
