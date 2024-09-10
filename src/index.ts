@@ -1344,9 +1344,19 @@ export interface ConfigurationV2 {
   isConfigPaused?: boolean
 
   /**
-   * Tags tags from tag managers and websites
+   * Tags from tag managers and websites
    */
   tags?: { [key: string]: TagPurposeMapping }
+
+  /**
+   * Blocked cookies purpose mapping
+   */
+  blockedCookies?: {
+    [cookieKey: string]: {
+      pattern: string
+      purposes: string[]
+    }
+  }
 }
 
 /**
