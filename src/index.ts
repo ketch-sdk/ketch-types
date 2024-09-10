@@ -585,6 +585,7 @@ export interface Cookie {
   serviceProvider?: string
   latest?: boolean
   version?: number
+  
 }
 
 /**
@@ -1357,7 +1358,7 @@ export interface ConfigurationV2 {
       purposes: string[]
     }
   }
-  
+
 }
 
 /**
