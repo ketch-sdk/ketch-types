@@ -1354,7 +1354,8 @@ export interface ConfigurationV2 {
   blockedCookies?: {
     [cookieKey: string]: {
       pattern: string
-      purposes: string[]
+      regex: string
+      purposeCodes: string[]
     }
   }
 }
