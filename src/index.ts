@@ -1353,8 +1353,9 @@ export interface ConfigurationV2 {
    */
   blockedCookies?: {
     [cookieKey: string]: {
-      pattern: string
-      regex: string
+      // Regex used to match the cookie, if not present we assume exact match on cookieKey
+      regex?: string
+      // Purpose codes which if we have consent for any one, the cookie won't be deleted
       purposeCodes: string[]
     }
   }
