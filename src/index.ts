@@ -643,6 +643,7 @@ export interface PluginPurposeMapping {
  */
 export interface PluginOptions {
   regulations?: string[]
+  options?: { [optionKey: string]: string }
   jurisdictions?: string[]
   regions?: string[]
   purposeMappings?: PluginPurposeMapping[]
