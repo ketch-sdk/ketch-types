@@ -1360,6 +1360,8 @@ export interface ConfigurationV2 {
       purposeCodes: string[]
     }
   }
+
+  systems?: { [key: string]: any[] }
 }
 
 /**
@@ -1499,6 +1501,8 @@ export interface Configuration {
    * PLG (ketch free/starter) config set when a plan is suspended
    */
   isConfigPaused?: boolean
+
+  systems?: { [key: string]: any[] }
 }
 
 export interface Translations {
