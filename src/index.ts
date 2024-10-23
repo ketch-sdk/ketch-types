@@ -1194,7 +1194,6 @@ export interface AccessibilityButtonConfiguration {
   color: string
   icon: string
   position: 'bottom-left' | 'bottom-right'
-  experienceDisplayType: ExperienceDisplayType
 }
 
 /**
