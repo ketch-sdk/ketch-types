@@ -3549,6 +3549,7 @@ export interface ThemeConfig {
   banner?: BannerThemeConfig
   modal?: ModalThemeConfig
   preference?: PreferenceThemeConfig
+  progressiveConsent?: any
 }
 
 /**
@@ -3968,6 +3969,7 @@ export interface ExperienceLayoutConfig {
   banner?: BannerExperienceLayoutConfig
   modal?: ModalExperienceLayoutConfig
   preference?: PreferenceExperienceLayoutConfig
+  progressiveConsent?: any
   entitlementInfo?: EntitlementLayoutConfig
 }
 
@@ -4573,6 +4575,7 @@ export interface ExperienceContentConfig {
   modal?: ModalExperienceContentConfig
   display?: string
   preference?: PreferenceExperienceContentConfig
+  progressiveConsent?: any
   static?: StaticContentConfig
 }
 
