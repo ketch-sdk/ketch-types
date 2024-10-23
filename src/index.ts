@@ -364,6 +364,7 @@ export type Protocols = { [key: string]: string }
 export type Consent = {
   purposes: Status
   vendors?: string[] // list of vendor ids for which the user has opted out
+  googleVendors?: string[] // list of Google vendor ids for which the user has opted out
   protocols?: Protocols
 }
 
@@ -2298,6 +2299,7 @@ export interface GetConsentRequest {
    * list of vendor ids for which the user has opted out
    */
   vendors?: string[]
+  googleVendors?: string[]
 
   collectedAt?: number
 }
@@ -2317,6 +2319,7 @@ export interface GetConsentResponse {
    * list of vendor ids for which the user has opted out
    */
   vendors?: string[]
+  googleVendors?: string[]
 
   collectedAt?: number
   protocols?: Protocols
@@ -2338,6 +2341,7 @@ export interface SetConsentRequest {
    * list of vendor ids for which the user has opted out
    */
   vendors?: string[]
+  googleVendors?: string[]
 }
 
 /**
@@ -2355,6 +2359,7 @@ export interface SetConsentResponse {
    * list of vendor ids for which the user has opted out
    */
   vendors?: string[]
+  googleVendors?: string[]
 
   collectedAt?: number
   protocols?: Protocols
