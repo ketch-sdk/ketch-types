@@ -1278,7 +1278,7 @@ export interface ConfigurationV2 {
   /**
    * Experience V2 definitions
    */
-  experiences?: ExperienceConfig
+  experiences?: CombinedExperienceConfig
 
   /**
    * Vendors (TCF)
@@ -4597,6 +4597,35 @@ export interface ExperienceAssociationConfig {
 export interface ExperienceConfig {
   layout?: ExperienceLayoutConfig
   content?: ExperienceContentConfig
+  associations?: ExperienceAssociationConfig
+}
+
+/**
+ * Combined Experience Configuration
+ *
+ * This type allows for multiple progressive consent experiences in a single configuration.
+ */
+
+export interface CombinedExperienceLayoutConfig {
+  banner?: BannerExperienceLayoutConfig
+  modal?: ModalExperienceLayoutConfig
+  preference?: PreferenceExperienceLayoutConfig
+  progressiveConsent?: { [experienceId: string]: any }
+  entitlementInfo?: EntitlementLayoutConfig
+}
+
+export interface CombinedExperienceContentConfig {
+  banner?: BannerExperienceContentConfig
+  modal?: ModalExperienceContentConfig
+  display?: string
+  preference?: PreferenceExperienceContentConfig
+  progressiveConsent?: { [experienceId: string]: any }
+  static?: StaticContentConfig
+}
+
+export interface CombinedExperienceConfig {
+  layout?: CombinedExperienceLayoutConfig
+  content?: CombinedExperienceContentConfig
   associations?: ExperienceAssociationConfig
 }
 
