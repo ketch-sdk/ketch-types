@@ -4603,7 +4603,7 @@ export interface ExperienceConfig {
 /**
  * Combined Experience Configuration
  *
- * These type accomodate multiple progressive consent experiences in a single configuration.
+ * This type allows for multiple progressive consent experiences in a single configuration.
  */
 
 export interface CombinedExperienceLayoutConfig {
