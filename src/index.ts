@@ -4633,7 +4633,7 @@ export enum ProgressiveExperienceConsentLayout {
 
 export enum ProgressiveExperiencePosition {
   FollowPointer = 'followPointer',
-  Custom = 'custom',
+  Embed = 'embed',
 }
 
 export enum ProgressiveExperienceButtonAction {
@@ -4663,7 +4663,8 @@ export type ProgressiveExperienceSwitchButtonsLayout = {
 export type ProgressiveExperienceLayout = {
   type: ProgressiveExperienceType
   consentLayout: ProgressiveExperienceConsentLayout
-  position: any
+  position: ProgressiveExperiencePosition
+  embedElementId?: string
   font?: string
   headerVisible: boolean
   descriptionVisible: boolean
