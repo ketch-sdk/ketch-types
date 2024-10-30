@@ -4655,9 +4655,10 @@ export type ProgressiveExperienceActionButtonsLayout = {
 }
 
 export type ProgressiveExperienceSwitchButtonsLayout = {
-  visible: boolean
+  labelVisible: boolean
   useDefaultText: boolean
   display: SwitchButtonDisplay
+  purposeCodes: string[]
 }
 
 export type ProgressiveExperienceLayout = {
