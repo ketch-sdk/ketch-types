@@ -424,6 +424,13 @@ export type ShowConsentOptions = {
 }
 
 /**
+ * ShowProgressiveExperienceOptions
+ */
+export type ShowProgressiveExperienceOptions = {
+  experienceId: string
+}
+
+/**
  * InvokeRightEvent
  */
 export type InvokeRightEvent = {
@@ -2519,6 +2526,11 @@ export interface Ketch {
   showConsent(params?: ShowConsentOptions): Promise<void>
 
   /**
+   * Show a progressive experience
+   */
+  showProgressiveExperience(params?: ShowProgressiveExperienceOptions): Promise<void>
+
+  /**
    * Show the experience as described
    *
    * @param options The experience options
@@ -4609,9 +4621,78 @@ export interface ExperienceConfig {
  * Progressive Experience Configuration
  */
 
+export enum ProgressiveExperienceType {
+  Consent = 'consent',
+  Subscription = 'subscription',
+}
+
+export enum ProgressiveExperienceConsentLayout {
+  ActionButtons = 'actionButtons',
+  ToggleSwitch = 'toggleSwitch',
+}
+
+export enum ProgressiveExperiencePosition {
+  FollowPointer = 'followPointer',
+  Custom = 'custom',
+}
+
+export enum ProgressiveExperienceButtonAction {
+  Accept = 'accept',
+  Reject = 'reject',
+  Dismiss = 'dismiss',
+}
+
+export type ProgressiveExperienceActionButtonLayout = {
+  visible: boolean
+  action: ProgressiveExperienceButtonAction
+  purposeCodes: string[]
+}
+
+export type ProgressiveExperienceActionButtonsLayout = {
+  primary: ProgressiveExperienceActionButtonLayout
+  secondary: ProgressiveExperienceActionButtonLayout
+  tertiary: ProgressiveExperienceActionButtonLayout
+}
+
+export type ProgressiveExperienceSwitchButtonsLayout = {
+  visible: boolean
+  useDefaultText: boolean
+  display: SwitchButtonDisplay
+}
+
+export type ProgressiveExperienceLayout = {
+  type: ProgressiveExperienceType
+  consentLayout: ProgressiveExperienceConsentLayout
+  position: any
+  font?: string
+  headerVisible: boolean
+  descriptionVisible: boolean
+  subscriptionTopicCodes?: string[]
+  actionButtons?: ProgressiveExperienceActionButtonsLayout
+  switchButtons?: ProgressiveExperienceSwitchButtonsLayout
+}
+
+export type ProgressiveExperienceActionButtonsContent = {
+  primaryText: string
+  secondaryText: string
+  tertiaryText: string
+}
+
+export type ProgressiveExperienceSwitchButtonsContent = {
+  onText: string
+  offText: string
+}
+
+export type ProgressiveExperienceContent = {
+  header: string
+  description: string
+  actionButtons: ProgressiveExperienceActionButtonsContent
+  switchButtons: ProgressiveExperienceSwitchButtonsContent
+}
+
 export interface ProgressiveExperienceConfig {
-  layout?: any
-  content?: any
+  layout?: ProgressiveExperienceLayout
+  content?: ProgressiveExperienceContent
   associations?: ExperienceAssociationConfig
 }
 
