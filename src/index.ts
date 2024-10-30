@@ -424,6 +424,13 @@ export type ShowConsentOptions = {
 }
 
 /**
+ * ShowProgressiveExperienceOptions
+ */
+export type ShowProgressiveExperienceOptions = {
+  experienceId: string
+}
+
+/**
  * InvokeRightEvent
  */
 export type InvokeRightEvent = {
@@ -1278,7 +1285,12 @@ export interface ConfigurationV2 {
   /**
    * Experience V2 definitions
    */
-  experiences?: CombinedExperienceConfig
+  experiences?: ExperienceConfig
+
+  /**
+   * Progressive experiences
+   */
+  progressiveExperiences?: { [experienceId: string]: ProgressiveExperienceConfig }
 
   /**
    * Vendors (TCF)
@@ -2512,6 +2524,11 @@ export interface Ketch {
    * Show the consent experience
    */
   showConsent(params?: ShowConsentOptions): Promise<void>
+
+  /**
+   * Show a progressive experience
+   */
+  showProgressiveExperience(params?: ShowProgressiveExperienceOptions): Promise<void>
 
   /**
    * Show the experience as described
@@ -4601,31 +4618,81 @@ export interface ExperienceConfig {
 }
 
 /**
- * Combined Experience Configuration
- *
- * This type allows for multiple progressive consent experiences in a single configuration.
+ * Progressive Experience Configuration
  */
 
-export interface CombinedExperienceLayoutConfig {
-  banner?: BannerExperienceLayoutConfig
-  modal?: ModalExperienceLayoutConfig
-  preference?: PreferenceExperienceLayoutConfig
-  progressiveConsent?: { [experienceId: string]: any }
-  entitlementInfo?: EntitlementLayoutConfig
+export enum ProgressiveExperienceType {
+  Consent = 'consent',
+  Subscription = 'subscription',
 }
 
-export interface CombinedExperienceContentConfig {
-  banner?: BannerExperienceContentConfig
-  modal?: ModalExperienceContentConfig
-  display?: string
-  preference?: PreferenceExperienceContentConfig
-  progressiveConsent?: { [experienceId: string]: any }
-  static?: StaticContentConfig
+export enum ProgressiveExperienceConsentLayout {
+  ActionButtons = 'actionButtons',
+  ToggleSwitch = 'toggleSwitch',
 }
 
-export interface CombinedExperienceConfig {
-  layout?: CombinedExperienceLayoutConfig
-  content?: CombinedExperienceContentConfig
+export enum ProgressiveExperiencePosition {
+  FollowPointer = 'followPointer',
+  Custom = 'custom',
+}
+
+export enum ProgressiveExperienceButtonAction {
+  Accept = 'accept',
+  Reject = 'reject',
+  Dismiss = 'dismiss',
+}
+
+export type ProgressiveExperienceActionButtonLayout = {
+  visible: boolean
+  action: ProgressiveExperienceButtonAction
+  purposeCodes: string[]
+}
+
+export type ProgressiveExperienceActionButtonsLayout = {
+  primary: ProgressiveExperienceActionButtonLayout
+  secondary: ProgressiveExperienceActionButtonLayout
+  tertiary: ProgressiveExperienceActionButtonLayout
+}
+
+export type ProgressiveExperienceSwitchButtonsLayout = {
+  visible: boolean
+  useDefaultText: boolean
+  display: SwitchButtonDisplay
+}
+
+export type ProgressiveExperienceLayout = {
+  type: ProgressiveExperienceType
+  consentLayout: ProgressiveExperienceConsentLayout
+  position: any
+  font?: string
+  headerVisible: boolean
+  descriptionVisible: boolean
+  subscriptionTopicCodes?: string[]
+  actionButtons?: ProgressiveExperienceActionButtonsLayout
+  switchButtons?: ProgressiveExperienceSwitchButtonsLayout
+}
+
+export type ProgressiveExperienceActionButtonsContent = {
+  primaryText: string
+  secondaryText: string
+  tertiaryText: string
+}
+
+export type ProgressiveExperienceSwitchButtonsContent = {
+  onText: string
+  offText: string
+}
+
+export type ProgressiveExperienceContent = {
+  header: string
+  description: string
+  actionButtons: ProgressiveExperienceActionButtonsContent
+  switchButtons: ProgressiveExperienceSwitchButtonsContent
+}
+
+export interface ProgressiveExperienceConfig {
+  layout?: ProgressiveExperienceLayout
+  content?: ProgressiveExperienceContent
   associations?: ExperienceAssociationConfig
 }
 
