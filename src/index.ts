@@ -1290,7 +1290,7 @@ export interface ConfigurationV2 {
   /**
    * Progressive experiences
    */
-  progressiveExperiences?: { [experienceId: string]: ProgressiveExperienceConfig }
+  progressiveExperiences?: ProgressiveExperienceConfigurationType
 
   /**
    * Vendors (TCF)
@@ -4665,13 +4665,13 @@ export type ProgressiveExperienceLayout = {
   type: ProgressiveExperienceType
   consentLayout: ProgressiveExperienceConsentLayout
   position: ProgressiveExperiencePosition
-  embedElementId?: string
-  font?: string
+  embedElementId: string
+  font: string
   headerVisible: boolean
   descriptionVisible: boolean
-  subscriptionTopicCodes?: string[]
-  actionButtons?: ProgressiveExperienceActionButtonsLayout
-  switchButtons?: ProgressiveExperienceSwitchButtonsLayout
+  subscriptionTopicCodes: string[]
+  actionButtons: ProgressiveExperienceActionButtonsLayout
+  switchButtons: ProgressiveExperienceSwitchButtonsLayout
 }
 
 export type ProgressiveExperienceActionButtonsContent = {
@@ -4693,9 +4693,28 @@ export type ProgressiveExperienceContent = {
 }
 
 export interface ProgressiveExperienceConfig {
-  layout?: ProgressiveExperienceLayout
-  content?: ProgressiveExperienceContent
-  associations?: ExperienceAssociationConfig
+  layout: ProgressiveExperienceLayout
+  content: ProgressiveExperienceContent
+  associations: ExperienceAssociationConfig
+}
+
+/**
+ * Progressive Experience Configuration Type
+ *
+ * Type used for the progressive experience field in the config.
+ */
+
+export interface ProgressiveExperienceConfigurationType {
+  [experienceId: string]: {
+    content: {
+      progressiveConsent: ProgressiveExperienceContent
+      static: StaticContentConfig
+    }
+    layout: {
+      progressiveConsent: ProgressiveExperienceLayout
+      entitlementInfo: EntitlementLayoutConfig
+    }
+  }
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
