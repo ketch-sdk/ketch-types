@@ -4012,6 +4012,7 @@ export interface FooterExperienceContentConfig {
 export interface SwitchButtonsExperienceContentConfig {
   onText?: string
   offText?: string
+  alwaysOnText?: string
 }
 
 /**
