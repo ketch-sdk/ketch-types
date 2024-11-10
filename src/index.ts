@@ -624,6 +624,7 @@ export interface Purpose {
   canonicalPurposeCode?: string
   legalBasisName?: string
   legalBasisDescription?: string
+  illustrations?: string[]
 
   /**
    * the data subject types for which the purpose is relevant. If this list is empty then the purpose applies to all
@@ -4574,6 +4575,8 @@ export interface BaseStaticContentConfig {
   vendors?: string
   verification?: string
   we_are_unable_to_fulfill_your_request?: string
+  illustration?: string
+  illustrations?: string
 }
 
 /**
