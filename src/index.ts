@@ -606,6 +606,13 @@ export type PurposeCategory = {
 }
 
 /**
+ * Systems
+ */
+export interface Systems {
+  [key: string]: any[]
+}
+
+/**
  * Purpose
  */
 export interface Purpose {
@@ -625,6 +632,7 @@ export interface Purpose {
   legalBasisName?: string
   legalBasisDescription?: string
   illustrations?: string[]
+  systems?: Systems
 
   /**
    * the data subject types for which the purpose is relevant. If this list is empty then the purpose applies to all
@@ -1374,7 +1382,7 @@ export interface ConfigurationV2 {
     }
   }
 
-  systems?: { [key: string]: any[] }
+  systems?: Systems
 }
 
 /**
@@ -1515,7 +1523,7 @@ export interface Configuration {
    */
   isConfigPaused?: boolean
 
-  systems?: { [key: string]: any[] }
+  systems?: Systems
 }
 
 export interface Translations {
