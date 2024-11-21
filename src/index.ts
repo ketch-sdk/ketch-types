@@ -1136,6 +1136,14 @@ export interface VendorPurpose {
 }
 
 /**
+ * Vendor declaration
+ */
+export interface VendorDataDeclaration {
+  name: string
+  description: string 
+}
+
+/**
  * Vendor definition
  */
 export interface Vendor {
@@ -1149,6 +1157,8 @@ export interface Vendor {
   cookieMaxAgeSeconds?: number
   usesCookies?: boolean
   usesNonCookieAccess?: boolean
+  dataDeclaration?: VendorDataDeclaration[]
+  dataRetention?: number
 }
 
 /**
