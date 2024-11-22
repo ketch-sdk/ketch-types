@@ -1140,7 +1140,7 @@ export interface VendorPurpose {
  */
 export interface VendorDataDeclaration {
   name: string
-  description: string 
+  description: string
 }
 
 /**
