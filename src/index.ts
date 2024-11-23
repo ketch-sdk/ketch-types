@@ -1136,14 +1136,6 @@ export interface VendorPurpose {
 }
 
 /**
- * Vendor declaration
- */
-export interface VendorDataDeclaration {
-  name: string
-  description: string
-}
-
-/**
  * Vendor definition
  */
 export interface Vendor {
@@ -1157,8 +1149,36 @@ export interface Vendor {
   cookieMaxAgeSeconds?: number
   usesCookies?: boolean
   usesNonCookieAccess?: boolean
-  dataDeclaration?: VendorDataDeclaration[]
+}
+
+export interface TcfMetaDataInfo {
+  id?: number
+  name?: string
+  description?: string
+  legalBasis?: string
+}
+
+export interface TcfMetaData {
+  purposes?: TcfMetaDataInfo[]
+  legIntPurposes?: TcfMetaDataInfo[]
+  flexiblePurposes?: TcfMetaDataInfo[]
+  specialPurposes?: TcfMetaDataInfo[]
+  features?: TcfMetaDataInfo[]
+  specialFeatures?: TcfMetaDataInfo[]
   dataRetention?: number
+  dataDeclaration?: TcfMetaDataInfo[]
+  legIntClaim?: string
+  deviceStorageDisclosure?: string
+}
+
+/**
+ * TCF Vendor list from systems.tcf and purposes[i].systems.tcf
+ */
+export interface TcfVendor {
+  id: string
+  name: string
+  privacyPolicy?: string
+  tcfMetadata?: TcfMetaData
 }
 
 /**
@@ -4596,6 +4616,10 @@ export interface BaseStaticContentConfig {
   we_are_unable_to_fulfill_your_request?: string
   illustration?: string
   illustrations?: string
+  data_declaration?: string
+  data_retention?: string
+  day?: string
+  days?: string
 }
 
 /**
