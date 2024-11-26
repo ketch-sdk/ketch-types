@@ -1151,34 +1151,43 @@ export interface Vendor {
   usesNonCookieAccess?: boolean
 }
 
-export interface TcfMetaDataInfo {
-  id?: number
-  name?: string
-  description?: string
+export interface TCFPurpose {
+  id: number
+  name: string
+  retention?: number
   legalBasis?: string
 }
 
-export interface TcfMetaData {
-  purposes?: TcfMetaDataInfo[]
-  legIntPurposes?: TcfMetaDataInfo[]
-  flexiblePurposes?: TcfMetaDataInfo[]
-  specialPurposes?: TcfMetaDataInfo[]
-  features?: TcfMetaDataInfo[]
-  specialFeatures?: TcfMetaDataInfo[]
+export interface TCFDataDeclaration {
+  name: string
+  description?: string
+}
+
+export interface TCFMetadata {
+  purposes?: TCFPurpose[]
+  legIntPurposes?: TCFPurpose[]
+  flexiblePurposes?: TCFPurpose[]
+  specialPurposes?: TCFPurpose[]
+  features?: TCFPurpose[]
+  specialFeatures?: TCFPurpose[]
   dataRetention?: number
-  dataDeclaration?: TcfMetaDataInfo[]
+  dataDeclaration?: TCFDataDeclaration[]
   legIntClaim?: string
   deviceStorageDisclosure?: string
+  cookieMaxAgeSeconds?: number
+  cookieRefresh?: boolean
+  usesCookies?: boolean
+  usesNonCookieAccess?: boolean
 }
 
 /**
- * TCF Vendor list from systems.tcf and purposes[i].systems.tcf
+ * TCFSystem list
  */
-export interface TcfVendor {
+export interface TCFSystem {
   id: string
   name: string
   privacyPolicy?: string
-  tcfMetadata?: TcfMetaData
+  tcfMetadata?: TCFMetadata
 }
 
 /**
