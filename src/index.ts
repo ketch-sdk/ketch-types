@@ -4629,6 +4629,12 @@ export interface BaseStaticContentConfig {
   data_retention?: string
   day?: string
   days?: string
+  device_storage?: string
+  second?: string
+  seconds?: string
+  uses_cookies?: string
+  cookie_refresh?: string
+  uses_non_cookie_access?: string
 }
 
 /**
