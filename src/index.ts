@@ -1167,7 +1167,7 @@ export interface TCFMetadata {
   purposes?: TCFPurpose[]
   legIntPurposes?: TCFPurpose[]
   flexiblePurposes?: TCFPurpose[]
-  specialPurpose?: TCFPurpose[]
+  specialPurposes?: TCFPurpose[]
   features?: TCFPurpose[]
   specialFeatures?: TCFPurpose[]
   dataRetention?: number
