@@ -614,6 +614,9 @@ export interface ConfigSystems {
 
 /**
  * Purpose Systems
+ *
+ * The systems field on a purpose contains a list of IDs associated with the purpose. See the
+ * ConfigurationV2.systems field for details on each system.
  */
 export interface PurposeSystems {
   [key: string]: string[]
