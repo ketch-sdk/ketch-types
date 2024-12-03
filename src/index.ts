@@ -606,10 +606,20 @@ export type PurposeCategory = {
 }
 
 /**
- * Systems
+ * Config Systems
  */
-export interface Systems {
-  [key: string]: any[]
+export interface ConfigSystems {
+  [key: string]: TCFSystem[]
+}
+
+/**
+ * Purpose Systems
+ *
+ * The systems field on a purpose contains a list of IDs associated with the purpose. See the
+ * ConfigurationV2.systems field for details on each system.
+ */
+export interface PurposeSystems {
+  [key: string]: string[]
 }
 
 /**
@@ -632,7 +642,7 @@ export interface Purpose {
   legalBasisName?: string
   legalBasisDescription?: string
   illustrations?: string[]
-  systems?: Systems
+  systems?: PurposeSystems
 
   /**
    * the data subject types for which the purpose is relevant. If this list is empty then the purpose applies to all
@@ -1422,7 +1432,7 @@ export interface ConfigurationV2 {
     }
   }
 
-  systems?: Systems
+  systems?: ConfigSystems
 }
 
 /**
@@ -1563,7 +1573,7 @@ export interface Configuration {
    */
   isConfigPaused?: boolean
 
-  systems?: Systems
+  systems?: ConfigSystems
 }
 
 export interface Translations {
