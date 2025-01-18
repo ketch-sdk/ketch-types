@@ -10,6 +10,7 @@ export enum Tab {
   Rights = 'rightsTab',
   Consents = 'consentsTab',
   Subscriptions = 'subscriptionsTab',
+  Profile = 'profileTab',
 }
 
 /**
