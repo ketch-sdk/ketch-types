@@ -1345,7 +1345,7 @@ export interface ConfigurationV2 {
   /**
    * Experience V2 definitions
    */
-  experiences?: ExperienceConfig
+  experiences?: ExperienceConfigurationType
 
   /**
    * Progressive experiences
@@ -4788,6 +4788,11 @@ export interface ProgressiveExperienceConfigurationType {
       entitlementInfo: EntitlementLayoutConfig
     }
   }
+}
+
+export interface ExperienceConfigurationType {
+  autoInitiated: ExperienceConfig
+  userInitiated: ExperienceConfig
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
