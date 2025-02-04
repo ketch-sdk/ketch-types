@@ -2619,13 +2619,6 @@ export interface Ketch {
   showExperience(options: ShowExperienceOptions): Promise<void>
 
   /**
-   * Show the experience as described
-   *
-   * @param options The experience options
-   */
-  showExperience(options: ExperienceOptions): Promise<void>
-
-  /**
    * Show the preference experience
    *
    * @param params The parameters for the experience
