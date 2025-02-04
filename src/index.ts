@@ -432,6 +432,26 @@ export type ShowProgressiveExperienceOptions = {
 }
 
 /**
+ * Options available when invoking ketch('showExperience', ...)
+ */
+export type ShowExperienceOptions = {
+  /** Consent state */
+  consents: Consent
+
+  /** The type of experience to show */
+  experienceType: ExperienceDisplayType
+
+  /** The purposes to show in the experience */
+  purposes?: string[]
+
+  /** The preference options to pass to the preference experience */
+  preferenceOptions?: ShowPreferenceOptions
+
+  /** Boolean indicating if the auto initiated experience should be triggered. If true, the experienceType will be ignored. */
+  useAutoInitiated?: boolean
+}
+
+/**
  * InvokeRightEvent
  */
 export type InvokeRightEvent = {
@@ -2589,6 +2609,11 @@ export interface Ketch {
    * Show a progressive experience
    */
   showProgressiveExperience(params?: ShowProgressiveExperienceOptions): Promise<void>
+
+  /**
+   * Show any experience
+   */
+  showExperience(options: ShowExperienceOptions): Promise<void>
 
   /**
    * Show the experience as described
