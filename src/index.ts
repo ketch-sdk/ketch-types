@@ -447,7 +447,10 @@ export type ShowExperienceOptions = {
   /** The preference options to pass to the preference experience */
   preferenceOptions?: ShowPreferenceOptions
 
-  /** Boolean indicating if the auto initiated experience should be triggered. If true, the experienceType will be ignored. */
+  /**
+   * Boolean indicating if the auto initiated experience should be triggered.
+   * If true, the experienceType will be ignored.
+   */
   useAutoInitiated?: boolean
 }
 
