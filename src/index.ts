@@ -435,12 +435,6 @@ export type ShowProgressiveExperienceOptions = {
  * Options available when invoking ketch('showExperience', ...)
  */
 export type ShowExperienceOptions = {
-  /** Consent state */
-  consents: Consent
-
-  /** The type of experience to show */
-  experienceType: ExperienceDisplayType
-
   /** The purposes to show in the experience */
   purposes?: string[]
 
@@ -2616,7 +2610,7 @@ export interface Ketch {
   /**
    * Show any experience
    */
-  showExperience(options: ShowExperienceOptions): Promise<void>
+  showExperience(params?: ShowExperienceOptions): Promise<void>
 
   /**
    * Show the preference experience
