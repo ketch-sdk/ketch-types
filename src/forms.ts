@@ -66,6 +66,7 @@ export enum FormFieldType {
   TEXT = 'text',
   DROPDOWN = 'dropdown',
   CHECKBOX = 'checkbox',
+  FILE = 'file',
 }
 
 /**
