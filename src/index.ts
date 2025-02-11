@@ -3052,10 +3052,21 @@ export interface ReturnButtonThemeConfig {
  * Banner/Modal Header Theme Configuration
  */
 
+export enum BannerModalLogoPosition {
+  Top = 'top',
+  Left = 'left',
+}
+
+export interface BannerModalLogoThemeConfig {
+  position: BannerModalLogoPosition
+  image: ImageThemeConfig
+}
+
 export interface HeaderThemeConfig {
   background?: ColorThemeConfig
   title?: TextThemeConfig
   returnButton?: ReturnButtonThemeConfig // This is either a Back or Close button
+  logo?: BannerModalLogoThemeConfig
 }
 
 /**
@@ -3084,6 +3095,7 @@ export interface BannerModalFooterThemeConfig {
   background?: ColorThemeConfig
   actionButton?: ActionButtonThemeConfig
   ketchBadgeVisible?: boolean
+  logo?: BannerModalLogoThemeConfig
 }
 
 /**
@@ -3691,6 +3703,11 @@ export interface TextBlockExperienceLayoutConfig {
   title?: TextBlockTitleExperienceLayoutConfig
 }
 
+export interface BulkActionButtonsExperienceLayoutConfig {
+  visible?: boolean
+  useDefaultText?: boolean
+}
+
 /**
  * Banner Action Button Experience Layout Configuration
  */
@@ -3738,6 +3755,7 @@ export interface BannerExperienceLayoutConfig {
 export interface ModalListHeaderExperienceLayoutConfig {
   visible?: boolean
   useDefaultText?: boolean
+  bulkActionButtons?: BulkActionButtonsExperienceLayoutConfig
 }
 
 /**
@@ -3846,6 +3864,7 @@ export interface PreferenceTabHeaderExperienceLayoutConfig {
 export interface PurposesTabListHeaderExperienceLayoutConfig {
   titleVisible?: boolean
   useDefaultText?: boolean
+  bulkActionButtons?: BulkActionButtonsExperienceLayoutConfig
 }
 
 export interface PurposesTabListExperienceLayoutConfig {
@@ -4090,6 +4109,11 @@ export interface SwitchButtonsExperienceContentConfig {
   alwaysOnText?: string
 }
 
+export interface BulkActionButtonsExperienceContentConfig {
+  acceptAllText?: string
+  rejectAllText?: string
+}
+
 /**
  * Text Block Experience Content Configuration
  */
@@ -4134,6 +4158,7 @@ export interface BannerExperienceContentConfig {
 
 export interface ModalListHeaderExperienceContentConfig {
   text?: string
+  bulkActionButtons?: BulkActionButtonsExperienceContentConfig
 }
 
 /**
@@ -4227,6 +4252,7 @@ export interface PreferenceTabHeaderExperienceContentConfig {
 
 export interface PurposesTabListHeaderExperienceContentConfig {
   title?: string
+  bulkActionButtons?: BulkActionButtonsExperienceContentConfig
 }
 
 export interface PurposesTabListExperienceContentConfig {
