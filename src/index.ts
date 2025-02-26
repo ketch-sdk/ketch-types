@@ -4690,6 +4690,8 @@ export interface BaseStaticContentConfig {
   uses_cookies?: string
   cookie_refresh?: string
   uses_non_cookie_access?: string
+  cloudinary_supported_file_types?: string
+  cloudinary_supported_file_size?: string
 }
 
 /**
