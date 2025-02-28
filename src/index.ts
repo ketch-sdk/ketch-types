@@ -3695,6 +3695,27 @@ export interface SwitchButtonsExperienceLayoutConfig {
 }
 
 /**
+ * Vendor Experience Layout Configuration
+ */
+
+export interface VendorExperienceSubpageLayoutConfig {
+  visible?: boolean
+  includeOtherVendors?: boolean
+  otherVendorIds?: string[] // System IDs
+  link?: { useDefaultText?: boolean }
+}
+
+export enum ExperienceLinkType {
+  Vendor = 'vendor',
+}
+
+export interface ListHeaderLinkExperienceLayoutConfig {
+  visible?: boolean
+  linkType?: ExperienceLinkType
+  useDefaultText?: boolean
+}
+
+/**
  * Text Block Experience Layout Configuration
  */
 
@@ -3759,6 +3780,7 @@ export interface ModalListHeaderExperienceLayoutConfig {
   visible?: boolean
   useDefaultText?: boolean
   bulkActionButtons?: BulkActionButtonsExperienceLayoutConfig
+  links?: ListHeaderLinkExperienceLayoutConfig[]
 }
 
 /**
@@ -3769,6 +3791,7 @@ export interface ModalPurposeListExperienceLayoutConfig {
   legalBasisVisible?: boolean
   purposeStacksDefaultExpanded?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
+  vendors?: VendorExperienceSubpageLayoutConfig
 }
 
 /**
@@ -3868,12 +3891,14 @@ export interface PurposesTabListHeaderExperienceLayoutConfig {
   titleVisible?: boolean
   useDefaultText?: boolean
   bulkActionButtons?: BulkActionButtonsExperienceLayoutConfig
+  links?: ListHeaderLinkExperienceLayoutConfig[]
 }
 
 export interface PurposesTabListExperienceLayoutConfig {
   legalBasisVisible?: boolean
   purposeStacksDefaultExpanded?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
+  vendors?: VendorExperienceSubpageLayoutConfig
 }
 
 /**
@@ -4126,6 +4151,19 @@ export interface TextBlockExperienceContentConfig {
   body?: string
 }
 
+export interface ListHeaderLinkExperienceContentConfig {
+  text?: string
+}
+
+/**
+ * Vendor Experience Content Configuration
+ */
+
+export interface VendorExperienceSubpageContentConfig {
+  linkText?: string
+  description?: string
+}
+
 /**
  * Banner Action Button Experience Content Configuration
  */
@@ -4162,6 +4200,7 @@ export interface BannerExperienceContentConfig {
 export interface ModalListHeaderExperienceContentConfig {
   text?: string
   bulkActionButtons?: BulkActionButtonsExperienceContentConfig
+  links?: ListHeaderLinkExperienceContentConfig[]
 }
 
 /**
@@ -4170,6 +4209,7 @@ export interface ModalListHeaderExperienceContentConfig {
 
 export interface ModalPurposeListExperienceContentConfig {
   switchButtonLabels?: SwitchButtonsExperienceContentConfig
+  vendors?: VendorExperienceSubpageContentConfig
 }
 
 /**
@@ -4256,10 +4296,12 @@ export interface PreferenceTabHeaderExperienceContentConfig {
 export interface PurposesTabListHeaderExperienceContentConfig {
   title?: string
   bulkActionButtons?: BulkActionButtonsExperienceContentConfig
+  links?: ListHeaderLinkExperienceContentConfig[]
 }
 
 export interface PurposesTabListExperienceContentConfig {
   switchButtonLabels?: SwitchButtonsExperienceContentConfig
+  vendors?: VendorExperienceSubpageContentConfig
 }
 
 /**
