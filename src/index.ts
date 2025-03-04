@@ -4769,8 +4769,8 @@ export interface ExperienceContentConfig {
 
 export interface ExperienceAssociationConfig {
   subscriptionTopicCodes?: string[]
-  formID?: string[]
-  installedSystemIds?: string[]
+  formIDs?: string[]
+  installedSystemIDs?: string[]
 }
 
 export interface ExperienceConfig {
