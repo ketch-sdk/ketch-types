@@ -1164,6 +1164,9 @@ export interface Theme {
 export interface VendorPurpose {
   name: string
   legalBasis?: string // legalBasisName
+  id?: number
+  hasOverride?: boolean
+  overrideType?: number
 }
 
 /**
