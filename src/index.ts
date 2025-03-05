@@ -628,7 +628,9 @@ export type PurposeCategory = {
  * Config Systems
  */
 export interface ConfigSystems {
-  [key: string]: TCFSystem[]
+  tcf?: TCFSystem[]
+  google?: GoogleSystem[]
+  other?: OtherSystem[]
 }
 
 /**
@@ -1210,13 +1212,26 @@ export interface TCFMetadata {
 }
 
 /**
- * TCFSystem list
+ * System types
  */
+
 export interface TCFSystem {
   id: string
   name: string
   privacyPolicy?: string
   tcfMetadata?: TCFMetadata
+}
+
+export interface GoogleSystem {
+  id: string
+  name: string
+  policyUrl: string
+}
+
+export interface OtherSystem {
+  id: string
+  name: string
+  description: string
 }
 
 /**
