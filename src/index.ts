@@ -4734,6 +4734,9 @@ export interface BaseStaticContentConfig {
   uses_non_cookie_access?: string
   cloudinary_supported_file_types?: string
   cloudinary_supported_file_size?: string
+  google_vendors?: string
+  other_vendors?: string
+  tcf_vendors?: string
 }
 
 /**
