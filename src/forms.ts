@@ -108,6 +108,17 @@ export interface FormSection {
   title: string
 }
 
+
+/**
+ * FormCondition: Describes a condition for a form field.
+ */
+export interface FormCondition {
+  type: number
+  operator: number
+  values: string[]
+  relationalOperator: number
+}
+
 /**
  * FormTemplate: Describes a form template including its id, code, name, title and sections.
  */
@@ -117,4 +128,5 @@ export interface FormTemplate {
   name: string
   sections: FormSection[]
   title: string
+  conditions?: FormCondition[]
 }
