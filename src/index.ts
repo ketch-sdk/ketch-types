@@ -4755,6 +4755,7 @@ export interface BaseStaticContentConfig {
   google_vendors?: string
   other_vendors?: string
   tcf_vendors?: string
+  view_privacy_policy?: string
 }
 
 /**
