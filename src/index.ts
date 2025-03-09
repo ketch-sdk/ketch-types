@@ -2574,7 +2574,7 @@ export interface Ketch {
   /**
    * Returns the Consent
    */
-  getConsent(): Promise<Consent>
+  getConsent(noCache?: boolean): Promise<Consent>
 
   /**
    * Sets the consent
@@ -4756,6 +4756,8 @@ export interface BaseStaticContentConfig {
   other_vendors?: string
   tcf_vendors?: string
   view_privacy_policy?: string
+  choose_file?: string
+  no_file_chosen?: string
 }
 
 /**
