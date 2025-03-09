@@ -108,15 +108,48 @@ export interface FormSection {
   title: string
 }
 
+export enum ConditionType {
+  CONDITION_TYPE_UNSPECIFIED = 'CONDITION_TYPE_UNSPECIFIED',
+  CONDITION_TYPE_FORM_FIELD = 'CONDITION_TYPE_FORM_FIELD',
+  CONDITION_TYPE_DATA_SUBJECT = 'CONDITION_TYPE_DATA_SUBJECT',
+  UNRECOGNIZED = 'UNRECOGNIZED',
+}
+
+export enum Operator {
+  OPERATOR_UNSPECIFIED = 'OPERATOR_UNSPECIFIED',
+  OPERATOR_EQUALS = 'OPERATOR_EQUALS',
+  OPERATOR_NOT_EQUALS = 'OPERATOR_NOT_EQUALS',
+  OPERATOR_GREATER_THAN = 'OPERATOR_GREATER_THAN',
+  OPERATOR_LESS_THAN = 'OPERATOR_LESS_THAN',
+  OPERATOR_GREATER_THAN_OR_EQUALS = 'OPERATOR_GREATER_THAN_OR_EQUALS',
+  OPERATOR_LESS_THAN_OR_EQUALS = 'OPERATOR_LESS_THAN_OR_EQUALS',
+  OPERATOR_CONTAINS = 'OPERATOR_CONTAINS',
+  OPERATOR_NOT_CONTAINS = 'OPERATOR_NOT_CONTAINS',
+  OPERATOR_IN = 'OPERATOR_IN',
+  OPERATOR_NOT_IN = 'OPERATOR_NOT_IN',
+  OPERATOR_EMPTY = 'OPERATOR_EMPTY',
+  OPERATOR_NOT_EMPTY = 'OPERATOR_NOT_EMPTY',
+  UNRECOGNIZED = 'UNRECOGNIZED',
+}
+
+export enum RelationalOperator {
+  RELATIONAL_OPERATOR_UNSPECIFIED = 'RELATIONAL_OPERATOR_UNSPECIFIED',
+  RELATIONAL_OPERATOR_AND = 'RELATIONAL_OPERATOR_AND',
+  RELATIONAL_OPERATOR_OR = 'RELATIONAL_OPERATOR_OR',
+  UNRECOGNIZED = 'UNRECOGNIZED',
+}
 
 /**
- * FormCondition: Describes a condition for a form field.
+ * Condition: Describes a condition for a form section.
  */
-export interface FormCondition {
-  type: number
-  operator: number
-  values: string[]
-  relationalOperator: number
+export interface Condition {
+  type?: ConditionType
+  fieldID?: string
+  fieldCode?: string
+  operator?: Operator
+  values?: string[]
+  order?: number
+  relationalOperator?: RelationalOperator
 }
 
 /**
@@ -128,5 +161,5 @@ export interface FormTemplate {
   name: string
   sections: FormSection[]
   title: string
-  conditions?: FormCondition[]
+  conditions?: Condition[]
 }
