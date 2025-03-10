@@ -106,6 +106,7 @@ export interface FormSection {
   description: string
   formFields: ExperienceFormField[]
   title: string
+  conditions?: Condition[]
 }
 
 export enum ConditionType {
@@ -161,5 +162,4 @@ export interface FormTemplate {
   name: string
   sections: FormSection[]
   title: string
-  conditions?: Condition[]
 }
