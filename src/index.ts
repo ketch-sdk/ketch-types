@@ -2574,7 +2574,7 @@ export interface Ketch {
   /**
    * Returns the Consent
    */
-  getConsent(noCache?: boolean): Promise<Consent>
+  getConsent(protocolsOnly?: boolean): Promise<Consent>
 
   /**
    * Sets the consent
