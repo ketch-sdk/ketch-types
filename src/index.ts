@@ -360,14 +360,41 @@ export type Status = { [key: string]: boolean }
 export type Protocols = { [key: string]: string }
 
 /**
+ * Vendor Consents
+ */
+
+export enum VendorStatus {
+  Granted = 'granted',
+  Denied = 'denied',
+}
+
+export type VendorConsent = { [key: string]: VendorStatus }
+
+export type VendorConsents = {
+  tcf?: VendorConsent
+  google?: VendorConsent
+}
+
+/**
  * Consent
  */
 export type Consent = {
   purposes: Status
-  vendors?: string[] // list of vendor ids for which the user has opted out
+  /**
+   * List of vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.tcf instead
+   */
+  vendors?: string[]
+  /**
+   * List of Google vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.google instead
+   */
   googleVendors?: string[] // list of Google vendor ids for which the user has opted out
   protocols?: Protocols
   isGpcEnabled?: boolean
+  vendorConsents?: VendorConsents
 }
 
 /**
