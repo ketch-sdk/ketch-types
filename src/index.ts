@@ -360,14 +360,41 @@ export type Status = { [key: string]: boolean }
 export type Protocols = { [key: string]: string }
 
 /**
+ * Vendor Consents
+ */
+
+export enum VendorStatus {
+  Granted = 'granted',
+  Denied = 'denied',
+}
+
+export type VendorConsent = { [key: string]: VendorStatus }
+
+export type VendorConsents = {
+  tcf?: VendorConsent
+  google?: VendorConsent
+}
+
+/**
  * Consent
  */
 export type Consent = {
   purposes: Status
-  vendors?: string[] // list of vendor ids for which the user has opted out
+  /**
+   * List of vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.tcf instead
+   */
+  vendors?: string[]
+  /**
+   * List of Google vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.google instead
+   */
   googleVendors?: string[] // list of Google vendor ids for which the user has opted out
   protocols?: Protocols
   isGpcEnabled?: boolean
+  vendorConsents?: VendorConsents
 }
 
 /**
@@ -2424,13 +2451,21 @@ export interface GetConsentResponse {
   identities: { [key: string]: string }
   purposes: { [key: string]: PurposeAllowed | string }
   /**
-   * list of vendor ids for which the user has opted out
+   * List of vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.tcf instead
    */
   vendors?: string[]
+  /**
+   * List of Google vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.google instead
+   */
   googleVendors?: string[]
 
   collectedAt?: number
   protocols?: Protocols
+  vendorConsents?: VendorConsents
 }
 
 /**
@@ -2446,11 +2481,19 @@ export interface SetConsentRequest {
   collectedAt?: number
   purposes: { [key: string]: PurposeAllowedLegalBasis }
   /**
-   * list of vendor ids for which the user has opted out
+   * List of vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.tcf instead
    */
   vendors?: string[]
+  /**
+   * List of Google vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.google instead
+   */
   googleVendors?: string[]
   isGpcEnabled?: boolean
+  vendorConsents?: VendorConsents
 }
 
 /**
@@ -2465,13 +2508,21 @@ export interface SetConsentResponse {
   identities: { [key: string]: string }
   purposes: { [key: string]: PurposeAllowedLegalBasis }
   /**
-   * list of vendor ids for which the user has opted out
+   * List of vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.tcf instead
    */
   vendors?: string[]
+  /**
+   * List of Google vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.google instead
+   */
   googleVendors?: string[]
 
   collectedAt?: number
   protocols?: Protocols
+  vendorConsents?: VendorConsents
 }
 
 /**
@@ -3734,6 +3785,24 @@ export interface ListHeaderLinkExperienceLayoutConfig {
 }
 
 /**
+ * Purpose Experience Layout Configuration
+ */
+
+export enum PurposeStacksMode {
+  AlwaysOpen = 'alwaysOpen',
+  AlwaysClosed = 'alwaysClosed',
+  DefaultOpen = 'defaultOpen',
+  DefaultClosed = 'defaultClosed',
+}
+
+export interface PurposeStackExperienceLayoutConfig {
+  stackMode?: PurposeStacksMode
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PurposeExperienceLayoutConfig {}
+
+/**
  * Text Block Experience Layout Configuration
  */
 
@@ -3810,6 +3879,7 @@ export interface ModalPurposeListExperienceLayoutConfig {
   purposeStacksDefaultExpanded?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
   vendors?: VendorExperienceSubpageLayoutConfig
+  purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
 }
 
 /**
@@ -3917,6 +3987,7 @@ export interface PurposesTabListExperienceLayoutConfig {
   purposeStacksDefaultExpanded?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
   vendors?: VendorExperienceSubpageLayoutConfig
+  purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
 }
 
 /**
