@@ -3785,6 +3785,23 @@ export interface ListHeaderLinkExperienceLayoutConfig {
 }
 
 /**
+ * Purpose Experience Layout Configuration
+ */
+
+export enum PurposeStacksMode {
+  AlwaysOpen = 'alwaysOpen',
+  AlwaysClosed = 'alwaysClosed',
+  DefaultOpen = 'defaultOpen',
+  DefaultClosed = 'defaultClosed',
+}
+
+export interface PurposeStackExperienceLayoutConfig {
+  stackMode?: PurposeStacksMode
+}
+
+export interface PurposeExperienceLayoutConfig {}
+
+/**
  * Text Block Experience Layout Configuration
  */
 
@@ -3861,6 +3878,7 @@ export interface ModalPurposeListExperienceLayoutConfig {
   purposeStacksDefaultExpanded?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
   vendors?: VendorExperienceSubpageLayoutConfig
+  purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
 }
 
 /**
@@ -3968,6 +3986,7 @@ export interface PurposesTabListExperienceLayoutConfig {
   purposeStacksDefaultExpanded?: boolean
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
   vendors?: VendorExperienceSubpageLayoutConfig
+  purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
 }
 
 /**
