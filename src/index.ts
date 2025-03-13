@@ -2451,13 +2451,21 @@ export interface GetConsentResponse {
   identities: { [key: string]: string }
   purposes: { [key: string]: PurposeAllowed | string }
   /**
-   * list of vendor ids for which the user has opted out
+   * List of vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.tcf instead
    */
   vendors?: string[]
+  /**
+   * List of Google vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.google instead
+   */
   googleVendors?: string[]
 
   collectedAt?: number
   protocols?: Protocols
+  vendorConsents?: VendorConsents
 }
 
 /**
@@ -2473,11 +2481,19 @@ export interface SetConsentRequest {
   collectedAt?: number
   purposes: { [key: string]: PurposeAllowedLegalBasis }
   /**
-   * list of vendor ids for which the user has opted out
+   * List of vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.tcf instead
    */
   vendors?: string[]
+  /**
+   * List of Google vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.google instead
+   */
   googleVendors?: string[]
   isGpcEnabled?: boolean
+  vendorConsents?: VendorConsents
 }
 
 /**
@@ -2492,13 +2508,21 @@ export interface SetConsentResponse {
   identities: { [key: string]: string }
   purposes: { [key: string]: PurposeAllowedLegalBasis }
   /**
-   * list of vendor ids for which the user has opted out
+   * List of vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.tcf instead
    */
   vendors?: string[]
+  /**
+   * List of Google vendor ids for which the user has opted out
+   *
+   * @deprecated Use vendorConsents.google instead
+   */
   googleVendors?: string[]
 
   collectedAt?: number
   protocols?: Protocols
+  vendorConsents?: VendorConsents
 }
 
 /**
