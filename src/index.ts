@@ -686,11 +686,19 @@ export interface Purpose {
   categories?: PurposeCategory[]
   tcfType?: string
   tcfID?: string
-  canonicalPurposeCode?: string
   legalBasisName?: string
   legalBasisDescription?: string
   illustrations?: string[]
   systems?: PurposeSystems
+
+  /**
+   * @deprecated Use ketchPurposeCodes instead.
+   */
+  canonicalPurposeCode?: string
+  /**
+   * the codes of the ketch purposes associated with this purpose
+   */
+  ketchPurposeCodes?: string[]
 
   /**
    * the data subject types for which the purpose is relevant. If this list is empty then the purpose applies to all
