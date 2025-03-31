@@ -639,6 +639,8 @@ export interface Cookie {
   serviceProvider?: string
   latest?: boolean
   version?: number
+  durationDays?: number
+  durationHours?: number
 }
 
 /**
@@ -4829,6 +4831,8 @@ export interface BaseStaticContentConfig {
   view_privacy_policy?: string
   choose_file?: string
   no_file_chosen?: string
+  less_than_a_day?: string
+  unknown?: string
 }
 
 /**
