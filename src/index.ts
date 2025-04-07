@@ -395,8 +395,8 @@ export type Consent = {
   protocols?: Protocols
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: Status
-  vendorLegitimateInterests?: Status
+  purposeLegitimateInterests?: VendorConsent
+  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
