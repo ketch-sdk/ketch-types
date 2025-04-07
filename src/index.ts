@@ -395,6 +395,8 @@ export type Consent = {
   protocols?: Protocols
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
+  purposeLegitimateInterests?: Status
+  vendorLegitimateInterests?: Status
 }
 
 /**
@@ -2439,6 +2441,8 @@ export interface GetConsentRequest {
 
   collectedAt?: number
   isGpcEnabled?: boolean
+  purposeLegitimateInterests?: VendorConsent
+  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
@@ -2468,6 +2472,8 @@ export interface GetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
+  purposeLegitimateInterests?: VendorConsent
+  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
@@ -2496,6 +2502,8 @@ export interface SetConsentRequest {
   googleVendors?: string[]
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
+  purposeLegitimateInterests?: VendorConsent
+  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
@@ -2525,6 +2533,8 @@ export interface SetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
+  purposeLegitimateInterests?: VendorConsent
+  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
