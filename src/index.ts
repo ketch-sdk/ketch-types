@@ -4839,6 +4839,7 @@ export interface BaseStaticContentConfig {
   other_vendors?: string
   tcf_vendors?: string
   view_privacy_policy?: string
+  view_legitimate_interest_claim?: string
   choose_file?: string
   no_file_chosen?: string
   less_than_a_day?: string
