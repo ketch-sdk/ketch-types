@@ -1297,30 +1297,6 @@ export interface Stack {
 }
 
 /**
- * GetConsentConfigurationV2 request body
- */
-export interface GetConsentConfigurationV2Request {
-  organizationCode: string
-  propertyCode: string
-  envCode: string
-  jurisdictionCode: string
-  langCode: string
-  hash?: string
-}
-
-/**
- * GetPreferenceConfigurationV2 request body
- */
-export interface GetPreferenceConfigurationV2Request {
-  organizationCode: string
-  propertyCode: string
-  envCode: string
-  jurisdictionCode: string
-  langCode: string
-  hash?: string
-}
-
-/**
  * Accessibility Button
  */
 export interface AccessibilityButtonConfiguration {
@@ -2663,16 +2639,6 @@ export interface Ketch {
    * Get Subscription configuration
    */
   getSubscriptionConfiguration(): Promise<SubscriptionConfiguration>
-
-  /**
-   * Get consent experience configuration
-   */
-  getConsentConfiguration(): Promise<ConfigurationV2>
-
-  /**
-   * Get preference experience configuration
-   */
-  getPreferenceConfiguration(): Promise<ConfigurationV2>
 
   /**
    * Sets the provisional consent
