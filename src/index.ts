@@ -395,8 +395,6 @@ export type Consent = {
   protocols?: Protocols
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
@@ -2399,6 +2397,61 @@ export interface GetLocationResponse {
 }
 
 /**
+ * Consent Source
+ */
+export enum ConsentSource {
+  Default = 'default',
+
+  // Plugins
+  GpcPlugins = 'plugins.gpc',
+
+  // Experience actions
+  BannerSaveCurrentState = 'banner.saveCurrentState',
+  BannerAcceptAll = 'banner.acceptAll',
+  BannerRejectAll = 'banner.rejectAll',
+  BannerCloseButton = 'banner.closeButton',
+  ModalAcceptAll = 'modal.acceptAll',
+  ModalRejectAll = 'modal.rejectAll',
+  ModalCloseButton = 'modal.closeButton',
+  ModalSaveCurrentState = 'modal.saveCurrentState',
+  PreferenceConsentsTabAcceptAll = 'preference.consentsTab.acceptAll',
+  PreferenceConsentsTabRejectAll = 'preference.consentsTab.rejectAll',
+  PreferenceSaveCurrentState = 'preference.saveCurrentState', // No preference close button as it doesn't set consent
+
+  // The following will not happen via the frontend but are here to create contract with backend
+  WorkflowSetPermits = 'workflow.setPermits',
+  PushedFromID = 'id.pushedFromID', // Set via a "Pushes to" ID configuration
+  PushedToID = 'id.resolved', // Set due to ID conflict resolution
+}
+
+/**
+ * Subscription source
+ */
+export enum SubscriptionSource {
+  PreferenceSubscriptionsTabSet = 'preference.subscriptionsTab.set',
+  PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
+}
+
+/**
+ * Right source
+ */
+export enum RightSource {
+  PreferenceRightsTabInvoke = 'preference.rightsTab.invoke',
+}
+
+/**
+ * PermitRightContext
+ *
+ * Contextual information about this permit or right.
+ */
+export interface PermitRightContext {
+  configurationId?: string
+  sessionId?: string
+  source?: ConsentSource | SubscriptionSource | RightSource
+  isGpcEnabled?: boolean
+}
+
+/**
  * GetConsentRequest
  */
 export interface GetConsentRequest {
@@ -2414,11 +2467,7 @@ export interface GetConsentRequest {
    */
   vendors?: string[]
   googleVendors?: string[]
-
   collectedAt?: number
-  isGpcEnabled?: boolean
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
@@ -2448,8 +2497,7 @@ export interface GetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
+  context?: PermitRightContext
 }
 
 /**
@@ -2478,8 +2526,7 @@ export interface SetConsentRequest {
   googleVendors?: string[]
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
+  context?: PermitRightContext
 }
 
 /**
@@ -2509,8 +2556,7 @@ export interface SetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
+  context?: PermitRightContext
 }
 
 /**
@@ -2527,6 +2573,7 @@ export interface InvokeRightRequest {
   rightCode: string
   user: DataSubject
   recaptchaToken?: string
+  context?: PermitRightContext
 }
 
 /**
@@ -2996,6 +3043,7 @@ export interface GetSubscriptionsResponse {
   identities?: { [key: string]: string }
   topics?: { [key: string]: SubscriptionTopicSetting }
   controls?: { [key: string]: SubscriptionControlSetting }
+  context?: PermitRightContext
   collectedAt?: number
 }
 
@@ -3010,6 +3058,7 @@ export interface SetSubscriptionsRequest {
   identities?: { [key: string]: string }
   topics?: { [key: string]: SubscriptionTopicSetting }
   controls?: { [key: string]: SubscriptionControlSetting }
+  context?: PermitRightContext
   collectedAt?: number
 }
 
