@@ -2451,7 +2451,6 @@ export interface PermitRightContext {
   configurationId?: string
   sessionId?: string
   source?: ConsentSource | SubscriptionSource | RightSource
-  isGpcEnabled?: boolean
 }
 
 /**
@@ -2471,6 +2470,7 @@ export interface GetConsentRequest {
   vendors?: string[]
   googleVendors?: string[]
   collectedAt?: number
+  isGpcEnabled?: boolean
 }
 
 /**
