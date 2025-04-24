@@ -2422,6 +2422,7 @@ export enum ConsentSource {
   WorkflowSetPermits = 'workflow.setPermits',
   PushedFromID = 'id.pushedFromID', // Set via a "Pushes to" ID configuration
   PushedToID = 'id.resolved', // Set due to ID conflict resolution
+  Headless = 'headless',
 }
 
 /**
@@ -2430,6 +2431,7 @@ export enum ConsentSource {
 export enum SubscriptionSource {
   PreferenceSubscriptionsTabSet = 'preference.subscriptionsTab.set',
   PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
+  Headless = 'headless',
 }
 
 /**
@@ -2437,6 +2439,7 @@ export enum SubscriptionSource {
  */
 export enum RightSource {
   PreferenceRightsTabInvoke = 'preference.rightsTab.invoke',
+  Headless = 'headless',
 }
 
 /**
