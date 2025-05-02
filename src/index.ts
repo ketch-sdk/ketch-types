@@ -2518,7 +2518,6 @@ export interface GetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
-  context?: PermitRightContext
 }
 
 /**
@@ -3064,7 +3063,6 @@ export interface GetSubscriptionsResponse {
   identities?: { [key: string]: string }
   topics?: { [key: string]: SubscriptionTopicSetting }
   controls?: { [key: string]: SubscriptionControlSetting }
-  context?: PermitRightContext
   collectedAt?: number
 }
 
