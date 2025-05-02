@@ -2400,7 +2400,7 @@ export interface GetLocationResponse {
  * Consent Source
  */
 export enum ConsentSource {
-  Default = 'default',
+  LegalBasisDefault = 'legalBasisDefault',
 
   // Plugins
   GpcPlugins = 'plugins.gpc',
@@ -2412,26 +2412,45 @@ export enum ConsentSource {
   BannerCloseButton = 'banner.closeButton',
   ModalAcceptAll = 'modal.acceptAll',
   ModalRejectAll = 'modal.rejectAll',
-  ModalCloseButton = 'modal.closeButton',
-  ModalSaveCurrentState = 'modal.saveCurrentState',
+  ModalDefault = 'modal.default', // Clicked save without changing purpose choices
+  ModalManual = 'modal.manual', // Changed some purposes then clicked save
+  ModalCloseButtonDefault = 'modal.closeButton.default', // Clicked the close button without changing purpose choices
+  ModalCloseButtonManual = 'modal.closeButton.manual', // Changed some purposes then clicked the close button
   PreferenceConsentsTabAcceptAll = 'preference.consentsTab.acceptAll',
   PreferenceConsentsTabRejectAll = 'preference.consentsTab.rejectAll',
-  PreferenceSaveCurrentState = 'preference.saveCurrentState', // No preference close button as it doesn't set consent
+  PreferenceDefault = 'preference.default', // Clicked save without changing anything
+  PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
+  // No preference close button as it doesn't set consent
 
   // The following will not happen via the frontend but are here to create contract with backend
-  WorkflowSetPermits = 'workflow.setPermits',
-  PushedFromID = 'id.pushedFromID', // Set via a "Pushes to" ID configuration
+  WorkflowSetPermits = 'workflow.setPermits', // Set via workflow set permits tile
+  PushedFromID = 'id.pushedFromId', // Set via a "Pushes to" ID configuration
   PushedToID = 'id.resolved', // Set due to ID conflict resolution
-  Headless = 'headless',
+  Headless = 'headless', // Set via headless set consent API call
+  AuditLogAcceptAll = 'auditLog.acceptAll', // Overriden to accept all in audit log
+  AuditLogRejectAll = 'auditLog.rejectAll', // Overriden to reject all in audit log
+  AuditLogDefault = 'auditLog.default', // Overriden to defaults in audit log
+  AuditLogManual = 'auditLog.manual', // Overrode one purpose in audit log
+
+  Unknown = 'unknown',
 }
 
 /**
  * Subscription source
  */
 export enum SubscriptionSource {
-  PreferenceSubscriptionsTabSet = 'preference.subscriptionsTab.set',
+  // Experience actions
+  PreferenceSubscriptionsTabManual = 'preference.subscriptionsTab.manual',
   PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
+
+  // The following will not happen via the frontend but are here to create contract with backend
+  AuditLogSubscribeAll = 'auditLog.subscribeAll',
+  AuditLogUnsubscribeAll = 'auditLog.unsubscribeAll',
+  AuditLogDefault = 'auditLog.default',
+  AuditLogManual = 'auditLog.manual',
   Headless = 'headless',
+
+  Unknown = 'unknown',
 }
 
 /**
@@ -2449,7 +2468,6 @@ export enum RightSource {
  */
 export interface PermitRightContext {
   configurationId?: string
-  sessionId?: string
   source?: ConsentSource | SubscriptionSource | RightSource
 }
 
