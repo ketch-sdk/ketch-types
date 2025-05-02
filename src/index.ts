@@ -395,8 +395,6 @@ export type Consent = {
   protocols?: Protocols
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
@@ -2399,6 +2397,81 @@ export interface GetLocationResponse {
 }
 
 /**
+ * Consent Source
+ */
+export enum ConsentSource {
+  LegalBasisDefault = 'legalBasisDefault',
+
+  // Plugins
+  GpcPlugins = 'plugins.gpc',
+
+  // Experience actions
+  BannerSaveCurrentState = 'banner.saveCurrentState',
+  BannerAcceptAll = 'banner.acceptAll',
+  BannerRejectAll = 'banner.rejectAll',
+  BannerCloseButton = 'banner.closeButton',
+  ModalAcceptAll = 'modal.acceptAll',
+  ModalRejectAll = 'modal.rejectAll',
+  ModalDefault = 'modal.default', // Clicked save without changing purpose choices
+  ModalManual = 'modal.manual', // Changed some purposes then clicked save
+  ModalCloseButtonDefault = 'modal.closeButton.default', // Clicked the close button without changing purpose choices
+  ModalCloseButtonManual = 'modal.closeButton.manual', // Changed some purposes then clicked the close button
+  PreferenceConsentsTabAcceptAll = 'preference.consentsTab.acceptAll',
+  PreferenceConsentsTabRejectAll = 'preference.consentsTab.rejectAll',
+  PreferenceDefault = 'preference.default', // Clicked save without changing anything
+  PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
+  // No preference close button as it doesn't set consent
+
+  // The following will not happen via the frontend but are here to create contract with backend
+  WorkflowSetPermits = 'workflow.setPermits', // Set via workflow set permits tile
+  PushedFromID = 'id.pushedFromId', // Set via a "Pushes to" ID configuration
+  PushedToID = 'id.resolved', // Set due to ID conflict resolution
+  Headless = 'headless', // Set via headless set consent API call
+  AuditLogAcceptAll = 'auditLog.acceptAll', // Overriden to accept all in audit log
+  AuditLogRejectAll = 'auditLog.rejectAll', // Overriden to reject all in audit log
+  AuditLogDefault = 'auditLog.default', // Overriden to defaults in audit log
+  AuditLogManual = 'auditLog.manual', // Overrode one purpose in audit log
+
+  Unknown = 'unknown',
+}
+
+/**
+ * Subscription source
+ */
+export enum SubscriptionSource {
+  // Experience actions
+  PreferenceSubscriptionsTabManual = 'preference.subscriptionsTab.manual',
+  PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
+
+  // The following will not happen via the frontend but are here to create contract with backend
+  AuditLogSubscribeAll = 'auditLog.subscribeAll',
+  AuditLogUnsubscribeAll = 'auditLog.unsubscribeAll',
+  AuditLogDefault = 'auditLog.default',
+  AuditLogManual = 'auditLog.manual',
+  Headless = 'headless',
+
+  Unknown = 'unknown',
+}
+
+/**
+ * Right source
+ */
+export enum RightSource {
+  PreferenceRightsTabInvoke = 'preference.rightsTab.invoke',
+  Headless = 'headless',
+}
+
+/**
+ * PermitRightContext
+ *
+ * Contextual information about this permit or right.
+ */
+export interface PermitRightContext {
+  configurationId?: string
+  source?: ConsentSource | SubscriptionSource | RightSource
+}
+
+/**
  * GetConsentRequest
  */
 export interface GetConsentRequest {
@@ -2414,11 +2487,8 @@ export interface GetConsentRequest {
    */
   vendors?: string[]
   googleVendors?: string[]
-
   collectedAt?: number
   isGpcEnabled?: boolean
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
@@ -2448,8 +2518,6 @@ export interface GetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
 }
 
 /**
@@ -2478,8 +2546,7 @@ export interface SetConsentRequest {
   googleVendors?: string[]
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
+  context?: PermitRightContext
 }
 
 /**
@@ -2509,8 +2576,7 @@ export interface SetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: VendorConsent
-  vendorLegitimateInterests?: VendorConsent
+  context?: PermitRightContext
 }
 
 /**
@@ -2527,6 +2593,7 @@ export interface InvokeRightRequest {
   rightCode: string
   user: DataSubject
   recaptchaToken?: string
+  context?: PermitRightContext
 }
 
 /**
@@ -3010,6 +3077,7 @@ export interface SetSubscriptionsRequest {
   identities?: { [key: string]: string }
   topics?: { [key: string]: SubscriptionTopicSetting }
   controls?: { [key: string]: SubscriptionControlSetting }
+  context?: PermitRightContext
   collectedAt?: number
 }
 
