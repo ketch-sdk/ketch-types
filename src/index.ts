@@ -5030,6 +5030,15 @@ export interface ExperienceConfigurationType {
   userInitiated: ExperienceConfig
 }
 
+/**
+ * Deployment experience type
+ */
+
+export enum DeploymentExperienceType {
+  AutoInitiated = 'autoInitiated',
+  UserInitiated = 'userInitiated',
+}
+
 /** Message type for post messaging preview configs from figurehead to lanyard */
 
 export enum PreviewMessageType {
