@@ -1309,6 +1309,11 @@ export interface AccessibilityButtonConfiguration {
  */
 export interface ConfigurationV2 {
   /**
+   * Unique identifier for this configuration object
+   */
+  id: string
+
+  /**
    * Organization this configuration belongs to
    */
   organization: Organization
@@ -2420,12 +2425,14 @@ export enum ConsentSource {
   PreferenceConsentsTabRejectAll = 'preference.consentsTab.rejectAll',
   PreferenceDefault = 'preference.default', // Clicked save without changing anything
   PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
+  RouterSetConsent = 'router.setConsent', // Set via router set consent function
   // No preference close button as it doesn't set consent
 
   // The following will not happen via the frontend but are here to create contract with backend
   WorkflowSetPermits = 'workflow.setPermits', // Set via workflow set permits tile
   PushedFromID = 'id.pushedFromId', // Set via a "Pushes to" ID configuration
   PushedToID = 'id.resolved', // Set due to ID conflict resolution
+  LateArrivingID = 'id.lateArriving', // Set when an ID is set after consent has been collected
   Headless = 'headless', // Set via headless set consent API call
   AuditLogAcceptAll = 'auditLog.acceptAll', // Overriden to accept all in audit log
   AuditLogRejectAll = 'auditLog.rejectAll', // Overriden to reject all in audit log
@@ -2685,10 +2692,11 @@ export interface Ketch {
   /**
    * Sets the consent
    *
-   * @param consent Consents
-   * @param reason the reason the consent is being set
+   * @param c Consent to set
+   * @param source where/why consent is being set
+   * @param isUserUpdated whether the consent is being set from a user action
    */
-  setConsent(consent: Consent, reason?: SetConsentReason): Promise<void>
+  setConsent(c: Consent, source: ConsentSource, isUserUpdated: boolean): Promise<void>
 
   /**
    * Get subscriptions
@@ -2737,11 +2745,13 @@ export interface Ketch {
   showPreferences(params?: ShowPreferenceOptions): Promise<void>
 
   /**
-   * Notify that the experience was closed
+   * Signals that an experience has been hidden
    *
-   * @param reason Reason the experience was closed
+   * @param reason is a string representing the reason the experience was closed
+   * @param consent is an optional object containing the consent state to set IF reason is setConsent
+   * @param consentSource is an optional string representing the source of the consent
    */
-  experienceClosed(reason: ExperienceClosedReason, consent?: Consent): Promise<void>
+  experienceClosed(reason: ExperienceClosedReason, consent?: Consent, consentSource?: ConsentSource): Promise<void>
 
   /**
    * Notify that the experience will be changed to a different format
