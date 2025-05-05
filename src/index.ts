@@ -1475,6 +1475,8 @@ export interface ConfigurationV2 {
   }
 
   systems?: ConfigSystems
+
+  globalPurposes?: GlobalPurpose[]
 }
 
 /**
@@ -1616,6 +1618,8 @@ export interface Configuration {
   isConfigPaused?: boolean
 
   systems?: ConfigSystems
+
+  globalPurposes?: GlobalPurpose[]
 }
 
 export interface Translations {
@@ -5067,4 +5071,8 @@ export {
 
 export interface TagPurposeMapping {
   purposeCodes?: string[]
+}
+
+export interface GlobalPurpose {
+  code?: string
 }
