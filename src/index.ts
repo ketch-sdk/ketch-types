@@ -1311,7 +1311,7 @@ export interface ConfigurationV2 {
   /**
    * Unique identifier for this configuration object
    */
-  id: string
+  id?: string
 
   /**
    * Organization this configuration belongs to
