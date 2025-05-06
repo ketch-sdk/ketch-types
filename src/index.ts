@@ -2697,10 +2697,9 @@ export interface Ketch {
    * Sets the consent
    *
    * @param c Consent to set
-   * @param source where/why consent is being set
-   * @param isUserUpdated whether the consent is being set from a user action
+   * @param reason How consent is being set
    */
-  setConsent(c: Consent, source: ConsentSource, isUserUpdated: boolean): Promise<void>
+  setConsent(consent: Consent, reason?: SetConsentReason): Promise<void>
 
   /**
    * Get subscriptions
