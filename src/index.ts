@@ -2430,6 +2430,7 @@ export enum ConsentSource {
   PreferenceDefault = 'preference.default', // Clicked save without changing anything
   PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
   RouterSetConsent = 'router.setConsent', // Set via router set consent function
+  ProgressiveConsent = 'progressive.consent',
   // No preference close button as it doesn't set consent
 
   // The following will not happen via the frontend but are here to create contract with backend
@@ -2453,6 +2454,7 @@ export enum SubscriptionSource {
   // Experience actions
   PreferenceSubscriptionsTabManual = 'preference.subscriptionsTab.manual',
   PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
+  ProgressiveSubscription = 'progressive.subscription',
 
   // The following will not happen via the frontend but are here to create contract with backend
   AuditLogSubscribeAll = 'auditLog.subscribeAll',
