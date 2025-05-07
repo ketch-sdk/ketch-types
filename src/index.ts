@@ -2711,7 +2711,7 @@ export interface Ketch {
    *
    * @param request
    */
-  setSubscriptions(request: Subscriptions): Promise<void>
+  setSubscriptions(request: Subscriptions, source: SubscriptionSource): Promise<void>
 
   /**
    * Get Subscription configuration
