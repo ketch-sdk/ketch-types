@@ -2423,8 +2423,7 @@ export enum ConsentSource {
   ModalRejectAll = 'modal.rejectAll',
   ModalDefault = 'modal.default', // Clicked save without changing purpose choices
   ModalManual = 'modal.manual', // Changed some purposes then clicked save
-  ModalCloseButtonDefault = 'modal.closeButton.default', // Clicked the close button without changing purpose choices
-  ModalCloseButtonManual = 'modal.closeButton.manual', // Changed some purposes then clicked the close button
+  ModalCloseButton = 'modal.closeButton', // Clicked close button in modal
   PreferenceConsentsTabAcceptAll = 'preference.consentsTab.acceptAll',
   PreferenceConsentsTabRejectAll = 'preference.consentsTab.rejectAll',
   PreferenceDefault = 'preference.default', // Clicked save without changing anything
