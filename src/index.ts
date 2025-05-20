@@ -2428,7 +2428,7 @@ export enum ConsentSource {
   PreferenceConsentsTabRejectAll = 'preference.consentsTab.rejectAll',
   PreferenceDefault = 'preference.default', // Clicked save without changing anything
   PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
-  RouterSetConsent = 'router.setConsent', // Set via router set consent function
+  RouterSetConsent = 'router.setConsent', // Set via Ketch tag's Router.ts setConsent function
   ProgressiveConsent = 'progressive.consent',
   // No preference close button as it doesn't set consent
 
@@ -2454,6 +2454,7 @@ export enum SubscriptionSource {
   PreferenceSubscriptionsTabManual = 'preference.subscriptionsTab.manual',
   PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
   ProgressiveSubscription = 'progressive.subscription',
+  RouterSetSubscriptions = 'router.setSubscriptions', // Set via Ketch tag's Router.ts setSubscriptions function
 
   // The following will not happen via the frontend but are here to create contract with backend
   AuditLogSubscribeAll = 'auditLog.subscribeAll',
