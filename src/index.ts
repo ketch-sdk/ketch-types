@@ -36,6 +36,7 @@ export function isTab(value: string): value is Tab {
 export enum ExperienceType {
   Consent = 'experiences.consent',
   Preference = 'experiences.preference',
+  ConsentGate = 'experiences.consentgate',
 }
 
 /**
@@ -48,6 +49,7 @@ export enum ExperienceDisplayType {
   Banner = 'experiencedisplays.banner',
   Modal = 'experiencedisplays.modal',
   Preference = 'experiencedisplays.preference',
+  ConsentGate = 'experiencedisplays.consentgate',
 }
 
 /**
@@ -59,6 +61,7 @@ export enum ConsentExperienceType {
   Banner = 'experiences.consent.banner',
   Modal = 'experiences.consent.modal',
   JIT = 'experiences.consent.jit',
+  ConsentGate = 'experiences.consent.gate',
 }
 
 /**
@@ -1055,6 +1058,7 @@ export interface ConsentExperience {
   banner: Banner
   modal: Modal
   jit?: JIT
+  consentGate?: ConsentGate
   experienceDefault: ExperienceDefault
 
   /**
@@ -2209,7 +2213,7 @@ export interface PreferencesExperienceOptions {
 /**
  * Experience options
  */
-export type ExperienceOptions = ConsentExperienceOptions | PreferencesExperienceOptions
+export type ExperienceOptions = ConsentExperienceOptions | PreferencesExperienceOptions | ConsentGateExperienceOptions
 
 /**
  * ExperienceServer provides an interface implemented by experience servers for rendering experiences
@@ -3785,6 +3789,7 @@ export interface ThemeConfig {
   banner?: BannerThemeConfig
   modal?: ModalThemeConfig
   preference?: PreferenceThemeConfig
+  consentGate?: ConsentGateThemeConfig
   progressiveConsent?: any
 }
 
@@ -4257,6 +4262,7 @@ export interface ExperienceLayoutConfig {
   banner?: BannerExperienceLayoutConfig
   modal?: ModalExperienceLayoutConfig
   preference?: PreferenceExperienceLayoutConfig
+  consentGate?: ConsentGateExperienceLayoutConfig
   progressiveConsent?: any
   entitlementInfo?: EntitlementLayoutConfig
 }
@@ -4911,6 +4917,7 @@ export interface ExperienceContentConfig {
   modal?: ModalExperienceContentConfig
   display?: string
   preference?: PreferenceExperienceContentConfig
+  consentGate?: ConsentGateExperienceContentConfig
   progressiveConsent?: any
   static?: StaticContentConfig
 }
@@ -5087,4 +5094,207 @@ export interface TagPurposeMapping {
 
 export interface GlobalPurpose {
   code?: string
+}
+
+/**
+ * ConsentGate configuration
+ */
+export interface ConsentGate {
+  showLogo?: boolean
+  title?: string
+  consentBlock?: ConsentBlock
+  actionBlock?: ActionBlock
+}
+
+/**
+ * ConsentGate Theme Configuration
+ */
+export interface ConsentGateThemeConfig {
+  container?: {
+    backgroundColor?: string
+    borderRadius?: number
+    padding?: string
+  }
+  consentBlock?: {
+    backgroundColor?: string
+    borderColor?: string
+    borderRadius?: number
+    header?: {
+      titleColor?: string
+      descriptionColor?: string
+    }
+    purposesList?: {
+      titleColor?: string
+      itemBackgroundColor?: string
+      itemTextColor?: string
+    }
+    button?: {
+      backgroundColor?: string
+      textColor?: string
+      borderRadius?: number
+    }
+    footer?: {
+      textColor?: string
+    }
+  }
+  actionBlock?: {
+    backgroundColor?: string
+    borderColor?: string
+    borderRadius?: number
+    header?: {
+      titleColor?: string
+      descriptionColor?: string
+    }
+    button?: {
+      backgroundColor?: string
+      textColor?: string
+      borderRadius?: number
+    }
+    footer?: {
+      textColor?: string
+    }
+  }
+}
+
+/**
+ * ConsentGate Experience Layout Configuration
+ */
+export interface ConsentGateExperienceLayoutConfig {
+  showLogo?: boolean
+  consentBlock?: {
+    showHeader?: boolean
+    showPurposesList?: boolean
+    showButton?: boolean
+    showFooter?: boolean
+  }
+  actionBlock?: {
+    showHeader?: boolean
+    showButton?: boolean
+    showFooter?: boolean
+  }
+}
+
+/**
+ * ConsentGate Experience Content Configuration
+ */
+export interface ConsentGateExperienceContentConfig {
+  title?: string
+  consentBlock?: {
+    header?: {
+      title?: string
+      description?: string
+    }
+    purposesList?: {
+      title?: string
+    }
+    button?: {
+      text?: string
+    }
+    footer?: {
+      text?: string
+    }
+  }
+  actionBlock?: {
+    header?: {
+      title?: string
+      description?: string
+    }
+    button?: {
+      text?: string
+    }
+    footer?: {
+      text?: string
+    }
+  }
+}
+
+/**
+ * ConsentBlock Header Configuration
+ */
+export interface ConsentBlockHeader {
+  title?: string
+  description?: string
+}
+
+/**
+ * ConsentBlock Purposes List Configuration
+ */
+export interface ConsentBlockPurposesList {
+  title?: string
+  showBulkActions?: boolean
+  showLegalBasis?: boolean
+}
+
+/**
+ * ConsentBlock Button Configuration
+ */
+export interface ConsentBlockButton {
+  text?: string
+  action?: string
+}
+
+/**
+ * ConsentBlock Footer Configuration
+ */
+export interface ConsentBlockFooter {
+  showKetchBadge?: boolean
+  showGpcBadge?: boolean
+}
+
+/**
+ * ConsentBlock Configuration
+ */
+export interface ConsentBlock {
+  header?: ConsentBlockHeader
+  purposesList?: ConsentBlockPurposesList
+  button?: ConsentBlockButton
+  footer?: ConsentBlockFooter
+  backgroundColor?: string
+}
+
+/**
+ * ActionBlock Header Configuration
+ */
+export interface ActionBlockHeader {
+  title?: string
+  description?: string
+}
+
+/**
+ * ActionBlock Button Configuration
+ */
+export interface ActionBlockButton {
+  text?: string
+  action?: string
+}
+
+/**
+ * ActionBlock Footer Configuration
+ */
+export interface ActionBlockFooter {
+  text?: string
+}
+
+/**
+ * ActionBlock Configuration
+ */
+export interface ActionBlock {
+  header?: ActionBlockHeader
+  button?: ActionBlockButton
+  footer?: ActionBlockFooter
+  backgroundColor?: string
+}
+
+/**
+ * ConsentGateExperienceOptions
+ */
+export interface ConsentGateExperienceOptions {
+  /**
+   * Consent Gate
+   */
+  kind: ExperienceType.ConsentGate
+  code: string
+  version: number
+  config: ConsentGate
+  theme: Theme
 }
