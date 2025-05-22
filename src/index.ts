@@ -5298,3 +5298,13 @@ export interface ConsentGateExperienceOptions {
   config: ConsentGate
   theme: Theme
 }
+
+/**
+ * ConsentGateLogoPosition defines the possible positions for the logo in the consent gate header
+ * 
+ * @enum
+ */
+export enum ConsentGateLogoPosition {
+  Top = 'top',
+  Left = 'left',
+}
