@@ -5060,6 +5060,7 @@ export enum PreviewMessageType {
   ShowModal = 'showModal',
   ShowPreference = 'showPreferences',
   SwitchPreferencePage = 'switchPreferencePage',
+  ShowConsentGate = 'showConsentGate',
 }
 
 export type PreviewMessage = {
