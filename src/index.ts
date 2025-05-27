@@ -463,6 +463,13 @@ export type ShowProgressiveExperienceOptions = {
 }
 
 /**
+ * ShowConsentGateOptions
+ */
+export type ShowConsentGateOptions = {
+  experienceId: string
+}
+
+/**
  * Options available when invoking ketch('showExperience', ...)
  */
 export type ShowExperienceOptions = {
@@ -1058,7 +1065,6 @@ export interface ConsentExperience {
   banner: Banner
   modal: Modal
   jit?: JIT
-  consentGate?: ConsentGate
   experienceDefault: ExperienceDefault
 
   /**
@@ -1401,6 +1407,11 @@ export interface ConfigurationV2 {
    * Progressive experiences
    */
   progressiveExperiences?: ProgressiveExperienceConfigurationType
+
+  /**
+   * Consent Gate experiences
+   */
+  consentGateExperiences?: ConsentGateExperienceConfigurationType
 
   /**
    * Vendors (TCF)
@@ -2213,7 +2224,7 @@ export interface PreferencesExperienceOptions {
 /**
  * Experience options
  */
-export type ExperienceOptions = ConsentExperienceOptions | PreferencesExperienceOptions | ConsentGateExperienceOptions
+export type ExperienceOptions = ConsentExperienceOptions | PreferencesExperienceOptions
 
 /**
  * ExperienceServer provides an interface implemented by experience servers for rendering experiences
@@ -2434,6 +2445,7 @@ export enum ConsentSource {
   PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
   RouterSetConsent = 'router.setConsent', // Set via Ketch tag's Router.ts setConsent function
   ProgressiveConsent = 'progressive.consent',
+  ConsentGate = 'consentGate',
   // No preference close button as it doesn't set consent
 
   // The following will not happen via the frontend but are here to create contract with backend
@@ -2458,6 +2470,7 @@ export enum SubscriptionSource {
   PreferenceSubscriptionsTabManual = 'preference.subscriptionsTab.manual',
   PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
   ProgressiveSubscription = 'progressive.subscription',
+  ConsentGateSubscription = 'consentGate.subscription',
   RouterSetSubscriptions = 'router.setSubscriptions', // Set via Ketch tag's Router.ts setSubscriptions function
 
   // The following will not happen via the frontend but are here to create contract with backend
@@ -2740,6 +2753,11 @@ export interface Ketch {
    * Show a progressive experience
    */
   showProgressiveExperience(params?: ShowProgressiveExperienceOptions): Promise<void>
+
+  /**
+   * Show a consent gate experience
+   */
+  showConsentGate(params?: ShowConsentGateOptions): Promise<void>
 
   /**
    * Show any experience
@@ -3780,6 +3798,120 @@ export interface PreferenceThemeConfig {
   ketchBadgeVisible?: boolean
   tabs?: PreferenceTabsThemeConfig
 }
+
+/**
+ * Consent Gate Container Theme Configuration
+ */
+
+export interface ConsentGateContainerThemeConfig {
+  background: ColorThemeConfig
+  cornerRadius: number
+  logo: ImageThemeConfig
+}
+
+/**
+ * Consent Gate Header Theme Configuration
+ */
+
+export interface ConsentGateHeaderLogoThemeConfig {
+  position: string
+  image: ImageThemeConfig
+}
+
+export interface ConsentGateHeaderThemeConfig {
+  title: TextThemeConfig
+  cornerRadius: number
+  logo: ConsentGateHeaderLogoThemeConfig
+}
+
+/**
+ * Consent Gate Consent Block Theme Configuration
+ */
+
+export interface ConsentGateConsentBlockHeaderThemeConfig {
+  title: TextThemeConfig
+  description: TextThemeConfig
+  link: TextThemeConfig
+}
+
+export interface ConsentGateConsentBlockPurposesListHeaderThemeConfig {
+  title: TextThemeConfig
+}
+
+export interface ConsentGateConsentBlockPurposesListItemsThemeConfig {
+  style: ItemStyle
+  layout: ListLayout
+  purposeFill: ColorThemeConfig
+  purposeOutline: ColorThemeConfig
+  purposeContent: ColorThemeConfig
+  purposeLinks: ColorThemeConfig
+  arrowIcon: ColorThemeConfig
+  purposeCornerRadius: number
+}
+
+export interface ConsentGateConsentBlockPurposesListThemeConfig {
+  header: ConsentGateConsentBlockHeaderThemeConfig
+  items: ConsentGateConsentBlockPurposesListItemsThemeConfig
+  switchButtons: SwitchButtonThemeConfig
+}
+
+export interface ConsentGateConsentBlockPurposesThemeConfig {
+  list: ConsentGateConsentBlockPurposesListThemeConfig
+}
+
+export interface ConsentGateConsentBlockFooterThemeConfig {
+  link: TextThemeConfig
+  showGpcBadge: boolean
+}
+
+export interface ConsentGateConsentBlockThemeConfig {
+  background: ColorThemeConfig
+  header: ConsentGateConsentBlockHeaderThemeConfig
+  purposes: ConsentGateConsentBlockPurposesThemeConfig
+  button: ActionButtonThemeConfig
+  footer: ConsentGateConsentBlockFooterThemeConfig
+}
+
+/**
+ * Consent Gate Action Block Theme Configuration
+ */
+
+export interface ConsentGateActionBlockHeaderThemeConfig {
+  title: TextThemeConfig
+  description: TextThemeConfig
+  link: TextThemeConfig
+}
+
+export interface ConsentGateActionBlockTeaserThemeConfig {
+  text: TextThemeConfig
+}
+
+export interface ConsentGateActionBlockLinkThemeConfig {
+  text: TextThemeConfig
+}
+
+export interface ConsentGateActionBlockFooterThemeConfig {
+  teaser: ConsentGateActionBlockTeaserThemeConfig
+  link: ConsentGateActionBlockLinkThemeConfig
+}
+
+export interface ConsentGateActionBlockThemeConfig {
+  header: ConsentGateActionBlockHeaderThemeConfig
+  button: ActionButtonThemeConfig
+  footer: ConsentGateActionBlockFooterThemeConfig
+}
+
+/**
+ * Consent Gate Theme Configuration
+ */
+
+export interface ConsentGateThemeConfig {
+  container: ConsentGateContainerThemeConfig
+  header: ConsentGateHeaderThemeConfig
+  consentBlock: ConsentGateConsentBlockThemeConfig
+  actionBlock: ConsentGateActionBlockThemeConfig
+}
+
 
 /**
  * Theme Configuration
@@ -5045,6 +5177,224 @@ export interface ProgressiveExperienceConfigurationType {
   }
 }
 
+/**
+ * Consent Gate Experience Header Layout Configuration
+ */
+
+export type ConsentGateExperienceLogoLayout = {
+  visible: boolean
+  url: string
+}
+
+export type ConsentGateExperienceHeaderLayout = {
+  visible: boolean
+  closeButtonVisible: boolean
+  logo: ConsentGateExperienceLogoLayout
+}
+
+/**
+ * Consent Gate Experience Consent Block Layout Configuration
+ */
+
+export type ConsentGateExperienceConsentBlockHeaderLayout = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutHeader = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels = {
+  visible: boolean
+  display: string
+  useDefaultText: boolean
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutPurposes = {
+  actionButtonUseDefaultText: boolean
+  legalBasisVisible: boolean
+  purposesStacksDefaultExpanded: boolean
+  switchButtonLabels: ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayout = {
+  header: ConsentGateExperienceConsentBlockPurposesListLayoutHeader
+  purposes: ConsentGateExperienceConsentBlockPurposesListLayoutPurposes
+}
+
+export type ConsentGateExperienceConsentBlockButtonLayout = {
+  action: string
+  url: string
+}
+
+export type ConsentGateExperienceConsentBlockFooterLayoutLink = {
+  visible: boolean
+  action: string
+  url: string
+}
+
+export type ConsentGateExperienceConsentBlockFooterLayout = {
+  gpcBadgeVisible: boolean
+  links: ConsentGateExperienceConsentBlockFooterLayoutLink[]
+}
+
+export type ConsentGateExperienceConsentBlockLayout = {
+  header: ConsentGateExperienceConsentBlockHeaderLayout
+  purposesList: ConsentGateExperienceConsentBlockPurposesListLayout
+  button: ConsentGateExperienceConsentBlockButtonLayout
+  footer: ConsentGateExperienceConsentBlockFooterLayout
+}
+
+/**
+ * Consent Gate Experience Action Block Layout Configuration
+ */
+
+export type ConsentGateExperienceActionBlockHeaderLayout = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceActionBlockButtonLayout = {
+  action: string
+  url: string
+}
+
+export type ConsentGateExperienceActionBlockTeaserLayout = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceActionBlockLinkLayout = {
+  visible: boolean
+  action: string
+  url: string
+}
+
+export type ConsentGateExperienceActionBlockLayout = {
+  header: ConsentGateExperienceActionBlockHeaderLayout
+  button: ConsentGateExperienceActionBlockButtonLayout
+  teaser: ConsentGateExperienceActionBlockTeaserLayout
+  link: ConsentGateExperienceActionBlockLinkLayout
+}
+
+/**
+ * Consent Gate Experience Layout Configuration
+ */
+
+export type ConsentGateExperienceLayoutConfig = {
+  header: ConsentGateExperienceHeaderLayout
+  consentBlock: ConsentGateExperienceConsentBlockLayout
+  actionBlock: ConsentGateExperienceActionBlockLayout
+}
+
+/**
+ * Consent Gate Experience Header Content Configuration
+ */
+
+export type ConsentGateExperienceHeaderContent = {
+  title: string
+}
+
+/**
+ * Consent Gate Experience Consent Block Content Configuration
+ */
+
+export type ConsentGateExperienceConsentBlockPurposesListSwitchButtonLabelsContent = {
+  onText: string
+  offText: string
+  alwaysOnText: string
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListBulkActionButtonsContent = {
+  acceptAllText: string
+  rejectAllText: string
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListPurposesContent = {
+  switchButtonLabels: ConsentGateExperienceConsentBlockPurposesListSwitchButtonLabelsContent
+  bulkActionButtons: ConsentGateExperienceConsentBlockPurposesListBulkActionButtonsContent
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListContent = {
+  title: string
+  purposes: ConsentGateExperienceConsentBlockPurposesListPurposesContent
+}
+
+
+export type ConsentGateExperienceConsentBlockButtonContent = {
+  text: string
+}
+
+export type ConsentGateExperienceConsentBlockLinksContent = {
+  text: string
+}
+
+export type ConsentGateExperienceConsentBlockContent = {
+  title: string
+  description: string
+  purposesList: ConsentGateExperienceConsentBlockPurposesListContent
+  button: ConsentGateExperienceConsentBlockButtonContent
+  links: ConsentGateExperienceConsentBlockLinksContent
+}
+
+/**
+ * Consent Gate Experience Action Block Content Configuration
+ */
+
+export type ConsentGateExperienceActionBlockButtonContent = {
+  text: string
+}
+
+export type ConsentGateExperienceActionBlockLinkContent = {
+  text: string
+}
+
+export type ConsentGateExperienceActionBlockAlertContent = {
+  text: string
+}
+
+export type ConsentGateExperienceActionBlockContent = {
+  title: string
+  description: string
+  button: ConsentGateExperienceActionBlockButtonContent
+  link: ConsentGateExperienceActionBlockLinkContent
+  teaserText: string
+  alert: ConsentGateExperienceActionBlockAlertContent
+}
+
+/**
+ * Consent Gate Experience Content Configuration
+ */
+
+export type ConsentGateExperienceContentConfig = {
+  header: ConsentGateExperienceHeaderContent
+  consentBlock: ConsentGateExperienceConsentBlockContent
+  actionBlock: ConsentGateExperienceActionBlockContent
+}
+
+export interface ConsentGateExperienceConfig {
+  layout: ConsentGateExperienceLayoutConfig
+  content: ConsentGateExperienceContentConfig
+  associations: ExperienceAssociationConfig
+}
+
+/**
+ * Consent Gate Experience Configuration Type
+ *
+ * Type used for the consentGate experience field in the config.
+ */
+
+export interface ConsentGateExperienceConfigurationType {
+  [experienceId: string]: {
+    content: {
+      consentGate: ConsentGateExperienceContentConfig
+      static: StaticContentConfig
+    }
+    layout: {
+      consentGate: ConsentGateExperienceLayoutConfig
+      entitlementInfo: EntitlementLayoutConfig
+    }
+  }
+}
+
 export interface ExperienceConfigurationType {
   autoInitiated: ExperienceConfig
   userInitiated: ExperienceConfig
@@ -5094,217 +5444,4 @@ export interface TagPurposeMapping {
 
 export interface GlobalPurpose {
   code?: string
-}
-
-/**
- * ConsentGate configuration
- */
-export interface ConsentGate {
-  showLogo?: boolean
-  title?: string
-  consentBlock?: ConsentBlock
-  actionBlock?: ActionBlock
-}
-
-/**
- * ConsentGate Theme Configuration
- */
-export interface ConsentGateThemeConfig {
-  container?: {
-    backgroundColor?: string
-    borderRadius?: number
-    padding?: string
-  }
-  consentBlock?: {
-    backgroundColor?: string
-    borderColor?: string
-    borderRadius?: number
-    header?: {
-      titleColor?: string
-      descriptionColor?: string
-    }
-    purposesList?: {
-      titleColor?: string
-      itemBackgroundColor?: string
-      itemTextColor?: string
-    }
-    button?: {
-      backgroundColor?: string
-      textColor?: string
-      borderRadius?: number
-    }
-    footer?: {
-      textColor?: string
-    }
-  }
-  actionBlock?: {
-    backgroundColor?: string
-    borderColor?: string
-    borderRadius?: number
-    header?: {
-      titleColor?: string
-      descriptionColor?: string
-    }
-    button?: {
-      backgroundColor?: string
-      textColor?: string
-      borderRadius?: number
-    }
-    footer?: {
-      textColor?: string
-    }
-  }
-}
-
-/**
- * ConsentGate Experience Layout Configuration
- */
-export interface ConsentGateExperienceLayoutConfig {
-  showLogo?: boolean
-  consentBlock?: {
-    showHeader?: boolean
-    showPurposesList?: boolean
-    showButton?: boolean
-    showFooter?: boolean
-  }
-  actionBlock?: {
-    showHeader?: boolean
-    showButton?: boolean
-    showFooter?: boolean
-  }
-}
-
-/**
- * ConsentGate Experience Content Configuration
- */
-export interface ConsentGateExperienceContentConfig {
-  title?: string
-  consentBlock?: {
-    header?: {
-      title?: string
-      description?: string
-    }
-    purposesList?: {
-      title?: string
-    }
-    button?: {
-      text?: string
-    }
-    footer?: {
-      text?: string
-    }
-  }
-  actionBlock?: {
-    header?: {
-      title?: string
-      description?: string
-    }
-    button?: {
-      text?: string
-    }
-    footer?: {
-      text?: string
-    }
-  }
-}
-
-/**
- * ConsentBlock Header Configuration
- */
-export interface ConsentBlockHeader {
-  title?: string
-  description?: string
-}
-
-/**
- * ConsentBlock Purposes List Configuration
- */
-export interface ConsentBlockPurposesList {
-  title?: string
-  showBulkActions?: boolean
-  showLegalBasis?: boolean
-}
-
-/**
- * ConsentBlock Button Configuration
- */
-export interface ConsentBlockButton {
-  text?: string
-  action?: string
-}
-
-/**
- * ConsentBlock Footer Configuration
- */
-export interface ConsentBlockFooter {
-  showKetchBadge?: boolean
-  showGpcBadge?: boolean
-}
-
-/**
- * ConsentBlock Configuration
- */
-export interface ConsentBlock {
-  header?: ConsentBlockHeader
-  purposesList?: ConsentBlockPurposesList
-  button?: ConsentBlockButton
-  footer?: ConsentBlockFooter
-  backgroundColor?: string
-}
-
-/**
- * ActionBlock Header Configuration
- */
-export interface ActionBlockHeader {
-  title?: string
-  description?: string
-}
-
-/**
- * ActionBlock Button Configuration
- */
-export interface ActionBlockButton {
-  text?: string
-  action?: string
-}
-
-/**
- * ActionBlock Footer Configuration
- */
-export interface ActionBlockFooter {
-  text?: string
-}
-
-/**
- * ActionBlock Configuration
- */
-export interface ActionBlock {
-  header?: ActionBlockHeader
-  button?: ActionBlockButton
-  footer?: ActionBlockFooter
-  backgroundColor?: string
-}
-
-/**
- * ConsentGateExperienceOptions
- */
-export interface ConsentGateExperienceOptions {
-  /**
-   * Consent Gate
-   */
-  kind: ExperienceType.ConsentGate
-  code: string
-  version: number
-  config: ConsentGate
-  theme: Theme
-}
-
-/**
- * ConsentGateLogoPosition defines the possible positions for the logo in the consent gate header
- * 
- * @enum
- */
-export enum ConsentGateLogoPosition {
-  Top = 'top',
-  Left = 'left',
 }
