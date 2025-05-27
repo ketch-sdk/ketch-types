@@ -36,7 +36,7 @@ export function isTab(value: string): value is Tab {
 export enum ExperienceType {
   Consent = 'experiences.consent',
   Preference = 'experiences.preference',
-  ConsentGate = 'experiences.consentgate',
+  ConsentGate = 'experiences.consentGate',
 }
 
 /**
@@ -49,7 +49,7 @@ export enum ExperienceDisplayType {
   Banner = 'experiencedisplays.banner',
   Modal = 'experiencedisplays.modal',
   Preference = 'experiencedisplays.preference',
-  ConsentGate = 'experiencedisplays.consentgate',
+  ConsentGate = 'experiencedisplays.consentGate',
 }
 
 /**
