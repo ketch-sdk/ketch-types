@@ -61,7 +61,6 @@ export enum ConsentExperienceType {
   Banner = 'experiences.consent.banner',
   Modal = 'experiences.consent.modal',
   JIT = 'experiences.consent.jit',
-  ConsentGate = 'experiences.consent.gate',
 }
 
 /**
