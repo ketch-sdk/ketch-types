@@ -5295,20 +5295,9 @@ export type ConsentGateExperienceHeaderContent = {
  * Consent Gate Experience Consent Block Content Configuration
  */
 
-export type ConsentGateExperienceConsentBlockPurposesListSwitchButtonLabelsContent = {
-  onText: string
-  offText: string
-  alwaysOnText: string
-}
-
-export type ConsentGateExperienceConsentBlockPurposesListBulkActionButtonsContent = {
-  acceptAllText: string
-  rejectAllText: string
-}
-
 export type ConsentGateExperienceConsentBlockPurposesListPurposesContent = {
-  switchButtonLabels: ConsentGateExperienceConsentBlockPurposesListSwitchButtonLabelsContent
-  bulkActionButtons: ConsentGateExperienceConsentBlockPurposesListBulkActionButtonsContent
+  switchButtonLabels: SwitchButtonsExperienceContentConfig
+  bulkActionButtons: BulkActionButtonsExperienceContentConfig
 }
 
 export type ConsentGateExperienceConsentBlockPurposesListContent = {
