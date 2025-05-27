@@ -3912,7 +3912,6 @@ export interface ConsentGateThemeConfig {
   actionBlock: ConsentGateActionBlockThemeConfig
 }
 
-
 /**
  * Theme Configuration
  */
@@ -5317,7 +5316,6 @@ export type ConsentGateExperienceConsentBlockPurposesListContent = {
   title: string
   purposes: ConsentGateExperienceConsentBlockPurposesListPurposesContent
 }
-
 
 export type ConsentGateExperienceConsentBlockButtonContent = {
   text: string
