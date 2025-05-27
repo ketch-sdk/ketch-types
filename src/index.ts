@@ -36,6 +36,7 @@ export function isTab(value: string): value is Tab {
 export enum ExperienceType {
   Consent = 'experiences.consent',
   Preference = 'experiences.preference',
+  ConsentGate = 'experiences.consentGate',
 }
 
 /**
@@ -48,6 +49,7 @@ export enum ExperienceDisplayType {
   Banner = 'experiencedisplays.banner',
   Modal = 'experiencedisplays.modal',
   Preference = 'experiencedisplays.preference',
+  ConsentGate = 'experiencedisplays.consentGate',
 }
 
 /**
@@ -456,6 +458,13 @@ export type ShowConsentOptions = {
  * ShowProgressiveExperienceOptions
  */
 export type ShowProgressiveExperienceOptions = {
+  experienceId: string
+}
+
+/**
+ * ShowConsentGateOptions
+ */
+export type ShowConsentGateOptions = {
   experienceId: string
 }
 
@@ -1397,6 +1406,11 @@ export interface ConfigurationV2 {
    * Progressive experiences
    */
   progressiveExperiences?: ProgressiveExperienceConfigurationType
+
+  /**
+   * Consent Gate experiences
+   */
+  consentGateExperiences?: ConsentGateExperienceConfigurationType
 
   /**
    * Vendors (TCF)
@@ -2430,6 +2444,7 @@ export enum ConsentSource {
   PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
   RouterSetConsent = 'router.setConsent', // Set via Ketch tag's Router.ts setConsent function
   ProgressiveConsent = 'progressive.consent',
+  ConsentGate = 'consentGate',
   // No preference close button as it doesn't set consent
 
   // The following will not happen via the frontend but are here to create contract with backend
@@ -2454,6 +2469,7 @@ export enum SubscriptionSource {
   PreferenceSubscriptionsTabManual = 'preference.subscriptionsTab.manual',
   PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
   ProgressiveSubscription = 'progressive.subscription',
+  ConsentGateSubscription = 'consentGate.subscription',
   RouterSetSubscriptions = 'router.setSubscriptions', // Set via Ketch tag's Router.ts setSubscriptions function
 
   // The following will not happen via the frontend but are here to create contract with backend
@@ -2736,6 +2752,11 @@ export interface Ketch {
    * Show a progressive experience
    */
   showProgressiveExperience(params?: ShowProgressiveExperienceOptions): Promise<void>
+
+  /**
+   * Show a consent gate experience
+   */
+  showConsentGate(params?: ShowConsentGateOptions): Promise<void>
 
   /**
    * Show any experience
@@ -3778,6 +3799,119 @@ export interface PreferenceThemeConfig {
 }
 
 /**
+ * Consent Gate Container Theme Configuration
+ */
+
+export interface ConsentGateContainerThemeConfig {
+  background: ColorThemeConfig
+  cornerRadius: number
+  logo: ImageThemeConfig
+}
+
+/**
+ * Consent Gate Header Theme Configuration
+ */
+
+export interface ConsentGateHeaderLogoThemeConfig {
+  position: string
+  image: ImageThemeConfig
+}
+
+export interface ConsentGateHeaderThemeConfig {
+  title: TextThemeConfig
+  cornerRadius: number
+  logo: ConsentGateHeaderLogoThemeConfig
+}
+
+/**
+ * Consent Gate Consent Block Theme Configuration
+ */
+
+export interface ConsentGateConsentBlockHeaderThemeConfig {
+  title: TextThemeConfig
+  description: TextThemeConfig
+  link: TextThemeConfig
+}
+
+export interface ConsentGateConsentBlockPurposesListHeaderThemeConfig {
+  title: TextThemeConfig
+}
+
+export interface ConsentGateConsentBlockPurposesListItemsThemeConfig {
+  style: ItemStyle
+  layout: ListLayout
+  purposeFill: ColorThemeConfig
+  purposeOutline: ColorThemeConfig
+  purposeContent: ColorThemeConfig
+  purposeLinks: ColorThemeConfig
+  arrowIcon: ColorThemeConfig
+  purposeCornerRadius: number
+}
+
+export interface ConsentGateConsentBlockPurposesListThemeConfig {
+  header: ConsentGateConsentBlockHeaderThemeConfig
+  items: ConsentGateConsentBlockPurposesListItemsThemeConfig
+  switchButtons: SwitchButtonThemeConfig
+}
+
+export interface ConsentGateConsentBlockPurposesThemeConfig {
+  list: ConsentGateConsentBlockPurposesListThemeConfig
+}
+
+export interface ConsentGateConsentBlockFooterThemeConfig {
+  link: TextThemeConfig
+  showGpcBadge: boolean
+}
+
+export interface ConsentGateConsentBlockThemeConfig {
+  background: ColorThemeConfig
+  header: ConsentGateConsentBlockHeaderThemeConfig
+  purposes: ConsentGateConsentBlockPurposesThemeConfig
+  button: ActionButtonThemeConfig
+  footer: ConsentGateConsentBlockFooterThemeConfig
+}
+
+/**
+ * Consent Gate Action Block Theme Configuration
+ */
+
+export interface ConsentGateActionBlockHeaderThemeConfig {
+  title: TextThemeConfig
+  description: TextThemeConfig
+  link: TextThemeConfig
+}
+
+export interface ConsentGateActionBlockTeaserThemeConfig {
+  text: TextThemeConfig
+}
+
+export interface ConsentGateActionBlockLinkThemeConfig {
+  text: TextThemeConfig
+}
+
+export interface ConsentGateActionBlockFooterThemeConfig {
+  teaser: ConsentGateActionBlockTeaserThemeConfig
+  link: ConsentGateActionBlockLinkThemeConfig
+}
+
+export interface ConsentGateActionBlockThemeConfig {
+  header: ConsentGateActionBlockHeaderThemeConfig
+  button: ActionButtonThemeConfig
+  footer: ConsentGateActionBlockFooterThemeConfig
+}
+
+/**
+ * Consent Gate Theme Configuration
+ */
+
+export interface ConsentGateThemeConfig {
+  container: ConsentGateContainerThemeConfig
+  header: ConsentGateHeaderThemeConfig
+  consentBlock: ConsentGateConsentBlockThemeConfig
+  actionBlock: ConsentGateActionBlockThemeConfig
+}
+
+/**
  * Theme Configuration
  */
 
@@ -3785,6 +3919,7 @@ export interface ThemeConfig {
   banner?: BannerThemeConfig
   modal?: ModalThemeConfig
   preference?: PreferenceThemeConfig
+  consentGate?: ConsentGateThemeConfig
   progressiveConsent?: any
 }
 
@@ -4257,6 +4392,7 @@ export interface ExperienceLayoutConfig {
   banner?: BannerExperienceLayoutConfig
   modal?: ModalExperienceLayoutConfig
   preference?: PreferenceExperienceLayoutConfig
+  consentGate?: ConsentGateExperienceLayoutConfig
   progressiveConsent?: any
   entitlementInfo?: EntitlementLayoutConfig
 }
@@ -4911,6 +5047,7 @@ export interface ExperienceContentConfig {
   modal?: ModalExperienceContentConfig
   display?: string
   preference?: PreferenceExperienceContentConfig
+  consentGate?: ConsentGateExperienceContentConfig
   progressiveConsent?: any
   static?: StaticContentConfig
 }
@@ -5038,6 +5175,212 @@ export interface ProgressiveExperienceConfigurationType {
   }
 }
 
+/**
+ * Consent Gate Experience Header Layout Configuration
+ */
+
+export type ConsentGateExperienceLogoLayout = {
+  visible: boolean
+  url: string
+}
+
+export type ConsentGateExperienceHeaderLayout = {
+  visible: boolean
+  closeButtonVisible: boolean
+  logo: ConsentGateExperienceLogoLayout
+}
+
+/**
+ * Consent Gate Experience Consent Block Layout Configuration
+ */
+
+export type ConsentGateExperienceConsentBlockHeaderLayout = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutHeader = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels = {
+  visible: boolean
+  display: string
+  useDefaultText: boolean
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutPurposes = {
+  actionButtonUseDefaultText: boolean
+  legalBasisVisible: boolean
+  purposesStacksDefaultExpanded: boolean
+  switchButtonLabels: ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayout = {
+  header: ConsentGateExperienceConsentBlockPurposesListLayoutHeader
+  purposes: ConsentGateExperienceConsentBlockPurposesListLayoutPurposes
+}
+
+export type ConsentGateExperienceConsentBlockButtonLayout = {
+  action: string
+  url: string
+}
+
+export type ConsentGateExperienceConsentBlockFooterLayoutLink = {
+  visible: boolean
+  action: string
+  url: string
+}
+
+export type ConsentGateExperienceConsentBlockFooterLayout = {
+  gpcBadgeVisible: boolean
+  links: ConsentGateExperienceConsentBlockFooterLayoutLink[]
+}
+
+export type ConsentGateExperienceConsentBlockLayout = {
+  header: ConsentGateExperienceConsentBlockHeaderLayout
+  purposesList: ConsentGateExperienceConsentBlockPurposesListLayout
+  button: ConsentGateExperienceConsentBlockButtonLayout
+  footer: ConsentGateExperienceConsentBlockFooterLayout
+}
+
+/**
+ * Consent Gate Experience Action Block Layout Configuration
+ */
+
+export type ConsentGateExperienceActionBlockHeaderLayout = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceActionBlockButtonLayout = {
+  action: string
+  url: string
+}
+
+export type ConsentGateExperienceActionBlockTeaserLayout = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceActionBlockLinkLayout = {
+  visible: boolean
+  action: string
+  url: string
+}
+
+export type ConsentGateExperienceActionBlockLayout = {
+  header: ConsentGateExperienceActionBlockHeaderLayout
+  button: ConsentGateExperienceActionBlockButtonLayout
+  teaser: ConsentGateExperienceActionBlockTeaserLayout
+  link: ConsentGateExperienceActionBlockLinkLayout
+}
+
+/**
+ * Consent Gate Experience Layout Configuration
+ */
+
+export type ConsentGateExperienceLayoutConfig = {
+  header: ConsentGateExperienceHeaderLayout
+  consentBlock: ConsentGateExperienceConsentBlockLayout
+  actionBlock: ConsentGateExperienceActionBlockLayout
+}
+
+/**
+ * Consent Gate Experience Header Content Configuration
+ */
+
+export type ConsentGateExperienceHeaderContent = {
+  title: string
+}
+
+/**
+ * Consent Gate Experience Consent Block Content Configuration
+ */
+
+export type ConsentGateExperienceConsentBlockPurposesListPurposesContent = {
+  switchButtonLabels: SwitchButtonsExperienceContentConfig
+  bulkActionButtons: BulkActionButtonsExperienceContentConfig
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListContent = {
+  title: string
+  purposes: ConsentGateExperienceConsentBlockPurposesListPurposesContent
+}
+
+export type ConsentGateExperienceConsentBlockButtonContent = {
+  text: string
+}
+
+export type ConsentGateExperienceConsentBlockLinksContent = {
+  text: string
+}
+
+export type ConsentGateExperienceConsentBlockContent = {
+  title: string
+  description: string
+  purposesList: ConsentGateExperienceConsentBlockPurposesListContent
+  button: ConsentGateExperienceConsentBlockButtonContent
+  links: ConsentGateExperienceConsentBlockLinksContent
+}
+
+/**
+ * Consent Gate Experience Action Block Content Configuration
+ */
+
+export type ConsentGateExperienceActionBlockButtonContent = {
+  text: string
+}
+
+export type ConsentGateExperienceActionBlockLinkContent = {
+  text: string
+}
+
+export type ConsentGateExperienceActionBlockAlertContent = {
+  text: string
+}
+
+export type ConsentGateExperienceActionBlockContent = {
+  title: string
+  description: string
+  button: ConsentGateExperienceActionBlockButtonContent
+  link: ConsentGateExperienceActionBlockLinkContent
+  teaserText: string
+  alert: ConsentGateExperienceActionBlockAlertContent
+}
+
+/**
+ * Consent Gate Experience Content Configuration
+ */
+
+export type ConsentGateExperienceContentConfig = {
+  header: ConsentGateExperienceHeaderContent
+  consentBlock: ConsentGateExperienceConsentBlockContent
+  actionBlock: ConsentGateExperienceActionBlockContent
+}
+
+export interface ConsentGateExperienceConfig {
+  layout: ConsentGateExperienceLayoutConfig
+  content: ConsentGateExperienceContentConfig
+  associations: ExperienceAssociationConfig
+}
+
+/**
+ * Consent Gate Experience Configuration Type
+ *
+ * Type used for the consentGate experience field in the config.
+ */
+
+export interface ConsentGateExperienceConfigurationType {
+  [experienceId: string]: {
+    content: {
+      consentGate: ConsentGateExperienceContentConfig
+      static: StaticContentConfig
+    }
+    layout: {
+      consentGate: ConsentGateExperienceLayoutConfig
+      entitlementInfo: EntitlementLayoutConfig
+    }
+  }
+}
+
 export interface ExperienceConfigurationType {
   autoInitiated: ExperienceConfig
   userInitiated: ExperienceConfig
@@ -5060,6 +5403,7 @@ export enum PreviewMessageType {
   ShowModal = 'showModal',
   ShowPreference = 'showPreferences',
   SwitchPreferencePage = 'switchPreferencePage',
+  ShowConsentGate = 'showConsentGate',
 }
 
 export type PreviewMessage = {
