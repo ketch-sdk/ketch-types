@@ -5208,6 +5208,11 @@ export type ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabel
   useDefaultText: boolean
 }
 
+export enum RequirementsNotMatchedState {
+  Alert = 'alert',
+  Redirect = 'redirect',
+}
+
 export type ConsentGateExperienceConsentBlockPurposesListLayoutPurposes = {
   actionButtonUseDefaultText: boolean
   legalBasisVisible: boolean
@@ -5318,7 +5323,7 @@ export type ConsentGateExperienceConsentBlockContent = {
   description: string
   purposesList: ConsentGateExperienceConsentBlockPurposesListContent
   button: ConsentGateExperienceConsentBlockButtonContent
-  links: ConsentGateExperienceConsentBlockLinksContent
+  links: ConsentGateExperienceConsentBlockLinksContent[]
 }
 
 /**
