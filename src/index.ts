@@ -3820,7 +3820,6 @@ export interface PreferenceThemeConfig {
 export interface ConsentGateContainerThemeConfig {
   background: ColorThemeConfig
   cornerRadius: number
-  logo: ImageThemeConfig
 }
 
 /**
@@ -3832,10 +3831,18 @@ export interface ConsentGateHeaderLogoThemeConfig {
   image: ImageThemeConfig
 }
 
+export interface ConsentGateHeaderCloseButtonThemeConfig {
+  fill: ColorThemeConfig
+  text: TextThemeConfig
+  cornerRadius: number
+  icon: ColorThemeConfig
+}
+
 export interface ConsentGateHeaderThemeConfig {
   title: TextThemeConfig
   cornerRadius: number
   logo: ConsentGateHeaderLogoThemeConfig
+  closeButton: ConsentGateHeaderCloseButtonThemeConfig
 }
 
 /**
@@ -3857,6 +3864,7 @@ export interface ConsentGateConsentBlockPurposesListItemsThemeConfig {
   layout: ListLayout
   purposeFill: ColorThemeConfig
   purposeOutline: ColorThemeConfig
+  purposeTitle: TextThemeConfig
   purposeContent: ColorThemeConfig
   purposeLinks: ColorThemeConfig
   arrowIcon: ColorThemeConfig
@@ -3874,8 +3882,9 @@ export interface ConsentGateConsentBlockPurposesThemeConfig {
 }
 
 export interface ConsentGateConsentBlockFooterThemeConfig {
-  link: TextThemeConfig
-  showGpcBadge: boolean
+  links: TextThemeConfig[]
+  showLinkArrows: boolean
+  showKetchBadge: boolean
 }
 
 export interface ConsentGateConsentBlockThemeConfig {
@@ -3901,6 +3910,7 @@ export interface ConsentGateActionBlockTeaserThemeConfig {
 }
 
 export interface ConsentGateActionBlockLinkThemeConfig {
+  showArrow: boolean
   text: TextThemeConfig
 }
 
@@ -5194,6 +5204,17 @@ export interface ProgressiveExperienceConfigurationType {
  * Consent Gate Experience Header Layout Configuration
  */
 
+export type ConsentGateExperienceHeaderTitleLayout = {
+  visible: boolean
+}
+
+export type ConsentGateExperienceHeaderCloseButtonLayout = {
+  visible: boolean
+  hasIcon: boolean
+  useDefaultIcon: boolean
+  iconUrl: string
+}
+
 export type ConsentGateExperienceLogoLayout = {
   visible: boolean
   url: string
@@ -5201,7 +5222,7 @@ export type ConsentGateExperienceLogoLayout = {
 
 export type ConsentGateExperienceHeaderLayout = {
   visible: boolean
-  closeButtonVisible: boolean
+  closeButton: ConsentGateExperienceHeaderCloseButtonLayout
   logo: ConsentGateExperienceLogoLayout
 }
 
@@ -5229,15 +5250,27 @@ export enum RequirementsNotMatchedState {
 }
 
 export type ConsentGateExperienceConsentBlockPurposesListLayoutPurposes = {
+  requiredPurposes: string[]
   actionButtonUseDefaultText: boolean
   legalBasisVisible: boolean
   purposesStacksDefaultExpanded: boolean
   switchButtonLabels: ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels
 }
 
+export type ConsentGateExperienceConsentBlockPurposesListLayoutVendorsLink = {
+  useDefaultText: boolean
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutVendors = {
+  visible: boolean
+  includeOtherVendors: boolean
+  link: ConsentGateExperienceConsentBlockPurposesListLayoutVendorsLink
+}
+
 export type ConsentGateExperienceConsentBlockPurposesListLayout = {
   header: ConsentGateExperienceConsentBlockPurposesListLayoutHeader
   purposes: ConsentGateExperienceConsentBlockPurposesListLayoutPurposes
+  vendors: ConsentGateExperienceConsentBlockPurposesListLayoutVendors
 }
 
 export type ConsentGateExperienceConsentBlockButtonLayout = {
@@ -5307,8 +5340,13 @@ export type ConsentGateExperienceLayoutConfig = {
  * Consent Gate Experience Header Content Configuration
  */
 
+export type ConsentGateExperienceHeaderCloseButtonContent = {
+  text: string
+}
+
 export type ConsentGateExperienceHeaderContent = {
   title: string
+  closeButton: ConsentGateExperienceHeaderCloseButtonContent
 }
 
 /**
@@ -5320,9 +5358,14 @@ export type ConsentGateExperienceConsentBlockPurposesListPurposesContent = {
   bulkActionButtons: BulkActionButtonsExperienceContentConfig
 }
 
+export type ConsentGateExperienceConsentBlockPurposesListLinkContent = {
+  text: string
+}
+
 export type ConsentGateExperienceConsentBlockPurposesListContent = {
   title: string
   purposes: ConsentGateExperienceConsentBlockPurposesListPurposesContent
+  links: ConsentGateExperienceConsentBlockPurposesListLinkContent[]
 }
 
 export type ConsentGateExperienceConsentBlockButtonContent = {
