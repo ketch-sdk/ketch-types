@@ -3882,7 +3882,7 @@ export interface ConsentGateConsentBlockPurposesThemeConfig {
 }
 
 export interface ConsentGateConsentBlockFooterThemeConfig {
-  links: TextThemeConfig[]
+  links: TextThemeConfig
   showLinkArrows: boolean
   showKetchBadge: boolean
 }
