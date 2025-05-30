@@ -2459,8 +2459,8 @@ export enum ConsentSource {
   AuditLogManual = 'auditLog.manual', // Overrode one purpose in audit log
 
   // Ketch accept/reject all purposes
-  KetchAcceptAllConsent = 'ketch.acceptAllConsent',
-  KetchRejectAllConsent = 'ketch.rejectAllConsent',
+  RouterAcceptAllConsent = 'router.acceptAllConsent',
+  RouterRejectAllConsent = 'router.rejectAllConsent',
 
   Unknown = 'unknown',
 }
