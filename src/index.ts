@@ -2458,6 +2458,10 @@ export enum ConsentSource {
   AuditLogDefault = 'auditLog.default', // Overriden to defaults in audit log
   AuditLogManual = 'auditLog.manual', // Overrode one purpose in audit log
 
+  // Ketch consent all purposes opt-in/out
+  KetchConsentOptIn = 'ketch.consentOptIn',
+  KetchConsentOptOut = 'ketch.consentOptOut',
+
   Unknown = 'unknown',
 }
 
