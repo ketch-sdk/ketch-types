@@ -3828,11 +3828,12 @@ export interface ConsentGateContainerThemeConfig {
 
 export interface ConsentGateHeaderLogoThemeConfig {
   position: string
+  visible: boolean
   image: ImageThemeConfig
 }
 
 export interface ConsentGateHeaderCloseButtonThemeConfig {
-  fill: ColorThemeConfig
+  background: ColorThemeConfig
   text: TextThemeConfig
   cornerRadius: number
   icon: ColorThemeConfig
@@ -3859,6 +3860,11 @@ export interface ConsentGateConsentBlockPurposesListHeaderThemeConfig {
   title: TextThemeConfig
 }
 
+export interface ConsentGateConsentBlockPurposesListBulkActionButtonsThemeConfig {
+  acceptAllButton: ActionButtonThemeConfig
+  rejectAllButton: ActionButtonThemeConfig
+}
+
 export interface ConsentGateConsentBlockPurposesListItemsThemeConfig {
   style: ItemStyle
   layout: ListLayout
@@ -3873,6 +3879,7 @@ export interface ConsentGateConsentBlockPurposesListItemsThemeConfig {
 
 export interface ConsentGateConsentBlockPurposesListThemeConfig {
   header: ConsentGateConsentBlockHeaderThemeConfig
+  bulkActionButtons: ConsentGateConsentBlockPurposesListBulkActionButtonsThemeConfig
   items: ConsentGateConsentBlockPurposesListItemsThemeConfig
   switchButtons: SwitchButtonThemeConfig
 }
@@ -5208,22 +5215,20 @@ export type ConsentGateExperienceHeaderTitleLayout = {
   visible: boolean
 }
 
-export type ConsentGateExperienceHeaderCloseButtonLayout = {
+export type ConsentGateExperienceHeaderCloseButtonIconLayout = {
   visible: boolean
-  hasIcon: boolean
-  useDefaultIcon: boolean
-  iconUrl: string
+  useDefault: boolean
+  image: ImageThemeConfig
 }
 
-export type ConsentGateExperienceLogoLayout = {
+export type ConsentGateExperienceHeaderCloseButtonLayout = {
   visible: boolean
-  url: string
+  icon: ConsentGateExperienceHeaderCloseButtonIconLayout
 }
 
 export type ConsentGateExperienceHeaderLayout = {
-  visible: boolean
+  title: ConsentGateExperienceHeaderTitleLayout
   closeButton: ConsentGateExperienceHeaderCloseButtonLayout
-  logo: ConsentGateExperienceLogoLayout
 }
 
 /**
@@ -5238,12 +5243,6 @@ export type ConsentGateExperienceConsentBlockPurposesListLayoutHeader = {
   visible: boolean
 }
 
-export type ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels = {
-  visible: boolean
-  display: string
-  useDefaultText: boolean
-}
-
 export enum RequirementsNotMatchedState {
   Alert = 'alert',
   Redirect = 'redirect',
@@ -5251,10 +5250,11 @@ export enum RequirementsNotMatchedState {
 
 export type ConsentGateExperienceConsentBlockPurposesListLayoutPurposes = {
   requiredPurposes: string[]
-  actionButtonUseDefaultText: boolean
+  requirementsNotMatchedState: RequirementsNotMatchedState
   legalBasisVisible: boolean
   purposesStacksDefaultExpanded: boolean
-  switchButtonLabels: ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels
+  switchButtonLabels: SwitchButtonsExperienceLayoutConfig
+  bulkActionButtons: BulkActionButtonsExperienceLayoutConfig
 }
 
 export type ConsentGateExperienceConsentBlockPurposesListLayoutVendorsLink = {
@@ -5440,6 +5440,9 @@ export interface ConsentGateExperienceConfigurationType {
     layout: {
       consentGate: ConsentGateExperienceLayoutConfig
       entitlementInfo: EntitlementLayoutConfig
+    }
+    theme: {
+      consentGate: ConsentGateThemeConfig
     }
   }
 }
