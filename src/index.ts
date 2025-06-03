@@ -5441,9 +5441,6 @@ export interface ConsentGateExperienceConfigurationType {
       consentGate: ConsentGateExperienceLayoutConfig
       entitlementInfo: EntitlementLayoutConfig
     }
-    theme: {
-      consentGate: ConsentGateThemeConfig
-    }
   }
 }
 
