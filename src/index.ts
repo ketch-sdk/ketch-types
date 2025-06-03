@@ -2473,6 +2473,10 @@ export enum ConsentSource {
   AuditLogDefault = 'auditLog.default', // Overriden to defaults in audit log
   AuditLogManual = 'auditLog.manual', // Overrode one purpose in audit log
 
+  // Ketch accept/reject all purposes
+  RouterAcceptAllConsent = 'router.acceptAllConsent',
+  RouterRejectAllConsent = 'router.rejectAllConsent',
+
   Unknown = 'unknown',
 }
 
