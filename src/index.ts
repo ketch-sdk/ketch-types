@@ -2342,7 +2342,7 @@ export interface PluginClass {
   ) => void
 
   /**
-   * Equivalent of on('showSubscriptionExperience')
+   * Equivalent of on('showConsentGateExperience')
    *
    * @param host The Ketch instance
    * @param config The configuration
@@ -2828,7 +2828,7 @@ export interface Ketch {
   /**
    * Get the Configuration.
    */
-  getConfig(): Promise<ConfigurationV2>
+  getConfig(): Promise<Configuration>
 
   /**
    * Get the Environment
