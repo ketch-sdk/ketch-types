@@ -2427,6 +2427,7 @@ export enum ConsentSource {
 
   // Plugins
   GpcPlugins = 'plugins.gpc',
+  OneTrustMigrator = 'plugins.onetrust',
 
   // Experience actions
   BannerSaveCurrentState = 'banner.saveCurrentState',
