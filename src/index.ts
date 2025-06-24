@@ -1408,9 +1408,9 @@ export interface ConfigurationV2 {
   progressiveExperiences?: ProgressiveExperienceConfigurationType
 
   /**
-   * Consent Gate experiences
+   * Progessive consent rules
    */
-  consentGateExperiences?: ConsentGateExperienceConfigurationType
+  progressiveConsentRules?: Rule[]
 
   /**
    * Vendors (TCF)
@@ -2771,11 +2771,6 @@ export interface Ketch {
    * Show a progressive experience
    */
   showProgressiveExperience(params?: ShowProgressiveExperienceOptions): Promise<void>
-
-  /**
-   * Show a consent gate experience
-   */
-  showConsentGate(params?: ShowConsentGateOptions): Promise<void>
 
   /**
    * Show any experience
@@ -5448,9 +5443,85 @@ export interface ConsentGateExperienceConfigurationType {
   }
 }
 
+/**
+ * Full banner configuration
+ */
+
+export interface BannerConfig {
+  content: BannerExperienceContentConfig
+  layout: BannerExperienceLayoutConfig
+  theme: BannerThemeConfig
+}
+
+/**
+ * Full modal configuration
+ */
+
+export interface ModalConfig {
+  content: ModalExperienceContentConfig
+  layout: ModalExperienceLayoutConfig
+  theme: ModalThemeConfig
+}
+
+/**
+ * Full preference configuration
+ */
+
+export interface PreferenceConfig {
+  content: PreferenceExperienceContentConfig
+  layout: PreferenceExperienceLayoutConfig
+  theme: PreferenceThemeConfig
+}
+
+/**
+ * Full consent gate configuration
+ */
+
+export interface ConsentGateConfig {
+  content: ConsentGateExperienceContentConfig
+  layout: ConsentGateExperienceLayoutConfig
+  theme: ConsentGateThemeConfig
+}
+
+/**
+ * Display experience type
+ */
+
+export enum DisplayExperienceType {
+  Banner = 'banner',
+  Modal = 'modal',
+  Preference = 'preference',
+  ConsentGate = 'consentGate',
+}
+
+/**
+ * Import experience type
+ */
+
+export enum LoadingMethodType {
+  Immediate = 'immediate',
+  Dynamic = 'dynamic',
+}
+
+/**
+ * Experience configuration type
+ */
+
 export interface ExperienceConfigurationType {
+  // Old - to be deprecated
   autoInitiated: ExperienceConfig
   userInitiated: ExperienceConfig
+  layout: ExperienceLayoutConfig
+  content: ExperienceContentConfig
+
+  // New - to be used for all experiences
+  ids: {
+    [id: string]: {
+      type: DisplayExperienceType
+      loadingMethod: LoadingMethodType
+      data?: BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
+    }
+  }
 }
 
 /**
@@ -5461,6 +5532,111 @@ export enum DeploymentExperienceType {
   AutoInitiated = 'autoInitiated',
   UserInitiated = 'userInitiated',
 }
+
+/**
+ * Progressive Consent Rule Enums
+ */
+
+export enum AttributeEntity {
+  IDENTITY = 'identity',
+  SUBSCRIPTION = 'subscription',
+  CONSENT = 'consent',
+  USER_ATTRIBUTE = 'userAttribute',
+  WEB_PAGE = 'webPage',
+  JURISDICTION = 'jurisdiction',
+  TRIGGER = 'trigger',
+}
+
+export enum OperatorType {
+  EQUALS = 'EQ',
+  NOT_EQUALS = 'NE',
+  CONTAINS = 'CN',
+  NOT_CONTAINS = 'NCN',
+  HAS_SOME = 'HSO',
+  HAS_ALL = 'HAL',
+  HAS_NONE = 'HNE',
+  HAS_NOT_ALL = 'HNA',
+  IN = 'IN',
+  NOT_IN = 'NIN',
+  EXISTS = 'EX',
+  DOES_NOT_EXIST = 'DNE',
+  GREATER_THAN = 'GT',
+  LESS_THAN = 'LT',
+  GREATER_THAN_OR_EQUAL = 'GTE',
+  LESS_THAN_OR_EQUAL = 'LTE',
+  UNKNOWN = '',
+}
+
+export enum ConditionOperator {
+  AND = 'AND',
+  OR = 'OR',
+  NOT = 'NOT',
+}
+
+export enum ActionFunction {
+  SHOW_EXPERIENCE = 'showExperience',
+}
+
+/**
+ * Progressive consent rule interfaces
+ */
+
+export interface Attribute {
+  entity: AttributeEntity
+  code: string
+  name: string
+  type: 'string' | 'number' | 'date' | 'boolean'
+  dataPath: string
+  domain: string
+}
+
+export interface Operand {
+  attribute: Attribute
+  operator: OperatorType
+  value: string | number | boolean | string[] | number[] | boolean[]
+}
+
+export interface NotCondition {
+  operator: ConditionOperator.NOT
+  operand: Condition
+}
+
+export interface LogicalCondition {
+  operator: ConditionOperator.AND | ConditionOperator.OR
+  operands: Condition[]
+}
+
+export type Condition = LogicalCondition | NotCondition | Operand
+
+export interface ActionOptions {
+  dismissAfterSeconds?: number
+  forceInteraction?: boolean
+  [key: string]: any // Allow additional options
+}
+
+export interface ActionParams {
+  experienceID: string
+  experienceType: string
+  [key: string]: any // Allow additional params
+}
+
+export interface Action {
+  functionName: ActionFunction
+  params: ActionParams
+  options?: ActionOptions
+}
+
+export interface Rule {
+  code: string
+  name: string
+  condition: Condition
+  action: Action
+}
+
+export interface ParsedRule extends Omit<Rule, 'condition'> {
+  condition: () => Promise<boolean>
+}
+
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
 
