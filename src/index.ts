@@ -5412,7 +5412,7 @@ export interface ExperienceConfigurationType {
       loadingMethod: ExperienceLoadingMethod
 
       // Data is only present when loadingMethod is Initial
-      data?: any // TODO: type this, something like BannerExperience | ModalExperience | PreferenceExperience | ConsentGateExperience | ProgressiveExperience ...
+      data?: any // TODO: type this, something like BannerExperience | PreferenceExperience | ConsentGateExperience ...
     }
   }
 }
