@@ -1395,7 +1395,7 @@ export interface ConfigurationV2 {
   /**
    * Theme V2 definition
    */
-  theme?: ThemeConfig
+  themes?: { [id: string]: ThemeConfig }
 
   /**
    * Experience V2 definitions
