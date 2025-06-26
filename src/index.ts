@@ -3948,14 +3948,21 @@ export interface ConsentGateThemeConfig {
  */
 
 export interface ThemeConfig {
-  // Old - to be deprecated
+  // @deprecated
   banner?: BannerThemeConfig
+
+  // @deprecated
   modal?: ModalThemeConfig
+
+  // @deprecated
   preference?: PreferenceThemeConfig
+
+  // @deprecated
   consentGate?: ConsentGateThemeConfig
+
+  // @deprecated
   progressiveConsent?: any
 
-  // New - to be used for all experiences
   ids?: { [id: string]: ExperienceThemeConfig }
 }
 
@@ -5517,7 +5524,10 @@ export enum DisplayExperienceType {
  */
 
 export enum ExperienceLoadingMethod {
+  // Present in config.json initially
   Initial = 'initial',
+
+  // Loaded dynamically when needed
   Dynamic = 'dynamic',
 }
 
@@ -5526,17 +5536,24 @@ export enum ExperienceLoadingMethod {
  */
 
 export interface ExperienceConfigurationType {
-  // Old - to be deprecated
+  // @deprecated
   autoInitiated: ExperienceConfig
-  userInitiated: ExperienceConfig
-  layout: ExperienceLayoutConfig
-  content: ExperienceContentConfig
 
-  // New - to be used for all experiences
+  // @deprecated
+  userInitiated: ExperienceConfig
+
+  // @deprecated
+  layout: any
+
+  // @deprecated
+  content: any
+
   ids?: {
     [id: string]: {
       type: DisplayExperienceType
       loadingMethod: ExperienceLoadingMethod
+
+      // Data is only present when loadingMethod is Initial
       data?: BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
     }
   }
@@ -5668,7 +5685,6 @@ export interface Rule {
 export interface ParsedRule extends Omit<Rule, 'condition'> {
   condition: () => Promise<boolean>
 }
-
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
 
