@@ -5451,7 +5451,7 @@ export interface ConsentGateExperienceConfigurationType {
 export interface BannerConfig {
   content: BannerExperienceContentConfig
   layout: BannerExperienceLayoutConfig
-  theme: BannerThemeConfig
+  themeId: string
 }
 
 /**
@@ -5461,7 +5461,7 @@ export interface BannerConfig {
 export interface ModalConfig {
   content: ModalExperienceContentConfig
   layout: ModalExperienceLayoutConfig
-  theme: ModalThemeConfig
+  themeId: string
 }
 
 /**
@@ -5471,7 +5471,8 @@ export interface ModalConfig {
 export interface PreferenceConfig {
   content: PreferenceExperienceContentConfig
   layout: PreferenceExperienceLayoutConfig
-  theme: PreferenceThemeConfig
+  themeId: string
+  formTemplates?: FormTemplate[]
 }
 
 /**
@@ -5481,7 +5482,7 @@ export interface PreferenceConfig {
 export interface ConsentGateConfig {
   content: ConsentGateExperienceContentConfig
   layout: ConsentGateExperienceLayoutConfig
-  theme: ConsentGateThemeConfig
+  themeId: string
 }
 
 /**
@@ -5546,10 +5547,19 @@ export enum AttributeEntity {
   IDENTITY = 'identity',
   SUBSCRIPTION = 'subscription',
   CONSENT = 'consent',
-  USER_ATTRIBUTE = 'userAttribute',
-  WEB_PAGE = 'webPage',
+  USER_ATTRIBUTE = 'user',
+  WEB_PAGE = 'page',
   JURISDICTION = 'jurisdiction',
   TRIGGER = 'trigger',
+}
+
+export enum AttributeDomain {
+  JURISDICTION = 'jurisdiction',
+  PURPOSE = 'purpose',
+  IDENTITY = 'identity',
+  SUBSCRIPTION_TOPIC = 'subscriptiontopic',
+  SUBSCRIPTION_CONTROL = 'subscriptioncontrol',
+  SUBSCRIPTION_CONTACT_METHOD = 'subscriptioncontactmethod',
 }
 
 export enum OperatorType {
@@ -5588,11 +5598,12 @@ export enum ActionFunction {
 
 export interface Attribute {
   entity: AttributeEntity
-  code: string
-  name: string
-  type: 'string' | 'number' | 'date' | 'boolean'
-  dataPath: string
-  domain: string
+  code?: string
+  name?: string
+  dataType?: 'string' | 'number' | 'date' | 'boolean' | 'enum'
+  dataPath?: string
+  domain?: AttributeDomain | string
+  inputDataKey?: string
 }
 
 export interface Operand {
