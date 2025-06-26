@@ -5499,8 +5499,8 @@ export enum DisplayExperienceType {
  * Import experience type
  */
 
-export enum LoadingMethodType {
-  Immediate = 'immediate',
+export enum ExperienceLoadingMethod {
+  Initial = 'initial',
   Dynamic = 'dynamic',
 }
 
@@ -5516,13 +5516,17 @@ export interface ExperienceConfigurationType {
   content: ExperienceContentConfig
 
   // New - to be used for all experiences
-  ids: {
+  ids?: {
     [id: string]: {
       type: DisplayExperienceType
-      loadingMethod: LoadingMethodType
+      loadingMethod: ExperienceLoadingMethod
       data?: BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
     }
   }
+  entitlementInfo?: EntitlementLayoutConfig
+  display?: string
+  static?: StaticContentConfig
+  associations?: ExperienceAssociationConfig
 }
 
 /**
