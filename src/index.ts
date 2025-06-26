@@ -1395,7 +1395,7 @@ export interface ConfigurationV2 {
   /**
    * Theme V2 definition
    */
-  themes?: { [id: string]: ThemeConfig }
+  themes?: ThemeConfig
 
   /**
    * Experience V2 definitions
@@ -3948,6 +3948,22 @@ export interface ConsentGateThemeConfig {
  */
 
 export interface ThemeConfig {
+  // Old - to be deprecated
+  banner?: BannerThemeConfig
+  modal?: ModalThemeConfig
+  preference?: PreferenceThemeConfig
+  consentGate?: ConsentGateThemeConfig
+  progressiveConsent?: any
+
+  // New - to be used for all experiences
+  ids?: { [id: string]: ExperienceThemeConfig }
+}
+
+/**
+ * Experience Theme Configurations
+ */
+
+export interface ExperienceThemeConfig {
   banner?: BannerThemeConfig
   modal?: ModalThemeConfig
   preference?: PreferenceThemeConfig
