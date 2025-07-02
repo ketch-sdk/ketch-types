@@ -40,6 +40,28 @@ export enum ExperienceType {
 }
 
 /**
+ * DisplayExperienceType is the type of experience that will be shown
+ *
+ * @enum
+ */
+export enum DisplayExperienceType {
+  Banner = 'banner',
+  Modal = 'modal',
+  Preference = 'preference',
+  ConsentGate = 'consentGate',
+}
+
+/**
+ * DisplayConsentExperienceType is the type of consent experience that will be shown
+ *
+ * @enum
+ */
+export enum DisplayConsentExperienceType {
+  Banner = DisplayExperienceType.Banner,
+  Modal = DisplayExperienceType.Modal,
+}
+
+/**
  * ExperienceDisplayType is the type of experience that will be shown
  *  - Differs from ExperienceType in that consent experiences are enumerated individually
  *
@@ -2776,7 +2798,12 @@ export interface Ketch {
   /**
    * Show any experience
    */
-  showExperience(params?: ShowExperienceOptions): Promise<void>
+  showExperience(
+    experienceType: DisplayExperienceType,
+    experienceId: string,
+    showExperienceOptions?: ShowExperienceOptions,
+    displayOptions?: ActionOptions,
+  ): Promise<void>
 
   /**
    * Show the preference experience
@@ -5472,8 +5499,8 @@ export interface ConsentGateExperienceConfigurationType {
  */
 
 export interface BannerConfig {
-  content: BannerExperienceContentConfig
-  layout: BannerExperienceLayoutConfig
+  content: /*BannerExperienceContentConfig*/ ExperienceContentConfig
+  layout: /*BannerExperienceLayoutConfig*/ ExperienceLayoutConfig
 }
 
 /**
@@ -5481,8 +5508,8 @@ export interface BannerConfig {
  */
 
 export interface ModalConfig {
-  content: ModalExperienceContentConfig
-  layout: ModalExperienceLayoutConfig
+  content: /*ModalExperienceContentConfig*/ ExperienceContentConfig
+  layout: /*ModalExperienceLayoutConfig*/ ExperienceLayoutConfig
 }
 
 /**
@@ -5490,8 +5517,8 @@ export interface ModalConfig {
  */
 
 export interface PreferenceConfig {
-  content: PreferenceExperienceContentConfig
-  layout: PreferenceExperienceLayoutConfig
+  content: /*PreferenceExperienceContentConfig*/ ExperienceContentConfig
+  layout: /*PreferenceExperienceLayoutConfig*/ ExperienceLayoutConfig
   formTemplates?: FormTemplate[]
 }
 
@@ -5502,17 +5529,6 @@ export interface PreferenceConfig {
 export interface ConsentGateConfig {
   content: ConsentGateExperienceContentConfig
   layout: ConsentGateExperienceLayoutConfig
-}
-
-/**
- * Display experience type
- */
-
-export enum DisplayExperienceType {
-  Banner = 'banner',
-  Modal = 'modal',
-  Preference = 'preference',
-  ConsentGate = 'consentGate',
 }
 
 /**
@@ -5582,6 +5598,28 @@ export enum AttributeEntity {
   TRIGGER = 'trigger',
 }
 
+export enum AttributeCode {
+  IDENTITY_IDENTIFIER = 'identifier',
+  IDENTITY_IS_AUTHENTICATED = 'is_authenticated',
+
+  SUBSCRIPTION_SUBSCRIPTION = 'subscription',
+  SUBSCRIPTION_STATUS = 'subscription.status',
+  SUBSCRIPTION_COLLECTED_AT = 'collected_at',
+
+  CONSENT_NEEDS_CONSENT = 'needs_consent',
+  CONSENT_COLLECTED_AT = 'collected_at',
+  CONSENT_PURPOSE = 'purpose',
+  CONSENT_PURPOSE_ALLOWED = 'purpose.allowed',
+  CONSENT_PURPOSE_COLLECTED_AT = 'purpose.collected_at',
+
+  JURISDICTION_JURISDICTION = 'jurisdiction',
+
+  TRIGGER_EVENT = 'event',
+  TRIGGER_EVENT_TARGET = 'event_target',
+
+  WEB_PAGE_URL = 'url',
+}
+
 export enum AttributeDomain {
   JURISDICTION = 'jurisdiction',
   PURPOSE = 'purpose',
@@ -5593,21 +5631,20 @@ export enum AttributeDomain {
 
 export enum OperatorType {
   EQUALS = 'EQ',
-  NOT_EQUALS = 'NE',
-  CONTAINS = 'CN',
-  NOT_CONTAINS = 'NCN',
-  HAS_SOME = 'HSO',
-  HAS_ALL = 'HAL',
-  HAS_NONE = 'HNE',
-  HAS_NOT_ALL = 'HNA',
-  IN = 'IN',
-  NOT_IN = 'NIN',
-  EXISTS = 'EX',
-  DOES_NOT_EXIST = 'DNE',
+  NOT_EQUALS = 'NEQ',
   GREATER_THAN = 'GT',
   LESS_THAN = 'LT',
   GREATER_THAN_OR_EQUAL = 'GTE',
   LESS_THAN_OR_EQUAL = 'LTE',
+  CONTAINS = 'CN',
+  REGEX_MATCH_FIND = 'MCH',
+  EXISTS = 'EX',
+  NOT_EXISTS = 'NEX',
+  IN = 'IN',
+  HAS_SOME = 'HSO',
+  HAS_ALL = 'HAL',
+  HAS_NONE = 'HNE',
+  HAS_NOT_ALL = 'HNA',
   UNKNOWN = '',
 }
 
@@ -5656,12 +5693,15 @@ export type Condition = LogicalCondition | NotCondition | Operand
 export interface ActionOptions {
   dismissAfterSeconds?: number
   forceInteraction?: boolean
+  blockScroll?: boolean
+  dismissAnimation?: 'fade' | 'lower'
   [key: string]: any // Allow additional options
 }
 
 export interface ActionParams {
   experienceID: string
-  experienceType: string
+  experienceType: DisplayExperienceType
+  themeID: string
   [key: string]: any // Allow additional params
 }
 
@@ -5678,8 +5718,13 @@ export interface Rule {
   action: Action
 }
 
+export type ConditionParams = {
+  profile?: any
+  event?: Event
+}
+
 export interface ParsedRule extends Omit<Rule, 'condition'> {
-  condition: () => Promise<boolean>
+  condition: ({ profile, event }: ConditionParams) => Promise<boolean>
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
