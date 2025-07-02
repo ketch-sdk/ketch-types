@@ -237,6 +237,47 @@ export enum IdentityEncoding {
 }
 
 /**
+ * TraitType is the location on the page from which to retrieve trait information
+ *
+ * @enum
+ */
+export enum TraitType {
+  TRAIT_TYPE_UNDEFINED = '',
+  TRAIT_TYPE_DATA_LAYER = 'dataLayer',
+  TRAIT_TYPE_WINDOW = 'window',
+  TRAIT_TYPE_COOKIE = 'cookie',
+  TRAIT_TYPE_MANAGED = 'managedCookie', // this is created if necessary and stored in a cookie with associated name
+  TRAIT_TYPE_LOCAL_STORAGE = 'localStorage',
+  TRAIT_TYPE_SESSION_STORAGE = 'sessionStorage',
+  TRAIT_TYPE_QUERY_STRING = 'queryString',
+}
+
+/**
+ * TraitFormat is the encoding of the string trait value
+ *
+ * @enum
+ */
+export enum TraitFormat {
+  TRAIT_FORMAT_UNDEFINED = '',
+  TRAIT_FORMAT_STRING = 'string',
+  TRAIT_FORMAT_JSON = 'json',
+  TRAIT_FORMAT_JWT = 'jwt',
+  TRAIT_FORMAT_QUERY = 'query',
+  TRAIT_FORMAT_SEMICOLON = 'semicolon',
+}
+
+/**
+ * TraitEncoding is the encoding of the string trait value
+ *
+ * @enum
+ */
+export enum TraitEncoding {
+  TRAIT_ENCODING_UNDEFINED = '',
+  TRAIT_ENCODING_NONE = 'none',
+  TRAIT_ENCODING_BASE64 = 'base64',
+}
+
+/**
  * SwitchTextRenderLogic
  *
  * @enum
@@ -372,6 +413,11 @@ export enum StorageOriginPolicy {
  * Identities
  */
 export type Identities = { [key: string]: string }
+
+/**
+ * Traits
+ */
+export type Traits = { [key: string]: string }
 
 /**
  * Status
@@ -800,6 +846,42 @@ export interface Identity {
    * encoding of the value
    */
   encoding?: IdentityEncoding
+}
+
+/**
+ * Trait represents all the metadata for an identifier on the page
+ */
+export interface Trait {
+  /**
+   * type is the location on the page from which to retrieve trait information
+   */
+  type: TraitType
+
+  /**
+   * variable is the name to look up the trait value in the specified location
+   */
+  variable: string
+
+  /**
+   * format of the value
+   */
+  format?: TraitFormat
+
+  /**
+   * key is the identifier to find the trait within the value if the format is TRAIT_FORMAT_STRING then key
+   * will be undefined
+   */
+  key?: string
+
+  /**
+   * priority of the trait for consent conflict resolution
+   */
+  priority?: number
+
+  /**
+   * encoding of the value
+   */
+  encoding?: TraitEncoding
 }
 
 /**
@@ -1378,6 +1460,11 @@ export interface ConfigurationV2 {
    * Identity spaces defined for this property
    */
   identities?: { [key: string]: Identity }
+
+  /**
+   * User attributes defined for this property
+   */
+  userAttributes?: { [key: string]: Trait }
 
   /**
    * Deployment information. Only available in the "full" configuration.
@@ -2416,6 +2503,11 @@ export type Plugin = PluginClass | PluginFunction
 export type IdentityProvider = () => Promise<string[]>
 
 /**
+ * UserAttributeProvider defines a function for providing user attributes
+ */
+export type UserAttributeProvider = () => Promise<string[]>
+
+/**
  * StorageProvider defines an interface for storage
  */
 export interface StorageProvider {
@@ -2732,6 +2824,14 @@ export interface Ketch {
    * @param provider The provider of the identity
    */
   registerIdentityProvider(name: string, provider: IdentityProvider): Promise<void>
+
+  /**
+   * Register a user attribute provider for the given user attribute
+   *
+   * @param name The name of the user attribute
+   * @param provider The provider of the user attribute
+   */
+  registerUserAttributeProvider(name: string, provider: UserAttributeProvider): Promise<void>
 
   /**
    * Register an experience server to use for rendering experiences.
