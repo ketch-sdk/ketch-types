@@ -1519,7 +1519,7 @@ export interface ConfigurationV2 {
   /**
    * Progessive consent rules
    */
-  progressiveConsentRules?: Rule[]
+  rules?: { [trigger: string]: Rule[] }
 
   /**
    * Vendors (TCF)
@@ -5688,47 +5688,6 @@ export enum DeploymentExperienceType {
  * Progressive Consent Rule Enums
  */
 
-export enum AttributeEntity {
-  IDENTITY = 'identity',
-  SUBSCRIPTION = 'subscription',
-  CONSENT = 'consent',
-  USER_ATTRIBUTE = 'user',
-  WEB_PAGE = 'page',
-  JURISDICTION = 'jurisdiction',
-  TRIGGER = 'trigger',
-}
-
-export enum AttributeCode {
-  IDENTITY_IDENTIFIER = 'identifier',
-  IDENTITY_IS_AUTHENTICATED = 'is_authenticated',
-
-  SUBSCRIPTION_SUBSCRIPTION = 'subscription',
-  SUBSCRIPTION_STATUS = 'subscription.status',
-  SUBSCRIPTION_COLLECTED_AT = 'collected_at',
-
-  CONSENT_NEEDS_CONSENT = 'needs_consent',
-  CONSENT_COLLECTED_AT = 'collected_at',
-  CONSENT_PURPOSE = 'purpose',
-  CONSENT_PURPOSE_ALLOWED = 'purpose.allowed',
-  CONSENT_PURPOSE_COLLECTED_AT = 'purpose.collected_at',
-
-  JURISDICTION_JURISDICTION = 'jurisdiction',
-
-  TRIGGER_EVENT = 'event',
-  TRIGGER_EVENT_TARGET = 'event_target',
-
-  WEB_PAGE_URL = 'url',
-}
-
-export enum AttributeDomain {
-  JURISDICTION = 'jurisdiction',
-  PURPOSE = 'purpose',
-  IDENTITY = 'identity',
-  SUBSCRIPTION_TOPIC = 'subscriptiontopic',
-  SUBSCRIPTION_CONTROL = 'subscriptioncontrol',
-  SUBSCRIPTION_CONTACT_METHOD = 'subscriptioncontactmethod',
-}
-
 export enum OperatorType {
   EQUALS = 'EQ',
   NOT_EQUALS = 'NEQ',
@@ -5762,18 +5721,9 @@ export enum ActionFunction {
  * Progressive consent rule interfaces
  */
 
-export interface Attribute {
-  entity: AttributeEntity
-  code?: string
-  name?: string
-  dataType?: 'string' | 'number' | 'date' | 'boolean' | 'enum'
-  dataPath?: string
-  domain?: AttributeDomain | string
-  inputDataKey?: string
-}
-
 export interface Operand {
-  attribute: Attribute
+  inputDataKeys: string[]
+  type: 'string' | 'number' | 'boolean' | 'date' | 'enum'
   operator: OperatorType
   value: string | number | boolean | string[] | number[] | boolean[]
 }
