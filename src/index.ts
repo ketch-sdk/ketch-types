@@ -40,6 +40,28 @@ export enum ExperienceType {
 }
 
 /**
+ * DisplayExperienceType is the type of experience that will be shown
+ *
+ * @enum
+ */
+export enum DisplayExperienceType {
+  Banner = 'banner',
+  Modal = 'modal',
+  Preference = 'preference',
+  ConsentGate = 'consentGate',
+}
+
+/**
+ * DisplayConsentExperienceType is the type of consent experience that will be shown
+ *
+ * @enum
+ */
+export enum DisplayConsentExperienceType {
+  Banner = DisplayExperienceType.Banner,
+  Modal = DisplayExperienceType.Modal,
+}
+
+/**
  * ExperienceDisplayType is the type of experience that will be shown
  *  - Differs from ExperienceType in that consent experiences are enumerated individually
  *
@@ -215,6 +237,47 @@ export enum IdentityEncoding {
 }
 
 /**
+ * TraitType is the location on the page from which to retrieve trait information
+ *
+ * @enum
+ */
+export enum TraitType {
+  TRAIT_TYPE_UNDEFINED = '',
+  TRAIT_TYPE_DATA_LAYER = 'dataLayer',
+  TRAIT_TYPE_WINDOW = 'window',
+  TRAIT_TYPE_COOKIE = 'cookie',
+  TRAIT_TYPE_MANAGED = 'managedCookie', // this is created if necessary and stored in a cookie with associated name
+  TRAIT_TYPE_LOCAL_STORAGE = 'localStorage',
+  TRAIT_TYPE_SESSION_STORAGE = 'sessionStorage',
+  TRAIT_TYPE_QUERY_STRING = 'queryString',
+}
+
+/**
+ * TraitFormat is the encoding of the string trait value
+ *
+ * @enum
+ */
+export enum TraitFormat {
+  TRAIT_FORMAT_UNDEFINED = '',
+  TRAIT_FORMAT_STRING = 'string',
+  TRAIT_FORMAT_JSON = 'json',
+  TRAIT_FORMAT_JWT = 'jwt',
+  TRAIT_FORMAT_QUERY = 'query',
+  TRAIT_FORMAT_SEMICOLON = 'semicolon',
+}
+
+/**
+ * TraitEncoding is the encoding of the string trait value
+ *
+ * @enum
+ */
+export enum TraitEncoding {
+  TRAIT_ENCODING_UNDEFINED = '',
+  TRAIT_ENCODING_NONE = 'none',
+  TRAIT_ENCODING_BASE64 = 'base64',
+}
+
+/**
  * SwitchTextRenderLogic
  *
  * @enum
@@ -350,6 +413,11 @@ export enum StorageOriginPolicy {
  * Identities
  */
 export type Identities = { [key: string]: string }
+
+/**
+ * Traits
+ */
+export type Traits = { [key: string]: string }
 
 /**
  * Status
@@ -778,6 +846,42 @@ export interface Identity {
    * encoding of the value
    */
   encoding?: IdentityEncoding
+}
+
+/**
+ * Trait represents all the metadata for an identifier on the page
+ */
+export interface Trait {
+  /**
+   * type is the location on the page from which to retrieve trait information
+   */
+  type: TraitType
+
+  /**
+   * variable is the name to look up the trait value in the specified location
+   */
+  variable: string
+
+  /**
+   * format of the value
+   */
+  format?: TraitFormat
+
+  /**
+   * key is the identifier to find the trait within the value if the format is TRAIT_FORMAT_STRING then key
+   * will be undefined
+   */
+  key?: string
+
+  /**
+   * priority of the trait for consent conflict resolution
+   */
+  priority?: number
+
+  /**
+   * encoding of the value
+   */
+  encoding?: TraitEncoding
 }
 
 /**
@@ -1358,6 +1462,11 @@ export interface ConfigurationV2 {
   identities?: { [key: string]: Identity }
 
   /**
+   * User attributes defined for this property
+   */
+  userAttributes?: { [key: string]: Trait }
+
+  /**
    * Deployment information. Only available in the "full" configuration.
    */
   deployment?: Deployment
@@ -1408,9 +1517,9 @@ export interface ConfigurationV2 {
   progressiveExperiences?: ProgressiveExperienceConfigurationType
 
   /**
-   * Consent Gate experiences
+   * Progressive consent rules
    */
-  consentGateExperiences?: ConsentGateExperienceConfigurationType
+  rules?: { [trigger: string]: Rule[] }
 
   /**
    * Vendors (TCF)
@@ -2342,6 +2451,21 @@ export interface PluginClass {
   ) => void
 
   /**
+   * Equivalent of on('showConsentGateExperience')
+   *
+   * @param host The Ketch instance
+   * @param config The configuration
+   * @param consents The current consents
+   * @param options The options for the experience
+   */
+  showConsentGateExperience?: (
+    host: Ketch,
+    config: ConsentGateExperienceConfigurationType,
+    consents: Consent,
+    options?: ShowConsentGateOptions,
+  ) => void
+
+  /**
    * Equivalent of on('willShowExperience')
    *
    * @param host The Ketch instance
@@ -2377,6 +2501,11 @@ export type Plugin = PluginClass | PluginFunction
  * IdentityProvider defines a function for providing identities
  */
 export type IdentityProvider = () => Promise<string[]>
+
+/**
+ * UserAttributeProvider defines a function for providing user attributes
+ */
+export type UserAttributeProvider = () => Promise<string[]>
 
 /**
  * StorageProvider defines an interface for storage
@@ -2698,6 +2827,14 @@ export interface Ketch {
   registerIdentityProvider(name: string, provider: IdentityProvider): Promise<void>
 
   /**
+   * Register a user attribute provider for the given user attribute
+   *
+   * @param name The name of the user attribute
+   * @param provider The provider of the user attribute
+   */
+  registerUserAttributeProvider(name: string, provider: UserAttributeProvider): Promise<void>
+
+  /**
    * Register an experience server to use for rendering experiences.
    *
    * @param server The experience server
@@ -2762,12 +2899,22 @@ export interface Ketch {
   /**
    * Show a consent gate experience
    */
-  showConsentGate(params?: ShowConsentGateOptions): Promise<void>
+  showConsentGateExperience(params?: ShowExperienceOptions): Promise<void>
 
   /**
    * Show any experience
    */
   showExperience(params?: ShowExperienceOptions): Promise<void>
+
+  /**
+   * Show any experience type
+   */
+  showExperienceType(
+    experienceType: DisplayExperienceType,
+    experienceId: string,
+    showExperienceOptions?: ShowExperienceOptions,
+    displayOptions?: ActionOptions,
+  ): Promise<void>
 
   /**
    * Show the preference experience
@@ -3811,7 +3958,6 @@ export interface PreferenceThemeConfig {
 export interface ConsentGateContainerThemeConfig {
   background: ColorThemeConfig
   cornerRadius: number
-  logo: ImageThemeConfig
 }
 
 /**
@@ -3820,13 +3966,22 @@ export interface ConsentGateContainerThemeConfig {
 
 export interface ConsentGateHeaderLogoThemeConfig {
   position: string
+  visible: boolean
   image: ImageThemeConfig
+}
+
+export interface ConsentGateHeaderCloseButtonThemeConfig {
+  background: ColorThemeConfig
+  text: TextThemeConfig
+  cornerRadius: number
+  icon: ColorThemeConfig
 }
 
 export interface ConsentGateHeaderThemeConfig {
   title: TextThemeConfig
   cornerRadius: number
   logo: ConsentGateHeaderLogoThemeConfig
+  closeButton: ConsentGateHeaderCloseButtonThemeConfig
 }
 
 /**
@@ -3843,11 +3998,17 @@ export interface ConsentGateConsentBlockPurposesListHeaderThemeConfig {
   title: TextThemeConfig
 }
 
+export interface ConsentGateConsentBlockPurposesListBulkActionButtonsThemeConfig {
+  acceptAllButton: ActionButtonThemeConfig
+  rejectAllButton: ActionButtonThemeConfig
+}
+
 export interface ConsentGateConsentBlockPurposesListItemsThemeConfig {
   style: ItemStyle
   layout: ListLayout
   purposeFill: ColorThemeConfig
   purposeOutline: ColorThemeConfig
+  purposeTitle: TextThemeConfig
   purposeContent: ColorThemeConfig
   purposeLinks: ColorThemeConfig
   arrowIcon: ColorThemeConfig
@@ -3856,6 +4017,7 @@ export interface ConsentGateConsentBlockPurposesListItemsThemeConfig {
 
 export interface ConsentGateConsentBlockPurposesListThemeConfig {
   header: ConsentGateConsentBlockHeaderThemeConfig
+  bulkActionButtons: ConsentGateConsentBlockPurposesListBulkActionButtonsThemeConfig
   items: ConsentGateConsentBlockPurposesListItemsThemeConfig
   switchButtons: SwitchButtonThemeConfig
 }
@@ -3865,8 +4027,9 @@ export interface ConsentGateConsentBlockPurposesThemeConfig {
 }
 
 export interface ConsentGateConsentBlockFooterThemeConfig {
-  link: TextThemeConfig
-  showGpcBadge: boolean
+  links: TextThemeConfig
+  showLinkArrows: boolean
+  showKetchBadge: boolean
 }
 
 export interface ConsentGateConsentBlockThemeConfig {
@@ -3892,6 +4055,7 @@ export interface ConsentGateActionBlockTeaserThemeConfig {
 }
 
 export interface ConsentGateActionBlockLinkThemeConfig {
+  showArrow: boolean
   text: TextThemeConfig
 }
 
@@ -3922,6 +4086,29 @@ export interface ConsentGateThemeConfig {
  */
 
 export interface ThemeConfig {
+  // @deprecated
+  banner?: BannerThemeConfig
+
+  // @deprecated
+  modal?: ModalThemeConfig
+
+  // @deprecated
+  preference?: PreferenceThemeConfig
+
+  // @deprecated
+  consentGate?: ConsentGateThemeConfig
+
+  // @deprecated
+  progressiveConsent?: any
+
+  ids?: { [id: string]: ExperienceThemeConfig }
+}
+
+/**
+ * Experience Theme Configurations
+ */
+
+export interface ExperienceThemeConfig {
   banner?: BannerThemeConfig
   modal?: ModalThemeConfig
   preference?: PreferenceThemeConfig
@@ -5185,15 +5372,24 @@ export interface ProgressiveExperienceConfigurationType {
  * Consent Gate Experience Header Layout Configuration
  */
 
-export type ConsentGateExperienceLogoLayout = {
+export type ConsentGateExperienceHeaderTitleLayout = {
   visible: boolean
-  url: string
+}
+
+export type ConsentGateExperienceHeaderCloseButtonIconLayout = {
+  visible: boolean
+  useDefault: boolean
+  image: ImageThemeConfig
+}
+
+export type ConsentGateExperienceHeaderCloseButtonLayout = {
+  visible: boolean
+  icon: ConsentGateExperienceHeaderCloseButtonIconLayout
 }
 
 export type ConsentGateExperienceHeaderLayout = {
-  visible: boolean
-  closeButtonVisible: boolean
-  logo: ConsentGateExperienceLogoLayout
+  title: ConsentGateExperienceHeaderTitleLayout
+  closeButton: ConsentGateExperienceHeaderCloseButtonLayout
 }
 
 /**
@@ -5208,22 +5404,34 @@ export type ConsentGateExperienceConsentBlockPurposesListLayoutHeader = {
   visible: boolean
 }
 
-export type ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels = {
-  visible: boolean
-  display: string
-  useDefaultText: boolean
+export enum RequirementsNotMatchedState {
+  Alert = 'alert',
+  Redirect = 'redirect',
 }
 
 export type ConsentGateExperienceConsentBlockPurposesListLayoutPurposes = {
-  actionButtonUseDefaultText: boolean
+  requiredPurposes: string[]
+  requirementsNotMatchedState: RequirementsNotMatchedState
   legalBasisVisible: boolean
   purposesStacksDefaultExpanded: boolean
-  switchButtonLabels: ConsentGateExperienceConsentBlockPurposesListLayoutSwitchButtonLabels
+  switchButtonLabels: SwitchButtonsExperienceLayoutConfig
+  bulkActionButtons: BulkActionButtonsExperienceLayoutConfig
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutVendorsLink = {
+  useDefaultText: boolean
+}
+
+export type ConsentGateExperienceConsentBlockPurposesListLayoutVendors = {
+  visible: boolean
+  includeOtherVendors: boolean
+  link: ConsentGateExperienceConsentBlockPurposesListLayoutVendorsLink
 }
 
 export type ConsentGateExperienceConsentBlockPurposesListLayout = {
   header: ConsentGateExperienceConsentBlockPurposesListLayoutHeader
   purposes: ConsentGateExperienceConsentBlockPurposesListLayoutPurposes
+  vendors: ConsentGateExperienceConsentBlockPurposesListLayoutVendors
 }
 
 export type ConsentGateExperienceConsentBlockButtonLayout = {
@@ -5293,8 +5501,13 @@ export type ConsentGateExperienceLayoutConfig = {
  * Consent Gate Experience Header Content Configuration
  */
 
+export type ConsentGateExperienceHeaderCloseButtonContent = {
+  text: string
+}
+
 export type ConsentGateExperienceHeaderContent = {
   title: string
+  closeButton: ConsentGateExperienceHeaderCloseButtonContent
 }
 
 /**
@@ -5306,9 +5519,14 @@ export type ConsentGateExperienceConsentBlockPurposesListPurposesContent = {
   bulkActionButtons: BulkActionButtonsExperienceContentConfig
 }
 
+export type ConsentGateExperienceConsentBlockPurposesListLinkContent = {
+  text: string
+}
+
 export type ConsentGateExperienceConsentBlockPurposesListContent = {
   title: string
   purposes: ConsentGateExperienceConsentBlockPurposesListPurposesContent
+  links: ConsentGateExperienceConsentBlockPurposesListLinkContent[]
 }
 
 export type ConsentGateExperienceConsentBlockButtonContent = {
@@ -5324,7 +5542,7 @@ export type ConsentGateExperienceConsentBlockContent = {
   description: string
   purposesList: ConsentGateExperienceConsentBlockPurposesListContent
   button: ConsentGateExperienceConsentBlockButtonContent
-  links: ConsentGateExperienceConsentBlockLinksContent
+  links: ConsentGateExperienceConsentBlockLinksContent[]
 }
 
 /**
@@ -5387,9 +5605,85 @@ export interface ConsentGateExperienceConfigurationType {
   }
 }
 
+/**
+ * Full banner configuration
+ */
+
+export interface BannerConfig {
+  content: /*BannerExperienceContentConfig*/ ExperienceContentConfig
+  layout: /*BannerExperienceLayoutConfig*/ ExperienceLayoutConfig
+}
+
+/**
+ * Full modal configuration
+ */
+
+export interface ModalConfig {
+  content: /*ModalExperienceContentConfig*/ ExperienceContentConfig
+  layout: /*ModalExperienceLayoutConfig*/ ExperienceLayoutConfig
+}
+
+/**
+ * Full preference configuration
+ */
+
+export interface PreferenceConfig {
+  content: /*PreferenceExperienceContentConfig*/ ExperienceContentConfig
+  layout: /*PreferenceExperienceLayoutConfig*/ ExperienceLayoutConfig
+  formTemplates?: FormTemplate[]
+}
+
+/**
+ * Full consent gate configuration
+ */
+
+export interface ConsentGateConfig {
+  content: ConsentGateExperienceContentConfig
+  layout: ConsentGateExperienceLayoutConfig
+}
+
+/**
+ * Import experience type
+ */
+
+export enum ExperienceLoadingMethod {
+  // Present in config.json initially
+  Initial = 'initial',
+
+  // Loaded dynamically when needed
+  Dynamic = 'dynamic',
+}
+
+/**
+ * Experience configuration type
+ */
+
 export interface ExperienceConfigurationType {
+  // @deprecated
   autoInitiated: ExperienceConfig
+
+  // @deprecated
   userInitiated: ExperienceConfig
+
+  // @deprecated
+  layout: any
+
+  // @deprecated
+  content: any
+
+  ids?: {
+    [id: string]: {
+      type: DisplayExperienceType
+      loadingMethod: ExperienceLoadingMethod
+
+      // Data is only present when loadingMethod is Initial
+      data?: BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
+    }
+  }
+  entitlementInfo?: EntitlementLayoutConfig
+  display?: string
+  static?: StaticContentConfig
+  associations?: ExperienceAssociationConfig
 }
 
 /**
@@ -5399,6 +5693,125 @@ export interface ExperienceConfigurationType {
 export enum DeploymentExperienceType {
   AutoInitiated = 'autoInitiated',
   UserInitiated = 'userInitiated',
+}
+
+/**
+ * Progressive Consent Rule Enums
+ */
+
+export enum OperatorType {
+  EQUALS = 'EQ',
+  NOT_EQUALS = 'NEQ',
+  GREATER_THAN = 'GT',
+  LESS_THAN = 'LT',
+  GREATER_THAN_OR_EQUAL = 'GTE',
+  LESS_THAN_OR_EQUAL = 'LTE',
+  CONTAINS = 'CN',
+  REGEX_MATCH_FIND = 'MCH',
+  EXISTS = 'EX',
+  NOT_EXISTS = 'NEX',
+  IN = 'IN',
+  UNKNOWN = '',
+}
+
+export enum ConditionOperator {
+  AND = 'AND',
+  OR = 'OR',
+  NOT = 'NOT',
+}
+
+export enum ActionFunction {
+  SHOW_EXPERIENCE = 'showExperience',
+}
+
+export enum RuleTrigger {
+  ON_LOAD = 'onLoad',
+  SHOW_EXPERIENCE = 'showExperience',
+  SHOW_PREFERENCE = 'showPreference',
+}
+
+/**
+ * Progressive consent rule interfaces
+ */
+
+export interface Operand {
+  inputDataKeys: string[]
+  type: 'string' | 'number' | 'boolean' | 'date' | 'enum'
+  operator: OperatorType
+  value: string | number | boolean | string[] | number[] | boolean[]
+}
+
+export interface NotCondition {
+  operator: ConditionOperator.NOT
+  operand: Condition
+}
+
+export interface LogicalCondition {
+  operator: ConditionOperator.AND | ConditionOperator.OR
+  operands: Condition[]
+}
+
+export type Condition = LogicalCondition | NotCondition | Operand
+
+export interface ActionOptions {
+  dismissAfterSeconds?: number
+  forceInteraction?: boolean
+  blockScroll?: boolean
+  dismissAnimation?: 'fade' | 'lower'
+  [key: string]: any // Allow additional options
+}
+
+export interface ActionParams {
+  experienceID: string
+  experienceType: DisplayExperienceType
+  themeID: string
+  [key: string]: any // Allow additional params
+}
+
+export interface Action {
+  functionName: ActionFunction
+  params: ActionParams
+  options?: ActionOptions
+}
+
+export interface Rule {
+  code: string
+  name: string
+  condition: Condition
+  action: Action
+}
+
+/**
+ * Profile interfaces
+ */
+
+export interface Profile {
+  consent?: ProfileConsentSection
+  identity?: ProfileIdentitySection
+  user?: ProfileUserSection
+  subscription?: ProfileSubscriptionSection
+}
+
+export interface ProfileConsentSection {
+  purposes?: { [purposeCode: string]: PurposeAllowed }
+  needs_consent?: boolean
+  timestamp?: number
+}
+
+export interface ProfileIdentitySection {
+  [identityCode: string]: {
+    value: any
+  }
+}
+
+export interface ProfileUserSection {
+  [userAttributeCode: string]: {
+    value: any
+  }
+}
+
+export interface ProfileSubscriptionSection {
+  topics?: { [topicCode: string]: SubscriptionTopicSetting }
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
