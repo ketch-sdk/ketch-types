@@ -2628,6 +2628,7 @@ export interface InvokeRightRequest {
   user: DataSubject
   recaptchaToken?: string
   context?: PermitRightContext
+  regionCode: string
 }
 
 /**
