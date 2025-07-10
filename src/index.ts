@@ -1517,7 +1517,7 @@ export interface ConfigurationV2 {
   progressiveExperiences?: ProgressiveExperienceConfigurationType
 
   /**
-   * Progessive consent rules
+   * Progressive consent rules
    */
   rules?: { [trigger: string]: Rule[] }
 
@@ -2896,9 +2896,19 @@ export interface Ketch {
   showProgressiveExperience(params?: ShowProgressiveExperienceOptions): Promise<void>
 
   /**
+   * Show a consent gate experience
+   */
+  showConsentGateExperience(params?: ShowExperienceOptions): Promise<void>
+
+  /**
    * Show any experience
    */
-  showExperience(
+  showExperience(params?: ShowExperienceOptions): Promise<void>
+
+  /**
+   * Show any experience type
+   */
+  showExperienceType(
     experienceType: DisplayExperienceType,
     experienceId: string,
     showExperienceOptions?: ShowExperienceOptions,
@@ -5700,10 +5710,6 @@ export enum OperatorType {
   EXISTS = 'EX',
   NOT_EXISTS = 'NEX',
   IN = 'IN',
-  HAS_SOME = 'HSO',
-  HAS_ALL = 'HAL',
-  HAS_NONE = 'HNE',
-  HAS_NOT_ALL = 'HNA',
   UNKNOWN = '',
 }
 
@@ -5715,6 +5721,12 @@ export enum ConditionOperator {
 
 export enum ActionFunction {
   SHOW_EXPERIENCE = 'showExperience',
+}
+
+export enum RuleTrigger {
+  ON_LOAD = 'onLoad',
+  SHOW_EXPERIENCE = 'showExperience',
+  SHOW_PREFERENCE = 'showPreference',
 }
 
 /**
@@ -5768,13 +5780,37 @@ export interface Rule {
   action: Action
 }
 
-export type ConditionParams = {
-  profile?: any
-  event?: Event
+/**
+ * Profile interfaces
+ */
+
+export interface Profile {
+  consent?: ProfileConsentSection
+  identity?: ProfileIdentitySection
+  user?: ProfileUserSection
+  subscription?: ProfileSubscriptionSection
 }
 
-export interface ParsedRule extends Omit<Rule, 'condition'> {
-  condition: ({ profile, event }: ConditionParams) => Promise<boolean>
+export interface ProfileConsentSection {
+  purposes?: { [purposeCode: string]: PurposeAllowed }
+  needs_consent?: boolean
+  timestamp?: number
+}
+
+export interface ProfileIdentitySection {
+  [identityCode: string]: {
+    value: any
+  }
+}
+
+export interface ProfileUserSection {
+  [userAttributeCode: string]: {
+    value: any
+  }
+}
+
+export interface ProfileSubscriptionSection {
+  topics?: { [topicCode: string]: SubscriptionTopicSetting }
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
