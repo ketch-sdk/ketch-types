@@ -3138,6 +3138,7 @@ export interface GetSubscriptionConfigurationRequest {
  */
 export interface ContactMethod {
   name: string
+  description?: string
 }
 
 /**
