@@ -3620,6 +3620,15 @@ export enum SubscriptionListStyle {
   Underlined = 'underlined',
 }
 
+/**
+ * Preference Center Channel Arrangement Theme Configuration Enums
+ */
+
+export enum SubscriptionChannelArrangementStyle {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
+}
+
 export enum UnsubscribeFromAllPosition {
   Top = 'top',
   Bottom = 'bottom',
