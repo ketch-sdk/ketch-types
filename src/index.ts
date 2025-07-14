@@ -3655,6 +3655,7 @@ export interface LayoutThemeConfig {
   text?: TextThemeConfig
   link?: TextThemeConfig
   cornerRadius?: number
+  channelArrangement?: string
 }
 
 export interface SubscriptionsTabListThemeConfig {
