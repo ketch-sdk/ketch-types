@@ -4030,6 +4030,7 @@ export interface TextBlockExperienceLayoutConfig {
 export interface BulkActionButtonsExperienceLayoutConfig {
   visible?: boolean
   useDefaultText?: boolean
+  saveAndClose?: boolean
 }
 
 /**
