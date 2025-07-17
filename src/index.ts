@@ -2742,6 +2742,7 @@ export interface InvokeRightRequest {
   user: DataSubject
   recaptchaToken?: string
   context?: PermitRightContext
+  regionCode?: string
 }
 
 /**
@@ -3269,6 +3270,7 @@ export interface GetSubscriptionConfigurationRequest {
  */
 export interface ContactMethod {
   name: string
+  description?: string
 }
 
 /**
@@ -3750,6 +3752,15 @@ export enum SubscriptionListStyle {
   Underlined = 'underlined',
 }
 
+/**
+ * Preference Center Channel Arrangement Theme Configuration Enums
+ */
+
+export enum SubscriptionChannelArrangementStyle {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
+}
+
 export enum UnsubscribeFromAllPosition {
   Top = 'top',
   Bottom = 'bottom',
@@ -3776,6 +3787,7 @@ export interface LayoutThemeConfig {
   text?: TextThemeConfig
   link?: TextThemeConfig
   cornerRadius?: number
+  channelArrangement?: string
 }
 
 export interface SubscriptionsTabListThemeConfig {
@@ -4190,6 +4202,7 @@ export interface TextBlockExperienceLayoutConfig {
 export interface BulkActionButtonsExperienceLayoutConfig {
   visible?: boolean
   useDefaultText?: boolean
+  saveAndClose?: boolean
 }
 
 /**
