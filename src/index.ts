@@ -2451,21 +2451,6 @@ export interface PluginClass {
   ) => void
 
   /**
-   * Equivalent of on('showConsentGateExperience')
-   *
-   * @param host The Ketch instance
-   * @param config The configuration
-   * @param consents The current consents
-   * @param options The options for the experience
-   */
-  showConsentGateExperience?: (
-    host: Ketch,
-    config: ConsentGateExperienceConfigurationType,
-    consents: Consent,
-    options?: ShowConsentGateOptions,
-  ) => void
-
-  /**
    * Equivalent of on('willShowExperience')
    *
    * @param host The Ketch instance
@@ -2898,7 +2883,7 @@ export interface Ketch {
   /**
    * Show a consent gate experience
    */
-  showConsentGateExperience(params?: ShowExperienceOptions): Promise<void>
+  showConsentGate(params?: ShowConsentGateOptions): Promise<void>
 
   /**
    * Show any experience
@@ -5676,7 +5661,8 @@ export interface ExperienceConfigurationType {
       loadingMethod: ExperienceLoadingMethod
 
       // Data is only present when loadingMethod is Initial
-      data?: BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
+      // @deprecated - switch to individual experience type configs
+      data?: ExperienceConfig // BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
     }
   }
   entitlementInfo?: EntitlementLayoutConfig
@@ -5724,9 +5710,8 @@ export enum ActionFunction {
 }
 
 export enum RuleTrigger {
-  ON_LOAD = 'onLoad',
-  SHOW_EXPERIENCE = 'showExperience',
-  SHOW_PREFERENCE = 'showPreference',
+  ON_LOAD = 'onPageLoad',
+  SHOW = 'show',
 }
 
 /**
@@ -5756,14 +5741,14 @@ export interface ActionOptions {
   dismissAfterSeconds?: number
   forceInteraction?: boolean
   blockScroll?: boolean
-  dismissAnimation?: 'fade' | 'lower'
+  dismissAnimation?: 'fade' | 'lower' // future release?
   [key: string]: any // Allow additional options
 }
 
 export interface ActionParams {
   experienceID: string
-  experienceType: DisplayExperienceType
-  themeID: string
+  experienceType: 'banner' | 'modal' | 'preference' | 'consentGate' // consentGate in future release?
+  themeID?: string // future release?
   [key: string]: any // Allow additional params
 }
 
@@ -5798,15 +5783,11 @@ export interface ProfileConsentSection {
 }
 
 export interface ProfileIdentitySection {
-  [identityCode: string]: {
-    value: any
-  }
+  [identityCode: string]: { value: any }
 }
 
 export interface ProfileUserSection {
-  [userAttributeCode: string]: {
-    value: any
-  }
+  [userAttributeCode: string]: { value: any }
 }
 
 export interface ProfileSubscriptionSection {
