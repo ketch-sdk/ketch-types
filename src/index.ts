@@ -4082,19 +4082,10 @@ export interface ConsentGateThemeConfig {
  */
 
 export interface ThemeConfig {
-  // @deprecated
   banner?: BannerThemeConfig
-
-  // @deprecated
   modal?: ModalThemeConfig
-
-  // @deprecated
   preference?: PreferenceThemeConfig
-
-  // @deprecated
   consentGate?: ConsentGateThemeConfig
-
-  // @deprecated
   progressiveConsent?: any
 
   ids?: { [id: string]: ExperienceThemeConfig }
@@ -5674,12 +5665,10 @@ export interface ExperienceConfigurationType {
       loadingMethod: ExperienceLoadingMethod
 
       // Data is only present when loadingMethod is Initial
-      // @deprecated - switch to individual experience type configs
-      data?: ExperienceConfig // BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
+      data?: BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
     }
   }
   entitlementInfo?: EntitlementLayoutConfig
-  display?: string
   static?: StaticContentConfig
   associations?: ExperienceAssociationConfig
 }
@@ -5760,7 +5749,7 @@ export interface ActionOptions {
 
 export interface ActionParams {
   experienceID: string
-  experienceType: 'banner' | 'modal' | 'preference' | 'consentGate' // consentGate in future release?
+  experienceType: DisplayExperienceType
   themeID?: string // future release?
   [key: string]: any // Allow additional params
 }
