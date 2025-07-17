@@ -5399,9 +5399,36 @@ export interface ConsentGateExperienceConfigurationType {
   }
 }
 
+export enum ExperienceLoadingMethod {
+  // Present in config.json initially
+  Initial = 'initial',
+
+  // Loaded dynamically when needed
+  Dynamic = 'dynamic',
+}
+
 export interface ExperienceConfigurationType {
+  // @deprecated
   autoInitiated: ExperienceConfig
+
+  // @deprecated
   userInitiated: ExperienceConfig
+
+  // @deprecated
+  layout: any
+
+  // @deprecated
+  content: any
+
+  ids: {
+    [experienceId: string]: {
+      type: ExperienceType
+      loadingMethod: ExperienceLoadingMethod
+
+      // Data is only present when loadingMethod is Initial
+      data?: any // TODO: type this, something like BannerExperience | PreferenceExperience | ConsentGateExperience ...
+    }
+  }
 }
 
 /**
