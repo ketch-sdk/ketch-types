@@ -2894,10 +2894,9 @@ export interface Ketch {
   /**
    * Show any experience type
    */
-  renderExperienceType(
+  renderExperience(
     experienceType: DisplayExperienceType,
     experienceId: string,
-    showExperienceOptions?: ShowExperienceOptions,
     displayOptions?: ActionOptions,
   ): Promise<void>
 
@@ -5713,7 +5712,7 @@ export enum ActionFunction {
 
 export enum RuleTrigger {
   ON_LOAD = 'onPageLoad',
-  SHOW = 'show',
+  ON_FUNCTION = 'onFunction',
 }
 
 /**
@@ -5722,9 +5721,9 @@ export enum RuleTrigger {
 
 export interface Operand {
   inputDataKeys: string[]
-  type: 'string' | 'number' | 'boolean' | 'date' | 'enum'
+  type: 'string' | 'number' | 'boolean' | 'date' | 'enum' | 'object'
   operator: OperatorType
-  value: string | number | boolean | string[] | number[] | boolean[]
+  value: string | number | boolean | object | string[] | number[] | boolean[] | object[]
 }
 
 export interface NotCondition {
@@ -5780,8 +5779,8 @@ export interface Profile {
 
 export interface ProfileConsentSection {
   purposes?: { [purposeCode: string]: PurposeAllowed }
-  needs_consent?: boolean
-  timestamp?: number
+  needsConsent?: boolean
+  collectedAt?: number
 }
 
 export interface ProfileIdentitySection {
