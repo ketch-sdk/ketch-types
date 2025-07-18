@@ -2894,7 +2894,7 @@ export interface Ketch {
   /**
    * Show any experience type
    */
-  showExperienceType(
+  renderExperienceType(
     experienceType: DisplayExperienceType,
     experienceId: string,
     showExperienceOptions?: ShowExperienceOptions,
