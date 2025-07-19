@@ -5715,6 +5715,11 @@ export enum RuleTrigger {
   ON_FUNCTION = 'onFunction',
 }
 
+export enum BannerDismissAnimation {
+  FADE = 'fade',
+  LOWER = 'lower',
+}
+
 /**
  * Progressive consent rule interfaces
  */
@@ -5740,9 +5745,10 @@ export type Condition = LogicalCondition | NotCondition | Operand
 
 export interface ActionOptions {
   dismissAfterSeconds?: number
+  setConsentOnDismiss?: boolean
   forceInteraction?: boolean
   blockScroll?: boolean
-  dismissAnimation?: 'fade' | 'lower' // future release?
+  dismissAnimation?: BannerDismissAnimation
   [key: string]: any // Allow additional options
 }
 
