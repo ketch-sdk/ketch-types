@@ -5721,11 +5721,11 @@ export enum BannerDismissAnimation {
 }
 
 /**
- * Progressive consent rule interfaces
+ * Progressive Consent Rule Interfaces
  */
 
 export interface Operand {
-  inputDataKeys: string[]
+  inputDataKey: string
   type: 'string' | 'number' | 'boolean' | 'date' | 'enum' | 'object'
   operator: OperatorType
   value: string | number | boolean | object | string[] | number[] | boolean[] | object[]
