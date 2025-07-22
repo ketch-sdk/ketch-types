@@ -2548,6 +2548,8 @@ export enum ConsentSource {
   BannerAcceptAll = 'banner.acceptAll',
   BannerRejectAll = 'banner.rejectAll',
   BannerCloseButton = 'banner.closeButton',
+  BannerAutoDismiss = 'banner.autoDismiss',
+  BannerAutoDismissSaveConsent = 'banner.autoDismissSaveConsent',
   ModalAcceptAll = 'modal.acceptAll',
   ModalRejectAll = 'modal.rejectAll',
   ModalDefault = 'modal.default', // Clicked save without changing purpose choices
@@ -5744,19 +5746,13 @@ export interface LogicalCondition {
 export type Condition = LogicalCondition | NotCondition | Operand
 
 export interface ActionOptions {
-  dismissAfterSeconds?: number
-  setConsentOnDismiss?: boolean
-  forceInteraction?: boolean
-  blockScroll?: boolean
-  dismissAnimation?: BannerDismissAnimation
-  [key: string]: any // Allow additional options
+  [key: string]: string
 }
 
 export interface ActionParams {
   experienceID: string
   experienceType: DisplayExperienceType
-  themeID?: string // future release?
-  [key: string]: any // Allow additional params
+  [key: string]: string // Allow additional params
 }
 
 export interface Action {
