@@ -5595,7 +5595,9 @@ export interface ConsentGateExperienceConfigurationType {
 }
 
 /**
- * Full banner configuration
+ * Experience configs
+ * In the future, these should only have config for their experience type (only banner config in BannerConfig)
+ * As is, these contain config for all experience types
  */
 
 export interface BannerConfig {
@@ -5603,28 +5605,16 @@ export interface BannerConfig {
   layout: /*BannerExperienceLayoutConfig*/ ExperienceLayoutConfig
 }
 
-/**
- * Full modal configuration
- */
-
 export interface ModalConfig {
   content: /*ModalExperienceContentConfig*/ ExperienceContentConfig
   layout: /*ModalExperienceLayoutConfig*/ ExperienceLayoutConfig
 }
-
-/**
- * Full preference configuration
- */
 
 export interface PreferenceConfig {
   content: /*PreferenceExperienceContentConfig*/ ExperienceContentConfig
   layout: /*PreferenceExperienceLayoutConfig*/ ExperienceLayoutConfig
   formTemplates?: FormTemplate[]
 }
-
-/**
- * Full consent gate configuration
- */
 
 export interface ConsentGateConfig {
   content: ConsentGateExperienceContentConfig
