@@ -199,6 +199,7 @@ export enum CookieCategory {
  * IdentityLocation is the location on the page from which to retrieve identity information
  *
  * @enum
+ * @deprecated Use TraitType instead
  */
 export enum IdentityType {
   IDENTITY_TYPE_UNDEFINED = '',
@@ -215,6 +216,7 @@ export enum IdentityType {
  * IdentityFormat is the encoding of the string identity value
  *
  * @enum
+ * @deprecated Use TraitFormat instead
  */
 export enum IdentityFormat {
   IDENTITY_FORMAT_UNDEFINED = '',
@@ -229,6 +231,7 @@ export enum IdentityFormat {
  * IdentityEncoding is the encoding of the string identity value
  *
  * @enum
+ * @deprecated Use TraitEncoding instead
  */
 export enum IdentityEncoding {
   IDENTITY_ENCODING_UNDEFINED = '',
@@ -814,6 +817,7 @@ export interface CanonicalPurpose {
 
 /**
  * Identity represents all the metadata for an identifier on the page
+ * @deprecated Use Trait instead
  */
 export interface Identity {
   /**
