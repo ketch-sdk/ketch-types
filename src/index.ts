@@ -5775,8 +5775,8 @@ export interface Rule {
  */
 
 export interface Profile {
-  consent?: ProfileConsentSection
-  identity?: ProfileIdentitySection
+  consent: ProfileConsentSection
+  identities?: ProfileIdentitySection
   user?: ProfileUserSection
   subscription?: ProfileSubscriptionSection
 }
