@@ -893,7 +893,7 @@ export interface Trait {
  */
 export enum TraitName {
   IDENTITY = 'identity',
-  USER_ATTRIBUTE = 'userAttribute'
+  USER_ATTRIBUTE = 'userAttribute',
 }
 
 /**
