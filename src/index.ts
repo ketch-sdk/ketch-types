@@ -884,6 +884,11 @@ export interface Trait {
   encoding?: TraitEncoding
 }
 
+export enum TraitName {
+  IDENTITY = 'identity',
+  USER_ATTRIBUTE = 'userAttribute'
+}
+
 /**
  * PolicyDocument
  */
