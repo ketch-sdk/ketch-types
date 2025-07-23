@@ -884,6 +884,9 @@ export interface Trait {
   encoding?: TraitEncoding
 }
 
+/**
+ * Name for the type of trait
+ */
 export enum TraitName {
   IDENTITY = 'identity',
   USER_ATTRIBUTE = 'userAttribute'
