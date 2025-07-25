@@ -3991,6 +3991,7 @@ export interface ConsentGateHeaderThemeConfig {
   cornerRadius: number
   logo: ConsentGateHeaderLogoThemeConfig
   closeButton: ConsentGateHeaderCloseButtonThemeConfig
+  background: ColorThemeConfig
 }
 
 /**
@@ -4028,7 +4029,7 @@ export interface ConsentGateConsentBlockPurposesListThemeConfig {
   header: ConsentGateConsentBlockHeaderThemeConfig
   bulkActionButtons: ConsentGateConsentBlockPurposesListBulkActionButtonsThemeConfig
   items: ConsentGateConsentBlockPurposesListItemsThemeConfig
-  switchButtons: SwitchButtonThemeConfig
+  switchButtons: SwitchButtonsThemeConfig
 }
 
 export interface ConsentGateConsentBlockPurposesThemeConfig {
@@ -5775,8 +5776,8 @@ export interface Rule {
  */
 
 export interface Profile {
-  consent?: ProfileConsentSection
-  identity?: ProfileIdentitySection
+  consent: ProfileConsentSection
+  identities?: ProfileIdentitySection
   user?: ProfileUserSection
   subscription?: ProfileSubscriptionSection
 }
