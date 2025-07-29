@@ -696,6 +696,11 @@ export interface Environment {
   domain?: string
 }
 
+export enum DeploymentVersion {
+  V1 = 'v1',
+  V2 = 'v2',
+}
+
 /**
  * Deployment
  */
@@ -703,6 +708,7 @@ export interface Deployment {
   code: string
   version: number
   isOrchestrationOnly?: boolean
+  featureVersion?: DeploymentVersion
 }
 
 /**
@@ -2561,7 +2567,10 @@ export enum ConsentSource {
   BannerRejectAll = 'banner.rejectAll',
   BannerCloseButton = 'banner.closeButton',
   BannerAutoDismiss = 'banner.autoDismiss',
-  BannerAutoDismissSaveConsent = 'banner.autoDismissSaveConsent',
+  BannerAutoDismissLegalBasis = 'banner.autoDismissLegalBasis',
+  BannerAutoDismissTrue = 'banner.autoDismissTrue',
+  BannerAutoDismissFalse = 'banner.autoDismissFalse',
+  BannerAutoDismissNone = 'banner.autoDismissNone',
   ModalAcceptAll = 'modal.acceptAll',
   ModalRejectAll = 'modal.rejectAll',
   ModalDefault = 'modal.default', // Clicked save without changing purpose choices
@@ -5723,6 +5732,13 @@ export enum RuleTrigger {
 export enum BannerDismissAnimation {
   FADE = 'fade',
   LOWER = 'lower',
+}
+
+export enum BannerAutoDismissOverride {
+  NOTHING = '',
+  LEGAL_BASIS = 'legalBasis',
+  TRUE = 'true',
+  FALSE = 'false',
 }
 
 /**
