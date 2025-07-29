@@ -703,6 +703,7 @@ export interface Deployment {
   code: string
   version: number
   isOrchestrationOnly?: boolean
+  featureVersion?: string
 }
 
 /**
