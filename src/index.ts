@@ -696,6 +696,11 @@ export interface Environment {
   domain?: string
 }
 
+export enum DeploymentVersion {
+  V1 = 'v1',
+  V2 = 'v2',
+}
+
 /**
  * Deployment
  */
@@ -703,7 +708,7 @@ export interface Deployment {
   code: string
   version: number
   isOrchestrationOnly?: boolean
-  featureVersion?: string
+  featureVersion?: DeploymentVersion
 }
 
 /**
