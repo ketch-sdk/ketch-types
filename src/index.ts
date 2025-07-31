@@ -5735,7 +5735,7 @@ export enum BannerDismissAnimation {
 }
 
 export enum BannerAutoDismissOverride {
-  NOTHING = '',
+  NOTHING = 'none',
   LEGAL_BASIS = 'legalBasis',
   TRUE = 'true',
   FALSE = 'false',
