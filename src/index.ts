@@ -4725,6 +4725,27 @@ export interface BannerExperienceContentConfig {
 }
 
 /**
+ * GPC Banner Experience Content Configuration
+ */
+
+export interface GpcBannerExperienceContentConfig {
+  title?: string
+  description?: string
+}
+
+/**
+ * GPC Signal Experience Content Configuration
+ */
+
+export interface GpcSignalLabelExperienceContentConfig {
+  text?: string
+}
+
+export interface GpcSignalExperienceContentConfig {
+  label?: GpcSignalLabelExperienceContentConfig
+}
+
+/**
  * Modal List Header Experience Content Configuration
  */
 
@@ -4741,6 +4762,7 @@ export interface ModalListHeaderExperienceContentConfig {
 export interface ModalPurposeListExperienceContentConfig {
   switchButtonLabels?: SwitchButtonsExperienceContentConfig
   vendors?: VendorExperienceSubpageContentConfig
+  gpcSignal?: GpcSignalExperienceContentConfig
 }
 
 /**
@@ -4750,6 +4772,7 @@ export interface ModalPurposeListExperienceContentConfig {
 export interface ModalExperienceContentConfig {
   header?: HeaderExperienceContentConfig
   description?: TextBlockExperienceContentConfig
+  gpcBanner?: GpcBannerExperienceContentConfig
   purposeListHeader?: ModalListHeaderExperienceContentConfig
   purposeList?: ModalPurposeListExperienceContentConfig
   footer?: FooterExperienceContentConfig
@@ -4833,6 +4856,7 @@ export interface PurposesTabListHeaderExperienceContentConfig {
 export interface PurposesTabListExperienceContentConfig {
   switchButtonLabels?: SwitchButtonsExperienceContentConfig
   vendors?: VendorExperienceSubpageContentConfig
+  gpcSignal?: GpcSignalExperienceContentConfig
 }
 
 /**
@@ -4841,6 +4865,7 @@ export interface PurposesTabListExperienceContentConfig {
 
 export interface PreferencePurposesTabExperienceContentConfig {
   header?: PreferenceTabHeaderExperienceContentConfig
+  gpcBanner?: GpcBannerExperienceContentConfig
   purposeListHeader?: PurposesTabListHeaderExperienceContentConfig
   purposeList?: PurposesTabListExperienceContentConfig
   actionButtonText?: string
