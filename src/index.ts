@@ -3405,6 +3405,26 @@ export interface BannerModalFooterThemeConfig {
 }
 
 /**
+ * GPC Signal Theme Configuration
+ */
+
+export interface GpcBannerTitleThemeConfig {
+  text?: TextThemeConfig
+}
+
+export interface GpcBannerDescriptionThemeConfig {
+  text?: TextThemeConfig
+}
+
+export interface GpcBannerThemeConfig {
+  fill?: ColorThemeConfig
+  outline?: ColorThemeConfig
+  title?: GpcBannerTitleThemeConfig
+  description?: GpcBannerDescriptionThemeConfig
+  cornerRadius?: number
+}
+
+/**
  * Purpose List Header Theme Configuration
  */
 
@@ -3597,6 +3617,7 @@ export interface ModalThemeConfig {
   container?: ModalContainerThemeConfig
   header?: HeaderThemeConfig
   description?: ModalDescriptionThemeConfig
+  gpcBanner?: GpcBannerThemeConfig
   purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
   footer?: BannerModalFooterThemeConfig
@@ -3751,6 +3772,7 @@ export interface PreferencePrivacyPolicyTabThemeConfig {
 
 export interface PreferencePurposesTabThemeConfig {
   header?: PageTextThemeConfig
+  gpcBanner?: GpcBannerThemeConfig
   purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
   footer?: PreferenceFooterThemeConfig
@@ -4204,6 +4226,30 @@ export interface TextBlockExperienceLayoutConfig {
   title?: TextBlockTitleExperienceLayoutConfig
 }
 
+export interface GpcBannerTitleExperienceLayoutConfig {
+  useDefaultText?: boolean
+}
+
+export interface GpcBannerDescriptionExperienceLayoutConfig {
+  useDefaultText?: boolean
+  visible?: boolean
+}
+
+export interface GpcBannerExperienceLayoutConfig {
+  visible?: boolean
+  title?: GpcBannerTitleExperienceLayoutConfig
+  description?: GpcBannerDescriptionExperienceLayoutConfig
+}
+
+export interface GpcSignalLabelExperienceLayoutConfig {
+  visible?: boolean
+  useDefaultText?: boolean
+}
+
+export interface GpcSignalExperienceLayoutConfig {
+  label?: GpcSignalLabelExperienceLayoutConfig
+}
+
 export interface BulkActionButtonsExperienceLayoutConfig {
   visible?: boolean
   useDefaultText?: boolean
@@ -4271,6 +4317,7 @@ export interface ModalPurposeListExperienceLayoutConfig {
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
   vendors?: VendorExperienceSubpageLayoutConfig
   purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
+  gpcSignal?: GpcSignalExperienceLayoutConfig
 }
 
 /**
@@ -4280,6 +4327,7 @@ export interface ModalPurposeListExperienceLayoutConfig {
 export interface ModalExperienceLayoutConfig {
   header?: HeaderExperienceLayoutConfig
   description?: TextBlockExperienceLayoutConfig
+  gpcBanner?: GpcBannerExperienceLayoutConfig
   purposeListHeader?: ModalListHeaderExperienceLayoutConfig
   purposeList?: ModalPurposeListExperienceLayoutConfig
   footer?: BannerModalFooterExperienceLayoutConfig
@@ -4379,6 +4427,7 @@ export interface PurposesTabListExperienceLayoutConfig {
   switchButtonLabels?: SwitchButtonsExperienceLayoutConfig
   vendors?: VendorExperienceSubpageLayoutConfig
   purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
+  gpcSignal?: GpcSignalExperienceLayoutConfig
 }
 
 /**
@@ -4387,6 +4436,7 @@ export interface PurposesTabListExperienceLayoutConfig {
 
 export interface PreferencePurposesTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
+  gpcBanner?: GpcBannerExperienceLayoutConfig
   purposeListHeader?: PurposesTabListHeaderExperienceLayoutConfig
   purposeList?: PurposesTabListExperienceLayoutConfig
   actionButtonUseDefaultText?: boolean
