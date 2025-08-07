@@ -1775,6 +1775,9 @@ export interface Translations {
   accept_all?: string
   accept?: string
   legal_basis?: string
+  gpc_banner_title?: string
+  gpc_banner_description?: string
+  gpc_signal_label?: string
   cookies?: string
   cookie?: string
   data_categories?: string
@@ -5212,6 +5215,9 @@ export interface BaseStaticContentConfig {
   i_am_a_an?: string
   legal_basis?: string
   legal_text?: string
+  gpc_banner_title?: string
+  gpc_banner_description?: string
+  gpc_signal_label?: string
   marketing?: string
   maximum_storage?: string
   no_rights_available?: string
