@@ -4027,8 +4027,6 @@ export interface ConsentGateHeaderThemeConfig {
 
 export interface ConsentGateConsentBlockHeaderThemeConfig {
   title: TextThemeConfig
-  description: TextThemeConfig
-  link: TextThemeConfig
 }
 
 export interface ConsentGateConsentBlockPurposesListHeaderThemeConfig {
