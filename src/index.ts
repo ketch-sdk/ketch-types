@@ -5495,14 +5495,15 @@ export type ConsentGateExperienceConsentBlockPurposesListLayoutHeader = {
   visible: boolean
 }
 
-export enum RequirementsNotMatchedState {
+export enum ConsentGateRequirementsNotMatchedState {
   Alert = 'alert',
   Redirect = 'redirect',
 }
 
 export type ConsentGateExperienceConsentBlockPurposesListLayoutPurposes = {
   requiredPurposes: string[]
-  requirementsNotMatchedState: RequirementsNotMatchedState
+  requirementsNotMatchedState: ConsentGateRequirementsNotMatchedState
+  requirementsNotMatchedRedirectUrl: string
   legalBasisVisible: boolean
   purposesStacksDefaultExpanded: boolean
   switchButtonLabels: SwitchButtonsExperienceLayoutConfig
@@ -5525,8 +5526,12 @@ export type ConsentGateExperienceConsentBlockPurposesListLayout = {
   vendors: ConsentGateExperienceConsentBlockPurposesListLayoutVendors
 }
 
+export enum ConsentGateButtonAction {
+  AcceptChoices = 'acceptChoices',
+}
+
 export type ConsentGateExperienceConsentBlockButtonLayout = {
-  action: string
+  action: ConsentGateButtonAction
   url: string
 }
 
