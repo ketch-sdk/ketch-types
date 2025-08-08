@@ -4053,7 +4053,7 @@ export interface ConsentGateConsentBlockPurposesListItemsThemeConfig {
 }
 
 export interface ConsentGateConsentBlockPurposesListThemeConfig {
-  header: ConsentGateConsentBlockHeaderThemeConfig
+  header: ConsentGateConsentBlockPurposesListHeaderThemeConfig
   bulkActionButtons: ConsentGateConsentBlockPurposesListBulkActionButtonsThemeConfig
   items: ConsentGateConsentBlockPurposesListItemsThemeConfig
   switchButtons: SwitchButtonsThemeConfig
