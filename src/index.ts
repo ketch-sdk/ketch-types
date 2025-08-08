@@ -72,6 +72,8 @@ export enum ExperienceDisplayType {
   Modal = 'experiencedisplays.modal',
   Preference = 'experiencedisplays.preference',
   ConsentGate = 'experiencedisplays.consentGate',
+  AgeGate = 'experiencedisplays.ageGate',
+  LeadCapture = 'experiencedisplays.leadCapture',
 }
 
 /**
@@ -4025,8 +4027,6 @@ export interface ConsentGateHeaderThemeConfig {
 
 export interface ConsentGateConsentBlockHeaderThemeConfig {
   title: TextThemeConfig
-  description: TextThemeConfig
-  link: TextThemeConfig
 }
 
 export interface ConsentGateConsentBlockPurposesListHeaderThemeConfig {
@@ -4125,6 +4125,8 @@ export interface ThemeConfig {
   modal?: ModalThemeConfig
   preference?: PreferenceThemeConfig
   consentGate?: ConsentGateThemeConfig
+  ageGate?: any // AgeGateThemeConfig
+  leadCapture?: any // LeadCaptureThemeConfig
   progressiveConsent?: any
 
   ids?: { [id: string]: ExperienceThemeConfig }
@@ -4139,6 +4141,8 @@ export interface ExperienceThemeConfig {
   modal?: ModalThemeConfig
   preference?: PreferenceThemeConfig
   consentGate?: ConsentGateThemeConfig
+  ageGate?: any // AgeGateThemeConfig
+  leadCapture?: any // LeadCaptureThemeConfig
   progressiveConsent?: any
 }
 
@@ -4641,6 +4645,8 @@ export interface ExperienceLayoutConfig {
   modal?: ModalExperienceLayoutConfig
   preference?: PreferenceExperienceLayoutConfig
   consentGate?: ConsentGateExperienceLayoutConfig
+  ageGate?: any // AgeGateExperienceLayoutConfig
+  leadCapture?: any // LeadCaptureExperienceLayoutConfig
   progressiveConsent?: any
   entitlementInfo?: EntitlementLayoutConfig
 }
@@ -5324,6 +5330,8 @@ export interface ExperienceContentConfig {
   display?: string
   preference?: PreferenceExperienceContentConfig
   consentGate?: ConsentGateExperienceContentConfig
+  ageGate?: any // AgeGateExperienceContentConfig
+  leadCapture?: any // LeadCaptureExperienceContentConfig
   progressiveConsent?: any
   static?: StaticContentConfig
 }
@@ -5608,6 +5616,7 @@ export type ConsentGateExperienceConsentBlockPurposesListLinkContent = {
 
 export type ConsentGateExperienceConsentBlockPurposesListContent = {
   title: string
+  requirementsNotMatchedAlertMessage: string
   purposes: ConsentGateExperienceConsentBlockPurposesListPurposesContent
   links: ConsentGateExperienceConsentBlockPurposesListLinkContent[]
 }
@@ -5715,6 +5724,16 @@ export interface ConsentGateConfig {
   layout: ConsentGateExperienceLayoutConfig
 }
 
+export interface AgeGateConfig {
+  content: any // AgeGateExperienceContentConfig
+  layout: any // AgeGateExperienceLayoutConfig
+}
+
+export interface LeadCaptureConfig {
+  content: any // LeadCaptureExperienceContentConfig
+  layout: any // LeadCaptureExperienceLayoutConfig
+}
+
 /**
  * Import experience type
  */
@@ -5750,7 +5769,7 @@ export interface ExperienceConfigurationType {
       loadingMethod: ExperienceLoadingMethod
 
       // Data is only present when loadingMethod is Initial
-      data?: BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig
+      data?: BannerConfig | ModalConfig | PreferenceConfig | ConsentGateConfig | AgeGateConfig | LeadCaptureConfig
     }
   }
   entitlementInfo?: EntitlementLayoutConfig
@@ -5897,6 +5916,8 @@ export enum PreviewMessageType {
   ShowPreference = 'showPreferences',
   SwitchPreferencePage = 'switchPreferencePage',
   ShowConsentGate = 'showConsentGate',
+  ShowAgeGate = 'showAgeGate',
+  ShowLeadCapture = 'showLeadCapture',
 }
 
 export type PreviewMessage = {
