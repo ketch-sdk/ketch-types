@@ -4256,6 +4256,7 @@ export interface GpcSignalLabelExperienceLayoutConfig {
 }
 
 export interface GpcSignalExperienceLayoutConfig {
+  disableSwitch?: boolean
   label?: GpcSignalLabelExperienceLayoutConfig
 }
 
