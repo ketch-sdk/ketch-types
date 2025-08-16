@@ -5331,6 +5331,7 @@ export interface ExperienceContentConfig {
   banner?: BannerExperienceContentConfig
   modal?: ModalExperienceContentConfig
   display?: string
+  secondsUntilAutoHide?: number
   preference?: PreferenceExperienceContentConfig
   consentGate?: ConsentGateExperienceContentConfig
   ageGate?: any // AgeGateExperienceContentConfig
