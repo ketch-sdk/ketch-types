@@ -4732,6 +4732,7 @@ export interface BannerButtonsExperienceContentConfig {
 export interface BannerExperienceContentConfig {
   header?: HeaderExperienceContentConfig
   description?: string
+  gpcBanner?: GpcBannerExperienceContentConfig
   buttons?: BannerButtonsExperienceContentConfig
   footer?: FooterExperienceContentConfig
 }
