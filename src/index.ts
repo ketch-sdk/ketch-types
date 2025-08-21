@@ -3578,6 +3578,7 @@ export interface BannerThemeConfig {
   container?: BannerContainerThemeConfig
   header?: HeaderThemeConfig
   description?: BannerDescriptionThemeConfig
+  gpcBanner?: GpcBannerThemeConfig
   buttons?: BannerButtonsThemeConfig
   footer?: BannerModalFooterThemeConfig
 }
