@@ -4303,6 +4303,7 @@ export interface BannerButtonsExperienceLayoutConfig {
 
 export interface BannerExperienceLayoutConfig {
   header?: HeaderExperienceLayoutConfig
+  gpcBanner?: GpcBannerExperienceLayoutConfig
   buttons?: BannerButtonsExperienceLayoutConfig
   footer?: BannerModalFooterExperienceLayoutConfig
 }
