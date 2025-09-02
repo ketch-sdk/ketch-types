@@ -2694,6 +2694,7 @@ export interface GetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
+  showAfter?: number
 }
 
 /**
