@@ -5850,9 +5850,18 @@ export enum BannerAutoDismissOverride {
 
 export interface Operand {
   inputDataKey: string
-  type: 'string' | 'number' | 'boolean' | 'date' | 'enum' | 'object'
+  attribute: Attribute
   operator: OperatorType
   value: string | number | boolean | object | string[] | number[] | boolean[] | object[]
+}
+
+export interface Attribute {
+  type: 'string' | 'number' | 'boolean' | 'date' | 'enum' | 'object'
+  code: string
+  domain: string
+  entity: string
+  inputDataKey: string
+  name: string
 }
 
 export interface NotCondition {
