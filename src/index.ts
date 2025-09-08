@@ -5912,6 +5912,7 @@ export interface Profile {
   identities?: ProfileIdentitySection
   user?: ProfileUserSection
   subscription?: ProfileSubscriptionSection
+  metadata?: ProfileMetadataSection
 }
 
 export interface ProfileConsentSection {
@@ -5930,6 +5931,10 @@ export interface ProfileUserSection {
 
 export interface ProfileSubscriptionSection {
   topics?: { [topicCode: string]: SubscriptionTopicSetting }
+}
+
+export interface ProfileMetadataSection {
+  currentDate?: number
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
