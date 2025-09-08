@@ -2606,8 +2606,8 @@ export enum ConsentSource {
   RouterRejectAllConsent = 'router.rejectAllConsent',
 
   // Overriden permit sources
-  RecollectInterval = 'recollectAfterInterval', // recollected due to purpose + jurisdiction recollect interval
-  RecollectGlobal = 'recollectAfterDate', // recollected due to deployment global recollect date rule
+  RecollectAfterInterval = 'recollectAfterInterval', // recollected due to purpose + jurisdiction recollect interval
+  RecollectAfterDate = 'recollectAfterDate', // recollected due to deployment global recollect date rule
 
   Unknown = 'unknown',
 }
