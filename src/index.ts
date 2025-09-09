@@ -2605,6 +2605,10 @@ export enum ConsentSource {
   RouterAcceptAllConsent = 'router.acceptAllConsent',
   RouterRejectAllConsent = 'router.rejectAllConsent',
 
+  // Overridden permit sources
+  RecollectAfterInterval = 'recollectAfterInterval', // recollected due to purpose + jurisdiction recollect interval
+  RecollectAfterDate = 'recollectAfterDate', // recollected due to deployment global recollect date rule
+
   Unknown = 'unknown',
 }
 
@@ -5908,6 +5912,7 @@ export interface Profile {
   identities?: ProfileIdentitySection
   user?: ProfileUserSection
   subscription?: ProfileSubscriptionSection
+  metadata?: ProfileMetadataSection
 }
 
 export interface ProfileConsentSection {
@@ -5926,6 +5931,10 @@ export interface ProfileUserSection {
 
 export interface ProfileSubscriptionSection {
   topics?: { [topicCode: string]: SubscriptionTopicSetting }
+}
+
+export interface ProfileMetadataSection {
+  currentDate?: number
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
