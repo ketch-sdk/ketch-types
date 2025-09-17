@@ -858,6 +858,11 @@ export interface Identity {
    * encoding of the value
    */
   encoding?: IdentityEncoding
+
+  /**
+   * optional verifier ID associated with the identity
+   */
+  verifierID?: string
 }
 
 /**
@@ -894,6 +899,11 @@ export interface Trait {
    * encoding of the value
    */
   encoding?: TraitEncoding
+
+  /**
+   * optional verifier ID associated with the trait
+   */
+  verifierID?: string
 }
 
 /**
