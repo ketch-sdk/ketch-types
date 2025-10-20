@@ -5922,7 +5922,8 @@ export interface Profile {
   identities?: ProfileIdentitySection
   user?: ProfileUserSection
   subscription?: ProfileSubscriptionSection
-  metadata?: ProfileMetadataSection
+  metadata?: ProfileMetadataSection,
+  page?: ProfilePageSection
 }
 
 export interface ProfileConsentSection {
@@ -5945,6 +5946,11 @@ export interface ProfileSubscriptionSection {
 
 export interface ProfileMetadataSection {
   currentDate?: number
+}
+
+export interface ProfilePageSection {
+  url: string
+  path: string
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
