@@ -5924,7 +5924,7 @@ export interface Profile {
   identities?: ProfileIdentitySection
   user?: ProfileUserSection
   subscription?: ProfileSubscriptionSection
-  metadata?: ProfileMetadataSection,
+  metadata?: ProfileMetadataSection
   page?: ProfilePageSection
 }
 
