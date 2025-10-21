@@ -5829,6 +5829,8 @@ export enum OperatorType {
   NOT_EXISTS = 'NEX',
   IN = 'IN',
   UNKNOWN = '',
+  ENDS_WITH = 'EW',
+  NOT_ENDS_WITH = 'NEW',
 }
 
 export enum ConditionOperator {
