@@ -5824,6 +5824,7 @@ export enum OperatorType {
   GREATER_THAN_OR_EQUAL = 'GTE',
   LESS_THAN_OR_EQUAL = 'LTE',
   CONTAINS = 'CN',
+  NOT_CONTAINS = 'NCN',
   REGEX_MATCH_FIND = 'MCH',
   EXISTS = 'EX',
   NOT_EXISTS = 'NEX',
