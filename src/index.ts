@@ -5829,6 +5829,8 @@ export enum OperatorType {
   NOT_EXISTS = 'NEX',
   IN = 'IN',
   UNKNOWN = '',
+  ENDS_WITH = 'EW',
+  NOT_ENDS_WITH = 'NEW',
 }
 
 export enum ConditionOperator {
@@ -5923,6 +5925,7 @@ export interface Profile {
   user?: ProfileUserSection
   subscription?: ProfileSubscriptionSection
   metadata?: ProfileMetadataSection
+  page?: ProfilePageSection
 }
 
 export interface ProfileConsentSection {
@@ -5945,6 +5948,11 @@ export interface ProfileSubscriptionSection {
 
 export interface ProfileMetadataSection {
   currentDate?: number
+}
+
+export interface ProfilePageSection {
+  url: string
+  path: string
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
