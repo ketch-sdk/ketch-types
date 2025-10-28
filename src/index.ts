@@ -3317,8 +3317,8 @@ export interface SubscriptionConfiguration {
   contactMethods: { [key: string]: ContactMethod }
   controls: SubscriptionControl[]
   topics: SubscriptionTopic[]
-  associatedTopics?: SubscriptionTopic[]
-  associatedControls?: SubscriptionControl[]
+  associatedTopics?: { [key: string]: SubscriptionTopic }
+  associatedControls?: { [key: string]: SubscriptionControl }
 }
 
 /**
