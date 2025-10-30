@@ -3257,6 +3257,8 @@ export interface GetSubscriptionsRequest {
   topics?: { [key: string]: SubscriptionTopicSetting }
   controls?: { [key: string]: SubscriptionControlSetting }
   collectedAt?: number
+  jurisdictionCode?: string
+  regionCode?: string
 }
 
 /**
@@ -3271,6 +3273,8 @@ export interface GetSubscriptionsResponse {
   topics?: { [key: string]: SubscriptionTopicSetting }
   controls?: { [key: string]: SubscriptionControlSetting }
   collectedAt?: number
+  jurisdictionCode?: string
+  regionCode?: string
 }
 
 /**
@@ -3286,6 +3290,8 @@ export interface SetSubscriptionsRequest {
   controls?: { [key: string]: SubscriptionControlSetting }
   context?: PermitRightContext
   collectedAt?: number
+  jurisdictionCode?: string
+  regionCode?: string
 }
 
 /**
