@@ -812,6 +812,7 @@ export interface PluginOptions {
   jurisdictions?: string[]
   regions?: string[]
   purposeMappings?: PluginPurposeMapping[]
+  config?: { [key: string]: any }
 }
 
 /*
@@ -2575,6 +2576,7 @@ export enum ConsentSource {
   // Plugins
   GpcPlugins = 'plugins.gpc',
   OneTrustMigrator = 'plugins.onetrust',
+  SourcepointMigrator = 'plugins.sourcepoint',
 
   // Experience actions
   BannerSaveCurrentState = 'banner.saveCurrentState',
