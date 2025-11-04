@@ -781,6 +781,7 @@ export interface Purpose {
   legalBasisDescription?: string
   illustrations?: string[]
   systems?: PurposeSystems
+  id?: string
 
   /**
    * the data subject types for which the purpose is relevant. If this list is empty then the purpose applies to all
@@ -1431,6 +1432,11 @@ export interface Stack {
    * name of the stack to be displayed
    */
   name: string
+
+  /**
+   * id of the stack
+   */
+  id?: string
 
   /**
    * list of purpose codes that are members of the stack
@@ -5384,10 +5390,17 @@ export interface ExperienceAssociationConfig {
   installedSystemIDs?: string[]
 }
 
+export interface ExperiencePurposesConfig {
+  mode?: 'CUSTOM' | 'INHERIT'
+  purposeIDs?: string[]
+  stackIDs?: string[]
+}
+
 export interface ExperienceConfig {
   layout?: ExperienceLayoutConfig
   content?: ExperienceContentConfig
   associations?: ExperienceAssociationConfig
+  purposes?: ExperiencePurposesConfig
 }
 
 /**
