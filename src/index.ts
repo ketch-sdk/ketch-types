@@ -5981,8 +5981,8 @@ export interface ProfilePageSection {
 }
 
 export interface ProfileTriggerSection {
-  event: string;
-  functionName?: string;
+  event: string
+  functionName?: string
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
