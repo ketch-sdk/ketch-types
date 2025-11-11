@@ -5890,6 +5890,7 @@ export enum BannerAutoDismissOverride {
 
 export interface Operand {
   inputDataKey: string
+  inputDataKeyArgs?: Record<string, string | number | boolean> | null
   attribute: Attribute
   operator: OperatorType
   value: string | number | boolean | object | string[] | number[] | boolean[] | object[]
