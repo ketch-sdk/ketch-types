@@ -5950,7 +5950,7 @@ export interface Profile {
   subscription?: ProfileSubscriptionSection
   metadata?: ProfileMetadataSection
   page?: ProfilePageSection
-  trigger?: ProfileTriggerSection
+  triggers?: ProfileTriggersSection
 }
 
 export interface ProfileConsentSection {
@@ -5980,9 +5980,8 @@ export interface ProfilePageSection {
   path: string
 }
 
-export interface ProfileTriggerSection {
-  event: string
-  functionName?: string
+export interface ProfileTriggersSection {
+  functionArguments?: string
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
