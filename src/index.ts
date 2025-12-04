@@ -37,6 +37,7 @@ export enum ExperienceType {
   Consent = 'experiences.consent',
   Preference = 'experiences.preference',
   ConsentGate = 'experiences.consentGate',
+  Progressive = 'experiences.progressive',
 }
 
 /**
