@@ -688,6 +688,12 @@ export interface Property {
   proxy?: string
 }
 
+export enum PropertyPurposeMode {
+  GLOBAL = 'GLOBAL',
+  JURISDICTION = 'JURISDICTION',
+  NONE = 'NONE',
+}
+
 /**
  * Environment
  */
@@ -5390,8 +5396,13 @@ export interface ExperienceAssociationConfig {
   installedSystemIDs?: string[]
 }
 
+export enum ExperiencePurposeMode {
+  CUSTOM = 'CUSTOM',
+  INHERIT = 'INHERIT',
+}
+
 export interface ExperiencePurposesConfig {
-  mode?: 'CUSTOM' | 'INHERIT'
+  mode?: ExperiencePurposeMode
   purposeIDs?: string[]
   stackIDs?: string[]
 }
