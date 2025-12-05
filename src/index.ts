@@ -695,6 +695,11 @@ export enum PropertyPurposeMode {
   NONE = 'NONE',
 }
 
+export enum PurposeEntityType {
+  PURPOSE = 'PURPOSE',
+  STACK = 'STACK',
+}
+
 /**
  * Environment
  */
