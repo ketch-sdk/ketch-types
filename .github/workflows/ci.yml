@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     outputs:
       version: ${{ steps.version.outputs.version }}
       version-major: ${{ steps.version.outputs.version-major-only }}
@@ -62,6 +61,7 @@ jobs:
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         run: |
           unset NPM_CONFIG_USERCONFIG
+          unset NPM_TOKEN
           npm publish --access public --provenance --registry https://registry.npmjs.org/
 
   release:
