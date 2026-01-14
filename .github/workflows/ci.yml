@@ -22,34 +22,35 @@ jobs:
       version-patch: ${{ format('{0}.{1}.{2}', steps.version.outputs.version-major-only, steps.version.outputs.version-minor-only, steps.version.outputs.version-patch-only) }}
     permissions:
       contents: read
+      id-token: write  # Required for npm OIDC Trusted Publishing
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
         with:
           fetch-depth: 0
       - name: Generate next version
         id: version
-        uses: conventional-actions/next-version@v1
+        uses: conventional-actions/next-version@e48c1275d221bd29e2c08f8856b91695c0a72db1  # v1
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
         with:
           node-version: 20
           cache: "npm"
       - name: Setup npmrc for ketch-sdk
-        uses: conventional-actions/setup-npmrc@v1
+        uses: conventional-actions/setup-npmrc@e851e66a09d6ad9301d4c7604f3493f90febef10  # v1
         with:
           always-auth: true
           registry-url: https://registry.npmjs.com/
           scope: ketch-sdk
           token: ${{ secrets.NPM_TOKEN }}
       - name: Setup npmrc for ketch-com
-        uses: conventional-actions/setup-npmrc@v1
+        uses: conventional-actions/setup-npmrc@e851e66a09d6ad9301d4c7604f3493f90febef10  # v1
         with:
           always-auth: true
           scope: ketch-com
           token: ${{ secrets.GH_TOKEN }}
       - name: Setup Node version
-        uses: conventional-actions/write-version@v1
+        uses: conventional-actions/write-version@77c6c9d20094108d23984deb1af56dd730166bd8  # v1
         with:
           output_path: package.json
           version: ${{ format('{0}.{1}.{2}', steps.version.outputs.version-major-only, steps.version.outputs.version-minor-only, steps.version.outputs.version-patch-only) }}
@@ -57,9 +58,11 @@ jobs:
         run: npm ci
       - name: Run all targets
         run: npm run all
-      - name: Publish
+      - name: Publish via Trusted Publishing
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        run: npm publish --access public
+        run: |
+          unset NPM_CONFIG_USERCONFIG
+          npm publish --access public --provenance --registry https://registry.npmjs.org/
 
   release:
     name: Release
@@ -71,10 +74,9 @@ jobs:
       contents: write
     steps:
       - name: Create Release
-        uses: conventional-actions/create-release@v1
+        uses: conventional-actions/create-release@50cd05b8ea9f2f3f32bbb822706b01ebf2ccce62  # v1
         with:
           tag_name: ${{ needs.build.outputs.version }}
-          artifacts: "*"
 
 concurrency:
   cancel-in-progress: true
