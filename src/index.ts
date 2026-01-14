@@ -3682,12 +3682,27 @@ export enum ExitButtonPosition {
 }
 
 /**
+ * Preference Center Confirmation Message Theme Configuration
+ */
+
+export interface ConfirmationMessageThemeConfig {
+  background?: ColorThemeConfig
+  text?: ColorThemeConfig
+  cornerRadius?: number
+  iconVisible?: boolean
+  useDefaultIcon?: boolean
+  iconColor?: ColorThemeConfig
+  icon?: ImageThemeConfig
+}
+
+/**
  * Preference Center Footer Theme Configuration
  */
 
 export interface PreferenceFooterThemeConfig {
   background?: ColorThemeConfig
   actionButton?: ActionButtonThemeConfig
+  confirmationMessage?: ConfirmationMessageThemeConfig
 }
 
 /**
@@ -4486,6 +4501,20 @@ export interface PurposesTabListExperienceLayoutConfig {
 }
 
 /**
+ * Preference Center Action Button Action Type
+ */
+
+export type ActionButtonAction = 'saveAndExit' | 'saveOnly'
+
+/**
+ * Preference Center Confirmation Message Experience Layout Configuration
+ */
+
+export interface ConfirmationMessageExperienceLayoutConfig {
+  useDefaultText?: boolean
+}
+
+/**
  * Preference Center Purposes Tab Experience Layout Configuration
  */
 
@@ -4495,6 +4524,8 @@ export interface PreferencePurposesTabExperienceLayoutConfig {
   purposeListHeader?: PurposesTabListHeaderExperienceLayoutConfig
   purposeList?: PurposesTabListExperienceLayoutConfig
   actionButtonUseDefaultText?: boolean
+  actionButtonAction?: ActionButtonAction
+  confirmationMessage?: ConfirmationMessageExperienceLayoutConfig
 }
 
 /**
@@ -4557,6 +4588,8 @@ export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
   unsubscribeAll?: SubscriptionsTabUnsubscribeAllExperienceLayoutConfig
   list?: SubscriptionsTabListExperienceLayoutConfig
   actionButtonUseDefaultText?: boolean
+  actionButtonAction?: ActionButtonAction
+  confirmationMessage?: ConfirmationMessageExperienceLayoutConfig
 }
 
 /**
@@ -4927,6 +4960,7 @@ export interface PreferencePurposesTabExperienceContentConfig {
   purposeListHeader?: PurposesTabListHeaderExperienceContentConfig
   purposeList?: PurposesTabListExperienceContentConfig
   actionButtonText?: string
+  confirmationMessage?: string
 }
 
 /**
@@ -4948,6 +4982,7 @@ export interface PreferenceSubscriptionsTabExperienceContentConfig {
   unsubscribeAll?: SubscriptionsTabUnsubscribeAllExperienceContentConfig
   listSwitchLabels?: SwitchButtonsExperienceContentConfig
   actionButtonText?: string
+  confirmationMessage?: string
 }
 
 /**
