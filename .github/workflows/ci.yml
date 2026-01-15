@@ -93,13 +93,6 @@ jobs:
           unset NPM_CONFIG_USERCONFIG
           npm publish --provenance --ignore-scripts --access public --registry https://registry.npmjs.org/
 
-      - name: Upload release artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist/
-          retention-days: 90
-
       - name: Create Release
         uses: conventional-actions/create-release@50cd05b8ea9f2f3f32bbb822706b01ebf2ccce62  # v1
         with:
