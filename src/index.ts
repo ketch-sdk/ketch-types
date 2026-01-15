@@ -3693,6 +3693,7 @@ export interface ConfirmationMessageThemeConfig {
   useDefaultIcon?: boolean
   iconColor?: ColorThemeConfig
   icon?: ImageThemeConfig
+  iconUrl?: string
 }
 
 /**
