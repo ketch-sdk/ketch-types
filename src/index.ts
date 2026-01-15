@@ -5446,6 +5446,7 @@ export interface ExperiencePurposesConfig {
   mode?: ExperiencePurposeMode
   purposeIDs?: string[]
   stackIDs?: string[]
+  order?: ExperiencePurposesOrStacksConfig[]
 }
 
 export enum PurposeOrStackType {
@@ -5463,7 +5464,6 @@ export interface ExperienceConfig {
   content?: ExperienceContentConfig
   associations?: ExperienceAssociationConfig
   purposes?: ExperiencePurposesConfig
-  purposeOrStacks?: ExperiencePurposesOrStacksConfig[]
 }
 
 /**
