@@ -5448,11 +5448,22 @@ export interface ExperiencePurposesConfig {
   stackIDs?: string[]
 }
 
+export enum PurposeOrStackType {
+  PURPOSE = 'PURPOSE',
+  STACK = 'STACK',
+}
+
+export interface ExperiencePurposesOrStacksConfig {
+  type: PurposeOrStackType
+  id: string
+}
+
 export interface ExperienceConfig {
   layout?: ExperienceLayoutConfig
   content?: ExperienceContentConfig
   associations?: ExperienceAssociationConfig
   purposes?: ExperiencePurposesConfig
+  purposeOrStacks?: ExperiencePurposesOrStacksConfig[]
 }
 
 /**
