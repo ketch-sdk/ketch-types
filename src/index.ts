@@ -595,19 +595,8 @@ export interface IPLocation {
  * IPInfo
  */
 export interface IPInfo {
-  ip: string
-  hostname: string
-  continentCode: string
-  continentName: string
   countryCode: string
-  countryName: string
   regionCode: string
-  regionName: string
-  city: string
-  zip: string
-  latitude: number
-  longitude: number
-  location: IPLocation
 }
 
 /**
