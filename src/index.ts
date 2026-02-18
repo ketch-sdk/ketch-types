@@ -715,6 +715,12 @@ export enum DeploymentVersion {
   V2 = 'v2',
 }
 
+export enum DeploymentMode {
+  Standard = 'standard',
+  Hybrid = 'hybrid',
+  Quiet = 'quiet',
+}
+
 /**
  * Deployment
  */
