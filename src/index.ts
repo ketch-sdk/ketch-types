@@ -3060,6 +3060,16 @@ export interface Ketch {
   getIsExperienceDisplayed(): boolean
 
   /**
+   * Get the deployment mode
+   */
+  readonly deploymentMode: DeploymentMode
+
+  /**
+   * Check if experiences are disabled
+   */
+  readonly isExperienceDisabled: boolean
+
+  /**
    * Alias for `emitter.on(eventName, listener)`.
    *
    * @param eventName The name of the event.
