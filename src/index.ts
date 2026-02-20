@@ -431,6 +431,27 @@ export type Traits = { [key: string]: string }
 export type Status = { [key: string]: boolean }
 
 /**
+ * Legal Bases
+ */
+export enum LegalBasis {
+  NotApplicable = 'not_applicable',
+  PublicInterest = 'publicinterest',
+  Contract = 'contract',
+  ConsentOptIn = 'consent_optin',
+  ResearchLGPD = 'research_lgpd',
+  LegalObligations = 'legalobligations',
+  HealthLGPD = 'health_lgpd',
+  VitalInterests = 'vitalinterests',
+  CreditLGPD = 'credit_lgpd',
+  AlwaysOff = 'always_off',
+  LifeLGPD = 'life_lgpd',
+  LegitimateInterest = 'legitimateinterest',
+  ConsentOptOut = 'consent_optout',
+  Disclosure = 'disclosure',
+  LegitimateInterestObjectable = 'legitimateinterest_objectable',
+}
+
+/**
  * Protocols
  */
 export type Protocols = { [key: string]: string }
