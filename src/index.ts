@@ -538,6 +538,12 @@ export type ShowPreferenceOptions = {
    * undefined, the overview tab is displayed
    */
   showOverviewTab?: boolean
+
+  /**
+   * showProfilePreferencesTab determines whether the profile preferences tab will show. If
+   * undefined, the profile preferences tab is displayed.
+   */
+  showProfilePreferencesTab?: boolean
 }
 
 /**
@@ -4754,6 +4760,7 @@ export interface EntitlementLayoutConfig {
   hasPurposesEntitlement?: boolean
   hasSubscriptionsEntitlement?: boolean
   hasRightsEntitlement?: boolean
+  hasProfilePreferencesEntitlement?: boolean
 }
 
 /**
