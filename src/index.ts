@@ -2956,6 +2956,18 @@ export interface Ketch {
   setSubscriptions(request: Subscriptions, source: SubscriptionSource): Promise<void>
 
   /**
+   * Get profile preferences
+   */
+  getProfilePreferences(): Promise<ProfilePreferencesAttribute[]>
+
+  /**
+   * Set profile preferences
+   *
+   * @param attributes The profile preference attributes to set
+   */
+  setProfilePreferences(attributes: ProfilePreferencesAttribute[]): Promise<void>
+
+  /**
    * Get Subscription configuration
    */
   getSubscriptionConfiguration(): Promise<SubscriptionConfiguration>
@@ -3365,6 +3377,68 @@ export interface GetSubscriptionConfigurationRequest {
   propertyCode: string
   languageCode: string
   experienceCode?: string
+}
+
+/**
+ * Identity in the array format expected by the profile API
+ */
+export interface ProfilePreferencesIdentity {
+  identitySpace: string
+  identityValue: string
+  isProfile: boolean
+}
+
+/**
+ * Attribute for the profile preferences API
+ */
+export interface ProfilePreferencesAttribute {
+  attributeCode: string
+  attributeValue: string
+  source: string
+}
+
+/**
+ * Context for the profile preferences API
+ */
+export interface ProfilePreferencesContext {
+  updatedAt?: number
+  configId?: string
+  source: string
+}
+
+/**
+ * PutProfileRequest
+ */
+export interface PutProfileRequest {
+  organizationCode: string
+  propertyCode: string
+  environmentCode?: string
+  jurisdictionCode: string
+  languageCode: string
+  identities: ProfilePreferencesIdentity[]
+  attributes: ProfilePreferencesAttribute[]
+  context: ProfilePreferencesContext
+  accountId?: string
+}
+
+/**
+ * GetProfileRequest
+ */
+export interface GetProfileRequest {
+  organizationCode: string
+  propertyCode: string
+  environmentCode?: string
+  jurisdictionCode: string
+  languageCode: string
+  identities: ProfilePreferencesIdentity[]
+  accountID?: string
+}
+
+/**
+ * GetProfileResponse
+ */
+export interface GetProfileResponse {
+  attributes?: ProfilePreferencesAttribute[]
 }
 
 /**
@@ -6056,6 +6130,7 @@ export interface Profile {
   identities?: ProfileIdentitySection
   user?: ProfileUserSection
   subscription?: ProfileSubscriptionSection
+  profilePreferences?: ProfilePreferencesSection
   metadata?: ProfileMetadataSection
   page?: ProfilePageSection
   triggers?: ProfileTriggersSection
@@ -6090,6 +6165,10 @@ export interface ProfilePageSection {
 
 export interface ProfileTriggersSection {
   functionArguments?: string
+}
+
+export interface ProfilePreferencesSection {
+  attributes?: ProfilePreferencesAttribute[]
 }
 
 /** Message type for post messaging preview configs from figurehead to lanyard */
