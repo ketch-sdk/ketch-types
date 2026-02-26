@@ -3419,6 +3419,7 @@ export interface PutProfileRequest {
   attributes: ProfilePreferencesAttribute[]
   context: ProfilePreferencesContext
   accountId?: string
+  regionCode?: string
 }
 
 /**
@@ -3432,6 +3433,7 @@ export interface GetProfileRequest {
   languageCode: string
   identities: ProfilePreferencesIdentity[]
   accountID?: string
+  regionCode?: string
 }
 
 /**
