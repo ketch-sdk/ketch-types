@@ -3390,7 +3390,6 @@ export interface GetSubscriptionConfigurationRequest {
 export interface ProfilePreferencesIdentity {
   identitySpace: string
   identityValue: string
-  isProfile: boolean
 }
 
 /**
