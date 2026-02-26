@@ -1687,6 +1687,11 @@ export interface ConfigurationV2 {
   systems?: ConfigSystems
 
   globalPurposes?: GlobalPurpose[]
+
+  /**
+   * Profile configuration including profile preference attributes
+   */
+  profile?: ProfileConfiguration
 }
 
 /**
@@ -3464,6 +3469,36 @@ export interface SubscriptionConfiguration {
   topics: SubscriptionTopic[]
   associatedTopics?: { [key: string]: SubscriptionTopic }
   associatedControls?: { [key: string]: SubscriptionControl }
+}
+
+/**
+ * ProfileAttributeValue
+ */
+export interface ProfileAttributeValue {
+  value: string
+  label?: string
+  sortOrder?: number
+}
+
+/**
+ * ProfileAttribute
+ */
+export interface ProfileAttribute {
+  name: string
+  code: string
+  renderType: string
+  values: ProfileAttributeValue[]
+  attributeType?: string
+  dataType?: string
+  category?: string
+  constraints?: unknown
+}
+
+/**
+ * ProfileConfiguration
+ */
+export interface ProfileConfiguration {
+  attributes?: ProfileAttribute[]
 }
 
 /**
