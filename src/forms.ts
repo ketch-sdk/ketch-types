@@ -53,7 +53,7 @@ export enum FormFieldCategory {
 }
 
 /**
- * FormFieldType: Describes the type of the form field in Rights Form.
+ * FormFieldType: Describes the type of a form field.
  *
  * @enum
  * @values UNSPECIFIED = type is unspecified
