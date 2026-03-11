@@ -60,6 +60,8 @@ export enum FormFieldCategory {
  *          TEXT = text field
  *          DROPDOWN = dropdown field
  *          CHECKBOX = checkbox field
+ *          RADIO = radio button field
+ *          DATE = date field
  */
 export enum FormFieldType {
   UNSPECIFIED = 'unspecified',
@@ -67,6 +69,8 @@ export enum FormFieldType {
   DROPDOWN = 'dropdown',
   CHECKBOX = 'checkbox',
   FILE = 'file',
+  RADIO = 'radio',
+  DATE = 'date',
 }
 
 /**
