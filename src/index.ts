@@ -3488,10 +3488,14 @@ export interface ProfileAttribute {
   code: string
   renderType: string
   values: ProfileAttributeValue[]
-  attributeType?: string
-  dataType?: string
+  attributeType?: 'single_value' | 'multi_value' | 'free_form'
+  dataType?: 'string' | 'number' | 'date'
   category?: string
-  constraints?: unknown
+  constraints?: {
+    number?: { min?: number; max?: number; allow_decimal?: boolean }
+    date?: { min_date?: string; max_date?: string }
+    string?: { max_length?: number }
+  }
 }
 
 /**
