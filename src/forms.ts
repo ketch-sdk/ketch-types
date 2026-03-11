@@ -17,6 +17,20 @@ export interface ExperienceFormField {
 }
 
 /**
+ * ProfileFormField: Describes a form field for the profile preferences form.
+ * Extends ExperienceFormField with profile attribute metadata for the renderer.
+ */
+export interface ProfileFormField extends ExperienceFormField {
+  attributeType?: 'single_value' | 'multi_value' | 'free_form'
+  dataType?: 'string' | 'number' | 'date'
+  constraints?: {
+    number?: { min?: number; max?: number; allow_decimal?: boolean }
+    date?: { min_date?: string; max_date?: string }
+    string?: { max_length?: number }
+  }
+}
+
+/**
  * FormFieldDropdownOption: Describes an option in a dropdown form field.
  */
 export type FormFieldDropdownOption = {

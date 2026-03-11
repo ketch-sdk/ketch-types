@@ -1,4 +1,4 @@
-import { ExperienceFormField, CanonicalRightForm, CustomRightForm, FormTemplate } from './forms'
+import { ExperienceFormField, ProfileFormField, CanonicalRightForm, CustomRightForm, FormTemplate } from './forms'
 
 /**
  * Tab
@@ -6228,6 +6228,7 @@ export type PreviewMessage = {
 
 export {
   ExperienceFormField,
+  ProfileFormField,
   FormFieldDropdownOption,
   FormFieldWidth,
   FormFieldCategory,
