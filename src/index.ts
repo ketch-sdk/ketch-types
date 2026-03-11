@@ -3397,7 +3397,8 @@ export interface ProfilePreferencesIdentity {
  */
 export interface ProfilePreferencesAttribute {
   attributeCode: string
-  attributeValue: string
+  attributeValue?: string
+  attributeValueJSON?: { values: string[] }
   source: string
 }
 
