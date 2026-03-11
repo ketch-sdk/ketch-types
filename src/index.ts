@@ -3493,7 +3493,7 @@ export interface ProfileAttribute {
   category?: string
   constraints?: {
     number?: { min?: number; max?: number; allow_decimal?: boolean }
-    date?: { min_date?: string; max_date?: string }
+    date?: { min?: string; max?: string }
     string?: { max_length?: number }
   }
 }
