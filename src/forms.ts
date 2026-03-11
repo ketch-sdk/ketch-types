@@ -53,13 +53,15 @@ export enum FormFieldCategory {
 }
 
 /**
- * FormFieldType: Describes the type of the form field in Rights Form.
+ * FormFieldType: Describes the type of a form field.
  *
  * @enum
  * @values UNSPECIFIED = type is unspecified
  *          TEXT = text field
  *          DROPDOWN = dropdown field
  *          CHECKBOX = checkbox field
+ *          RADIO = radio button field
+ *          DATE = date field
  */
 export enum FormFieldType {
   UNSPECIFIED = 'unspecified',
@@ -67,6 +69,8 @@ export enum FormFieldType {
   DROPDOWN = 'dropdown',
   CHECKBOX = 'checkbox',
   FILE = 'file',
+  RADIO = 'radio',
+  DATE = 'date',
 }
 
 /**
