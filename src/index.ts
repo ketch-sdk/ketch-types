@@ -910,6 +910,11 @@ export interface Identity {
    * optional verifier ID associated with the identity
    */
   verifierID?: string
+
+  /**
+   * whether this identity space is used for authenticated DSR submission
+   */
+  isAuthentication?: boolean
 }
 
 /**
@@ -2844,6 +2849,7 @@ export interface InvokeRightRequest {
   recaptchaToken?: string
   context?: PermitRightContext
   regionCode?: string
+  isAuthenticated?: boolean
 }
 
 /**
@@ -6197,6 +6203,7 @@ export interface ProfileSubscriptionSection {
 
 export interface ProfileMetadataSection {
   currentDate?: number
+  isAuthenticated?: boolean
 }
 
 export interface ProfilePageSection {
