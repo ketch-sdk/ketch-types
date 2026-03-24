@@ -5447,6 +5447,7 @@ interface CountryTranslations {
 export interface BaseStaticContentConfig {
   accept_all?: string
   accept?: string
+  always_active?: string
   and_the?: string
   and?: string
   apply?: string
