@@ -704,6 +704,9 @@ export interface JurisdictionInfo {
   defaultJurisdictionCode?: string
   variable?: string
   jurisdictions?: { [key: string]: string }
+  name?: string
+  jurisdictionName?: string
+  regions?: { [key: string]: { name: string; jurisdictionCode: string; jurisdictionName: string } }
 }
 
 /**
