@@ -804,6 +804,12 @@ export interface ConfigSystems {
  * The systems field on a purpose contains a list of IDs associated with the purpose. See the
  * ConfigurationV2.systems field for details on each system.
  */
+export interface AgeBand {
+  ageLower: number
+  ageUpper: number
+  legalBasisCode: string
+}
+
 export interface PurposeSystems {
   [key: string]: string[]
 }
@@ -841,6 +847,8 @@ export interface Purpose {
    * the canonical purposes (ketch purposes) assigned to this purpose
    */
   canonicalPurposeCodes?: string[]
+
+  ageBands?: AgeBand[]
 }
 
 /**
