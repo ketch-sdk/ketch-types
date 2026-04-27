@@ -3429,16 +3429,38 @@ export interface ProfilePreferencesContext {
 }
 
 /**
+ * ProfileSubscriptionTopicSetting
+ */
+export type ProfileSubscriptionTopicSetting = Record<string, { status: 'granted' | 'denied' }>
+
+/**
+ * ProfileSubscriptionControlSetting
+ */
+export interface ProfileSubscriptionControlSetting {
+  status: 'granted' | 'denied'
+}
+
+/**
+ * ProfileSubscriptions
+ */
+export interface ProfileSubscriptions {
+  topics?: Record<string, ProfileSubscriptionTopicSetting>
+  controls?: Record<string, ProfileSubscriptionControlSetting>
+}
+
+/**
  * PutProfileRequest
  */
 export interface PutProfileRequest {
   organizationCode: string
+  controllerCode?: string
   propertyCode: string
   environmentCode?: string
   jurisdictionCode: string
   languageCode: string
   identities: ProfilePreferencesIdentity[]
-  attributes: ProfilePreferencesAttribute[]
+  attributes?: ProfilePreferencesAttribute[]
+  subscriptions?: ProfileSubscriptions
   context: ProfilePreferencesContext
   accountId?: string
   regionCode?: string
@@ -3449,6 +3471,7 @@ export interface PutProfileRequest {
  */
 export interface GetProfileRequest {
   organizationCode: string
+  controllerCode?: string
   propertyCode: string
   environmentCode?: string
   jurisdictionCode: string
@@ -3462,7 +3485,13 @@ export interface GetProfileRequest {
  * GetProfileResponse
  */
 export interface GetProfileResponse {
+  controllerCode?: string
+  propertyCode?: string
+  environmentCode?: string
+  jurisdictionCode?: string
+  regionCode?: string
   attributes?: ProfilePreferencesAttribute[]
+  subscriptions?: ProfileSubscriptions
 }
 
 /**
@@ -3516,10 +3545,81 @@ export interface ProfileAttribute {
 }
 
 /**
+ * ProfileCollectionItemType
+ */
+export type ProfileCollectionItemType = 'attribute' | 'subscription_topic' | 'subscription_control'
+
+/**
+ * ProfileCollectionItem
+ */
+export interface ProfileCollectionItem {
+  type: ProfileCollectionItemType
+  code: string
+  id?: string
+  order: number
+}
+
+/**
+ * ProfileCollectionSection
+ */
+export interface ProfileCollectionSection {
+  code: string
+  name: string
+  displayName: string
+  displayNameTranslations?: Record<string, string>
+  items: ProfileCollectionItem[]
+  order: number
+}
+
+/**
+ * ProfileCollection
+ */
+export interface ProfileCollection {
+  code: string
+  name: string
+  displayName: string
+  displayNameTranslations?: Record<string, string>
+  description?: string
+  descriptionTranslations?: Record<string, string>
+  sections: ProfileCollectionSection[]
+}
+
+/**
+ * ProfileConfigTopic
+ */
+export interface ProfileConfigTopic {
+  code: string
+  name: string
+  description: string
+  contactMethods?: string[]
+}
+
+/**
+ * ProfileConfigControl
+ */
+export interface ProfileConfigControl {
+  code: string
+  name: string
+  description: string
+}
+
+/**
+ * ProfileConfigIdentity
+ */
+export interface ProfileConfigIdentity {
+  space: string
+  isProfile: boolean
+}
+
+/**
  * ProfileConfiguration
  */
 export interface ProfileConfiguration {
   attributes?: ProfileAttribute[]
+  collections?: ProfileCollection[]
+  identities?: Record<string, ProfileConfigIdentity>
+  topics?: ProfileConfigTopic[]
+  controls?: ProfileConfigControl[]
 }
 
 /**
