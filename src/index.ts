@@ -2783,6 +2783,9 @@ export interface GetConsentResponse {
   protocols?: Protocols
   vendorConsents?: VendorConsents
   showAfter?: number
+
+  // Was this consent set interactively
+  interactive?: boolean
 }
 
 /**
@@ -2812,6 +2815,9 @@ export interface SetConsentRequest {
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
   context?: PermitRightContext
+
+  // Was this consent set interactively
+  interactive?: boolean
 }
 
 /**
@@ -6158,7 +6164,7 @@ export interface LogicalCondition {
 export type Condition = LogicalCondition | NotCondition | Operand
 
 export interface ActionOptions {
-  [key: string]: string
+  [key: string]: string | boolean
 }
 
 export interface ActionParams {
