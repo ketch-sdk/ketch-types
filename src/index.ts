@@ -4373,6 +4373,8 @@ export interface ThemeConfig {
   progressiveConsent?: any
 
   ids?: { [id: string]: ExperienceThemeConfig }
+  customCss?: string
+  customCssEnabled?: boolean
 }
 
 /**
