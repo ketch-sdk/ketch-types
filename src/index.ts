@@ -3545,43 +3545,43 @@ export interface ProfileAttribute {
 }
 
 /**
- * ProfileCollectionItemType
+ * CollectionItemType
  */
-export type ProfileCollectionItemType = 'attribute' | 'subscription_topic' | 'subscription_control'
+export type CollectionItemType = 'attribute' | 'subscription_topic' | 'subscription_control'
 
 /**
- * ProfileCollectionItem
+ * CollectionItem
  */
-export interface ProfileCollectionItem {
-  type: ProfileCollectionItemType
+export interface CollectionItem {
+  type: CollectionItemType
   code: string
   id?: string
   order: number
 }
 
 /**
- * ProfileCollectionSection
+ * CollectionSection
  */
-export interface ProfileCollectionSection {
+export interface CollectionSection {
   code: string
   name: string
   displayName: string
   displayNameTranslations?: Record<string, string>
-  items: ProfileCollectionItem[]
+  items: CollectionItem[]
   order: number
 }
 
 /**
- * ProfileCollection
+ * Collection
  */
-export interface ProfileCollection {
+export interface Collection {
   code: string
   name: string
   displayName: string
   displayNameTranslations?: Record<string, string>
   description?: string
   descriptionTranslations?: Record<string, string>
-  sections: ProfileCollectionSection[]
+  sections: CollectionSection[]
 }
 
 /**
@@ -3616,7 +3616,7 @@ export interface ProfileConfigIdentity {
  */
 export interface ProfileConfiguration {
   attributes?: ProfileAttribute[]
-  collections?: ProfileCollection[]
+  collections?: Collection[]
   identities?: Record<string, ProfileConfigIdentity>
   topics?: ProfileConfigTopic[]
   controls?: ProfileConfigControl[]
