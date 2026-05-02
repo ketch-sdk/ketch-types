@@ -6288,7 +6288,7 @@ export interface Profile {
   consent: ProfileConsentSection
   identities?: ProfileIdentitySection
   user?: ProfileUserSection
-  subscription?: CollectionSubscriptionSection
+  subscription?: ProfileSubscriptionSection
   profilePreferences?: ProfilePreferencesSection
   metadata?: ProfileMetadataSection
   page?: ProfilePageSection
@@ -6309,7 +6309,7 @@ export interface ProfileUserSection {
   [userAttributeCode: string]: { value: any }
 }
 
-export interface CollectionSubscriptionSection {
+export interface ProfileSubscriptionSection {
   topics?: { [topicCode: string]: SubscriptionTopicSetting }
 }
 
