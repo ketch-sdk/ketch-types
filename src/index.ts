@@ -3429,23 +3429,23 @@ export interface ProfilePreferencesContext {
 }
 
 /**
- * ProfileSubscriptionTopicSetting
+ * CollectionSubscriptionTopicSetting
  */
-export type ProfileSubscriptionTopicSetting = Record<string, { status: 'granted' | 'denied' }>
+export type CollectionSubscriptionTopicSetting = Record<string, { status: 'granted' | 'denied' }>
 
 /**
- * ProfileSubscriptionControlSetting
+ * CollectionSubscriptionControlSetting
  */
-export interface ProfileSubscriptionControlSetting {
+export interface CollectionSubscriptionControlSetting {
   status: 'granted' | 'denied'
 }
 
 /**
- * ProfileSubscriptions
+ * CollectionSubscriptions
  */
-export interface ProfileSubscriptions {
-  topics?: Record<string, ProfileSubscriptionTopicSetting>
-  controls?: Record<string, ProfileSubscriptionControlSetting>
+export interface CollectionSubscriptions {
+  topics?: Record<string, CollectionSubscriptionTopicSetting>
+  controls?: Record<string, CollectionSubscriptionControlSetting>
 }
 
 /**
@@ -3460,7 +3460,7 @@ export interface PutProfileRequest {
   languageCode: string
   identities: ProfilePreferencesIdentity[]
   attributes?: ProfilePreferencesAttribute[]
-  subscriptions?: ProfileSubscriptions
+  subscriptions?: CollectionSubscriptions
   context: ProfilePreferencesContext
   accountId?: string
   regionCode?: string
@@ -3491,7 +3491,7 @@ export interface GetProfileResponse {
   jurisdictionCode?: string
   regionCode?: string
   attributes?: ProfilePreferencesAttribute[]
-  subscriptions?: ProfileSubscriptions
+  subscriptions?: CollectionSubscriptions
 }
 
 /**
@@ -6288,7 +6288,7 @@ export interface Profile {
   consent: ProfileConsentSection
   identities?: ProfileIdentitySection
   user?: ProfileUserSection
-  subscription?: ProfileSubscriptionSection
+  subscription?: CollectionSubscriptionSection
   profilePreferences?: ProfilePreferencesSection
   metadata?: ProfileMetadataSection
   page?: ProfilePageSection
@@ -6309,7 +6309,7 @@ export interface ProfileUserSection {
   [userAttributeCode: string]: { value: any }
 }
 
-export interface ProfileSubscriptionSection {
+export interface CollectionSubscriptionSection {
   topics?: { [topicCode: string]: SubscriptionTopicSetting }
 }
 
