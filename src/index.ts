@@ -3429,23 +3429,23 @@ export interface ProfilePreferencesContext {
 }
 
 /**
- * CollectionSubscriptionTopicSetting
+ * ProfileSubscriptionTopicSetting
  */
-export type CollectionSubscriptionTopicSetting = { [key: string]: { status: SubscriptionStatus } }
+export type ProfileSubscriptionTopicSetting = { [key: string]: { status: SubscriptionStatus } }
 
 /**
- * CollectionSubscriptionControlSetting
+ * ProfileSubscriptionControlSetting
  */
-export interface CollectionSubscriptionControlSetting {
+export interface ProfileSubscriptionControlSetting {
   status: SubscriptionStatus
 }
 
 /**
- * CollectionSubscriptions
+ * ProfileSubscriptions
  */
-export interface CollectionSubscriptions {
-  topics?: { [key: string]: CollectionSubscriptionTopicSetting }
-  controls?: { [key: string]: CollectionSubscriptionControlSetting }
+export interface ProfileSubscriptions {
+  topics?: { [key: string]: ProfileSubscriptionTopicSetting }
+  controls?: { [key: string]: ProfileSubscriptionControlSetting }
 }
 
 /**
@@ -3460,7 +3460,7 @@ export interface PutProfileRequest {
   languageCode: string
   identities: ProfilePreferencesIdentity[]
   attributes?: ProfilePreferencesAttribute[]
-  subscriptions?: CollectionSubscriptions
+  subscriptions?: ProfileSubscriptions
   context: ProfilePreferencesContext
   accountId?: string
   regionCode?: string
@@ -3491,7 +3491,7 @@ export interface GetProfileResponse {
   jurisdictionCode?: string
   regionCode?: string
   attributes?: ProfilePreferencesAttribute[]
-  subscriptions?: CollectionSubscriptions
+  subscriptions?: ProfileSubscriptions
 }
 
 /**
@@ -3545,43 +3545,43 @@ export interface ProfileAttribute {
 }
 
 /**
- * CollectionItemType
+ * ProfileCollectionItemType
  */
-export type CollectionItemType = 'attribute' | 'subscription_topic' | 'subscription_control'
+export type ProfileCollectionItemType = 'attribute' | 'subscription_topic' | 'subscription_control'
 
 /**
- * CollectionItem
+ * ProfileCollectionItem
  */
-export interface CollectionItem {
-  type: CollectionItemType
+export interface ProfileCollectionItem {
+  type: ProfileCollectionItemType
   code: string
   id?: string
   order: number
 }
 
 /**
- * CollectionSection
+ * ProfileCollectionSection
  */
-export interface CollectionSection {
+export interface ProfileCollectionSection {
   code: string
   name: string
   displayName: string
   displayNameTranslations?: { [key: string]: string }
-  items: CollectionItem[]
+  items: ProfileCollectionItem[]
   order: number
 }
 
 /**
- * Collection
+ * ProfileCollection
  */
-export interface Collection {
+export interface ProfileCollection {
   code: string
   name: string
   displayName: string
   displayNameTranslations?: { [key: string]: string }
   description?: string
   descriptionTranslations?: { [key: string]: string }
-  sections: CollectionSection[]
+  sections: ProfileCollectionSection[]
 }
 
 /**
@@ -3616,7 +3616,7 @@ export interface ProfileConfigIdentity {
  */
 export interface ProfileConfiguration {
   attributes?: ProfileAttribute[]
-  collections?: Collection[]
+  collections?: ProfileCollection[]
   identities?: { [key: string]: ProfileConfigIdentity }
   topics?: ProfileConfigTopic[]
   controls?: ProfileConfigControl[]
