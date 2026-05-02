@@ -3431,21 +3431,21 @@ export interface ProfilePreferencesContext {
 /**
  * CollectionSubscriptionTopicSetting
  */
-export type CollectionSubscriptionTopicSetting = Record<string, { status: 'granted' | 'denied' }>
+export type CollectionSubscriptionTopicSetting = { [key: string]: { status: SubscriptionStatus } }
 
 /**
  * CollectionSubscriptionControlSetting
  */
 export interface CollectionSubscriptionControlSetting {
-  status: 'granted' | 'denied'
+  status: SubscriptionStatus
 }
 
 /**
  * CollectionSubscriptions
  */
 export interface CollectionSubscriptions {
-  topics?: Record<string, CollectionSubscriptionTopicSetting>
-  controls?: Record<string, CollectionSubscriptionControlSetting>
+  topics?: { [key: string]: CollectionSubscriptionTopicSetting }
+  controls?: { [key: string]: CollectionSubscriptionControlSetting }
 }
 
 /**
@@ -3566,7 +3566,7 @@ export interface CollectionSection {
   code: string
   name: string
   displayName: string
-  displayNameTranslations?: Record<string, string>
+  displayNameTranslations?: { [key: string]: string }
   items: CollectionItem[]
   order: number
 }
@@ -3578,9 +3578,9 @@ export interface Collection {
   code: string
   name: string
   displayName: string
-  displayNameTranslations?: Record<string, string>
+  displayNameTranslations?: { [key: string]: string }
   description?: string
-  descriptionTranslations?: Record<string, string>
+  descriptionTranslations?: { [key: string]: string }
   sections: CollectionSection[]
 }
 
@@ -3617,7 +3617,7 @@ export interface ProfileConfigIdentity {
 export interface ProfileConfiguration {
   attributes?: ProfileAttribute[]
   collections?: Collection[]
-  identities?: Record<string, ProfileConfigIdentity>
+  identities?: { [key: string]: ProfileConfigIdentity }
   topics?: ProfileConfigTopic[]
   controls?: ProfileConfigControl[]
 }
