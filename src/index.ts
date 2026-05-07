@@ -1560,11 +1560,6 @@ export interface ConfigurationV2 {
   identities?: { [key: string]: Identity }
 
   /**
-   * User attributes defined for this property
-   */
-  userAttributes?: { [key: string]: Trait }
-
-  /**
    * Deployment information. Only available in the "full" configuration.
    */
   deployment?: Deployment
