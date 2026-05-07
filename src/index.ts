@@ -3536,10 +3536,15 @@ export interface ProfileAttributeValue {
  * ProfileAttribute
  */
 export interface ProfileAttribute {
+  id: string
   name: string
   code: string
   renderType: string
   values: ProfileAttributeValue[]
+  displayName: string
+  displayNameTranslations?: { [key: string]: string }
+  description: string
+  descriptionTranslations?: { [key: string]: string }
   attributeType?: 'single_value' | 'multi_value' | 'free_form'
   dataType?: 'string' | 'number' | 'date'
   category?: string
@@ -3548,6 +3553,13 @@ export interface ProfileAttribute {
     date?: { min?: string; max?: string }
     string?: { max_length?: number }
   }
+
+  // Data layer details (for property attributes)
+  type?: string
+  variable?: string
+  format?: string
+  key?: string
+  encoding?: string
 }
 
 /**
