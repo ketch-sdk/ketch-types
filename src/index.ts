@@ -473,6 +473,11 @@ export type VendorConsents = {
 }
 
 /**
+ * Legitimate Interest Status
+ */
+export type LegitimateInterestStatus = 'not_established' | 'established' | 'objected'
+
+/**
  * Consent
  */
 export type Consent = {
@@ -849,6 +854,7 @@ export interface Purpose {
   canonicalPurposeCodes?: string[]
 
   ageBands?: AgeBand[]
+  legitimateInterestObjectable?: boolean
 }
 
 /**
@@ -2748,6 +2754,8 @@ export interface GetConsentRequest {
   googleVendors?: string[]
   collectedAt?: number
   isGpcEnabled?: boolean
+  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
+  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
 }
 
 /**
@@ -2778,9 +2786,11 @@ export interface GetConsentResponse {
   protocols?: Protocols
   vendorConsents?: VendorConsents
   showAfter?: number
-
   // Was this consent set interactively
   interactive?: boolean
+
+  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
+  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
 }
 
 /**
@@ -2813,6 +2823,9 @@ export interface SetConsentRequest {
 
   // Was this consent set interactively
   interactive?: boolean
+
+  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
+  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
 }
 
 /**
@@ -2843,6 +2856,8 @@ export interface SetConsentResponse {
   protocols?: Protocols
   vendorConsents?: VendorConsents
   context?: PermitRightContext
+  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
+  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
 }
 
 /**
