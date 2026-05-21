@@ -2781,6 +2781,8 @@ export interface GetConsentResponse {
   googleVendors?: string[]
 
   collectedAt?: number
+  // Client-only: unix seconds when consent was last read from GET.
+  cachedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
   showAfter?: number
