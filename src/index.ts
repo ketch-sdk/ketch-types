@@ -3810,6 +3810,8 @@ export interface ListItemsThemeConfig {
 export interface SwitchButtonThemeConfig {
   background?: ColorThemeConfig
   text?: TextThemeConfig
+  icon?: ColorThemeConfig
+  thumb?: ColorThemeConfig
 }
 
 export interface SwitchButtonsThemeConfig {
@@ -3842,6 +3844,8 @@ export interface PageTextThemeConfig {
 export interface CheckboxThemeConfig {
   background?: ColorThemeConfig
   label?: ColorThemeConfig
+  icon?: ColorThemeConfig
+  outline?: ColorThemeConfig
 }
 
 export interface CheckboxesThemeConfig {
@@ -4185,8 +4189,10 @@ export interface SubscriptionsTabUnsubscribeAllThemeConfig {
 export interface LayoutThemeConfig {
   style?: SubscriptionListStyle
   background?: ColorThemeConfig
+  underline?: ColorThemeConfig
   text?: TextThemeConfig
   link?: TextThemeConfig
+  arrowIcon?: ColorThemeConfig
   cornerRadius?: number
   channelArrangement?: string
 }
