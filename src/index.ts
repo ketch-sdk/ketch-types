@@ -5794,11 +5794,21 @@ export enum ExperiencePurposeMode {
   INHERIT = 'INHERIT',
 }
 
+export enum ExperienceTopicMode {
+  CUSTOM = 'CUSTOM',
+  INHERIT = 'INHERIT',
+}
+
 export interface ExperiencePurposesConfig {
   mode?: ExperiencePurposeMode
   purposeIDs?: string[]
   stackIDs?: string[]
   order?: ExperiencePurposesOrStacksConfig[]
+}
+
+export interface ExperienceTopicsConfig {
+  mode?: ExperienceTopicMode
+  topicCodes?: string[]
 }
 
 export enum PurposeOrStackType {
@@ -5816,6 +5826,7 @@ export interface ExperienceConfig {
   content?: ExperienceContentConfig
   associations?: ExperienceAssociationConfig
   purposes?: ExperiencePurposesConfig
+  topics?: ExperienceTopicsConfig
 }
 
 /**
