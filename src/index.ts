@@ -497,6 +497,8 @@ export type Consent = {
   protocols?: Protocols
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
+  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
+  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
 }
 
 /**
