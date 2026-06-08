@@ -475,7 +475,11 @@ export type VendorConsents = {
 /**
  * Legitimate Interest Status
  */
-export type LegitimateInterestStatus = 'not_established' | 'established' | 'objected'
+export enum LegitimateInterestStatus {
+  NOT_ESTABLISHED = 'not_established',
+  ESTABLISHED = 'established',
+  OBJECTED = 'objected',
+}
 
 /**
  * Consent
@@ -497,6 +501,8 @@ export type Consent = {
   protocols?: Protocols
   isGpcEnabled?: boolean
   vendorConsents?: VendorConsents
+  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
+  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
 }
 
 /**
