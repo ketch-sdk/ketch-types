@@ -500,7 +500,7 @@ export type Consent = {
   googleVendors?: string[] // list of Google vendor ids for which the user has opted out
   protocols?: Protocols
   isGpcEnabled?: boolean
-  isAttEnabled?: boolean
+  isAttActive?: boolean
   vendorConsents?: VendorConsents
   purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
   vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
@@ -2765,7 +2765,7 @@ export interface GetConsentRequest {
   googleVendors?: string[]
   collectedAt?: number
   isGpcEnabled?: boolean
-  isAttEnabled?: boolean
+  isAttActive?: boolean
 }
 
 /**
@@ -2830,7 +2830,7 @@ export interface SetConsentRequest {
    */
   googleVendors?: string[]
   isGpcEnabled?: boolean
-  isAttEnabled?: boolean
+  isAttActive?: boolean
   vendorConsents?: VendorConsents
   context?: PermitRightContext
 
