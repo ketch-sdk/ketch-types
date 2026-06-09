@@ -5787,11 +5787,33 @@ export interface ExperiencePurposesOrStacksConfig {
   id: string
 }
 
+export enum ExperienceTopicMode {
+  CUSTOM = 'CUSTOM',
+  INHERIT = 'INHERIT',
+}
+
+export enum TopicOrStackType {
+  TOPIC = 'TOPIC',
+  STACK = 'STACK',
+}
+
+export interface ExperienceTopicsOrStacksConfig {
+  type: TopicOrStackType
+  code: string
+}
+
+export interface ExperienceTopicsConfig {
+  mode?: ExperienceTopicMode
+  topicCodes?: string[]
+  order?: ExperienceTopicsOrStacksConfig[]
+}
+
 export interface ExperienceConfig {
   layout?: ExperienceLayoutConfig
   content?: ExperienceContentConfig
   associations?: ExperienceAssociationConfig
   purposes?: ExperiencePurposesConfig
+  topics?: ExperienceTopicsConfig
 }
 
 /**
