@@ -500,6 +500,7 @@ export type Consent = {
   googleVendors?: string[] // list of Google vendor ids for which the user has opted out
   protocols?: Protocols
   isGpcEnabled?: boolean
+  isAttActive?: boolean
   vendorConsents?: VendorConsents
   purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
   vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
@@ -1870,6 +1871,9 @@ export interface Translations {
   gpc_banner_title?: string
   gpc_banner_description?: string
   gpc_signal_label?: string
+  att_banner_title?: string
+  att_banner_description?: string
+  att_signal_label?: string
   cookies?: string
   cookie?: string
   data_categories?: string
@@ -2654,6 +2658,7 @@ export enum ConsentSource {
 
   // Plugins
   GpcPlugins = 'plugins.gpc',
+  AttPlugins = 'plugins.att',
   OneTrustMigrator = 'plugins.onetrust',
   SourcepointMigrator = 'plugins.sourcepoint',
 
@@ -2760,6 +2765,7 @@ export interface GetConsentRequest {
   googleVendors?: string[]
   collectedAt?: number
   isGpcEnabled?: boolean
+  isAttActive?: boolean
 }
 
 /**
@@ -2824,6 +2830,7 @@ export interface SetConsentRequest {
    */
   googleVendors?: string[]
   isGpcEnabled?: boolean
+  isAttActive?: boolean
   vendorConsents?: VendorConsents
   context?: PermitRightContext
 
@@ -5666,6 +5673,9 @@ export interface BaseStaticContentConfig {
   gpc_banner_title?: string
   gpc_banner_description?: string
   gpc_signal_label?: string
+  att_banner_title?: string
+  att_banner_description?: string
+  att_signal_label?: string
   marketing?: string
   maximum_storage?: string
   no_rights_available?: string
