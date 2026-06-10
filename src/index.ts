@@ -5150,6 +5150,25 @@ export interface VendorExperienceSubpageContentConfig {
 }
 
 /**
+ * GPC Banner Experience Content Configuration
+ */
+
+export interface GpcBannerExperienceContentConfig {
+  title?: string
+  description?: string
+}
+
+/**
+ * ATT Banner Experience Content Configuration
+ */
+
+export interface AttBannerExperienceContentConfig {
+  title?: string
+  description?: string
+  openSettingsLink?: string
+}
+
+/**
  * Banner Action Button Experience Content Configuration
  */
 
@@ -5178,25 +5197,6 @@ export interface BannerExperienceContentConfig {
   attBanner?: AttBannerExperienceContentConfig
   buttons?: BannerButtonsExperienceContentConfig
   footer?: FooterExperienceContentConfig
-}
-
-/**
- * GPC Banner Experience Content Configuration
- */
-
-export interface GpcBannerExperienceContentConfig {
-  title?: string
-  description?: string
-}
-
-/**
- * ATT Banner Experience Content Configuration
- */
-
-export interface AttBannerExperienceContentConfig {
-  title?: string
-  description?: string
-  openSettingsLink?: string
 }
 
 /**
