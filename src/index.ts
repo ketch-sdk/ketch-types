@@ -1873,6 +1873,7 @@ export interface Translations {
   gpc_signal_label?: string
   att_banner_title?: string
   att_banner_description?: string
+  att_banner_open_settings_link?: string
   att_signal_label?: string
   cookies?: string
   cookie?: string
@@ -5715,6 +5716,7 @@ export interface BaseStaticContentConfig {
   att_banner_title?: string
   att_banner_description?: string
   att_signal_label?: string
+  att_open_settings_link?: string
   marketing?: string
   maximum_storage?: string
   no_rights_available?: string
