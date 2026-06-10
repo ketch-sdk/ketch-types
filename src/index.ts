@@ -3770,12 +3770,24 @@ export interface BannerModalFooterThemeConfig {
  * Signal Notices Theme Configuration
  */
 
+export interface SignalNoticesTitleThemeConfig {
+  text?: TextThemeConfig
+}
+
+export interface SignalNoticesDescriptionThemeConfig {
+  text?: TextThemeConfig
+}
+
+export interface SignalNoticesLinkThemeConfig {
+  text?: TextThemeConfig
+}
+
 export interface SignalNoticesThemeConfig {
   fill?: ColorThemeConfig
   outline?: ColorThemeConfig
-  title?: TextThemeConfig
-  description?: TextThemeConfig
-  link?: TextThemeConfig
+  title?: SignalNoticesTitleThemeConfig
+  description?: SignalNoticesDescriptionThemeConfig
+  link?: SignalNoticesLinkThemeConfig
   showLinkArrow?: boolean
   cornerRadius?: number
 }
