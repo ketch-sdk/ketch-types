@@ -4567,6 +4567,17 @@ export enum SwitchButtonDisplay {
   WhenLegalBasisDiffers = 'whenLegalBasisDiffers',
 }
 
+export enum LegitimateInterestSwitchButtonLabelDisplay {
+  SwitchButton = 'switchButton',
+  Checkbox = 'checkbox',
+  ActionButton = 'actionButton',
+}
+
+export interface LegitimateInterestSwitchButtonLabelLayoutConfig {
+  display?: LegitimateInterestSwitchButtonLabelDisplay
+  useDefaultText?: boolean
+}
+
 export interface SwitchButtonsExperienceLayoutConfig {
   visible?: boolean
   display?: SwitchButtonDisplay
@@ -4761,6 +4772,9 @@ export interface ModalPurposeListExperienceLayoutConfig {
   purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
   gpcSignal?: GpcSignalExperienceLayoutConfig
   attSignal?: AttSignalExperienceLayoutConfig
+  consentSwitchButtonLabel?: SwitchButtonsExperienceLayoutConfig
+  legitimateInterestSwitchButtonLabel?: LegitimateInterestSwitchButtonLabelLayoutConfig
+  legitimateInterestStatusSwitchLabels?: SwitchButtonsExperienceLayoutConfig
 }
 
 /**
@@ -4873,6 +4887,9 @@ export interface PurposesTabListExperienceLayoutConfig {
   purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
   gpcSignal?: GpcSignalExperienceLayoutConfig
   attSignal?: AttSignalExperienceLayoutConfig
+  consentSwitchButtonLabel?: SwitchButtonsExperienceLayoutConfig
+  legitimateInterestSwitchButtonLabel?: LegitimateInterestSwitchButtonLabelLayoutConfig
+  legitimateInterestStatusSwitchLabels?: SwitchButtonsExperienceLayoutConfig
 }
 
 /**
@@ -5255,6 +5272,9 @@ export interface ModalPurposeListExperienceContentConfig {
   vendors?: VendorExperienceSubpageContentConfig
   gpcSignal?: GpcSignalExperienceContentConfig
   attSignal?: AttSignalExperienceContentConfig
+  consentSwitchButtonLabel?: { labelText?: string }
+  legitimateInterestSwitchButtonLabel?: { labelText?: string }
+  legitimateInterestStatusSwitchLabels?: SwitchButtonsExperienceContentConfig
 }
 
 /**
@@ -5351,6 +5371,9 @@ export interface PurposesTabListExperienceContentConfig {
   vendors?: VendorExperienceSubpageContentConfig
   gpcSignal?: GpcSignalExperienceContentConfig
   attSignal?: AttSignalExperienceContentConfig
+  consentSwitchButtonLabel?: { labelText?: string }
+  legitimateInterestSwitchButtonLabel?: { labelText?: string }
+  legitimateInterestStatusSwitchLabels?: SwitchButtonsExperienceContentConfig
 }
 
 /**
