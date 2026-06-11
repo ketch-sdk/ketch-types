@@ -1873,6 +1873,7 @@ export interface Translations {
   gpc_signal_label?: string
   att_banner_title?: string
   att_banner_description?: string
+  att_banner_open_settings_link?: string
   att_signal_label?: string
   cookies?: string
   cookie?: string
@@ -3767,22 +3768,28 @@ export interface BannerModalFooterThemeConfig {
 }
 
 /**
- * GPC Signal Theme Configuration
+ * Signal Notices Theme Configuration
  */
 
-export interface GpcBannerTitleThemeConfig {
+export interface SignalNoticesTitleThemeConfig {
   text?: TextThemeConfig
 }
 
-export interface GpcBannerDescriptionThemeConfig {
+export interface SignalNoticesDescriptionThemeConfig {
   text?: TextThemeConfig
 }
 
-export interface GpcBannerThemeConfig {
+export interface SignalNoticesLinkThemeConfig {
+  text?: TextThemeConfig
+}
+
+export interface SignalNoticesThemeConfig {
   fill?: ColorThemeConfig
   outline?: ColorThemeConfig
-  title?: GpcBannerTitleThemeConfig
-  description?: GpcBannerDescriptionThemeConfig
+  title?: SignalNoticesTitleThemeConfig
+  description?: SignalNoticesDescriptionThemeConfig
+  link?: SignalNoticesLinkThemeConfig
+  showLinkArrow?: boolean
   cornerRadius?: number
 }
 
@@ -3939,7 +3946,7 @@ export interface BannerThemeConfig {
   container?: BannerContainerThemeConfig
   header?: HeaderThemeConfig
   description?: BannerDescriptionThemeConfig
-  gpcBanner?: GpcBannerThemeConfig
+  gpcBanner?: SignalNoticesThemeConfig
   buttons?: BannerButtonsThemeConfig
   footer?: BannerModalFooterThemeConfig
 }
@@ -3984,7 +3991,7 @@ export interface ModalThemeConfig {
   container?: ModalContainerThemeConfig
   header?: HeaderThemeConfig
   description?: ModalDescriptionThemeConfig
-  gpcBanner?: GpcBannerThemeConfig
+  gpcBanner?: SignalNoticesThemeConfig
   purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
   footer?: BannerModalFooterThemeConfig
@@ -4155,7 +4162,7 @@ export interface PreferencePrivacyPolicyTabThemeConfig {
 
 export interface PreferencePurposesTabThemeConfig {
   header?: PageTextThemeConfig
-  gpcBanner?: GpcBannerThemeConfig
+  gpcBanner?: SignalNoticesThemeConfig
   purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
   footer?: PreferenceFooterThemeConfig
@@ -4617,29 +4624,70 @@ export interface TextBlockExperienceLayoutConfig {
   title?: TextBlockTitleExperienceLayoutConfig
 }
 
-export interface GpcBannerTitleExperienceLayoutConfig {
+/**
+ * Signal Notices Experience Layout Configuration
+ */
+
+export interface SignalNoticesTitleExperienceLayoutConfig {
   useDefaultText?: boolean
 }
 
-export interface GpcBannerDescriptionExperienceLayoutConfig {
+export interface SignalNoticesDescriptionExperienceLayoutConfig {
   useDefaultText?: boolean
   visible?: boolean
 }
+
+export interface SignalNoticesOpenSettingsLinkExperienceLayoutConfig {
+  useDefaultText?: boolean
+  visible?: boolean
+}
+
+/**
+ * GPC Banner Experience Layout Configuration
+ */
 
 export interface GpcBannerExperienceLayoutConfig {
   visible?: boolean
-  title?: GpcBannerTitleExperienceLayoutConfig
-  description?: GpcBannerDescriptionExperienceLayoutConfig
+  title?: SignalNoticesTitleExperienceLayoutConfig
+  description?: SignalNoticesDescriptionExperienceLayoutConfig
 }
 
-export interface GpcSignalLabelExperienceLayoutConfig {
+/**
+ * ATT Banner Experience Layout Configuration
+ */
+
+export interface AttBannerExperienceLayoutConfig {
+  visible?: boolean
+  title?: SignalNoticesTitleExperienceLayoutConfig
+  description?: SignalNoticesDescriptionExperienceLayoutConfig
+  openSettingsLink?: SignalNoticesOpenSettingsLinkExperienceLayoutConfig
+}
+
+/**
+ * Privacy Protocols Experience Layout Configuration
+ */
+
+export interface PrivacyProtocolLabelExperienceLayoutConfig {
   visible?: boolean
   useDefaultText?: boolean
 }
 
+/**
+ * GPC Signal Experience Layout Configuration
+ */
+
 export interface GpcSignalExperienceLayoutConfig {
   disableSwitch?: boolean
-  label?: GpcSignalLabelExperienceLayoutConfig
+  label?: PrivacyProtocolLabelExperienceLayoutConfig
+}
+
+/**
+ * ATT Signal Experience Layout Configuration
+ */
+
+export interface AttSignalExperienceLayoutConfig {
+  disableSwitch?: boolean
+  label?: PrivacyProtocolLabelExperienceLayoutConfig
 }
 
 export interface BulkActionButtonsExperienceLayoutConfig {
@@ -4685,6 +4733,7 @@ export interface BannerButtonsExperienceLayoutConfig {
 export interface BannerExperienceLayoutConfig {
   header?: HeaderExperienceLayoutConfig
   gpcBanner?: GpcBannerExperienceLayoutConfig
+  attBanner?: AttBannerExperienceLayoutConfig
   buttons?: BannerButtonsExperienceLayoutConfig
   footer?: BannerModalFooterExperienceLayoutConfig
 }
@@ -4711,6 +4760,7 @@ export interface ModalPurposeListExperienceLayoutConfig {
   vendors?: VendorExperienceSubpageLayoutConfig
   purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
   gpcSignal?: GpcSignalExperienceLayoutConfig
+  attSignal?: AttSignalExperienceLayoutConfig
 }
 
 /**
@@ -4721,6 +4771,7 @@ export interface ModalExperienceLayoutConfig {
   header?: HeaderExperienceLayoutConfig
   description?: TextBlockExperienceLayoutConfig
   gpcBanner?: GpcBannerExperienceLayoutConfig
+  attBanner?: AttBannerExperienceLayoutConfig
   purposeListHeader?: ModalListHeaderExperienceLayoutConfig
   purposeList?: ModalPurposeListExperienceLayoutConfig
   footer?: BannerModalFooterExperienceLayoutConfig
@@ -4821,6 +4872,7 @@ export interface PurposesTabListExperienceLayoutConfig {
   vendors?: VendorExperienceSubpageLayoutConfig
   purposes?: (PurposeExperienceLayoutConfig | PurposeStackExperienceLayoutConfig)[]
   gpcSignal?: GpcSignalExperienceLayoutConfig
+  attSignal?: AttSignalExperienceLayoutConfig
 }
 
 /**
@@ -4844,6 +4896,7 @@ export interface ConfirmationMessageExperienceLayoutConfig {
 export interface PreferencePurposesTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
   gpcBanner?: GpcBannerExperienceLayoutConfig
+  attBanner?: AttBannerExperienceLayoutConfig
   purposeListHeader?: PurposesTabListHeaderExperienceLayoutConfig
   purposeList?: PurposesTabListExperienceLayoutConfig
   actionButtonUseDefaultText?: boolean
@@ -5110,6 +5163,25 @@ export interface VendorExperienceSubpageContentConfig {
 }
 
 /**
+ * GPC Banner Experience Content Configuration
+ */
+
+export interface GpcBannerExperienceContentConfig {
+  title?: string
+  description?: string
+}
+
+/**
+ * ATT Banner Experience Content Configuration
+ */
+
+export interface AttBannerExperienceContentConfig {
+  title?: string
+  description?: string
+  openSettingsLink?: string
+}
+
+/**
  * Banner Action Button Experience Content Configuration
  */
 
@@ -5135,29 +5207,33 @@ export interface BannerExperienceContentConfig {
   header?: HeaderExperienceContentConfig
   description?: string
   gpcBanner?: GpcBannerExperienceContentConfig
+  attBanner?: AttBannerExperienceContentConfig
   buttons?: BannerButtonsExperienceContentConfig
   footer?: FooterExperienceContentConfig
 }
 
 /**
- * GPC Banner Experience Content Configuration
+ * Privacy Protocols Experience Content Configuration
  */
 
-export interface GpcBannerExperienceContentConfig {
-  title?: string
-  description?: string
+export interface PrivacyProtocolLabelExperienceContentConfig {
+  text?: string
 }
 
 /**
  * GPC Signal Experience Content Configuration
  */
 
-export interface GpcSignalLabelExperienceContentConfig {
-  text?: string
+export interface GpcSignalExperienceContentConfig {
+  label?: PrivacyProtocolLabelExperienceContentConfig
 }
 
-export interface GpcSignalExperienceContentConfig {
-  label?: GpcSignalLabelExperienceContentConfig
+/**
+ * ATT Signal Experience Content Configuration
+ */
+
+export interface AttSignalExperienceContentConfig {
+  label?: PrivacyProtocolLabelExperienceContentConfig
 }
 
 /**
@@ -5178,6 +5254,7 @@ export interface ModalPurposeListExperienceContentConfig {
   switchButtonLabels?: SwitchButtonsExperienceContentConfig
   vendors?: VendorExperienceSubpageContentConfig
   gpcSignal?: GpcSignalExperienceContentConfig
+  attSignal?: AttSignalExperienceContentConfig
 }
 
 /**
@@ -5188,6 +5265,7 @@ export interface ModalExperienceContentConfig {
   header?: HeaderExperienceContentConfig
   description?: TextBlockExperienceContentConfig
   gpcBanner?: GpcBannerExperienceContentConfig
+  attBanner?: AttBannerExperienceContentConfig
   purposeListHeader?: ModalListHeaderExperienceContentConfig
   purposeList?: ModalPurposeListExperienceContentConfig
   footer?: FooterExperienceContentConfig
@@ -5272,6 +5350,7 @@ export interface PurposesTabListExperienceContentConfig {
   switchButtonLabels?: SwitchButtonsExperienceContentConfig
   vendors?: VendorExperienceSubpageContentConfig
   gpcSignal?: GpcSignalExperienceContentConfig
+  attSignal?: AttSignalExperienceContentConfig
 }
 
 /**
@@ -5281,6 +5360,7 @@ export interface PurposesTabListExperienceContentConfig {
 export interface PreferencePurposesTabExperienceContentConfig {
   header?: PreferenceTabHeaderExperienceContentConfig
   gpcBanner?: GpcBannerExperienceContentConfig
+  attBanner?: AttBannerExperienceContentConfig
   purposeListHeader?: PurposesTabListHeaderExperienceContentConfig
   purposeList?: PurposesTabListExperienceContentConfig
   actionButtonText?: string
@@ -5635,6 +5715,7 @@ export interface BaseStaticContentConfig {
   gpc_signal_label?: string
   att_banner_title?: string
   att_banner_description?: string
+  att_banner_open_settings_link?: string
   att_signal_label?: string
   marketing?: string
   maximum_storage?: string
