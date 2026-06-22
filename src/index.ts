@@ -861,7 +861,7 @@ export interface Purpose {
   canonicalPurposeCodes?: string[]
 
   ageBands?: AgeBand[]
-  showLegitimateInterest?: boolean
+  allowsLegitimateInterest?: boolean
 }
 
 /**
