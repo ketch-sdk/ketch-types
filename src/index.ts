@@ -2128,6 +2128,9 @@ export interface Translations {
   ex_i_worked_in_the_it_department_in_2015?: string
   opted_in?: string
   opted_out?: string
+  object_to_legitimate_interest?: string
+  non_objectable?: string
+  not_objected?: string
   rights_tab_porthole_redirect_footer?: string
   rights_tab_porthole_redirect_footer_alt?: string
   click_here?: string
