@@ -2126,6 +2126,8 @@ export interface Translations {
   select_a_relationship?: string
   tell_us_about_your_relationship_to_us?: string
   ex_i_worked_in_the_it_department_in_2015?: string
+  consent?: string
+  legitimate_interest?: string
   opted_in?: string
   opted_out?: string
   object_to_legitimate_interest?: string
@@ -5719,6 +5721,7 @@ export interface BaseStaticContentConfig {
   category?: string
   click_here?: string
   cookie?: string
+  consent?: string
   cookies?: string
   data_categories?: string
   data_category?: string
@@ -5736,6 +5739,7 @@ export interface BaseStaticContentConfig {
   i_am_a_an?: string
   legal_basis?: string
   legal_text?: string
+  legitimate_interest?: string
   gpc_banner_title?: string
   gpc_banner_description?: string
   gpc_signal_label?: string
