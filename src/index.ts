@@ -5743,6 +5743,8 @@ export interface BaseStaticContentConfig {
   marketing?: string
   maximum_storage?: string
   no_rights_available?: string
+  non_objectable?: string
+  not_objected?: string
   object_to_legitimate_interest?: string
   of?: string
   off?: string
