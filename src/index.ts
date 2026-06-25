@@ -2133,6 +2133,7 @@ export interface Translations {
   object_to_legitimate_interest?: string
   non_objectable?: string
   not_objected?: string
+  objected?: string
   rights_tab_porthole_redirect_footer?: string
   rights_tab_porthole_redirect_footer_alt?: string
   click_here?: string
@@ -5753,6 +5754,7 @@ export interface BaseStaticContentConfig {
   non_objectable?: string
   not_objected?: string
   object_to_legitimate_interest?: string
+  objected?: string
   of?: string
   off?: string
   on?: string
