@@ -2877,6 +2877,8 @@ export interface SetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
+  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
+  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
   context?: PermitRightContext
 }
 
