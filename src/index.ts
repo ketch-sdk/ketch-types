@@ -2128,6 +2128,8 @@ export interface Translations {
   ex_i_worked_in_the_it_department_in_2015?: string
   consent?: string
   legitimate_interest?: string
+  legitimate_interest_objected?: string
+  legitimate_interest_non_objectable?: string
   opted_in?: string
   opted_out?: string
   object_to_legitimate_interest?: string
@@ -5741,6 +5743,8 @@ export interface BaseStaticContentConfig {
   legal_basis?: string
   legal_text?: string
   legitimate_interest?: string
+  legitimate_interest_objected?: string
+  legitimate_interest_non_objectable?: string
   gpc_banner_title?: string
   gpc_banner_description?: string
   gpc_signal_label?: string
