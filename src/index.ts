@@ -481,6 +481,10 @@ export enum LegitimateInterestStatus {
   OBJECTED = 'objected',
 }
 
+export type PurposeLegitimateInterests = { [key: string]: LegitimateInterestStatus }
+export type VendorLegitimateInterest = { [key: string]: LegitimateInterestStatus }
+export type VendorLegitimateInterests = { [key: string]: VendorLegitimateInterest }
+
 /**
  * Consent
  */
@@ -502,8 +506,8 @@ export type Consent = {
   isGpcEnabled?: boolean
   isAttActive?: boolean
   vendorConsents?: VendorConsents
-  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
-  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
+  purposeLegitimateInterests?: PurposeLegitimateInterests
+  vendorLegitimateInterests?: VendorLegitimateInterests
 }
 
 /**
@@ -2810,8 +2814,8 @@ export interface GetConsentResponse {
   // Was this consent set interactively
   interactive?: boolean
 
-  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
-  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
+  purposeLegitimateInterests?: PurposeLegitimateInterests
+  vendorLegitimateInterests?: VendorLegitimateInterests
 }
 
 /**
@@ -2846,8 +2850,8 @@ export interface SetConsentRequest {
   // Was this consent set interactively
   interactive?: boolean
 
-  purposeLegitimateInterests?: { [key: string]: LegitimateInterestStatus }
-  vendorLegitimateInterests?: { [key: string]: { [key: string]: LegitimateInterestStatus } }
+  purposeLegitimateInterests?: PurposeLegitimateInterests
+  vendorLegitimateInterests?: VendorLegitimateInterests
 }
 
 /**
@@ -2877,6 +2881,8 @@ export interface SetConsentResponse {
   collectedAt?: number
   protocols?: Protocols
   vendorConsents?: VendorConsents
+  purposeLegitimateInterests?: PurposeLegitimateInterests
+  vendorLegitimateInterests?: VendorLegitimateInterests
   context?: PermitRightContext
 }
 
