@@ -3857,12 +3857,7 @@ export interface SwitchButtonsThemeConfig {
  * Purpose List Theme Configuration
  */
 
-/**
- * Distinct from ActionButtonThemeConfig, which is single-state (e.g. acceptAllButton,
- * rejectAllButton) — the purpose list action button (legitimate interest control) needs
- * separate selected/unselected states, so it gets its own type rather than reshaping the
- * single-state one and breaking its other consumers.
- */
+/** Separate from ActionButtonThemeConfig (single-state) since this needs selected/unselected states. */
 export interface PurposeListActionButtonStateThemeConfig {
   background?: ColorThemeConfig
   outline?: ColorThemeConfig
