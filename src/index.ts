@@ -3857,9 +3857,28 @@ export interface SwitchButtonsThemeConfig {
  * Purpose List Theme Configuration
  */
 
+/** Separate from ActionButtonThemeConfig (single-state) since this needs selected/unselected states. */
+export interface PurposeListActionButtonStateThemeConfig {
+  background?: ColorThemeConfig
+  outline?: ColorThemeConfig
+  text?: TextThemeConfig
+}
+
+export interface PurposeListActionButtonThemeConfig {
+  selected?: PurposeListActionButtonStateThemeConfig
+  unselected?: PurposeListActionButtonStateThemeConfig
+  iconVisible?: boolean
+  useDefaultIcon?: boolean
+  iconColor?: ColorThemeConfig
+  iconUrl?: string
+  cornerRadius?: number
+}
+
 export interface PurposeListThemeConfig {
   purposeListItems?: ListItemsThemeConfig
   switchButtons?: SwitchButtonsThemeConfig
+  checkbox?: CheckboxesThemeConfig
+  actionButton?: PurposeListActionButtonThemeConfig
 }
 
 /**
