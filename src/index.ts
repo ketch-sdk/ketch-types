@@ -889,6 +889,22 @@ export interface PluginOptions {
   config?: { [key: string]: any }
 }
 
+/**
+ * TranscendPluginOptions
+ *
+ * Configuration for the Transcend Consent Migrator plugin. Reads consent from
+ * Transcend's airgap.js CMP (cookie with localStorage fallback) and migrates it
+ * into Ketch.
+ */
+export interface TranscendPluginOptions extends PluginOptions {
+  config?: {
+    // Exact cookie name written by Transcend (e.g. `tcm` or `tcm-{sha256-hash}`).
+    cookieName: string
+    // Optional localStorage key used as a fallback read source (e.g. `tcm` or `tcmConsent`).
+    lsoKey?: string
+  }
+}
+
 /*
  * CanonicalPurpose
  */
@@ -2674,6 +2690,7 @@ export enum ConsentSource {
   AttPlugins = 'plugins.att',
   OneTrustMigrator = 'plugins.onetrust',
   SourcepointMigrator = 'plugins.sourcepoint',
+  TranscendMigrator = 'plugins.transcend',
 
   // Experience actions
   BannerSaveCurrentState = 'banner.saveCurrentState',
