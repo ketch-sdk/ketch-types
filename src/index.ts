@@ -1331,7 +1331,10 @@ export interface Right {
 
   // the data subject types for which the right is relevant
   dataSubjectTypeCodes?: string[]
-  //scoped: true means only the data subject types in dataSubjectTypeCodes may exercise this right; false/undefined (default) means all may.
+  /**
+   * scoped: true means only the data subject types in dataSubjectTypeCodes may exercise this right;
+   * false/undefined (default) means all may.
+   */
   scoped?: boolean
   
   canonicalRightCode: string
