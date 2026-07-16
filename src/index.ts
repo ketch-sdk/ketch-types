@@ -95,6 +95,7 @@ export enum ConsentExperienceType {
  * invokeRight = the right was invoked
  * close = the close/exit button was clicked
  * willNotShow = the experience was skipped
+ * setSubscriptions = the subscriptions were set
  *
  * @enum
  */
