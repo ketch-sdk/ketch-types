@@ -1336,7 +1336,7 @@ export interface Right {
    * false/undefined (default) means all may.
    */
   scoped?: boolean
-  
+
   canonicalRightCode: string
 }
 
