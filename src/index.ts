@@ -1328,11 +1328,11 @@ export interface Right {
   name: string
   description: string
 
-  /**
-   * the data subject types for which the right is relevant. If this list is empty then the right applies to all
-   * data subject types
-   */
+  // the data subject types for which the right is relevant
   dataSubjectTypeCodes?: string[]
+  //scoped: true means only the data subject types in dataSubjectTypeCodes may exercise this right; false/undefined (default) means all may.
+  scoped?: boolean
+  
   canonicalRightCode: string
 }
 
@@ -1516,6 +1516,11 @@ export interface DataSubjectType {
    * requiresUserInput is true if additional information must be requested to describe the data subject relation
    */
   requiresUserInput: boolean
+
+  /**
+   * userInputLabel is the resolved label for the additional-information field; empty uses the client default.
+   */
+  userInputLabel?: string
 }
 
 /**
@@ -1556,6 +1561,12 @@ export interface ConfigurationV2 {
    * Unique identifier for this configuration object
    */
   id?: string
+
+  /**
+   * Rights for each of the organization's jurisdictions, keyed by jurisdiction code (e.g.
+   * "US_California"); additive alongside `rights`, which stays the resolved jurisdiction's rights.
+   */
+  rightsByJurisdiction?: { [jurisdiction: string]: Right[] }
 
   /**
    * Organization this configuration belongs to
