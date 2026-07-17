@@ -3618,6 +3618,9 @@ export interface SubscriptionConfiguration {
 export interface ProfileAttributeValue {
   value: string
   label?: string
+  labelTranslations?: { [key: string]: string }
+  description?: string
+  descriptionTranslations?: { [key: string]: string }
   sortOrder?: number
 }
 
@@ -3664,6 +3667,7 @@ export interface ProfileCollectionItem {
   code: string
   id?: string
   order: number
+  required?: boolean
 }
 
 /**
@@ -3674,6 +3678,8 @@ export interface ProfileCollectionSection {
   name: string
   displayName: string
   displayNameTranslations?: { [key: string]: string }
+  description?: string
+  descriptionTranslations?: { [key: string]: string }
   items: ProfileCollectionItem[]
   order: number
 }
