@@ -95,6 +95,7 @@ export enum ConsentExperienceType {
  * invokeRight = the right was invoked
  * close = the close/exit button was clicked
  * willNotShow = the experience was skipped
+ * setSubscriptions = the subscriptions were set
  *
  * @enum
  */
@@ -1115,6 +1116,15 @@ export interface JIT {
 }
 
 /**
+ * Selects what the runtime Data Subject Details block renders; undefined is treated as
+ * LOCATION_AND_SUBJECT_TYPE.
+ */
+export enum DataSubjectDetailsMode {
+  LOCATION_AND_SUBJECT_TYPE = 'locationAndSubjectType',
+  SUBJECT_TYPE_ONLY = 'subjectTypeOnly',
+}
+
+/**
  * RightsTab
  */
 export interface RightsTab {
@@ -1151,6 +1161,8 @@ export interface RightsTab {
    * Recaptcha Enabled
    */
   recaptchaEnabled?: boolean
+
+  dataSubjectDetailsMode?: DataSubjectDetailsMode
 }
 
 /**
@@ -1328,11 +1340,14 @@ export interface Right {
   name: string
   description: string
 
-  /**
-   * the data subject types for which the right is relevant. If this list is empty then the right applies to all
-   * data subject types
-   */
+  // the data subject types for which the right is relevant
   dataSubjectTypeCodes?: string[]
+  /**
+   * true means only the data subject types in dataSubjectTypeCodes may exercise this right;
+   * false/undefined (default) means all may.
+   */
+  scopedBySubjectType?: boolean
+
   canonicalRightCode: string
 }
 
@@ -1516,6 +1531,16 @@ export interface DataSubjectType {
    * requiresUserInput is true if additional information must be requested to describe the data subject relation
    */
   requiresUserInput: boolean
+
+  /**
+   * userInputLabel is the resolved label for the additional-information field; empty uses the client default.
+   */
+  userInputLabel?: string
+
+  /**
+   * Marks this data subject type as an authorized agent; AA-specific behaviors gate on this flag.
+   */
+  isAuthorizedAgent?: boolean
 }
 
 /**
@@ -1556,6 +1581,17 @@ export interface ConfigurationV2 {
    * Unique identifier for this configuration object
    */
   id?: string
+
+  /**
+   * Rights for each of the organization's jurisdictions, keyed by jurisdiction code (e.g.
+   * "US_California"); additive alongside `rights`, which stays the resolved jurisdiction's rights.
+   */
+  rightsByJurisdiction?: { [jurisdiction: string]: Right[] }
+
+  /**
+   * True iff any right in any jurisdiction is scoped by subject type.
+   */
+  hasSubjectTypeScopedRights?: boolean
 
   /**
    * Organization this configuration belongs to
