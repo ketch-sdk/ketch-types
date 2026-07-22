@@ -1116,15 +1116,6 @@ export interface JIT {
 }
 
 /**
- * Selects what the runtime Data Subject Details block renders; undefined is treated as
- * LOCATION_AND_SUBJECT_TYPE.
- */
-export enum DataSubjectDetailsMode {
-  LOCATION_AND_SUBJECT_TYPE = 'locationAndSubjectType',
-  SUBJECT_TYPE_ONLY = 'subjectTypeOnly',
-}
-
-/**
  * RightsTab
  */
 export interface RightsTab {
@@ -1162,7 +1153,8 @@ export interface RightsTab {
    */
   recaptchaEnabled?: boolean
 
-  dataSubjectDetailsMode?: DataSubjectDetailsMode
+  showLocation?: boolean
+  showSubjectType?: boolean
 }
 
 /**
