@@ -4438,8 +4438,7 @@ export interface PreferenceRequestsTabThemeConfig {
  */
 
 export interface PreferenceProfileTabThemeConfig {
-  pageTitle?: TextThemeConfig
-  description?: TextThemeConfig
+  header?: PageTextThemeConfig
 }
 
 /**
