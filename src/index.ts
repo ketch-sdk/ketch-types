@@ -4434,6 +4434,15 @@ export interface PreferenceRequestsTabThemeConfig {
 }
 
 /**
+ * Preference Center Profile Tab Theme Configuration
+ */
+
+export interface PreferenceProfileTabThemeConfig {
+  pageTitle?: TextThemeConfig
+  description?: TextThemeConfig
+}
+
+/**
  * Preference Center Tabs Theme Configuration
  */
 
@@ -4443,6 +4452,7 @@ export interface PreferenceTabsThemeConfig {
   purposes?: PreferencePurposesTabThemeConfig
   subscriptions?: PreferenceSubscriptionsTabThemeConfig
   requests?: PreferenceRequestsTabThemeConfig
+  profile?: PreferenceProfileTabThemeConfig
 }
 
 /**
