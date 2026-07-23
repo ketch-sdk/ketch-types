@@ -3121,8 +3121,15 @@ export interface Ketch {
    * @param reason is a string representing the reason the experience was closed
    * @param consent is an optional object containing the consent state to set IF reason is setConsent
    * @param consentSource is an optional string representing the source of the consent
+   * @param experienceID is an optional id of the experience that was closed, used to track which of
+   * multiple concurrently-displayed experiences is being closed
    */
-  experienceClosed(reason: ExperienceClosedReason, consent?: Consent, consentSource?: ConsentSource): Promise<void>
+  experienceClosed(
+    reason: ExperienceClosedReason,
+    consent?: Consent,
+    consentSource?: ConsentSource,
+    experienceID?: string,
+  ): Promise<void>
 
   /**
    * Notify that the experience will be changed to a different format
