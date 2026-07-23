@@ -4708,6 +4708,7 @@ export interface VendorExperienceSubpageLayoutConfig {
   visible?: boolean
   includeOtherVendors?: boolean
   otherVendorIds?: string[] // System IDs
+  legitimateInterestVisible?: boolean
   link?: { useDefaultText?: boolean }
 }
 
