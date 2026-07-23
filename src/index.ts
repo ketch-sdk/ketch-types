@@ -4469,6 +4469,7 @@ export interface PreferenceRequestsTabThemeConfig {
 
 export interface PreferenceProfileTabThemeConfig {
   header?: PageTextThemeConfig
+  confirmationMessage?: ConfirmationMessageThemeConfig
 }
 
 /**
