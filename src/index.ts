@@ -3953,9 +3953,30 @@ export interface CheckboxThemeConfig {
 }
 
 export interface CheckboxesThemeConfig {
+  groupTitle?: TextThemeConfig
+  groupDescription?: TextThemeConfig
   selected?: CheckboxThemeConfig
   unselected?: CheckboxThemeConfig
   error?: CheckboxThemeConfig
+}
+
+/**
+ * Radio Buttons Theme Configuration
+ */
+
+export interface RadioThemeConfig {
+  background?: ColorThemeConfig
+  thumb?: ColorThemeConfig
+  label?: ColorThemeConfig
+  outline?: ColorThemeConfig
+}
+
+export interface RadioButtonsThemeConfig {
+  groupTitle?: TextThemeConfig
+  groupDescription?: TextThemeConfig
+  selected?: RadioThemeConfig
+  unselected?: RadioThemeConfig
+  error?: RadioThemeConfig
 }
 
 /**
@@ -4159,6 +4180,7 @@ export interface NavigationIconsThemeConfig {
   purposes?: ImageThemeConfig
   subscriptions?: ImageThemeConfig
   requests?: ImageThemeConfig
+  profile?: ImageThemeConfig
 }
 
 export interface PreferenceNavigationThemeConfig {
@@ -4389,6 +4411,7 @@ export interface RightFormThemeConfig {
   dividers?: FormDividersThemeConfig
   fields?: FormFieldsThemeConfig
   checkboxes?: CheckboxesThemeConfig
+  radioButtons?: RadioButtonsThemeConfig
 }
 
 export interface RequestsTabRightFormThemeConfig {
