@@ -610,6 +610,18 @@ export type InvokeRightEvent = {
   right: string
   subject: DataSubject
   recaptchaToken?: string
+
+  /**
+   * Overrides the boot-resolved jurisdiction for this invocation only, e.g. from a user-selected
+   * location. Omitted ⇒ the host falls back to its boot-resolved jurisdiction.
+   */
+  jurisdictionCode?: string
+
+  /**
+   * Overrides the boot-resolved region for this invocation only. Omitted ⇒ the host falls back
+   * to its boot-resolved region, if any.
+   */
+  regionCode?: string
 }
 
 /**
@@ -3182,6 +3194,13 @@ export interface Ketch {
    * Get the jurisdiction
    */
   getJurisdiction(): Promise<string>
+
+  /**
+   * Get the jurisdiction configured for a region, or undefined if the region maps to none.
+   *
+   * @param region The region to resolve, e.g. "US-CA"
+   */
+  getJurisdictionForRegion(region: string): Promise<string | undefined>
 
   /**
    * Get the region information
