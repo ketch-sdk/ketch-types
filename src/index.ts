@@ -4402,9 +4402,20 @@ export interface RequestsTabRightsListThemeConfig {
   item?: RightsListItemThemeConfig
 }
 
+/**
+ * Preference Center Requests Tab Home View Data Subject Details Theme Configuration
+ */
+
+export interface RequestsTabDataSubjectDetailsThemeConfig {
+  title?: TextThemeConfig
+  description?: TextThemeConfig
+  fields?: FormFieldsThemeConfig
+}
+
 export interface RequestsTabHomeThemeConfig {
   header?: PageTextThemeConfig
   dsrPortalLink?: RequestsTabDsrLinkThemeConfig
+  dataSubjectDetails?: RequestsTabDataSubjectDetailsThemeConfig
   rightsList?: RequestsTabRightsListThemeConfig
 }
 
@@ -5184,11 +5195,28 @@ export interface RequestsTabRightsExperienceLayoutConfig {
 }
 
 /**
+ * Preference Center Requests Tab Home Data Subject Details Experience Layout Configuration
+ */
+
+export interface DataSubjectDetailsTextExperienceLayoutConfig {
+  visible?: boolean
+  useDefaultText?: boolean
+}
+
+export interface RequestsTabDataSubjectDetailsExperienceLayoutConfig {
+  title?: DataSubjectDetailsTextExperienceLayoutConfig
+  description?: DataSubjectDetailsTextExperienceLayoutConfig
+  showSubjectType?: boolean
+  showLocation?: boolean
+}
+
+/**
  * Preference Center Requests Tab Home Experience Layout Configuration
  */
 
 export interface RequestsTabHomeExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
+  dataSubjectDetails?: RequestsTabDataSubjectDetailsExperienceLayoutConfig
   rights?: RequestsTabRightsExperienceLayoutConfig
 }
 
@@ -5566,6 +5594,15 @@ export interface RequestsTabDsrLinkExperienceContentConfig {
 }
 
 /**
+ * Preferences Center Requests Tab Home Data Subject Details Experience Content Configuration
+ */
+
+export interface RequestsTabDataSubjectDetailsExperienceContentConfig {
+  title?: string
+  description?: string
+}
+
+/**
  * Preferences Center Requests Tab Home Rights Experience Content Configuration
  */
 
@@ -5584,6 +5621,7 @@ export interface RequestsTabRightsExperienceContentConfig {
 export interface RequestsTabHomeExperienceContentConfig {
   header?: PreferenceTabHeaderExperienceContentConfig
   dsrPortalLink?: RequestsTabDsrLinkExperienceContentConfig
+  dataSubjectDetails?: RequestsTabDataSubjectDetailsExperienceContentConfig
   rights?: RequestsTabRightsExperienceContentConfig
 }
 
