@@ -1964,8 +1964,12 @@ export interface Translations {
   preference_rights_last_name?: string
   preference_rights_email?: string
   preference_rights_country?: string
+  preference_rights_data_subject_details_description_no_location?: string
+  preference_rights_data_subject_details_description_with_location?: string
+  preference_rights_data_subject_details_title?: string
   preference_rights_select_country?: string
   preference_rights_state?: string
+  preference_rights_state_province?: string
   preference_rights_thank_you?: string
   preference_rights_we_have_received?: string
   preference_rights_cancel_button_text?: string
@@ -2213,6 +2217,7 @@ export interface Translations {
   verification?: string
   and?: string
   no_rights_available?: string
+  no_rights_available_for_selected_location?: string
 }
 
 /**
