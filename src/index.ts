@@ -5029,6 +5029,26 @@ export interface PreferenceTabHeaderExperienceLayoutConfig {
 }
 
 /**
+ * Preference Center Profile Tab Header Description Experience Layout Configuration
+ */
+
+export interface ProfileTabHeaderDescriptionExperienceLayoutConfig {
+  visible?: boolean
+}
+
+/**
+ * Preference Center Profile Tab Header Experience Layout Configuration
+ *
+ * Distinct from PreferenceTabHeaderExperienceLayoutConfig because the Profile tab's description
+ * can be hidden, which no other tab's can.
+ */
+
+export interface ProfileTabHeaderExperienceLayoutConfig {
+  title?: TextBlockTitleExperienceLayoutConfig
+  description?: ProfileTabHeaderDescriptionExperienceLayoutConfig
+}
+
+/**
  * Preference Center Purposes Tab List Experience Layout Configuration
  */
 
@@ -5076,6 +5096,17 @@ export interface PreferencePurposesTabExperienceLayoutConfig {
   attBanner?: AttBannerExperienceLayoutConfig
   purposeListHeader?: PurposesTabListHeaderExperienceLayoutConfig
   purposeList?: PurposesTabListExperienceLayoutConfig
+  actionButtonUseDefaultText?: boolean
+  actionButtonAction?: ActionButtonAction
+  confirmationMessage?: ConfirmationMessageExperienceLayoutConfig
+}
+
+/**
+ * Preference Center Profile Tab Experience Layout Configuration
+ */
+
+export interface PreferenceProfileTabExperienceLayoutConfig {
+  header?: ProfileTabHeaderExperienceLayoutConfig
   actionButtonUseDefaultText?: boolean
   actionButtonAction?: ActionButtonAction
   confirmationMessage?: ConfirmationMessageExperienceLayoutConfig
@@ -5271,6 +5302,7 @@ export interface PreferenceExperienceTabsLayoutConfig {
   purposes?: PreferencePurposesTabExperienceLayoutConfig
   subscriptions?: PreferenceSubscriptionsTabExperienceLayoutConfig
   requests?: PreferenceRequestsTabExperienceLayoutConfig
+  profile?: PreferenceProfileTabExperienceLayoutConfig
 }
 
 /**
@@ -5486,6 +5518,7 @@ export interface PreferenceNavigationExperienceContentConfig {
   purposesTitle?: string
   subscriptionsTitle?: string
   requestsTitle?: string
+  profileTitle?: string
 }
 
 /**
@@ -5563,6 +5596,16 @@ export interface PreferencePurposesTabExperienceContentConfig {
   attBanner?: AttBannerExperienceContentConfig
   purposeListHeader?: PurposesTabListHeaderExperienceContentConfig
   purposeList?: PurposesTabListExperienceContentConfig
+  actionButtonText?: string
+  confirmationMessage?: string
+}
+
+/**
+ * Preferences Center Profile Tab Experience Content Configuration
+ */
+
+export interface PreferenceProfileTabExperienceContentConfig {
+  header?: PreferenceTabHeaderExperienceContentConfig
   actionButtonText?: string
   confirmationMessage?: string
 }
@@ -5669,6 +5712,7 @@ export interface PreferenceExperienceTabsContentConfig {
   purposes?: PreferencePurposesTabExperienceContentConfig
   subscriptions?: PreferenceSubscriptionsTabExperienceContentConfig
   requests?: PreferenceRequestsTabExperienceContentConfig
+  profile?: PreferenceProfileTabExperienceContentConfig
 }
 
 /**
