@@ -781,6 +781,15 @@ export enum DeploymentMode {
 }
 
 /**
+ * Rule execution setting for deployment plans.
+ * single_rule - one rule applies; multiple_rules - multiple rules may apply
+ */
+export enum RuleExecutionSetting {
+  SingleRule = 'single_rule',
+  MultipleRules = 'multiple_rules',
+}
+
+/**
  * Deployment
  */
 export interface Deployment {
@@ -788,6 +797,7 @@ export interface Deployment {
   version: number
   isOrchestrationOnly?: boolean
   featureVersion?: DeploymentVersion
+  ruleExecutionSetting?: RuleExecutionSetting
 }
 
 /**
