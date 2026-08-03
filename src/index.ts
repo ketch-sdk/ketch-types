@@ -487,6 +487,17 @@ export type VendorLegitimateInterest = { [key: string]: LegitimateInterestStatus
 export type VendorLegitimateInterests = { [key: string]: VendorLegitimateInterest }
 
 /**
+ * the default consent state applied when no explicit user signal exists
+ */
+export type DefaultConsentState = 'opted_in' | 'opted_out' | 'none'
+
+/**
+ * the default legitimate interest state applied when no explicit user signal exists.
+ * Not LegitimateInterestStatus — this is the literal backend value ('none', not 'not_established').
+ */
+export type DefaultLegitimateInterestState = 'established' | 'none'
+
+/**
  * Consent
  */
 export type Consent = {
@@ -889,6 +900,30 @@ export interface Purpose {
 
   ageBands?: AgeBand[]
   allowsLegitimateInterest?: boolean
+
+  /**
+   * whether the consent toggle should be shown for this purpose
+   */
+  showConsentToggle?: boolean
+
+  /**
+   * whether the legitimate interest toggle should be shown for this purpose
+   */
+  showLegitimateInterestToggle?: boolean
+
+  /**
+   * whether the user is allowed to signal a consent preference for this purpose
+   */
+  allowConsentSignal?: boolean
+
+  /**
+   * whether the user is allowed to signal a legitimate interest preference for this purpose
+   */
+  allowLegitimateInterestSignal?: boolean
+
+  defaultConsentState?: DefaultConsentState
+
+  defaultLegitimateInterestState?: DefaultLegitimateInterestState
 }
 
 /**
@@ -1520,6 +1555,30 @@ export interface TCFSystem {
   name: string
   privacyPolicy?: string
   tcfMetadata?: TCFMetadata
+
+  /**
+   * whether the consent toggle should be shown for this vendor
+   */
+  showConsentToggle?: boolean
+
+  /**
+   * whether the legitimate interest toggle should be shown for this vendor
+   */
+  showLegitimateInterestToggle?: boolean
+
+  /**
+   * whether the user is allowed to signal a consent preference for this vendor
+   */
+  allowConsentSignal?: boolean
+
+  /**
+   * whether the user is allowed to signal a legitimate interest preference for this vendor
+   */
+  allowLegitimateInterestSignal?: boolean
+
+  defaultConsentState?: DefaultConsentState
+
+  defaultLegitimateInterestState?: DefaultLegitimateInterestState
 }
 
 export interface GoogleSystem {
