@@ -486,15 +486,8 @@ export type PurposeLegitimateInterests = { [key: string]: LegitimateInterestStat
 export type VendorLegitimateInterest = { [key: string]: LegitimateInterestStatus }
 export type VendorLegitimateInterests = { [key: string]: VendorLegitimateInterest }
 
-/**
- * the default consent state applied when no explicit user signal exists
- */
 export type DefaultConsentState = 'opted_in' | 'opted_out' | 'none'
 
-/**
- * the default legitimate interest state applied when no explicit user signal exists.
- * Not LegitimateInterestStatus — this is the literal backend value ('none', not 'not_established').
- */
 export type DefaultLegitimateInterestState = 'established' | 'none'
 
 /**
@@ -921,8 +914,15 @@ export interface Purpose {
    */
   allowLegitimateInterestSignal?: boolean
 
+  /**
+   * the default consent state applied when no explicit user signal exists
+   */
   defaultConsentState?: DefaultConsentState
 
+  /**
+   * the default legitimate interest state applied when no explicit user signal exists.
+   * Deliberately distinct from LegitimateInterestStatus — the backend sends 'none' here, not 'not_established'.
+   */
   defaultLegitimateInterestState?: DefaultLegitimateInterestState
 }
 
@@ -1576,8 +1576,15 @@ export interface TCFSystem {
    */
   allowLegitimateInterestSignal?: boolean
 
+  /**
+   * the default consent state applied when no explicit user signal exists
+   */
   defaultConsentState?: DefaultConsentState
 
+  /**
+   * the default legitimate interest state applied when no explicit user signal exists.
+   * Deliberately distinct from LegitimateInterestStatus — the backend sends 'none' here, not 'not_established'.
+   */
   defaultLegitimateInterestState?: DefaultLegitimateInterestState
 }
 
