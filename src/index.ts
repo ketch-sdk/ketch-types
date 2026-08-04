@@ -3721,6 +3721,7 @@ export interface ProfileCollectionSection {
  * ProfileCollection
  */
 export interface ProfileCollection {
+  id?: string
   code: string
   name: string
   displayName: string
@@ -6120,6 +6121,7 @@ export interface ExperienceAssociationConfig {
   subscriptionTopicCodes?: string[]
   formIDs?: string[]
   installedSystemIDs?: string[]
+  collectionId?: string
 }
 
 export enum ExperiencePurposeMode {
