@@ -2294,6 +2294,7 @@ export interface Translations {
   and?: string
   no_rights_available?: string
   no_rights_available_for_selected_location?: string
+  unable_to_submit_request_please_try_again?: string
 }
 
 /**
@@ -6118,6 +6119,7 @@ export interface BaseStaticContentConfig {
   terms_of_service?: string
   third_party?: string
   this_site_is_protected_by?: string
+  unable_to_submit_request_please_try_again?: string
   unfortunately?: string
   unsubscribe_from_all?: string
   vendor?: string
