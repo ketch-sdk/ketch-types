@@ -96,6 +96,7 @@ export enum ConsentExperienceType {
  * close = the close/exit button was clicked
  * willNotShow = the experience was skipped
  * setSubscriptions = the subscriptions were set
+ * setProfile = the profile preferences were set
  *
  * @enum
  */
@@ -106,6 +107,7 @@ export enum ExperienceClosedReason {
   CLOSE_WITHOUT_SETTING_CONSENT = 'closeWithoutSettingConsent',
   WILL_NOT_SHOW = 'willNotShow',
   SET_SUBSCRIPTIONS = 'setSubscriptions',
+  SET_PROFILE = 'setProfile',
 }
 
 /**
