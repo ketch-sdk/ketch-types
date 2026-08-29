@@ -5286,13 +5286,14 @@ export interface RightFormMapping {
 }
 
 /**
- * Default form and custom right to form mapping for a single canonical right.
- * Used when RightFormsExperienceLayoutConfig.mode === RightsFormMode.Custom.
+ * Config for a single canonical right. `defaultFormID` and `rightFormMappings` apply only when
+ * RightFormsExperienceLayoutConfig.mode === RightsFormMode.Custom; `rightsOrder` applies in both modes.
  */
 export interface RightMappingDetail {
   canonicalRight?: CanonicalRightCode
   defaultFormID?: string
   rightFormMappings?: RightFormMapping[]
+  rightsOrder?: string[]
 }
 
 /**
