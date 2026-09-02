@@ -5345,8 +5345,18 @@ export interface RightFormActionButtonExperienceLayoutConfig {
   useDefaultText?: boolean
 }
 
+/**
+ * Controls how the reCAPTCHA disclosure required by Google's terms of service is shown
+ * on the rights request form. Defaults to Text when unset, preserving existing behavior.
+ */
+export enum RecaptchaDisclosureMode {
+  Text = 'text',
+  Badge = 'badge',
+}
+
 export interface RequestsTabRightFormExperienceLayoutConfig {
   enableRecaptcha?: boolean
+  recaptchaDisclosureMode?: RecaptchaDisclosureMode
   actionButton?: RightFormActionButtonExperienceLayoutConfig
 }
 
@@ -5760,6 +5770,11 @@ export interface RequestsTabHomeExperienceContentConfig {
 
 export interface RequestsTabRightFormExperienceContentConfig {
   recaptchaFailureText?: string
+  /**
+   * The reCAPTCHA disclosure notice shown when recaptchaDisclosureMode is Text.
+   * Freely editable and may be cleared entirely.
+   */
+  recaptchaDisclosureText?: string
   actionButtonText?: string
 }
 
