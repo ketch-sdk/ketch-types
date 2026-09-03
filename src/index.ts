@@ -216,6 +216,7 @@ export enum IdentityType {
   IDENTITY_TYPE_LOCAL_STORAGE = 'localStorage',
   IDENTITY_TYPE_SESSION_STORAGE = 'sessionStorage',
   IDENTITY_TYPE_QUERY_STRING = 'queryString',
+  IDENTITY_TYPE_NATIVE_MOBILE = 'nativeMobile',
 }
 
 /**
@@ -259,6 +260,7 @@ export enum TraitType {
   TRAIT_TYPE_LOCAL_STORAGE = 'localStorage',
   TRAIT_TYPE_SESSION_STORAGE = 'sessionStorage',
   TRAIT_TYPE_QUERY_STRING = 'queryString',
+  TRAIT_TYPE_NATIVE_MOBILE = 'nativeMobile',
 }
 
 /**
