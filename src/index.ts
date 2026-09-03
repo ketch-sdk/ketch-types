@@ -1019,6 +1019,11 @@ export interface Identity {
    * whether this identity space is used for authenticated DSR submission
    */
   isAuthentication?: boolean
+
+  /**
+   * ttl is the lifetime in seconds of an SDK-minted managed identity
+   */
+  ttl?: number
 }
 
 /**
@@ -1060,6 +1065,11 @@ export interface Trait {
    * optional verifier ID associated with the trait
    */
   verifierID?: string
+
+  /**
+   * ttl is the lifetime in seconds of an SDK-minted managed identity
+   */
+  ttl?: number
 }
 
 /**
