@@ -487,6 +487,7 @@ export enum LegitimateInterestStatus {
 }
 
 export type PurposeLegitimateInterests = { [key: string]: LegitimateInterestStatus }
+export type PurposeSources = { [key: string]: ConsentSource }
 export type VendorLegitimateInterest = { [key: string]: LegitimateInterestStatus }
 export type VendorLegitimateInterests = { [key: string]: VendorLegitimateInterest }
 
@@ -514,6 +515,11 @@ export type Consent = {
   protocols?: Protocols
   isGpcEnabled?: boolean
   isAttActive?: boolean
+  /**
+   * Source of the most recent consent write, keyed by purpose code. Undefined when
+   * consent was loaded from the server or cache without a write.
+   */
+  source?: PurposeSources
   vendorConsents?: VendorConsents
   purposeLegitimateInterests?: PurposeLegitimateInterests
   vendorLegitimateInterests?: VendorLegitimateInterests
