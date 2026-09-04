@@ -514,6 +514,11 @@ export type Consent = {
   protocols?: Protocols
   isGpcEnabled?: boolean
   isAttActive?: boolean
+  /**
+   * Source of the most recent consent write in this session. Undefined when consent
+   * was loaded from the server or cache without a write.
+   */
+  source?: ConsentSource
   vendorConsents?: VendorConsents
   purposeLegitimateInterests?: PurposeLegitimateInterests
   vendorLegitimateInterests?: VendorLegitimateInterests
