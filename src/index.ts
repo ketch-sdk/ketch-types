@@ -1549,6 +1549,20 @@ export interface TCFDataDeclaration {
   description?: string
 }
 
+/** IAB GVL vendor urls[] entry. Distinct from language-picked privacyPolicy / legIntClaim. */
+export interface TCFIABVendorUrl {
+  langId: string
+  privacy: string
+  legIntClaim: string
+}
+
+/** IAB GVL vendor dataRetention object. Distinct from numeric tcfMetadata.dataRetention. */
+export interface TCFIABDataRetention {
+  stdRetention?: number
+  purposes?: Record<string, number>
+  specialPurposes?: Record<string, number>
+}
+
 export interface TCFMetadata {
   purposes?: TCFPurpose[]
   legIntPurposes?: TCFPurpose[]
@@ -1564,6 +1578,12 @@ export interface TCFMetadata {
   cookieRefresh?: boolean
   usesCookies?: boolean
   usesNonCookieAccess?: boolean
+  /** Raw IAB urls[]; not the language-selected privacyPolicy. */
+  iabUrls?: TCFIABVendorUrl[]
+  /** Raw IAB dataRetention object; not the integer dataRetention above. */
+  iabDataRetention?: TCFIABDataRetention
+  /** Raw IAB data-category IDs; not the name-object dataDeclaration above. */
+  iabDataDeclaration?: number[]
 }
 
 /**
