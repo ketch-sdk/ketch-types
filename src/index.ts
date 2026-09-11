@@ -1542,6 +1542,8 @@ export interface TCFPurpose {
   name: string
   retention?: number
   legalBasis?: string
+  hasOverride?: boolean
+  overrideType?: number
 }
 
 export interface TCFDataDeclaration {
