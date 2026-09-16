@@ -1807,6 +1807,8 @@ export interface ConfigurationV2 {
 
   /**
    * Vendors (TCF)
+   *
+   * @deprecated Use systems.tcf instead. This field will be omitted from CDN config.
    */
   vendors?: Vendor[]
 
@@ -1982,6 +1984,8 @@ export interface Configuration {
 
   /**
    * Vendors (TCF)
+   *
+   * @deprecated Use systems.tcf instead. This field will be omitted from CDN config.
    */
   vendors?: Vendor[]
 
