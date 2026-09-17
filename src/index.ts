@@ -6128,6 +6128,7 @@ export interface BaseStaticContentConfig {
   on?: string
   opted_in?: string
   opted_out?: string
+  pending_confirmation?: string
   performance?: string
   persistent?: string
   please_select_a_request_type?: string
