@@ -2918,6 +2918,7 @@ export enum SubscriptionSource {
   AuditLogUnsubscribeAll = 'auditLog.unsubscribeAll',
   AuditLogDefault = 'auditLog.default',
   AuditLogManual = 'auditLog.manual',
+  DoubleOptInConfirmed = 'doubleOptIn.confirmed', // Written by the public confirm API, never by the frontend
   Headless = 'headless',
 
   Unknown = 'unknown',
@@ -3500,6 +3501,9 @@ export type SubscriptionTopicSetting = { [key: string]: SubscriptionTopicContact
 export enum SubscriptionStatus {
   Denied = 'denied',
   Granted = 'granted',
+  // Opt-in recorded but awaiting end-user confirmation (double opt-in). Read-only: writes must
+  // omit pending entries; the backend derives pending from the topic's double opt-in rules.
+  Pending = 'pending',
 }
 
 export interface SubscriptionControl {
@@ -3569,6 +3573,20 @@ export interface SubscriptionTopic {
    * An array of the contact method codes ('email', 'sms', etc).
    */
   contactMethods: string[]
+
+  /**
+   * Double opt-in rules, mirrored from the consent config so the preference center can flag a pair before it is saved.
+   */
+  doubleOptIn?: SubscriptionTopicDoubleOptInRule[]
+}
+
+/**
+ * Scopes double opt-in to one contact method ("na" covers every method on the topic) and jurisdictions.
+ */
+export interface SubscriptionTopicDoubleOptInRule {
+  contactMethod?: string
+  allJurisdictions?: boolean
+  jurisdictions?: string[]
 }
 
 /**
@@ -6124,6 +6142,8 @@ export interface BaseStaticContentConfig {
   on?: string
   opted_in?: string
   opted_out?: string
+  pending_confirmation?: string
+  double_opt_in_hint?: string
   performance?: string
   persistent?: string
   please_select_a_request_type?: string
