@@ -3826,6 +3826,19 @@ export interface ProfileCollectionSection {
   order: number
 }
 
+export interface ProfileCollectionUnsubscribeAll {
+  visible: boolean
+  position: UnsubscribeFromAllPosition
+  titleUseDefaultText: boolean
+  title?: string
+  descriptionVisible: boolean
+  description?: string
+  switchButtonVisible: boolean
+  switchButtonUseDefaultText: boolean
+  switchOnText?: string
+  switchOffText?: string
+}
+
 /**
  * ProfileCollection
  */
@@ -3838,6 +3851,7 @@ export interface ProfileCollection {
   description?: string
   descriptionTranslations?: { [key: string]: string }
   sections: ProfileCollectionSection[]
+  unsubscribeAll?: ProfileCollectionUnsubscribeAll
 }
 
 /**
