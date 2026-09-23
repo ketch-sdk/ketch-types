@@ -1512,6 +1512,11 @@ export interface Theme {
 
 /**
  * Vendor purpose
+ *
+ * Restriction flags (hasOverride / overrideType) are also stamped on
+ * systems.tcf purposes. If you add a field the TCF encoder will need after
+ * Configuration.vendors is omitted, add it on TCFPurpose and stamp it in
+ * GetConfigurationSystems as well.
  */
 export interface VendorPurpose {
   name: string
@@ -1522,7 +1527,10 @@ export interface VendorPurpose {
 }
 
 /**
- * Vendor definition
+ * Vendor definition (CDN config.vendors).
+ *
+ * @deprecated New product/UI reads should use systems.tcf. The CMP encoder
+ * still consumes this object. Do not add new product behavior here.
  */
 export interface Vendor {
   id: string
@@ -1542,6 +1550,7 @@ export interface TCFPurpose {
   name: string
   retention?: number
   legalBasis?: string
+  /** Use systems.tcf for new reads. Stamped from vendors so we can drop config.vendors later. */
   hasOverride?: boolean
   overrideType?: number
 }
@@ -1806,9 +1815,11 @@ export interface ConfigurationV2 {
   rules?: { [trigger: string]: Rule[] }
 
   /**
-   * Vendors (TCF)
+   * TCF vendors on CDN config.json.
    *
-   * @deprecated Use systems.tcf instead. This field will be omitted from CDN config.
+   * @deprecated New reads should use systems.tcf. The CMP encoder still
+   * consumes this field. It will be omitted from CDN config later; do not
+   * add new product/UI behavior here.
    */
   vendors?: Vendor[]
 
@@ -1983,9 +1994,11 @@ export interface Configuration {
   experiences?: Experience
 
   /**
-   * Vendors (TCF)
+   * TCF vendors on CDN config.json.
    *
-   * @deprecated Use systems.tcf instead. This field will be omitted from CDN config.
+   * @deprecated New reads should use systems.tcf. The CMP encoder still
+   * consumes this field. It will be omitted from CDN config later; do not
+   * add new product/UI behavior here.
    */
   vendors?: Vendor[]
 
