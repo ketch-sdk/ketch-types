@@ -3605,7 +3605,8 @@ export interface SubscriptionTopicDoubleOptInRule {
   allJurisdictions?: boolean
   jurisdictions?: string[]
   /**
-   * Show the static `double_opt_in_success_message` under the contact method; false with no displayDescription shows nothing.
+   * Show the static `double_opt_in_success_message` under the contact method.
+   * False with no displayDescription shows nothing.
    */
   useDefaultDescription?: boolean
   /**
