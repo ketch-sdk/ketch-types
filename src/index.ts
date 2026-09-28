@@ -812,6 +812,10 @@ export interface Deployment {
   isOrchestrationOnly?: boolean
   featureVersion?: DeploymentVersion
   ruleExecutionSetting?: RuleExecutionSetting
+  /**
+   * Unix seconds. Consent with a collectedAt before this is ignored and must be collected again.
+   */
+  reconsentRequiredBefore?: number
 }
 
 /**
@@ -6758,10 +6762,10 @@ export enum ExperienceLoadingMethod {
 
 export interface ExperienceConfigurationType {
   // @deprecated
-  autoInitiated: ExperienceConfig
+  autoInitiated?: ExperienceConfig
 
   // @deprecated
-  userInitiated: ExperienceConfig
+  userInitiated?: ExperienceConfig
 
   // @deprecated
   layout: any
