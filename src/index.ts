@@ -812,6 +812,10 @@ export interface Deployment {
   isOrchestrationOnly?: boolean
   featureVersion?: DeploymentVersion
   ruleExecutionSetting?: RuleExecutionSetting
+  /**
+   * Unix seconds. Consent with a collectedAt before this is ignored and must be collected again.
+   */
+  reconsentRequiredBefore?: number
 }
 
 /**
