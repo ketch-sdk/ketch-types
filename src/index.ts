@@ -2919,7 +2919,6 @@ export enum ConsentSource {
   // Overridden permit sources
   RecollectAfterInterval = 'recollectAfterInterval', // recollected due to purpose + jurisdiction recollect interval
   RecollectAfterDate = 'recollectAfterDate', // recollected due to deployment global recollect date rule
-  ReconsentRequired = 'reconsentRequired', // recollected because consent predates deployment reconsentRequiredBefore
 
   Unknown = 'unknown',
 }
