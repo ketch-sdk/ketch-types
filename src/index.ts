@@ -3605,7 +3605,7 @@ export interface SubscriptionTopicDoubleOptInRule {
   allJurisdictions?: boolean
   jurisdictions?: string[]
   /**
-   * Show the static `double_opt_in_description_<method>` (or `double_opt_in_description`) under the contact method.
+   * Show the static `double_opt_in_description` under the contact method.
    * False with no displayDescription shows nothing.
    */
   useDefaultDescription?: boolean
@@ -6183,8 +6183,6 @@ export interface BaseStaticContentConfig {
   opted_in?: string
   opted_out?: string
   double_opt_in_description?: string
-  double_opt_in_description_email?: string
-  double_opt_in_description_sms?: string
   performance?: string
   persistent?: string
   please_select_a_request_type?: string
