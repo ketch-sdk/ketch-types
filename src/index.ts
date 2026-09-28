@@ -6750,10 +6750,10 @@ export enum ExperienceLoadingMethod {
 
 export interface ExperienceConfigurationType {
   // @deprecated
-  autoInitiated: ExperienceConfig
+  autoInitiated?: ExperienceConfig
 
   // @deprecated
-  userInitiated: ExperienceConfig
+  userInitiated?: ExperienceConfig
 
   // @deprecated
   layout: any
