@@ -3602,7 +3602,7 @@ export interface SubscriptionTopic {
 }
 
 /**
- * Scopes double opt-in to one contact method ("na" covers every method on the topic) and jurisdictions.
+ * Scopes double opt-in to one contact method and jurisdictions; it applies only to that method.
  */
 export interface SubscriptionTopicDoubleOptInRule {
   contactMethod?: string
