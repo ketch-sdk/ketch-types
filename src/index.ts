@@ -3602,12 +3602,21 @@ export interface SubscriptionTopic {
 }
 
 /**
- * Scopes double opt-in to one contact method ("na" covers every method on the topic) and jurisdictions.
+ * Scopes double opt-in to one contact method and jurisdictions; it applies only to that method.
  */
 export interface SubscriptionTopicDoubleOptInRule {
   contactMethod?: string
   allJurisdictions?: boolean
   jurisdictions?: string[]
+  /**
+   * Show the static `double_opt_in_description` under the contact method.
+   * False with no displayDescription shows nothing.
+   */
+  useDefaultDescription?: boolean
+  /**
+   * Custom text shown under the contact method until the subscriber confirms, already resolved for the language.
+   */
+  displayDescription?: string
 }
 
 /**
@@ -6177,8 +6186,7 @@ export interface BaseStaticContentConfig {
   on?: string
   opted_in?: string
   opted_out?: string
-  pending_confirmation?: string
-  double_opt_in_hint?: string
+  double_opt_in_description?: string
   performance?: string
   persistent?: string
   please_select_a_request_type?: string
