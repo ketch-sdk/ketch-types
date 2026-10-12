@@ -2940,6 +2940,7 @@ export enum SubscriptionSource {
   AuditLogDefault = 'auditLog.default',
   AuditLogManual = 'auditLog.manual',
   DoubleOptInConfirmed = 'doubleOptIn.confirmed', // Written by the public confirm API, never by the frontend
+  WorkflowSetSubscriptions = 'workflow.setSubscriptions', // Set via workflow set subscriptions tile
   Headless = 'headless',
 
   Unknown = 'unknown',
