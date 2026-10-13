@@ -3600,6 +3600,11 @@ export interface SubscriptionTopic {
    * Double opt-in rules, mirrored from the consent config so the preference center can flag a pair before it is saved.
    */
   doubleOptIn?: SubscriptionTopicDoubleOptInRule[]
+
+  /**
+   * Topic-scoped contact method descriptions, keyed by contact method code, already resolved to the config language.
+   */
+  contactMethodDescriptions?: { [contactMethodCode: string]: string }
 }
 
 /**
