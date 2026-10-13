@@ -6138,6 +6138,7 @@ interface CountryTranslations {
 export interface BaseStaticContentConfig {
   accept_all?: string
   accept?: string
+  accepted_optional_purposes?: string
   always_active?: string
   and_the?: string
   and?: string
@@ -6223,6 +6224,7 @@ export interface BaseStaticContentConfig {
   purposes?: string
   quick_links?: string
   reject_all?: string
+  rejected_optional_purposes?: string
   required?: string
   retention_period?: string
   rights_tab_porthole_redirect_footer_alt?: string
