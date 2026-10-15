@@ -3647,6 +3647,7 @@ export interface GetSubscriptionsRequest {
   collectedAt?: number
   jurisdictionCode?: string
   regionCode?: string
+  accessToken?: string
 }
 
 /**
@@ -3680,7 +3681,25 @@ export interface SetSubscriptionsRequest {
   collectedAt?: number
   jurisdictionCode?: string
   regionCode?: string
+  accessToken?: string
 }
+
+/**
+ * ConfirmIdentityRequest
+ */
+export interface ConfirmIdentityRequest {
+  organizationCode: string
+  contactMethod: string
+  value: string
+  propertyCode: string
+  returnUrl: string
+  recaptchaToken?: string
+}
+
+/**
+ * Reason returned with a 401 when a subscription access token is rejected
+ */
+export type SubscriptionAccessTokenErrorReason = 'token_invalid' | 'token_expired'
 
 /**
  * GetSubscriptionConfigurationRequest
@@ -3806,6 +3825,7 @@ export interface SubscriptionConfiguration {
   topics: SubscriptionTopic[]
   associatedTopics?: { [key: string]: SubscriptionTopic }
   associatedControls?: { [key: string]: SubscriptionControl }
+  accessLinks?: { enabled: boolean }
 }
 
 /**
@@ -6194,6 +6214,10 @@ export interface BaseStaticContentConfig {
   opted_in?: string
   opted_out?: string
   double_opt_in_description?: string
+  identity_verification_email_prompt?: string
+  identity_verification_email_sent?: string
+  identity_verification_link_invalid?: string
+  identity_verification_link_expired?: string
   performance?: string
   persistent?: string
   please_select_a_request_type?: string
