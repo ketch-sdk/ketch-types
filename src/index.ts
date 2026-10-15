@@ -3626,8 +3626,9 @@ export interface SubscriptionTopicDoubleOptInRule {
   /**
    * Ketch sends the confirmation email itself. Allowed only on the email contact method.
    * identitySpaceCode names the identity in a subscription write that holds the email address.
+   * confirmUrl is the page the email links to.
    */
-  ketchEmail?: { enabled: boolean; identitySpaceCode?: string }
+  ketchEmail?: { enabled: boolean; identitySpaceCode?: string; confirmUrl?: string }
 }
 
 /**

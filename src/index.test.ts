@@ -43,7 +43,10 @@ describe('index', () => {
           skipped: [{ topicCode: 'offers', contactMethodCode: 'email', reason: 'alreadyConfirmed' }],
         },
         { organizationCode: 'org', accessToken: 'token' },
-        { contactMethod: 'email', ketchEmail: { enabled: true, identitySpaceCode: 'email' } },
+        {
+          contactMethod: 'email',
+          ketchEmail: { enabled: true, identitySpaceCode: 'email', confirmUrl: 'https://example.com/confirm' },
+        },
         ['token_invalid', 'token_expired'],
       ]
 
