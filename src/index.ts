@@ -3628,7 +3628,7 @@ export interface SubscriptionTopicDoubleOptInRule {
    * identitySpaceCode names the identity in a subscription write that holds the email address.
    * confirmUrl is the page the email links to.
    */
-  ketchEmail?: { enabled: boolean; identitySpaceCode?: string; confirmUrl?: string }
+  confirmationEmail?: { enabled: boolean; identitySpaceCode?: string; confirmUrl?: string }
 }
 
 /**

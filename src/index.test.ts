@@ -20,7 +20,7 @@ describe('index', () => {
   })
 
   describe('subscription access links', () => {
-    it('types the access link requests, responses and ketchEmail rule', () => {
+    it('types the access link requests, responses and confirmationEmail rule', () => {
       const accessLinkShapes: [
         ConfirmIdentityRequest,
         ConfirmSubscriptionRequest,
@@ -45,7 +45,7 @@ describe('index', () => {
         { organizationCode: 'org', accessToken: 'token' },
         {
           contactMethod: 'email',
-          ketchEmail: { enabled: true, identitySpaceCode: 'email', confirmUrl: 'https://example.com/confirm' },
+          confirmationEmail: { enabled: true, identitySpaceCode: 'email', confirmUrl: 'https://example.com/confirm' },
         },
         ['token_invalid', 'token_expired'],
       ]
