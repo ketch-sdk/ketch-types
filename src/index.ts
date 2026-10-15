@@ -3623,6 +3623,11 @@ export interface SubscriptionTopicDoubleOptInRule {
    * Custom text shown under the contact method until the subscriber confirms, already resolved for the language.
    */
   displayDescription?: string
+  /**
+   * Ketch sends the confirmation email itself. Allowed only on the email contact method.
+   * identitySpaceCode names the identity in a subscription write that holds the email address.
+   */
+  ketchEmail?: { enabled: boolean; identitySpaceCode?: string }
 }
 
 /**
@@ -3647,6 +3652,7 @@ export interface GetSubscriptionsRequest {
   collectedAt?: number
   jurisdictionCode?: string
   regionCode?: string
+  accessToken?: string
 }
 
 /**
@@ -3680,7 +3686,41 @@ export interface SetSubscriptionsRequest {
   collectedAt?: number
   jurisdictionCode?: string
   regionCode?: string
+  accessToken?: string
 }
+
+/**
+ * ConfirmIdentityRequest
+ */
+export interface ConfirmIdentityRequest {
+  organizationCode: string
+  contactMethod: string
+  value: string
+  propertyCode: string
+  returnUrl: string
+  recaptchaToken?: string
+}
+
+/**
+ * ConfirmSubscriptionRequest
+ */
+export interface ConfirmSubscriptionRequest {
+  organizationCode: string
+  accessToken: string
+}
+
+/**
+ * ConfirmSubscriptionResponse
+ */
+export interface ConfirmSubscriptionResponse {
+  confirmed?: { topicCode: string; contactMethodCode: string }[]
+  skipped?: { topicCode: string; contactMethodCode: string; reason: string }[]
+}
+
+/**
+ * Reason returned with a 401 when a subscription access token is rejected
+ */
+export type SubscriptionAccessTokenErrorReason = 'token_invalid' | 'token_expired'
 
 /**
  * GetSubscriptionConfigurationRequest
@@ -3806,6 +3846,7 @@ export interface SubscriptionConfiguration {
   topics: SubscriptionTopic[]
   associatedTopics?: { [key: string]: SubscriptionTopic }
   associatedControls?: { [key: string]: SubscriptionControl }
+  accessLinks?: { enabled: boolean }
 }
 
 /**
@@ -6194,6 +6235,14 @@ export interface BaseStaticContentConfig {
   opted_in?: string
   opted_out?: string
   double_opt_in_description?: string
+  identity_verification_email_prompt?: string
+  identity_verification_email_sent?: string
+  identity_verification_link_invalid?: string
+  identity_verification_link_expired?: string
+  doi_confirm_button?: string
+  doi_confirm_link_invalid?: string
+  doi_confirm_link_expired?: string
+  doi_confirm_success?: string
   performance?: string
   persistent?: string
   please_select_a_request_type?: string
