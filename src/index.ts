@@ -575,6 +575,20 @@ export type ShowPreferenceOptions = {
    * undefined, the profile preferences tab is displayed.
    */
   showProfilePreferencesTab?: boolean
+
+  /**
+   * rightCode opens the request form for this right. If no displayable right
+   * matches, the rights tab home is displayed. Takes precedence over
+   * canonicalRightCode.
+   */
+  rightCode?: string
+
+  /**
+   * canonicalRightCode opens the request form for the first displayable right
+   * with this canonical code, in the configured rights order. If no right
+   * matches, the rights tab home is displayed.
+   */
+  canonicalRightCode?: CanonicalRightCode
 }
 
 /**
