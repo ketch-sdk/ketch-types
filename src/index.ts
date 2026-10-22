@@ -584,9 +584,10 @@ export type ShowPreferenceOptions = {
   rightCode?: string
 
   /**
-   * canonicalRightCode opens the request form for the first displayable right
-   * with this canonical code, in the configured rights order. If no right
-   * matches, the rights tab home is displayed.
+   * canonicalRightCode opens the request form for the displayable right with
+   * this canonical code, only when exactly one such right exists. If none or
+   * several match, the rights tab home is displayed. Pass rightCode to open a
+   * particular right.
    */
   canonicalRightCode?: CanonicalRightCode
 }
