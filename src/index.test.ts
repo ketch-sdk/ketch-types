@@ -1,4 +1,12 @@
-import { ConfirmIdentityRequest, isTab, SetSubscriptionsRequest, SubscriptionAccessTokenErrorReason } from './index'
+import {
+  ConfirmIdentityRequest,
+  Configuration,
+  ConfigurationV2,
+  Deployment,
+  isTab,
+  SetSubscriptionsRequest,
+  SubscriptionAccessTokenErrorReason,
+} from './index'
 
 describe('index', () => {
   describe('isTab', () => {
@@ -32,6 +40,28 @@ describe('index', () => {
 
       expect(accessLinkShapes).toHaveLength(3)
       expect(unknownReason).toBe('token_missing')
+    })
+  })
+
+  describe('deployment custom JS', () => {
+    it('types customJs as an optional string on Deployment and both configuration shapes', () => {
+      const withCustomJs: Deployment = {
+        code: 'default',
+        version: 1,
+        customJs: 'console.log(propertyCode, jurisdictionCode, regionCode, environmentCode, languageCode)',
+      }
+      const withoutCustomJs: Deployment = { code: 'default', version: 1 }
+      const v1: Pick<Configuration, 'deployment'> = { deployment: withCustomJs }
+      const v2: Pick<ConfigurationV2, 'deployment'> = { deployment: withCustomJs }
+
+      // @ts-expect-error customJs is raw JavaScript source, not a flag
+      const notAString: Deployment = { code: 'default', version: 1, customJs: true }
+
+      expect(withCustomJs.customJs).toContain('propertyCode')
+      expect(withoutCustomJs.customJs).toBeUndefined()
+      expect(v1.deployment?.customJs).toBe(withCustomJs.customJs)
+      expect(v2.deployment?.customJs).toBe(withCustomJs.customJs)
+      expect(notAString.customJs).toBe(true)
     })
   })
 })
