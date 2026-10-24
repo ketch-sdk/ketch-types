@@ -832,10 +832,7 @@ export interface Deployment {
    */
   reconsentRequiredBefore?: number
   /**
-   * Custom JavaScript configured on the deployment plan. The tag injects this source into a
-   * `<script>` element on the host page after defining `propertyCode`, `jurisdictionCode`,
-   * `regionCode`, `environmentCode` and `languageCode`. Present only when enabled for the
-   * deployment plan and the organization. Treat as executable code, never as display text.
+   * Custom JavaScript configured on the deployment plan.
    */
   customJs?: string
 }
