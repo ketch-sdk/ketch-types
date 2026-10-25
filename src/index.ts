@@ -831,6 +831,10 @@ export interface Deployment {
    * Unix seconds. Consent with a collectedAt before this is ignored and must be collected again.
    */
   reconsentRequiredBefore?: number
+  /**
+   * Custom JavaScript configured on the deployment plan.
+   */
+  customJs?: string
 }
 
 /**
