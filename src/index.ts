@@ -50,6 +50,7 @@ export enum DisplayExperienceType {
   Modal = 'modal',
   Preference = 'preference',
   ConsentGate = 'consentGate',
+  LeadCapture = 'leadCapture',
 }
 
 /**
@@ -2951,6 +2952,7 @@ export enum SubscriptionSource {
   PreferenceSubscriptionsTabUnsubscribeAll = 'preference.subscriptionsTab.unsubscribeAll',
   ProgressiveSubscription = 'progressive.subscription',
   ConsentGateSubscription = 'consentGate.subscription',
+  LeadCaptureSubscription = 'leadCapture.subscription',
   RouterSetSubscriptions = 'router.setSubscriptions', // Set via Ketch tag's Router.ts setSubscriptions function
 
   // The following will not happen via the frontend but are here to create contract with backend
@@ -3697,6 +3699,7 @@ export interface SetSubscriptionsRequest {
   topics?: { [key: string]: SubscriptionTopicSetting }
   controls?: { [key: string]: SubscriptionControlSetting }
   context?: PermitRightContext
+  properties?: { [key: string]: string }
   collectedAt?: number
   jurisdictionCode?: string
   regionCode?: string
@@ -5568,7 +5571,7 @@ export interface ExperienceLayoutConfig {
   preference?: PreferenceExperienceLayoutConfig
   consentGate?: ConsentGateExperienceLayoutConfig
   ageGate?: any // AgeGateExperienceLayoutConfig
-  leadCapture?: any // LeadCaptureExperienceLayoutConfig
+  leadCapture?: LeadCaptureExperienceLayoutConfig
   progressiveConsent?: any
   entitlementInfo?: EntitlementLayoutConfig
 }
@@ -6341,7 +6344,7 @@ export interface ExperienceContentConfig {
   preference?: PreferenceExperienceContentConfig
   consentGate?: ConsentGateExperienceContentConfig
   ageGate?: any // AgeGateExperienceContentConfig
-  leadCapture?: any // LeadCaptureExperienceContentConfig
+  leadCapture?: LeadCaptureExperienceContentConfig
   progressiveConsent?: any
   static?: StaticContentConfig
 }
@@ -6791,8 +6794,79 @@ export interface AgeGateConfig {
 }
 
 export interface LeadCaptureConfig {
-  content: any // LeadCaptureExperienceContentConfig
-  layout: any // LeadCaptureExperienceLayoutConfig
+  content: LeadCaptureExperienceContentConfig
+  layout: LeadCaptureExperienceLayoutConfig
+}
+
+/**
+ * Lead Capture Experience Layout Configuration
+ */
+
+export type LeadCaptureExperienceFormLayout = {
+  visible: boolean
+  showHint: boolean
+}
+
+export type LeadCaptureExperienceFooterButtonLayout = {
+  action: string
+  url: string
+}
+
+export type LeadCaptureExperienceFooterLayout = {
+  button: LeadCaptureExperienceFooterButtonLayout
+}
+
+export enum LeadCaptureResultAction {
+  Message = 'message',
+  Close = 'close',
+  Redirect = 'redirect',
+}
+
+export type LeadCaptureExperienceSuccessResultLayout = {
+  action: LeadCaptureResultAction
+  url?: string
+}
+
+export type LeadCaptureExperienceResultLayout = {
+  success: LeadCaptureExperienceSuccessResultLayout
+}
+
+export type LeadCaptureExperienceLayoutConfig = {
+  header: ConsentGateExperienceHeaderLayout
+  form: LeadCaptureExperienceFormLayout
+  footer: LeadCaptureExperienceFooterLayout
+  campaign?: string
+  result?: LeadCaptureExperienceResultLayout
+}
+
+/**
+ * Lead Capture Experience Content Configuration
+ */
+
+export type LeadCaptureExperienceFormContent = {
+  hint: string
+}
+
+export type LeadCaptureExperienceFooterButtonContent = {
+  text: string
+}
+
+export type LeadCaptureExperienceFooterContent = {
+  button: LeadCaptureExperienceFooterButtonContent
+}
+
+export type LeadCaptureExperienceResultMessageContent = {
+  title: string
+  description: string
+}
+
+export type LeadCaptureExperienceContentConfig = {
+  header: ConsentGateExperienceHeaderContent
+  description: string
+  form: LeadCaptureExperienceFormContent
+  footer: LeadCaptureExperienceFooterContent
+  success?: LeadCaptureExperienceResultMessageContent
+  error?: LeadCaptureExperienceResultMessageContent
 }
 
 /**
