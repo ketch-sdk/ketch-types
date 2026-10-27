@@ -3,9 +3,13 @@ import {
   Configuration,
   ConfigurationV2,
   Deployment,
+  DisplayExperienceType,
   isTab,
+  LeadCaptureConfig,
+  LeadCaptureResultAction,
   SetSubscriptionsRequest,
   SubscriptionAccessTokenErrorReason,
+  SubscriptionSource,
 } from './index'
 
 describe('index', () => {
@@ -62,6 +66,50 @@ describe('index', () => {
       expect(v1.deployment?.customJs).toBe(withCustomJs.customJs)
       expect(v2.deployment?.customJs).toBe(withCustomJs.customJs)
       expect(notAString.customJs).toBe(true)
+    })
+  })
+
+  describe('lead capture', () => {
+    it('types the lead capture experience and its subscription request', () => {
+      const leadCapture: LeadCaptureConfig = {
+        layout: {
+          header: {
+            title: { visible: true },
+            closeButton: { visible: true, icon: { visible: true, useDefault: true, image: { url: '' } } },
+          },
+          form: { visible: true, showHint: true },
+          footer: { button: { action: 'submit', url: '' } },
+          campaign: 'fall-promo',
+          result: { success: { action: LeadCaptureResultAction.Redirect, url: 'https://example.com/thanks' } },
+        },
+        content: {
+          header: { title: 'Get 10% off', closeButton: { text: 'Exit' } },
+          description: '<p>Sign up for offers.</p>',
+          form: { hint: 'Enter your email' },
+          footer: { button: { text: 'Sign Up' } },
+          success: { title: 'Thanks', description: 'Check your inbox.' },
+          error: { title: 'Something went wrong', description: 'Try again.' },
+        },
+      }
+      const signUp: SetSubscriptionsRequest = {
+        organizationCode: 'org',
+        identities: { email: 'user@example.com' },
+        properties: { campaign: leadCapture.layout.campaign },
+        context: { source: SubscriptionSource.LeadCaptureSubscription },
+      }
+
+      // @ts-expect-error result actions are limited to message, close and redirect
+      const unknownAction: LeadCaptureResultAction = 'reload'
+      const layoutWithoutCampaign: Omit<LeadCaptureConfig['layout'], 'campaign'> = leadCapture.layout
+      // @ts-expect-error a lead capture experience requires a campaign
+      const missingCampaign: LeadCaptureConfig['layout'] = layoutWithoutCampaign
+
+      expect(DisplayExperienceType.LeadCapture).toBe('leadCapture')
+      expect(SubscriptionSource.LeadCaptureSubscription).toBe('leadCapture.subscription')
+      expect(Object.values(LeadCaptureResultAction)).toEqual(['message', 'close', 'redirect'])
+      expect(signUp.properties).toEqual({ campaign: 'fall-promo' })
+      expect(unknownAction).toBe('reload')
+      expect(missingCampaign).toBe(leadCapture.layout)
     })
   })
 })
