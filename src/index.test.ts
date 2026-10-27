@@ -94,18 +94,22 @@ describe('index', () => {
       const signUp: SetSubscriptionsRequest = {
         organizationCode: 'org',
         identities: { email: 'user@example.com' },
-        properties: { campaign: leadCapture.layout.campaign ?? '' },
+        properties: { campaign: leadCapture.layout.campaign },
         context: { source: SubscriptionSource.LeadCaptureSubscription },
       }
 
       // @ts-expect-error result actions are limited to message, close and redirect
       const unknownAction: LeadCaptureResultAction = 'reload'
+      const layoutWithoutCampaign: Omit<LeadCaptureConfig['layout'], 'campaign'> = leadCapture.layout
+      // @ts-expect-error a lead capture experience requires a campaign
+      const missingCampaign: LeadCaptureConfig['layout'] = layoutWithoutCampaign
 
       expect(DisplayExperienceType.LeadCapture).toBe('leadCapture')
       expect(SubscriptionSource.LeadCaptureSubscription).toBe('leadCapture.subscription')
       expect(Object.values(LeadCaptureResultAction)).toEqual(['message', 'close', 'redirect'])
       expect(signUp.properties).toEqual({ campaign: 'fall-promo' })
       expect(unknownAction).toBe('reload')
+      expect(missingCampaign).toBe(leadCapture.layout)
     })
   })
 })

@@ -6835,7 +6835,7 @@ export type LeadCaptureExperienceLayoutConfig = {
   header: ConsentGateExperienceHeaderLayout
   form: LeadCaptureExperienceFormLayout
   footer: LeadCaptureExperienceFooterLayout
-  campaign?: string
+  campaign: string
   result?: LeadCaptureExperienceResultLayout
 }
 
