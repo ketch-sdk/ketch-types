@@ -3644,6 +3644,12 @@ export interface SubscriptionTopicDoubleOptInRule {
    * Custom text shown under the contact method until the subscriber confirms, already resolved for the language.
    */
   displayDescription?: string
+  /**
+   * Ketch sends the confirmation email itself. Allowed only on the email contact method.
+   * identitySpaceCode names the identity in a subscription write that holds the email address.
+   * confirmUrl is the page the email links to.
+   */
+  confirmationEmail?: { enabled: boolean; identitySpaceCode?: string; confirmUrl?: string }
 }
 
 /**
@@ -3716,6 +3722,22 @@ export interface ConfirmIdentityRequest {
   propertyCode: string
   returnUrl: string
   recaptchaToken?: string
+}
+
+/**
+ * ConfirmSubscriptionRequest
+ */
+export interface ConfirmSubscriptionRequest {
+  organizationCode: string
+  accessToken: string
+}
+
+/**
+ * ConfirmSubscriptionResponse
+ */
+export interface ConfirmSubscriptionResponse {
+  confirmed?: { topicCode: string; contactMethodCode: string }[]
+  skipped?: { topicCode: string; contactMethodCode: string; reason: string }[]
 }
 
 /**
@@ -6240,6 +6262,10 @@ export interface BaseStaticContentConfig {
   identity_verification_email_sent?: string
   identity_verification_link_invalid?: string
   identity_verification_link_expired?: string
+  doi_confirm_button?: string
+  doi_confirm_link_invalid?: string
+  doi_confirm_link_expired?: string
+  doi_confirm_success?: string
   performance?: string
   persistent?: string
   please_select_a_request_type?: string
