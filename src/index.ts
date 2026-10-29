@@ -2916,6 +2916,7 @@ export enum ConsentSource {
   PreferenceConsentsTabRejectAll = 'preference.consentsTab.rejectAll',
   PreferenceDefault = 'preference.default', // Clicked save without changing anything
   PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
+  PreferenceRightsTabOptOut = 'preference.rightsTab.optOut', // Submitted an opt-out right that turns off its purposes
   RouterSetConsent = 'router.setConsent', // Set via Ketch tag's Router.ts setConsent function
   ProgressiveConsent = 'progressive.consent',
   ConsentGate = 'consentGate',
