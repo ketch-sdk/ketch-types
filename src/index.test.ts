@@ -9,6 +9,8 @@ import {
   isTab,
   LeadCaptureConfig,
   LeadCaptureResultAction,
+  PreferenceSubscriptionsTabExperienceContentConfig,
+  PreferenceSubscriptionsTabExperienceLayoutConfig,
   SetSubscriptionsRequest,
   SubscriptionAccessTokenErrorReason,
   SubscriptionSource,
@@ -130,6 +132,29 @@ describe('index', () => {
       expect(signUp.properties).toEqual({ campaign: 'fall-promo' })
       expect(unknownAction).toBe('reload')
       expect(missingCampaign).toBe(leadCapture.layout)
+    })
+  })
+
+  describe('subscriptions authentication gateway', () => {
+    it('types the email form layout and copy on the subscriptions tab', () => {
+      const layout: PreferenceSubscriptionsTabExperienceLayoutConfig = {
+        authenticationGateway: { header: { title: { visible: false } }, actionButton: { useDefaultText: true } },
+      }
+      const content: PreferenceSubscriptionsTabExperienceContentConfig = {
+        authenticationGateway: {
+          header: { title: 'Access Your Subscriptions', description: '<p>We will email you a link.</p>' },
+          actionButtonText: 'Send Me A Link',
+        },
+      }
+
+      const textInLayout: PreferenceSubscriptionsTabExperienceLayoutConfig = {
+        // @ts-expect-error the action button text is copy, not a layout setting
+        authenticationGateway: { actionButtonText: 'Send' },
+      }
+
+      expect(layout.authenticationGateway?.header?.title?.visible).toBe(false)
+      expect(content.authenticationGateway?.actionButtonText).toBe('Send Me A Link')
+      expect(textInLayout.authenticationGateway).toBeDefined()
     })
   })
 })

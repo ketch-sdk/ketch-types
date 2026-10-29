@@ -5419,6 +5419,15 @@ export interface SubscriptionsTabListExperienceLayoutConfig {
   switchButtons?: SwitchButtonsExperienceLayoutConfig
 }
 
+/**
+ * Preference Center Subscriptions Tab Authentication Gateway Experience Layout Configuration
+ */
+
+export interface SubscriptionsTabAuthenticationGatewayExperienceLayoutConfig {
+  header?: PreferenceTabHeaderExperienceLayoutConfig
+  actionButton?: { useDefaultText?: boolean }
+}
+
 export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
   unsubscribeAll?: SubscriptionsTabUnsubscribeAllExperienceLayoutConfig
@@ -5426,6 +5435,7 @@ export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
   actionButtonUseDefaultText?: boolean
   actionButtonAction?: ActionButtonAction
   confirmationMessage?: ConfirmationMessageExperienceLayoutConfig
+  authenticationGateway?: SubscriptionsTabAuthenticationGatewayExperienceLayoutConfig
 }
 
 /**
@@ -5884,6 +5894,15 @@ export interface SubscriptionsTabUnsubscribeAllExperienceContentConfig {
 }
 
 /**
+ * Preferences Center Subscriptions Tab Authentication Gateway Experience Content Configuration
+ */
+
+export interface SubscriptionsTabAuthenticationGatewayExperienceContentConfig {
+  header?: PreferenceTabHeaderExperienceContentConfig
+  actionButtonText?: string
+}
+
+/**
  * Preferences Center Subscriptions Tab Experience Content Configuration
  */
 
@@ -5893,6 +5912,7 @@ export interface PreferenceSubscriptionsTabExperienceContentConfig {
   listSwitchLabels?: SwitchButtonsExperienceContentConfig
   actionButtonText?: string
   confirmationMessage?: string
+  authenticationGateway?: SubscriptionsTabAuthenticationGatewayExperienceContentConfig
 }
 
 /**
