@@ -4380,6 +4380,8 @@ export interface ModalThemeConfig {
   header?: HeaderThemeConfig
   description?: ModalDescriptionThemeConfig
   gpcBanner?: SignalNoticesThemeConfig
+  /** Notice under a purpose switched off in the modal, when an opt-out right covers it */
+  optOutNotice?: OptOutNoticeThemeConfig
   purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
   footer?: BannerModalFooterThemeConfig
