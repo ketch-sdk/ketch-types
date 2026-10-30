@@ -4783,19 +4783,19 @@ export interface SubmittedRequestFooterThemeConfig {
 }
 
 /**
- * Preference Center Requests Tab Submitted View Progress Theme Configuration
+ * Preference Center Requests Tab Submitted View Opt-Out Progress Theme Configuration
  *
  * The steps shown after an opt-out request (received, this device, other systems) and the card
  * linking to the privacy portal to track the request.
  */
 
-export interface SubmittedProgressStepIconThemeConfig {
+export interface OptOutProgressStepIconThemeConfig {
   background?: ColorThemeConfig
   outline?: ColorThemeConfig
   icon?: ColorThemeConfig
 }
 
-export interface SubmittedProgressTrackThemeConfig {
+export interface OptOutProgressTrackThemeConfig {
   background?: ColorThemeConfig
   outline?: ColorThemeConfig
   cornerRadius?: number
@@ -4804,20 +4804,20 @@ export interface SubmittedProgressTrackThemeConfig {
   actionButton?: ActionButtonThemeConfig
 }
 
-export interface SubmittedProgressThemeConfig {
+export interface OptOutProgressThemeConfig {
   divider?: ColorThemeConfig
   stepTitle?: TextThemeConfig
   stepDescription?: TextThemeConfig
-  completeIcon?: SubmittedProgressStepIconThemeConfig
-  pendingIcon?: SubmittedProgressStepIconThemeConfig
-  track?: SubmittedProgressTrackThemeConfig
+  completeIcon?: OptOutProgressStepIconThemeConfig
+  pendingIcon?: OptOutProgressStepIconThemeConfig
+  track?: OptOutProgressTrackThemeConfig
 }
 
 export interface RequestsTabSubmittedThemeConfig {
   header?: HeaderThemeConfig
   banner?: SubmittedRequestSummaryBannerThemeConfig
   text?: SubmittedRequestSummaryTextThemeConfig
-  progress?: SubmittedProgressThemeConfig
+  optOutProgress?: OptOutProgressThemeConfig
   footer?: SubmittedRequestFooterThemeConfig
 }
 
