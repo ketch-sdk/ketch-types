@@ -2916,6 +2916,7 @@ export enum ConsentSource {
   PreferenceConsentsTabRejectAll = 'preference.consentsTab.rejectAll',
   PreferenceDefault = 'preference.default', // Clicked save without changing anything
   PreferenceManual = 'preference.manual', // Changed some purposes then clicked save
+  PreferenceRightsTabOptOut = 'preference.rightsTab.optOut', // Submitted an opt-out right that turns off its purposes
   RouterSetConsent = 'router.setConsent', // Set via Ketch tag's Router.ts setConsent function
   ProgressiveConsent = 'progressive.consent',
   ConsentGate = 'consentGate',
@@ -4380,6 +4381,8 @@ export interface ModalThemeConfig {
   header?: HeaderThemeConfig
   description?: ModalDescriptionThemeConfig
   gpcBanner?: SignalNoticesThemeConfig
+  /** Notice under a purpose switched off in the modal, when an opt-out right covers it */
+  optOutNotice?: OptOutNoticeThemeConfig
   purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
   footer?: BannerModalFooterThemeConfig
@@ -4546,12 +4549,28 @@ export interface PreferencePrivacyPolicyTabThemeConfig {
 }
 
 /**
+ * Preference Center Purposes Tab Opt-Out Notice Theme Configuration
+ *
+ * The notice under a purpose the visitor has just switched off, pointing to an opt-out right's form.
+ */
+
+export interface OptOutNoticeThemeConfig {
+  fill?: ColorThemeConfig
+  outline?: ColorThemeConfig
+  title?: TextThemeConfig
+  description?: TextThemeConfig
+  actionButton?: ActionButtonThemeConfig
+  cornerRadius?: number
+}
+
+/**
  * Preference Center Purposes Tab Theme Configuration
  */
 
 export interface PreferencePurposesTabThemeConfig {
   header?: PageTextThemeConfig
   gpcBanner?: SignalNoticesThemeConfig
+  optOutNotice?: OptOutNoticeThemeConfig
   purposeListHeader?: PurposeListHeaderThemeConfig
   purposeList?: PurposeListThemeConfig
   footer?: PreferenceFooterThemeConfig
@@ -4708,9 +4727,38 @@ export interface RightFormThemeConfig {
   radioButtons?: RadioButtonsThemeConfig
 }
 
+/**
+ * Preference Center Requests Tab Right Form Consent Summary Theme Configuration
+ *
+ * The panel on an opt-out right's form listing the visitor's current choice for each purpose.
+ */
+
+export interface ConsentSummaryItemThemeConfig {
+  background?: ColorThemeConfig
+  text?: TextThemeConfig
+}
+
+export interface ConsentSummaryStatusThemeConfig {
+  background?: ColorThemeConfig
+  outline?: ColorThemeConfig
+  text?: TextThemeConfig
+}
+
+export interface ConsentSummaryThemeConfig {
+  background?: ColorThemeConfig
+  outline?: ColorThemeConfig
+  cornerRadius?: number
+  title?: TextThemeConfig
+  description?: TextThemeConfig
+  item?: ConsentSummaryItemThemeConfig
+  optedIn?: ConsentSummaryStatusThemeConfig
+  optedOut?: ConsentSummaryStatusThemeConfig
+}
+
 export interface RequestsTabRightFormThemeConfig {
   header?: HeaderThemeConfig
   form?: RightFormThemeConfig
+  consentSummary?: ConsentSummaryThemeConfig
   actionButton?: ActionButtonThemeConfig
 }
 
@@ -4737,10 +4785,42 @@ export interface SubmittedRequestFooterThemeConfig {
   actionButton?: ActionButtonThemeConfig
 }
 
+/**
+ * Preference Center Requests Tab Submitted View Opt-Out Progress Theme Configuration
+ *
+ * The steps shown after an opt-out request (received, this device, other systems) and the card
+ * linking to the privacy portal to track the request.
+ */
+
+export interface OptOutProgressStepIconThemeConfig {
+  background?: ColorThemeConfig
+  outline?: ColorThemeConfig
+  icon?: ColorThemeConfig
+}
+
+export interface OptOutProgressTrackThemeConfig {
+  background?: ColorThemeConfig
+  outline?: ColorThemeConfig
+  cornerRadius?: number
+  title?: TextThemeConfig
+  description?: TextThemeConfig
+  actionButton?: ActionButtonThemeConfig
+}
+
+export interface OptOutProgressThemeConfig {
+  divider?: ColorThemeConfig
+  stepTitle?: TextThemeConfig
+  stepDescription?: TextThemeConfig
+  completeIcon?: OptOutProgressStepIconThemeConfig
+  pendingIcon?: OptOutProgressStepIconThemeConfig
+  track?: OptOutProgressTrackThemeConfig
+}
+
 export interface RequestsTabSubmittedThemeConfig {
   header?: HeaderThemeConfig
   banner?: SubmittedRequestSummaryBannerThemeConfig
   text?: SubmittedRequestSummaryTextThemeConfig
+  optOutProgress?: OptOutProgressThemeConfig
   footer?: SubmittedRequestFooterThemeConfig
 }
 
