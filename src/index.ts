@@ -2139,6 +2139,7 @@ export interface Translations {
   country_afghanistan?: string
   country_albania?: string
   country_algeria?: string
+  country_american_samoa?: string
   country_andorra?: string
   country_angola?: string
   country_antigua_and_barbuda?: string
@@ -2203,6 +2204,7 @@ export interface Translations {
   country_ghana?: string
   country_greece?: string
   country_grenada?: string
+  country_guam?: string
   country_guatemala?: string
   country_guinea?: string
   country_guinea_bissau?: string
@@ -2265,6 +2267,7 @@ export interface Translations {
   country_nicaragua?: string
   country_niger?: string
   country_nigeria?: string
+  country_northern_mariana_islands?: string
   country_norway?: string
   country_oman?: string
   country_pakistan?: string
@@ -2276,6 +2279,7 @@ export interface Translations {
   country_philippines?: string
   country_poland?: string
   country_portugal?: string
+  country_puerto_rico?: string
   country_qatar?: string
   country_romania?: string
   country_russian_federation?: string
@@ -2323,11 +2327,13 @@ export interface Translations {
   country_united_arab_emirates?: string
   country_united_kingdom?: string
   country_united_states?: string
+  country_united_states_minor_outlying_islands?: string
   country_uruguay?: string
   country_uzbekistan?: string
   country_vanuatu?: string
   country_venezuela?: string
   country_vietnam?: string
+  country_virgin_islands_us?: string
   country_yemen?: string
   country_zambia?: string
   country_zimbabwe?: string
@@ -6102,6 +6108,7 @@ interface CountryTranslations {
   country_afghanistan?: string
   country_albania?: string
   country_algeria?: string
+  country_american_samoa?: string
   country_andorra?: string
   country_angola?: string
   country_antigua_and_barbuda?: string
@@ -6166,6 +6173,7 @@ interface CountryTranslations {
   country_ghana?: string
   country_greece?: string
   country_grenada?: string
+  country_guam?: string
   country_guatemala?: string
   country_guinea?: string
   country_guinea_bissau?: string
@@ -6228,6 +6236,7 @@ interface CountryTranslations {
   country_nicaragua?: string
   country_niger?: string
   country_nigeria?: string
+  country_northern_mariana_islands?: string
   country_norway?: string
   country_oman?: string
   country_pakistan?: string
@@ -6239,6 +6248,7 @@ interface CountryTranslations {
   country_philippines?: string
   country_poland?: string
   country_portugal?: string
+  country_puerto_rico?: string
   country_qatar?: string
   country_romania?: string
   country_russian_federation?: string
@@ -6286,11 +6296,13 @@ interface CountryTranslations {
   country_united_arab_emirates?: string
   country_united_kingdom?: string
   country_united_states?: string
+  country_united_states_minor_outlying_islands?: string
   country_uruguay?: string
   country_uzbekistan?: string
   country_vanuatu?: string
   country_venezuela?: string
   country_vietnam?: string
+  country_virgin_islands_us?: string
   country_yemen?: string
   country_zambia?: string
   country_zimbabwe?: string

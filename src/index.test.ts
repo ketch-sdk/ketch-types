@@ -12,9 +12,11 @@ import {
   PreferenceSubscriptionsTabExperienceContentConfig,
   PreferenceSubscriptionsTabExperienceLayoutConfig,
   SetSubscriptionsRequest,
+  StaticContentConfig,
   SubscriptionAccessTokenErrorReason,
   SubscriptionSource,
   SubscriptionTopicDoubleOptInRule,
+  Translations,
 } from './index'
 
 describe('index', () => {
@@ -155,6 +157,26 @@ describe('index', () => {
       expect(layout.authenticationGateway?.header?.title?.visible).toBe(false)
       expect(content.authenticationGateway?.actionButtonText).toBe('Send Me A Link')
       expect(textInLayout.authenticationGateway).toBeDefined()
+    })
+  })
+
+  describe('country translations', () => {
+    // Each key is checked by name against both types; a spread object would skip the check.
+    const territoryKeys = [
+      'country_american_samoa',
+      'country_guam',
+      'country_northern_mariana_islands',
+      'country_puerto_rico',
+      'country_united_states_minor_outlying_islands',
+      'country_virgin_islands_us',
+    ] as const
+
+    it('has the US territory country names on static content and translations', () => {
+      const staticContentKeys: Array<keyof StaticContentConfig> = [...territoryKeys]
+      const translationKeys: Array<keyof Translations> = [...territoryKeys]
+
+      expect(staticContentKeys).toHaveLength(6)
+      expect(translationKeys).toHaveLength(6)
     })
   })
 })
