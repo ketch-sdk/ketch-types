@@ -1,4 +1,4 @@
-import { ExperienceFormField, CanonicalRightForm, CustomRightForm, FormTemplate } from './forms'
+import type { ExperienceFormField, CanonicalRightForm, CustomRightForm, FormTemplate } from './forms'
 
 /**
  * Tab
@@ -7232,18 +7232,16 @@ export type PreviewMessage = {
   payload?: ConfigurationV2 | PreferenceCenterPage
 }
 
-export {
+export type {
   ExperienceFormField,
   FormFieldDropdownOption,
-  FormFieldWidth,
-  FormFieldCategory,
-  FormFieldType,
-  FormFieldVariant,
   CanonicalRightForm,
   CustomRightForm,
   FormSection,
   FormTemplate,
 } from './forms'
+
+export { FormFieldWidth, FormFieldCategory, FormFieldType, FormFieldVariant } from './forms'
 
 export interface TagPurposeMapping {
   purposeCodes?: string[]

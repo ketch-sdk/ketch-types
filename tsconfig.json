@@ -10,6 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "importsNotUsedAsValues": "remove",
     "inlineSourceMap": true,
+    "isolatedModules": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
     "noEmit": false,
