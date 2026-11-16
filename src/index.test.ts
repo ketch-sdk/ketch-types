@@ -1,4 +1,5 @@
 import {
+  BulkConsentAction,
   ConfirmIdentityRequest,
   ConfirmSubscriptionRequest,
   ConfirmSubscriptionResponse,
@@ -20,6 +21,13 @@ import {
 } from './index'
 
 describe('index', () => {
+  describe('BulkConsentAction', () => {
+    it('keeps the string values the tag already uses', () => {
+      expect(BulkConsentAction.Accept).toBe('accept')
+      expect(BulkConsentAction.Reject).toBe('reject')
+    })
+  })
+
   describe('isTab', () => {
     it('returns true if given a tab', () => {
       expect(isTab('overviewTab')).toBeTruthy()

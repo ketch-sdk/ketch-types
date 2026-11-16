@@ -2891,6 +2891,14 @@ export interface GetLocationResponse {
 }
 
 /**
+ * Bulk Consent Action: the two bulk actions behind Accept All and Reject All
+ */
+export enum BulkConsentAction {
+  Accept = 'accept',
+  Reject = 'reject',
+}
+
+/**
  * Consent Source
  */
 export enum ConsentSource {
