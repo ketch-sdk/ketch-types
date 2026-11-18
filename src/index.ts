@@ -3343,14 +3343,39 @@ export interface Ketch {
   showPreferences(params?: ShowPreferenceOptions): Promise<void>
 
   /**
-   * Show the experience configured for the "Do Not Sell or Share" link.
+   * Fire a deployment-rule trigger by its rule-builder name
    *
-   * Evaluates deployment rules whose trigger is "Do Not Sell or Share Opened" (`onFunction|showDNS`).
-   * Those rules are optional; when the deployment has none, this behaves like showPreferences.
-   *
-   * @param params The parameters for the experience
+   * @param triggerName The trigger to fire
+   * @param functionName The custom function name the rules match on
+   * @param options Arguments passed to the matching rules
    */
-  showDNS(params?: ShowPreferenceOptions): Promise<void>
+  trigger(
+    triggerName: TriggerName.Custom | 'custom',
+    functionName: string,
+    options?: Record<string, any>,
+  ): Promise<void>
+
+  /**
+   * Fire a deployment-rule trigger by its rule-builder name
+   *
+   * @param triggerName The trigger to fire
+   * @param options The parameters for the consent experience
+   */
+  trigger(
+    triggerName: TriggerName.PrivacyPrefUnknown | 'privacyPrefUnknown',
+    options?: ShowConsentOptions,
+  ): Promise<void>
+
+  /**
+   * Fire a deployment-rule trigger by its rule-builder name
+   *
+   * @param triggerName The trigger to fire
+   * @param options The parameters for the preference experience
+   */
+  trigger(
+    triggerName: TriggerName.PreferencesOpened | TriggerName.DnsOpened | 'preferencesOpened' | 'dnsOpened',
+    options?: ShowPreferenceOptions,
+  ): Promise<void>
 
   /**
    * Signals that an experience has been hidden
@@ -7144,6 +7169,22 @@ export enum ActionFunction {
 export enum RuleTrigger {
   ON_LOAD = 'onPageLoad',
   ON_FUNCTION = 'onFunction',
+  /** Rules for the "Do Not Sell or Share Opened" trigger */
+  ON_DNS_OPENED = 'onDnsOpened',
+}
+
+/**
+ * Public trigger names accepted by `ketch('trigger', ...)`
+ */
+export enum TriggerName {
+  /** Custom Function Called */
+  Custom = 'custom',
+  /** Privacy Preference Unknown */
+  PrivacyPrefUnknown = 'privacyPrefUnknown',
+  /** Preferences Opened */
+  PreferencesOpened = 'preferencesOpened',
+  /** Do Not Sell or Share Opened */
+  DnsOpened = 'dnsOpened',
 }
 
 export enum BannerDismissAnimation {

@@ -13,12 +13,14 @@ import {
   LeadCaptureResultAction,
   PreferenceSubscriptionsTabExperienceContentConfig,
   PreferenceSubscriptionsTabExperienceLayoutConfig,
+  RuleTrigger,
   SetSubscriptionsRequest,
   StaticContentConfig,
   SubscriptionAccessTokenErrorReason,
   SubscriptionSource,
   SubscriptionTopicDoubleOptInRule,
   Translations,
+  TriggerName,
 } from './index'
 
 describe('index', () => {
@@ -26,6 +28,21 @@ describe('index', () => {
     it('keeps the string values the tag already uses', () => {
       expect(BulkConsentAction.Accept).toBe('accept')
       expect(BulkConsentAction.Reject).toBe('reject')
+    })
+  })
+
+  describe('RuleTrigger', () => {
+    it('keys Do Not Sell or Share Opened rules under onDnsOpened', () => {
+      expect(RuleTrigger.ON_DNS_OPENED).toBe('onDnsOpened')
+    })
+  })
+
+  describe('TriggerName', () => {
+    it('matches the names ketch trigger accepts', () => {
+      expect(TriggerName.Custom).toBe('custom')
+      expect(TriggerName.PrivacyPrefUnknown).toBe('privacyPrefUnknown')
+      expect(TriggerName.PreferencesOpened).toBe('preferencesOpened')
+      expect(TriggerName.DnsOpened).toBe('dnsOpened')
     })
   })
 
