@@ -614,7 +614,7 @@ export type ShowPreferenceOptions = {
 
   /**
    * displayedSubscriptionPages lists the subscriptions tab entry pages a visitor
-   * with no known identity can see. If undefined, all entry pages can show.
+   * with no known identity can see. If undefined, none show.
    */
   displayedSubscriptionPages?: SubscriptionPage[]
 
