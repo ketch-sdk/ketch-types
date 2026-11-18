@@ -14,6 +14,14 @@ export enum Tab {
 }
 
 /**
+ * SubscriptionPage is an entry page of the subscriptions tab for a visitor with no known identity.
+ */
+export enum SubscriptionPage {
+  Access = 'access',
+  LeadCapture = 'leadCapture',
+}
+
+/**
  * All tabs
  */
 const ALL_TABS = Object.values(Tab).map(x => x.toString())
@@ -26,6 +34,18 @@ const ALL_TABS = Object.values(Tab).map(x => x.toString())
  */
 export function isTab(value: string): value is Tab {
   return ALL_TABS.includes(value)
+}
+
+const ALL_SUBSCRIPTION_PAGES = Object.values(SubscriptionPage).map(x => x.toString())
+
+/**
+ * Determines if the given value is a SubscriptionPage
+ *
+ * @param value The value to test
+ * @returns true if the given value is a SubscriptionPage
+ */
+export function isSubscriptionPage(value: unknown): value is SubscriptionPage {
+  return typeof value === 'string' && ALL_SUBSCRIPTION_PAGES.includes(value)
 }
 
 /**
@@ -591,6 +611,18 @@ export type ShowPreferenceOptions = {
    * particular right.
    */
   canonicalRightCode?: CanonicalRightCode
+
+  /**
+   * displayedSubscriptionPages lists the subscriptions tab entry pages a visitor
+   * with no known identity can see. If undefined, none show.
+   */
+  displayedSubscriptionPages?: SubscriptionPage[]
+
+  /**
+   * startingSubscriptionPage is the entry page the subscriptions tab opens on
+   * for a visitor with no known identity, when it is displayed.
+   */
+  startingSubscriptionPage?: SubscriptionPage
 }
 
 /**
@@ -2888,6 +2920,14 @@ export interface GetLocationRequest {
  */
 export interface GetLocationResponse {
   location: IPInfo
+}
+
+/**
+ * Bulk Consent Action: the two bulk actions behind Accept All and Reject All
+ */
+export enum BulkConsentAction {
+  Accept = 'accept',
+  Reject = 'reject',
 }
 
 /**

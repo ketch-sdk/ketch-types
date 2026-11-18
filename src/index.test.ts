@@ -1,4 +1,5 @@
 import {
+  BulkConsentAction,
   ConfirmIdentityRequest,
   ConfirmSubscriptionRequest,
   ConfirmSubscriptionResponse,
@@ -6,6 +7,7 @@ import {
   ConfigurationV2,
   Deployment,
   DisplayExperienceType,
+  isSubscriptionPage,
   isTab,
   LeadCaptureConfig,
   LeadCaptureResultAction,
@@ -20,6 +22,26 @@ import {
 } from './index'
 
 describe('index', () => {
+  describe('BulkConsentAction', () => {
+    it('keeps the string values the tag already uses', () => {
+      expect(BulkConsentAction.Accept).toBe('accept')
+      expect(BulkConsentAction.Reject).toBe('reject')
+    })
+  })
+
+  describe('isSubscriptionPage', () => {
+    it('returns true for each subscription page', () => {
+      expect(isSubscriptionPage('access')).toBeTruthy()
+      expect(isSubscriptionPage('leadCapture')).toBeTruthy()
+    })
+
+    it('returns false for anything else', () => {
+      expect(isSubscriptionPage('subscriptionsTab')).toBeFalsy()
+      expect(isSubscriptionPage(undefined)).toBeFalsy()
+      expect(isSubscriptionPage(1)).toBeFalsy()
+    })
+  })
+
   describe('isTab', () => {
     it('returns true if given a tab', () => {
       expect(isTab('overviewTab')).toBeTruthy()
