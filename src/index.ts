@@ -3343,41 +3343,6 @@ export interface Ketch {
   showPreferences(params?: ShowPreferenceOptions): Promise<void>
 
   /**
-   * Fire a deployment-rule trigger by its rule-builder name
-   *
-   * @param triggerName The trigger to fire
-   * @param functionName The custom function name the rules match on
-   * @param options Arguments passed to the matching rules
-   */
-  trigger(
-    triggerName: TriggerName.Custom | 'custom',
-    functionName: string,
-    options?: Record<string, any>,
-  ): Promise<void>
-
-  /**
-   * Fire a deployment-rule trigger by its rule-builder name
-   *
-   * @param triggerName The trigger to fire
-   * @param options The parameters for the consent experience
-   */
-  trigger(
-    triggerName: TriggerName.PrivacyPrefUnknown | 'privacyPrefUnknown',
-    options?: ShowConsentOptions,
-  ): Promise<void>
-
-  /**
-   * Fire a deployment-rule trigger by its rule-builder name
-   *
-   * @param triggerName The trigger to fire
-   * @param options The parameters for the preference experience
-   */
-  trigger(
-    triggerName: TriggerName.PreferencesOpened | TriggerName.DnsOpened | 'preferencesOpened' | 'dnsOpened',
-    options?: ShowPreferenceOptions,
-  ): Promise<void>
-
-  /**
    * Signals that an experience has been hidden
    *
    * @param reason is a string representing the reason the experience was closed
