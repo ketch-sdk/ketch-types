@@ -7256,6 +7256,22 @@ export enum ActionFunction {
 export enum RuleTrigger {
   ON_LOAD = 'onPageLoad',
   ON_FUNCTION = 'onFunction',
+  /** Rules for the "Do Not Sell or Share Opened" trigger */
+  ON_DNS_OPENED = 'onDnsOpened',
+}
+
+/**
+ * Public trigger names accepted by `ketch('trigger', ...)`
+ */
+export enum TriggerName {
+  /** Custom Function Called */
+  Custom = 'custom',
+  /** Privacy Preference Unknown */
+  PrivacyPreferenceUnknown = 'privacyPreferenceUnknown',
+  /** Preferences Opened */
+  PreferencesOpened = 'preferencesOpened',
+  /** Do Not Sell or Share Opened */
+  DnsOpened = 'dnsOpened',
 }
 
 export enum BannerDismissAnimation {
