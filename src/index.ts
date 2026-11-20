@@ -7267,7 +7267,7 @@ export enum TriggerName {
   /** Custom Function Called */
   Custom = 'custom',
   /** Privacy Preference Unknown */
-  PrivacyPrefUnknown = 'privacyPrefUnknown',
+  PrivacyPreferenceUnknown = 'privacyPreferenceUnknown',
   /** Preferences Opened */
   PreferencesOpened = 'preferencesOpened',
   /** Do Not Sell or Share Opened */

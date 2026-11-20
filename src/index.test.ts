@@ -45,7 +45,7 @@ describe('index', () => {
   describe('TriggerName', () => {
     it('matches the names ketch trigger accepts', () => {
       expect(TriggerName.Custom).toBe('custom')
-      expect(TriggerName.PrivacyPrefUnknown).toBe('privacyPrefUnknown')
+      expect(TriggerName.PrivacyPreferenceUnknown).toBe('privacyPreferenceUnknown')
       expect(TriggerName.PreferencesOpened).toBe('preferencesOpened')
       expect(TriggerName.DnsOpened).toBe('dnsOpened')
     })
