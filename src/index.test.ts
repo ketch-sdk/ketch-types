@@ -7,12 +7,17 @@ import {
   ConfigurationV2,
   Deployment,
   DisplayExperienceType,
+  ExperienceContentConfig,
+  ExperienceLayoutConfig,
   isSubscriptionPage,
   isTab,
   LeadCaptureConfig,
   LeadCaptureResultAction,
+  OptOutProgressThemeConfig,
   PreferenceSubscriptionsTabExperienceContentConfig,
   PreferenceSubscriptionsTabExperienceLayoutConfig,
+  RequestsTabRightFormThemeConfig,
+  Right,
   SetSubscriptionsRequest,
   StaticContentConfig,
   SubscriptionAccessTokenErrorReason,
@@ -199,6 +204,116 @@ describe('index', () => {
 
       expect(staticContentKeys).toHaveLength(6)
       expect(translationKeys).toHaveLength(6)
+    })
+  })
+
+  describe('opt-out form', () => {
+    const color = { color: '#071a24' }
+
+    it('types the purposes an opt-out right turns off', () => {
+      const right: Right = {
+        code: 'opt_out',
+        name: 'Do Not Sell or Share',
+        description: 'Opt out of the sale or sharing of your data',
+        canonicalRightCode: 'restrict',
+        optOutPurposeCodes: ['targeted_advertising'],
+      }
+
+      expect(right.optOutPurposeCodes).toEqual(['targeted_advertising'])
+    })
+
+    it('types the progress steps and track arrow beside the fields older themes saved', () => {
+      const progress: OptOutProgressThemeConfig = {
+        complete: {
+          fill: color,
+          outline: color,
+          cornerRadius: 4,
+          title: color,
+          description: color,
+          // A migrated theme copies completeIcon here, background and outline included.
+          icon: {
+            background: color,
+            outline: color,
+            icon: color,
+            useDefaultIcon: false,
+            iconUrl: 'https://example.com/check.svg',
+          },
+        },
+        pending: { fill: color, icon: { useDefaultIcon: true } },
+        track: { background: color, cornerRadius: 4, title: color, description: color, arrowIcon: color },
+        divider: color,
+        stepTitle: color,
+        stepDescription: color,
+        completeIcon: { background: color, outline: color, icon: color },
+        pendingIcon: { icon: color },
+      }
+      const legacyTrack: OptOutProgressThemeConfig = { track: { outline: color, actionButton: { background: color } } }
+
+      expect(progress.complete?.icon?.iconUrl).toBe('https://example.com/check.svg')
+      expect(progress.track?.arrowIcon).toEqual(color)
+      expect(legacyTrack.track?.actionButton).toBeDefined()
+    })
+
+    it('types the GPC banner and consent summary theme on the right form', () => {
+      const rightForm: RequestsTabRightFormThemeConfig = {
+        gpcBanner: { fill: color, outline: color, title: { text: color }, showLinkArrow: true, cornerRadius: 4 },
+        consentSummary: {
+          item: { background: color, text: color, cornerRadius: 4 },
+          optedOutByGpc: { background: color, outline: color, text: color },
+        },
+      }
+
+      expect(rightForm.consentSummary?.optedOutByGpc?.text).toEqual(color)
+    })
+
+    it('types the opt-out notice, signal notices, consent summary and progress copy', () => {
+      const layout: ExperienceLayoutConfig = {
+        modal: { optOutNotice: { visible: false, title: { useDefaultText: false } } },
+        preference: {
+          tabs: {
+            purposes: { optOutNotice: { visible: true, actionButton: { useDefaultText: true } } },
+            requests: {
+              rightForm: {
+                gpcBanner: { visible: true, description: { visible: true, useDefaultText: false } },
+                attBanner: { visible: false, openSettingsLink: { visible: true } },
+                consentSummary: { visible: true, optedOutByGpc: { useDefaultText: false } },
+              },
+              submitted: {
+                actionButton: { visible: true, useDefaultText: true },
+                optOutProgress: { receivedTitle: { useDefaultText: false } },
+              },
+            },
+          },
+        },
+      }
+      const content: ExperienceContentConfig = {
+        modal: { optOutNotice: { title: 'Device(s) opted out', actionButtonText: 'Complete your opt-out' } },
+        preference: {
+          tabs: {
+            purposes: { optOutNotice: { description: 'Submit an opt-out request to opt out more broadly.' } },
+            requests: {
+              rightForm: {
+                gpcBanner: { title: 'GPC detected' },
+                attBanner: { openSettingsLink: 'Settings' },
+                consentSummary: { readOnly: 'Read-only', optedOutByGpc: 'Opted Out by GPC' },
+              },
+              submitted: { optOutProgress: { trackDescription: 'Track this request.' } },
+            },
+          },
+        },
+      }
+
+      const progressVisibility: ExperienceLayoutConfig = {
+        // @ts-expect-error the progress steps always show; only their copy is configurable
+        preference: { tabs: { requests: { submitted: { actionButton: {}, optOutProgress: { visible: false } } } } },
+      }
+
+      expect(layout.modal?.optOutNotice?.visible).toBe(false)
+      expect(layout.preference?.tabs?.requests?.rightForm?.consentSummary?.optedOutByGpc?.useDefaultText).toBe(false)
+      expect(content.preference?.tabs?.requests?.submitted?.optOutProgress?.trackDescription).toBe(
+        'Track this request.',
+      )
+      expect(progressVisibility.preference).toBeDefined()
     })
   })
 })
