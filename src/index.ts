@@ -1589,6 +1589,18 @@ export interface VendorPurpose {
 }
 
 /**
+ * A purpose the vendor registers under legitimate interest (config.vendors[].legIntPurposes).
+ *
+ * hasOverride / overrideType carry a publisher restriction on that purpose, using the TCF
+ * restriction types; overrideType is omitted for "not allowed".
+ */
+export interface VendorLegIntPurpose {
+  id: number
+  hasOverride?: boolean
+  overrideType?: number
+}
+
+/**
  * Vendor definition (CDN config.vendors).
  *
  * @deprecated New product/UI reads should use systems.tcf. The CMP encoder
@@ -1598,6 +1610,7 @@ export interface Vendor {
   id: string
   name: string
   purposes?: VendorPurpose[]
+  legIntPurposes?: VendorLegIntPurpose[]
   specialPurposes?: VendorPurpose[]
   features?: VendorPurpose[]
   specialFeatures?: VendorPurpose[]
