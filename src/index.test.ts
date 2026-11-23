@@ -10,6 +10,7 @@ import {
   ExperienceContentConfig,
   ExperienceLayoutConfig,
   isSubscriptionPage,
+  isSubscriptionTokenError,
   isTab,
   LeadCaptureConfig,
   LeadCaptureResultAction,
@@ -22,6 +23,7 @@ import {
   SetSubscriptionsRequest,
   StaticContentConfig,
   SubscriptionAccessTokenErrorReason,
+  SubscriptionPrincipal,
   SubscriptionSource,
   SubscriptionTopicDoubleOptInRule,
   Translations,
@@ -61,6 +63,31 @@ describe('index', () => {
       expect(isSubscriptionPage('subscriptionsTab')).toBeFalsy()
       expect(isSubscriptionPage(undefined)).toBeFalsy()
       expect(isSubscriptionPage(1)).toBeFalsy()
+    })
+  })
+
+  describe('SubscriptionPrincipal', () => {
+    it('keeps the string values the tag and lanyard share', () => {
+      expect(Object.values(SubscriptionPrincipal)).toEqual(['identity', 'signupToken', 'none'])
+    })
+  })
+
+  describe('isSubscriptionTokenError', () => {
+    it('returns true for a 401 with token_invalid or token_expired', () => {
+      expect(isSubscriptionTokenError({ status: 401, reason: 'token_invalid' })).toBeTruthy()
+      expect(isSubscriptionTokenError({ status: 401, reason: 'token_expired' })).toBeTruthy()
+    })
+
+    it('returns false for other statuses and reasons', () => {
+      expect(isSubscriptionTokenError({ status: 403, reason: 'token_invalid' })).toBeFalsy()
+      expect(isSubscriptionTokenError({ status: 401, reason: 'token_missing' })).toBeFalsy()
+      expect(isSubscriptionTokenError({ status: 401 })).toBeFalsy()
+    })
+
+    it('returns false for null, undefined and plain Errors', () => {
+      expect(isSubscriptionTokenError(null)).toBeFalsy()
+      expect(isSubscriptionTokenError(undefined)).toBeFalsy()
+      expect(isSubscriptionTokenError(new Error('token_invalid'))).toBeFalsy()
     })
   })
 
