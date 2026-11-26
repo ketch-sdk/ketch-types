@@ -3310,6 +3310,28 @@ export interface Ketch {
    */
   setSubscriptions(request: Subscriptions, source: SubscriptionSource): Promise<void>
 
+  /** Which credential subscription reads and writes use, and whether a confirmation link is waiting. */
+  getSubscriptionAccess?(): Promise<SubscriptionAccess>
+
+  /**
+   * Lead Capture signup. Rejects with SubscriptionTokenError when the stored signup token is refused.
+   *
+   * @param request The signup fields, topics, experience and reCAPTCHA token
+   * @param source Where the signup came from
+   */
+  signUpForSubscriptions?(request: SubscriptionSignupRequest, source: SubscriptionSource): Promise<void>
+
+  /**
+   * Asks the server to email an access link. Resolves whether or not an email was sent.
+   *
+   * @param email The address to send the link to
+   * @param recaptchaToken reCAPTCHA token for the request
+   */
+  requestSubscriptionAccessLink?(email: string, recaptchaToken?: string): Promise<void>
+
+  /** Confirms the page's confirmation link. Rejects with SubscriptionTokenError when the link is refused. */
+  confirmSubscription?(): Promise<Pick<ConfirmSubscriptionResponse, 'confirmed' | 'skipped'>>
+
   /**
    * Get profile preferences
    */
@@ -3741,6 +3763,8 @@ export interface GetSubscriptionsRequest {
   jurisdictionCode?: string
   regionCode?: string
   accessToken?: string
+  /** A Lead Capture signup's token: the server reads that signup's still-pending pairs and ignores identities. */
+  signupToken?: string
 }
 
 /**
@@ -3776,6 +3800,22 @@ export interface SetSubscriptionsRequest {
   jurisdictionCode?: string
   regionCode?: string
   accessToken?: string
+  /** Page URL without its fragment. Double opt-in emails link back to it; required on a signup. */
+  returnUrl?: string
+  /** Requests the Lead Capture signup path: identities are contact details the visitor typed. */
+  verifyIdentities?: boolean
+  /** Preference experience whose signup fields collected the identities. Required with verifyIdentities. */
+  experienceId?: string
+  /** reCAPTCHA token for action subscription_signup. Required with verifyIdentities. */
+  recaptchaToken?: string
+  /** With verifyIdentities and no identities, signs up again as the token's identities. */
+  signupToken?: string
+}
+
+/** Body of a 200 from /update. */
+export interface SetSubscriptionsResponse {
+  /** Present when a signup left pairs waiting for confirmation. */
+  signupToken?: string
 }
 
 /**
@@ -3803,13 +3843,59 @@ export interface ConfirmSubscriptionRequest {
  */
 export interface ConfirmSubscriptionResponse {
   confirmed?: { topicCode: string; contactMethodCode: string }[]
-  skipped?: { topicCode: string; contactMethodCode: string; reason: string }[]
+  skipped?: { topicCode: string; contactMethodCode?: string; reason: string }[]
+  /** Identities the confirmation link was issued for. */
+  identities?: { [identitySpaceCode: string]: string }
+  /** Covers pairs of the same signup that are still pending. */
+  signupToken?: string
 }
 
 /**
  * Reason returned with a 401 when a subscription access token is rejected
  */
 export type SubscriptionAccessTokenErrorReason = 'token_invalid' | 'token_expired'
+
+/** Who the tag reads and writes subscriptions as. */
+export enum SubscriptionPrincipal {
+  /** An access link, the page's own subscription identities, or identities a confirmation link named on this page. */
+  Identity = 'identity',
+  /** Only a Lead Capture signup on this browser that still awaits confirmation. */
+  SignupToken = 'signupToken',
+  None = 'none',
+}
+
+export interface SubscriptionAccess {
+  principal: SubscriptionPrincipal
+  /** A confirmation link on this page has not been confirmed yet. */
+  hasConfirmToken: boolean
+}
+
+export interface SubscriptionSignupRequest {
+  /** Contact details typed into the signup fields, keyed by identity space. */
+  identities: { [identitySpaceCode: string]: string }
+  topics: { [topicCode: string]: SubscriptionTopicSetting }
+  experienceId: string
+  /** reCAPTCHA token for action subscription_signup, or '' when none could be made. */
+  recaptchaToken: string
+}
+
+/** Rejection when the server refuses an access, confirmation or signup token. */
+export interface SubscriptionTokenError extends Error {
+  name: 'SubscriptionTokenError'
+  status: 401
+  reason: SubscriptionAccessTokenErrorReason
+}
+
+/**
+ * Determines if the given value is a SubscriptionTokenError
+ *
+ * @param error The value to test
+ * @returns true if the given value has status 401 and a SubscriptionAccessTokenErrorReason
+ */
+export function isSubscriptionTokenError(error: unknown): error is SubscriptionTokenError {
+  const e = error as Partial<SubscriptionTokenError> | null
+  return !!e && e.status === 401 && (e.reason === 'token_invalid' || e.reason === 'token_expired')
+}
 
 /**
  * GetSubscriptionConfigurationRequest
@@ -4696,6 +4782,24 @@ export interface SubscriptionsTabListThemeConfig {
   checkbox?: CheckboxesThemeConfig
 }
 
+export interface SubscriptionFormThemeConfig {
+  header?: PageTextThemeConfig
+  field?: FormFieldsThemeConfig
+  actionButton?: ActionButtonThemeConfig
+}
+
+export interface SubscriptionSignupThemeConfig extends SubscriptionFormThemeConfig {
+  topics?: SubscriptionsTabListThemeConfig
+  summary?: { header?: PageTextThemeConfig }
+  accessLink?: {
+    title?: TextThemeConfig
+    description?: TextThemeConfig
+    arrowIcon?: ColorThemeConfig
+    background?: ColorThemeConfig
+    cornerRadius?: number
+  }
+}
+
 /**
  * Preference Center Subscriptions Tab Theme Configuration
  */
@@ -4705,6 +4809,8 @@ export interface PreferenceSubscriptionsTabThemeConfig {
   unsubscribeAll?: SubscriptionsTabUnsubscribeAllThemeConfig
   list?: SubscriptionsTabListThemeConfig
   footer?: PreferenceFooterThemeConfig
+  signup?: SubscriptionSignupThemeConfig
+  subscriptionAccess?: SubscriptionFormThemeConfig
 }
 
 /**
@@ -5649,6 +5755,21 @@ export interface SubscriptionsTabAuthenticationGatewayExperienceLayoutConfig {
   actionButton?: { useDefaultText?: boolean }
 }
 
+export interface SubscriptionSignupField {
+  identitySpaceCode: string
+  /** 'email' and 'telephone' get matching inputs and validation. */
+  typeCode?: string
+  /** Field label. */
+  name?: string
+}
+
+export interface SubscriptionSignupExperienceLayoutConfig {
+  /** Derived by the config builder from the shown topics' contact methods; empty when Lead Capture is unavailable. */
+  fields?: SubscriptionSignupField[]
+  header?: PreferenceTabHeaderExperienceLayoutConfig
+  actionButton?: { useDefaultText?: boolean }
+}
+
 export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
   header?: PreferenceTabHeaderExperienceLayoutConfig
   unsubscribeAll?: SubscriptionsTabUnsubscribeAllExperienceLayoutConfig
@@ -5657,6 +5778,8 @@ export interface PreferenceSubscriptionsTabExperienceLayoutConfig {
   actionButtonAction?: ActionButtonAction
   confirmationMessage?: ConfirmationMessageExperienceLayoutConfig
   authenticationGateway?: SubscriptionsTabAuthenticationGatewayExperienceLayoutConfig
+  signup?: SubscriptionSignupExperienceLayoutConfig
+  subscriptionAccess?: SubscriptionsTabAuthenticationGatewayExperienceLayoutConfig
 }
 
 /**
@@ -6159,6 +6282,13 @@ export interface SubscriptionsTabAuthenticationGatewayExperienceContentConfig {
   actionButtonText?: string
 }
 
+export interface SubscriptionSignupExperienceContentConfig {
+  header?: PreferenceTabHeaderExperienceContentConfig
+  actionButtonText?: string
+  accessLink?: { title?: string; description?: string }
+  summary?: PreferenceTabHeaderExperienceContentConfig
+}
+
 /**
  * Preferences Center Subscriptions Tab Experience Content Configuration
  */
@@ -6170,6 +6300,8 @@ export interface PreferenceSubscriptionsTabExperienceContentConfig {
   actionButtonText?: string
   confirmationMessage?: string
   authenticationGateway?: SubscriptionsTabAuthenticationGatewayExperienceContentConfig
+  signup?: SubscriptionSignupExperienceContentConfig
+  subscriptionAccess?: SubscriptionsTabAuthenticationGatewayExperienceContentConfig
 }
 
 /**
@@ -7204,6 +7336,8 @@ export interface ExperienceConfigurationType {
 
   // @deprecated
   userInitiated?: ExperienceConfig
+  /** Id of the experience a visitor opens themselves, when no rule names one. */
+  userInitiatedId?: string
 
   // @deprecated
   layout: any
