@@ -28,6 +28,7 @@ import {
   SubscriptionTopicDoubleOptInRule,
   Translations,
   TriggerName,
+  Vendor,
 } from './index'
 
 describe('index', () => {
@@ -161,6 +162,24 @@ describe('index', () => {
       expect(v1.deployment?.customJs).toBe(withCustomJs.customJs)
       expect(v2.deployment?.customJs).toBe(withCustomJs.customJs)
       expect(notAString.customJs).toBe(true)
+    })
+  })
+
+  describe('vendor legIntPurposes', () => {
+    it('types legIntPurposes entries as an id with an optional publisher restriction', () => {
+      const vendor: Vendor = {
+        id: '40',
+        name: 'Vendor Delta',
+        legIntPurposes: [{ id: 2 }, { id: 9, hasOverride: true, overrideType: 1 }, { id: 10, hasOverride: true }],
+      }
+      const withoutLegIntPurposes: Vendor = { id: '41', name: 'Vendor Echo' }
+
+      // @ts-expect-error legIntPurposes entries need an id
+      const missingId: Vendor = { id: '42', name: 'Vendor Foxtrot', legIntPurposes: [{ hasOverride: true }] }
+
+      expect(vendor.legIntPurposes?.find(p => p.hasOverride)?.overrideType).toBe(1)
+      expect(withoutLegIntPurposes.legIntPurposes).toBeUndefined()
+      expect(missingId.legIntPurposes).toHaveLength(1)
     })
   })
 
